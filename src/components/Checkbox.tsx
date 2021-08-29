@@ -5,6 +5,8 @@ import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
 import * as colors from "../colors";
+import * as consts from "../consts";
+import styled from "styled-components";
 
 const Tick = () => (
   <svg
@@ -29,6 +31,32 @@ type Props = {
   children?: any;
 } & AriaCheckboxProps;
 
+const SLabel = styled.label<{ isDisabled: boolean }>`
+  display: block;
+  position: relative;
+  opacity: ${(props) => (props.isDisabled ? 0.5 : 1)};
+`;
+
+const SInput = styled.input<{
+  isFocusVisible: boolean;
+  isSelected: boolean;
+}>`
+  -webkit-appearance: none;
+  width: ${consts.checkBoxSize}px;
+  height: ${consts.checkBoxSize}px;
+  border: 1px solid
+    ${(props) =>
+      props.isSelected || props.isFocusVisible
+        ? colors.blue500
+        : colors.gray100};
+  margin: 0;
+  border-radius: ${consts.checkBoxRadius}px;
+  background: ${(props) => (props.isSelected ? colors.blue500 : colors.white)};
+  box-shadow: ${(props) =>
+    props.isFocusVisible ? `0 0 0 3px ${colors.purple500opacity}` : "none"};
+  outline: none;
+`;
+
 const Checkbox = (props: Props) => {
   const { children } = props;
   const state = useToggleState(props);
@@ -37,35 +65,16 @@ const Checkbox = (props: Props) => {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <label
-      style={{
-        display: "block",
-        position: "relative",
-        opacity: props.isDisabled ? 0.5 : 1,
-      }}
-    >
-      <input
+    <SLabel isDisabled={!!props.isDisabled}>
+      <SInput
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
-        style={{
-          WebkitAppearance: "none",
-          width: 16,
-          height: 16,
-          border: `1px solid ${
-            state.isSelected || isFocusVisible ? colors.blue500 : colors.gray100
-          }`,
-          margin: 0,
-          borderRadius: 0,
-          background: state.isSelected ? colors.blue500 : colors.white,
-          boxShadow: isFocusVisible
-            ? `0 0 0 3px ${colors.purple500opacity}`
-            : "none",
-          outline: "none",
-        }}
+        isFocusVisible={isFocusVisible}
+        isSelected={state.isSelected}
       />
       {state.isSelected && <Tick />}
       {children}
-    </label>
+    </SLabel>
   );
 };
 

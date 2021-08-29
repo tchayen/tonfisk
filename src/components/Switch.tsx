@@ -5,6 +5,40 @@ import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
 import { AriaSwitchProps } from "@react-types/switch";
 import * as colors from "../colors";
+import styled from "styled-components";
+
+const SLabel = styled.label`
+  display: flex;
+  align-items: center;
+`;
+
+const SDiv = styled.div`
+  display: flex;
+  align-items: center;
+  position: relative;
+`;
+
+const SBar = styled.div<{ isSelected: boolean }>`
+  width: 32px;
+  height: 12px;
+  border-radius: 6px;
+  background: ${(props) =>
+    props.isSelected ? colors.purple500opacity : colors.gray100};
+`;
+
+const SDot = styled.div<{ isSelected: boolean; isFocusVisible: boolean }>`
+  width: 16px;
+  height: 16px;
+  border-radius: 8px;
+  position: absolute;
+  right: ${(props) => (props.isSelected ? 0 : 16)}px;
+  transition: right 0.1s ease-in-out;
+  box-shadow: ${(props) =>
+    props.isFocusVisible
+      ? `0 0 0 3px ${colors.purple500opacity}`
+      : "0 1px 3px rgba(0, 0, 0, 0.25)"};
+  background: ${(props) => (props.isSelected ? colors.blue500 : colors.white)};
+`;
 
 type Props = {} & AriaSwitchProps;
 
@@ -15,39 +49,15 @@ export default function Switch(props: Props) {
   let { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <label style={{ display: "flex", alignItems: "center" }}>
+    <SLabel>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
-      <div
-        style={{ display: "flex", alignItems: "center", position: "relative" }}
-      >
-        <div
-          style={{
-            width: 32,
-            height: 12,
-            borderRadius: 6,
-            background: state.isSelected
-              ? colors.purple500opacity
-              : colors.gray100,
-          }}
-        />
-        <div
-          style={{
-            width: 16,
-            height: 16,
-            borderRadius: 8,
-            position: "absolute",
-            right: state.isSelected ? 0 : 16,
-            transition: "right 0.1s ease-in-out",
-            boxShadow: isFocusVisible
-              ? `0 0 0 3px ${colors.purple500opacity}`
-              : "0 1px 3px rgba(0, 0, 0, 0.25)",
-            background: state.isSelected ? colors.blue500 : colors.white,
-          }}
-        ></div>
-      </div>
+      <SDiv>
+        <SBar isSelected={state.isSelected} />
+        <SDot isSelected={state.isSelected} isFocusVisible={isFocusVisible} />
+      </SDiv>
       {props.children}
-    </label>
+    </SLabel>
   );
 }

@@ -9,6 +9,7 @@ import Popover from "./Popover";
 import * as colors from "../colors";
 import * as consts from "../consts";
 import { useFocusRing } from "@react-aria/focus";
+import styled from "styled-components";
 
 export { Item } from "@react-stately/collections";
 
@@ -26,6 +27,43 @@ const Chevron = () => (
     />
   </svg>
 );
+
+const SButton = styled.button<{ isFocusVisible: boolean }>`
+  height: ${consts.fieldHeight}px;
+  width: 100%;
+  display: flex;
+  justify-content: left;
+  align-items: center;
+  font-size: ${consts.text.normal.fontSize}px;
+  padding-left: ${consts.inputPaddings}px;
+  padding-right: ${consts.inputPaddings}px;
+  font-family: ${consts.fontFamily};
+  border-radius: ${consts.fieldRadius}px;
+  position: relative;
+  background: ${colors.white};
+  -webkit-appearance: none;
+  border: 1px solid
+    ${(props) => (props.isFocusVisible ? colors.blue500 : colors.gray100)};
+  box-shadow: ${(props) =>
+    props.isFocusVisible ? `0 0 0 3px ${colors.purple500opacity}` : "none"};
+  outline: none;
+  margin-top: ${consts.labelMargin}px; // TODO: this assumes label above!
+`;
+
+const SDiv = styled.div`
+  position: relative;
+  display: inline-block;
+`;
+
+const SSpan = styled.span`
+  position: absolute;
+  right: ${consts.inputPaddings}px;
+`;
+
+const SLabel = styled.label`
+  font-size: ${consts.text.label.fontSize}px;
+  font-weight: ${consts.text.label.fontWeight};
+`;
 
 type Props = {} & AriaSelectProps<HTMLInputElement>;
 
@@ -47,60 +85,34 @@ export default function Select(props: Props) {
   let { buttonProps } = useButton(triggerProps, ref);
 
   return (
-    <div style={{ position: "relative", display: "inline-block" }}>
-      <div {...labelProps} style={consts.text.label}>
-        {props.label}
-      </div>
+    <SDiv>
+      <SLabel {...labelProps}>{props.label}</SLabel>
       <HiddenSelect
         state={state}
         triggerRef={ref}
         label={props.label}
         name={props.name}
       />
-      <button
+      <SButton
         {...buttonProps}
         {...focusProps}
         ref={ref}
-        style={{
-          height: consts.fieldHeight,
-          width: "100%",
-          display: "flex",
-          justifyContent: "left",
-          alignItems: "center",
-          fontSize: consts.text.normal.fontSize,
-          paddingLeft: consts.inputPaddings,
-          paddingRight: consts.inputPaddings,
-          fontFamily: consts.fontFamily,
-          borderRadius: consts.fieldRadius,
-          position: "relative",
-          background: colors.white,
-          WebkitAppearance: "none",
-          border: `1px solid ${
-            isFocusVisible ? colors.blue500 : colors.gray100
-          }`,
-          boxShadow: isFocusVisible
-            ? `0 0 0 3px ${colors.purple500opacity}`
-            : "none",
-          outline: "none",
-        }}
+        isFocusVisible={isFocusVisible}
       >
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.rendered
             : "Select an option"}
         </span>
-        <span
-          aria-hidden="true"
-          style={{ position: "absolute", right: consts.inputPaddings }}
-        >
+        <SSpan aria-hidden="true">
           <Chevron />
-        </span>
-      </button>
+        </SSpan>
+      </SButton>
       {state.isOpen && (
         <Popover isOpen={state.isOpen} onClose={state.close}>
           <ListBox {...menuProps} state={state} />
         </Popover>
       )}
-    </div>
+    </SDiv>
   );
 }

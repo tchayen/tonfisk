@@ -16,3 +16,7 @@ export const fieldHeight = 32;
 export const inputPaddings = 8;
 export const fontFamily = "Inter var";
 export const fieldRadius = 8;
+export const checkBoxSize = 16;
+export const checkBoxRadius = 4;
+export const labelMargin = 4;
+export const boxShadow = "0 2px 8px rgba(0, 0, 0, 0.1)";

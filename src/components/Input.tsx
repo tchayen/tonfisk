@@ -3,6 +3,32 @@ import { useTextField } from "@react-aria/textfield";
 import { AriaTextFieldProps } from "@react-types/textfield";
 import * as colors from "../colors";
 import * as consts from "../consts";
+import styled from "styled-components";
+
+const SDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const SLabel = styled.label`
+  font-size: ${consts.text.label.fontSize}px;
+  font-weight: ${consts.text.label.fontWeight};
+  margin-bottom: 4px;
+`;
+
+const SInput = styled.input<{ isFocused: boolean }>`
+  padding-left: ${consts.inputPaddings}px;
+  padding-right: ${consts.inputPaddings}px;
+  font-size: ${consts.text.normal.fontSize}px;
+  font-family: ${consts.fontFamily};
+  height: ${consts.fieldHeight}px;
+  border-radius: ${consts.fieldRadius}px;
+  border: 1px solid
+    ${(props) => (props.isFocused ? colors.blue500 : colors.gray100)};
+  box-shadow: ${(props) =>
+    props.isFocused ? `0 0 0 3px ${colors.purple500opacity}` : "none"};
+  outline: none;
+`;
 
 type Props = {} & AriaTextFieldProps;
 
@@ -21,35 +47,15 @@ export default function Input(props: Props) {
   };
 
   return (
-    <div
-      style={{
-        display: "flex",
-        flexDirection: "column",
-        width: 200,
-      }}
-    >
-      <label {...labelProps} style={{ ...consts.text.label, marginBottom: 4 }}>
-        {label}
-      </label>
-      <input
+    <SDiv>
+      <SLabel {...labelProps}>{label}</SLabel>
+      <SInput
         {...(inputProps as React.InputHTMLAttributes<HTMLInputElement>)}
         ref={ref}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        style={{
-          paddingLeft: consts.inputPaddings,
-          paddingRight: consts.inputPaddings,
-          fontSize: consts.text.normal.fontSize,
-          fontFamily: consts.fontFamily,
-          height: consts.fieldHeight,
-          borderRadius: consts.fieldRadius,
-          border: `1px solid ${isFocused ? colors.blue500 : colors.gray100}`,
-          boxShadow: isFocused
-            ? `0 0 0 3px ${colors.purple500opacity}`
-            : "none",
-          outline: "none",
-        }}
+        isFocused={isFocused}
       />
-    </div>
+    </SDiv>
   );
 }
