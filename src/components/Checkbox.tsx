@@ -1,12 +1,12 @@
-import React, { useRef } from "react";
+/** @jsx jsx */
+import { get, jsx } from "theme-ui";
+import { useRef } from "react";
 import { AriaCheckboxProps } from "@react-types/checkbox";
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
-import * as colors from "../colors";
-import * as consts from "../consts";
-import styled from "styled-components";
+import { Label } from "theme-ui";
 
 const Tick = () => (
   <svg
@@ -31,32 +31,6 @@ type Props = {
   children?: any;
 } & AriaCheckboxProps;
 
-const SLabel = styled.label<{ isDisabled: boolean }>`
-  display: block;
-  position: relative;
-  opacity: ${(props) => (props.isDisabled ? 0.5 : 1)};
-`;
-
-const SInput = styled.input<{
-  isFocusVisible: boolean;
-  isSelected: boolean;
-}>`
-  -webkit-appearance: none;
-  width: ${consts.checkBoxSize}px;
-  height: ${consts.checkBoxSize}px;
-  border: 1px solid
-    ${(props) =>
-      props.isSelected || props.isFocusVisible
-        ? colors.blue500
-        : colors.gray100};
-  margin: 0;
-  border-radius: ${consts.checkBoxRadius}px;
-  background: ${(props) => (props.isSelected ? colors.blue500 : colors.white)};
-  box-shadow: ${(props) =>
-    props.isFocusVisible ? `0 0 0 3px ${colors.purple500opacity}` : "none"};
-  outline: none;
-`;
-
 const Checkbox = (props: Props) => {
   const { children } = props;
   const state = useToggleState(props);
@@ -65,16 +39,40 @@ const Checkbox = (props: Props) => {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <SLabel isDisabled={!!props.isDisabled}>
-      <SInput
+    <Label sx={{ display: "block", position: "relative" }}>
+      <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
-        isFocusVisible={isFocusVisible}
-        isSelected={state.isSelected}
+        sx={{
+          WebkitAppearance: "none",
+          width: 3,
+          height: 3,
+          borderRadius: 2,
+          border: (t) => `1px solid
+            ${
+              state.isSelected || isFocusVisible
+                ? get(t, "colors.blue500")
+                : get(t, "colors.gray100")
+            }`,
+          margin: 0,
+          background: (t) =>
+            `${
+              state.isSelected
+                ? get(t, "colors.blue500")
+                : get(t, "colors.white")
+            }`,
+          boxShadow: (t) =>
+            `${
+              isFocusVisible
+                ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
+                : "none"
+            }`,
+          outline: "none",
+        }}
       />
       {state.isSelected && <Tick />}
       {children}
-    </SLabel>
+    </Label>
   );
 };
 

@@ -1,44 +1,11 @@
-import React, { useRef } from "react";
+/** @jsx jsx */
+import { get, jsx } from "theme-ui";
+import { useRef } from "react";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { useToggleState } from "@react-stately/toggle";
 import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
 import { AriaSwitchProps } from "@react-types/switch";
-import * as colors from "../colors";
-import styled from "styled-components";
-
-const SLabel = styled.label`
-  display: flex;
-  align-items: center;
-`;
-
-const SDiv = styled.div`
-  display: flex;
-  align-items: center;
-  position: relative;
-`;
-
-const SBar = styled.div<{ isSelected: boolean }>`
-  width: 32px;
-  height: 12px;
-  border-radius: 6px;
-  background: ${(props) =>
-    props.isSelected ? colors.purple500opacity : colors.gray100};
-`;
-
-const SDot = styled.div<{ isSelected: boolean; isFocusVisible: boolean }>`
-  width: 16px;
-  height: 16px;
-  border-radius: 8px;
-  position: absolute;
-  right: ${(props) => (props.isSelected ? 0 : 16)}px;
-  transition: right 0.1s ease-in-out;
-  box-shadow: ${(props) =>
-    props.isFocusVisible
-      ? `0 0 0 3px ${colors.purple500opacity}`
-      : "0 1px 3px rgba(0, 0, 0, 0.25)"};
-  background: ${(props) => (props.isSelected ? colors.blue500 : colors.white)};
-`;
 
 type Props = {} & AriaSwitchProps;
 
@@ -49,15 +16,42 @@ export default function Switch(props: Props) {
   let { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <SLabel>
+    <label sx={{ display: "flex", alignItems: "center" }}>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
-      <SDiv>
-        <SBar isSelected={state.isSelected} />
-        <SDot isSelected={state.isSelected} isFocusVisible={isFocusVisible} />
-      </SDiv>
+      <div sx={{ display: "flex", position: "relative", alignItems: "center" }}>
+        <div
+          sx={{
+            width: 32,
+            height: 12,
+            borderRadius: 3,
+            background: (t) =>
+              state.isSelected
+                ? get(t, "colors.blue500opacity")
+                : get(t, "colors.gray100"),
+          }}
+        />
+        <div
+          sx={{
+            width: 16,
+            height: 16,
+            borderRadius: 3,
+            position: "absolute",
+            right: state.isSelected ? 0 : 16,
+            transition: "right 0.1s ease-in-out",
+            boxShadow: (t) =>
+              isFocusVisible
+                ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
+                : "0 1px 3px rgba(0, 0, 0, 0.25)",
+            background: (t) =>
+              state.isSelected
+                ? get(t, "colors.blue500")
+                : get(t, "colors.white"),
+          }}
+        />
+      </div>
       {props.children}
-    </SLabel>
+    </label>
   );
 }

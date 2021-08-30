@@ -1,17 +1,7 @@
-import React, { useRef } from "react";
-import { AriaListBoxOptions, useListBox, useOption } from "@react-aria/listbox";
-import * as colors from "../colors";
-import * as consts from "../consts";
-import styled from "styled-components";
-
-const SUl = styled.ul`
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  // maxHeight: "150px",
-  overflow: auto;
-  outline: none;
-`;
+/** @jsx jsx */
+import { jsx, useThemeUI } from "theme-ui";
+import { useRef } from "react";
+import { useListBox, useOption } from "@react-aria/listbox";
 
 export default function ListBox(props) {
   let ref = useRef<HTMLUListElement>(null);
@@ -19,26 +9,24 @@ export default function ListBox(props) {
   let { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
-    <SUl {...listBoxProps} ref={listBoxRef}>
+    <ul
+      {...listBoxProps}
+      ref={listBoxRef}
+      sx={{
+        margin: 0,
+        padding: 0,
+        listStyle: "none",
+        // maxHeight: "150px",
+        overflow: "auto",
+        outline: "none",
+      }}
+    >
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}
-    </SUl>
+    </ul>
   );
 }
-
-const SLi = styled.li<{ backgroundColor: string; color: string }>`
-  background: ${(props) => props.backgroundColor};
-  font-size: ${consts.text.normal.fontSize}px;
-  color: ${(props) => props.color};
-  padding-left: ${consts.inputPaddings}px;
-  padding-right: ${consts.inputPaddings}px;
-  outline: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  height: ${consts.fieldHeight}px;
-`;
 
 function Option({ item, state }) {
   let ref = useRef<HTMLLIElement>(null);
@@ -47,26 +35,37 @@ function Option({ item, state }) {
     state,
     ref
   );
+  const { theme } = useThemeUI();
 
   let backgroundColor = "transparent";
-  let color = colors.black;
+  let color = theme.colors.black;
 
   if (isSelected) {
-    backgroundColor = colors.blue500;
-    color = colors.white;
+    backgroundColor = theme.colors.blue500;
+    color = theme.colors.white;
   } else if (isFocused) {
-    backgroundColor = colors.gray100;
+    backgroundColor = theme.colors.gray100;
   } else if (isDisabled) {
   }
 
   return (
-    <SLi
+    <li
       {...optionProps}
       ref={ref}
-      backgroundColor={backgroundColor}
-      color={color}
+      sx={{
+        background: backgroundColor,
+        fontSize: 1,
+        color,
+        paddingLeft: 2,
+        paddingRight: 2,
+        outline: "none",
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
+        height: 4,
+      }}
     >
       {item.rendered}
-    </SLi>
+    </li>
   );
 }

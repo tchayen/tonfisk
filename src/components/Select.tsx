@@ -1,4 +1,6 @@
-import React, { useRef } from "react";
+/** @jsx jsx */
+import { get, jsx } from "theme-ui";
+import { useRef } from "react";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useButton } from "@react-aria/button";
 import { useSelectState } from "@react-stately/select";
@@ -6,10 +8,9 @@ import { AriaSelectProps } from "@react-types/select";
 
 import ListBox from "./ListBox";
 import Popover from "./Popover";
-import * as colors from "../colors";
 import * as consts from "../consts";
 import { useFocusRing } from "@react-aria/focus";
-import styled from "styled-components";
+import { Label } from "theme-ui";
 
 export { Item } from "@react-stately/collections";
 
@@ -27,43 +28,6 @@ const Chevron = () => (
     />
   </svg>
 );
-
-const SButton = styled.button<{ isFocusVisible: boolean }>`
-  height: ${consts.fieldHeight}px;
-  width: 100%;
-  display: flex;
-  justify-content: left;
-  align-items: center;
-  font-size: ${consts.text.normal.fontSize}px;
-  padding-left: ${consts.inputPaddings}px;
-  padding-right: ${consts.inputPaddings}px;
-  font-family: ${consts.fontFamily};
-  border-radius: ${consts.fieldRadius}px;
-  position: relative;
-  background: ${colors.white};
-  -webkit-appearance: none;
-  border: 1px solid
-    ${(props) => (props.isFocusVisible ? colors.blue500 : colors.gray100)};
-  box-shadow: ${(props) =>
-    props.isFocusVisible ? `0 0 0 3px ${colors.purple500opacity}` : "none"};
-  outline: none;
-  margin-top: ${consts.labelMargin}px; // TODO: this assumes label above!
-`;
-
-const SDiv = styled.div`
-  position: relative;
-  display: inline-block;
-`;
-
-const SSpan = styled.span`
-  position: absolute;
-  right: ${consts.inputPaddings}px;
-`;
-
-const SLabel = styled.label`
-  font-size: ${consts.text.label.fontSize}px;
-  font-weight: ${consts.text.label.fontWeight};
-`;
 
 type Props = {} & AriaSelectProps<HTMLInputElement>;
 
@@ -85,34 +49,63 @@ export default function Select(props: Props) {
   let { buttonProps } = useButton(triggerProps, ref);
 
   return (
-    <SDiv>
-      <SLabel {...labelProps}>{props.label}</SLabel>
+    <div sx={{ position: "relative", display: "inline-block" }}>
+      <Label {...labelProps} mb={1}>
+        {props.label}
+      </Label>
       <HiddenSelect
         state={state}
         triggerRef={ref}
         label={props.label}
         name={props.name}
       />
-      <SButton
+      <button
         {...buttonProps}
         {...focusProps}
         ref={ref}
-        isFocusVisible={isFocusVisible}
+        sx={{
+          width: "100%",
+          display: "flex",
+          justifyContent: "left",
+          alignItems: "center",
+          height: 4,
+          fontSize: 1,
+          borderRadius: 3,
+          paddingLeft: 2,
+          paddingRight: `${consts.inputPaddings * 2 + 14}px`, // 14 is the width of the chevron,
+          fontFamily: "body",
+          position: "relative",
+          background: (t) => get(t, "colors.white"),
+          WebkitAppearance: "none",
+          border: (t) => `1px solid
+            ${
+              isFocusVisible
+                ? get(t, "colors.blue500")
+                : get(t, "colors.gray100")
+            }`,
+          boxShadow: (t) =>
+            `${
+              isFocusVisible
+                ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
+                : "none"
+            }`,
+          outline: "none",
+        }}
       >
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.rendered
             : "Select an option"}
         </span>
-        <SSpan aria-hidden="true">
+        <span aria-hidden="true" sx={{ position: "absolute", right: 2 }}>
           <Chevron />
-        </SSpan>
-      </SButton>
+        </span>
+      </button>
       {state.isOpen && (
         <Popover isOpen={state.isOpen} onClose={state.close}>
           <ListBox {...menuProps} state={state} />
         </Popover>
       )}
-    </SDiv>
+    </div>
   );
 }

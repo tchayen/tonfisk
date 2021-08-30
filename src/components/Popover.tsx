@@ -1,20 +1,9 @@
-import React, { useRef } from "react";
+/** @jsx jsx */
+import { get, jsx } from "theme-ui";
+import { useRef } from "react";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
 import { FocusScope } from "@react-aria/focus";
-import * as colors from "../colors";
 import * as consts from "../consts";
-import styled from "styled-components";
-
-const SDiv = styled.div`
-  position: absolute;
-  z-index: 100;
-  width: 100%;
-  overflow: hidden;
-  box-shadow: 0 0 0 1px inset ${colors.gray100}, ${consts.boxShadow};
-  border-radius: ${consts.fieldRadius}px;
-  background: ${colors.white};
-  margin-top: ${consts.inputPaddings}px;
-`;
 
 type Props = {
   isOpen?: boolean;
@@ -43,10 +32,24 @@ export default function Popover(props: Props) {
   // to allow screen reader users to dismiss the popup easily.
   return (
     <FocusScope restoreFocus>
-      <SDiv {...overlayProps} ref={popoverRef}>
+      <div
+        {...overlayProps}
+        ref={popoverRef}
+        sx={{
+          position: "absolute",
+          zIndex: 100,
+          width: "100%",
+          overflow: "hidden",
+          boxShadow: (t) =>
+            `0 0 0 1px inset ${get(t, "colors.gray100")}, ${consts.boxShadow}`,
+          borderRadius: `${consts.fieldRadius}px`,
+          background: (t) => get(t, "colors.white"),
+          marginTop: 2,
+        }}
+      >
         {children}
         <DismissButton onDismiss={onClose} />
-      </SDiv>
+      </div>
     </FocusScope>
   );
 }

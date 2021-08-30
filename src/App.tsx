@@ -2,13 +2,15 @@ import React, { useEffect, useState } from "react";
 import * as ethers from "ethers";
 import Select, { Item } from "./components/Select";
 import * as consts from "./consts";
-import * as colors from "./colors";
-import styled from "styled-components";
 import "./polyfill";
 import Web3 from "web3";
 
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
+
+import { ThemeProvider, Grid } from "theme-ui";
+import theme from "./components/theme";
+
 import Button from "./components/Button";
 import Switch from "./components/Switch";
 import Checkbox from "./components/Checkbox";
@@ -60,15 +62,6 @@ function Avatar() {
 // TODO:
 // <Tooltip /> for account number.
 // <Input /> autosizing? for account name.
-
-const Wrapper = styled.div`
-  display: grid;
-  grid-template-columns: 1fr min(65ch, 100%) 1fr;
-
-  & > * {
-    grid-column: 2;
-  }
-`;
 
 const networks = [
   { name: "Mainnet", id: "0x1" },
@@ -175,43 +168,47 @@ function App() {
   }, []);
 
   return (
-    <Wrapper>
+    <ThemeProvider theme={theme}>
       <div>
-        <Avatar />
-        <div style={{ fontSize: 22 }}>@tchayen</div>
-        {account ? (
-          <div
-            style={{
-              fontFeatureSettings: consts.numbersPreset,
-              color: colors.gray600,
+        <div>
+          <Avatar />
+          <div style={{ fontSize: 22 }}>@tchayen</div>
+          {account ? (
+            <div
+              style={{
+                fontFeatureSettings: consts.numbersPreset,
+                color: "#555",
+              }}
+            >
+              {shortenAddress(account)}
+            </div>
+          ) : (
+            "..."
+          )}
+        </div>
+
+        <Grid gap={3} p={3}>
+          <Select
+            label="Network"
+            onSelectionChange={(key) => {
+              // https://docs.metamask.io/guide/rpc-api.html#wallet-switchethereumchain
+              // ethereum.request({
+              //   method: "wallet_switchEthereumChain",
+              //   params: [{ chainId: key }],
+              // });
             }}
           >
-            {shortenAddress(account)}
-          </div>
-        ) : (
-          "..."
-        )}
+            {networks.map((network) => (
+              <Item key={network.id}>{network.name}</Item>
+            ))}
+          </Select>
+          <Button>Sign in</Button>
+          <Switch>Label</Switch>
+          <Checkbox>Label</Checkbox>
+          <Input placeholder="Abc" label="Def" />
+        </Grid>
       </div>
-
-      <Select
-        label="Network"
-        onSelectionChange={(key) => {
-          // https://docs.metamask.io/guide/rpc-api.html#wallet-switchethereumchain
-          // ethereum.request({
-          //   method: "wallet_switchEthereumChain",
-          //   params: [{ chainId: key }],
-          // });
-        }}
-      >
-        {networks.map((network) => (
-          <Item key={network.id}>{network.name}</Item>
-        ))}
-      </Select>
-      <Button>Sign in</Button>
-      <Switch>Label</Switch>
-      <Checkbox>Label</Checkbox>
-      <Input placeholder="Abc" label="Def" />
-    </Wrapper>
+    </ThemeProvider>
   );
 }
 
