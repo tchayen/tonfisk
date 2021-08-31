@@ -27,8 +27,10 @@ type Props = {
  * ```jsx
  * import { Button } from "ds";
  *
- * <Button onClick={() => console.log("I got clicked!")}>Click me</Button>
+ * <Button onPress={() => console.log("I got pressed!")}>Press me</Button>
  * ```
+ *
+ * <Button onPress={() => console.log("I got pressed!")}>Press me</Button>
  */
 export function Button(props: Props): ReactElement {
   const ref = useRef<HTMLButtonElement>(null);

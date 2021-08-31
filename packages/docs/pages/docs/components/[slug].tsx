@@ -24,10 +24,10 @@ export default function Doc({ navigation, source, metadata }: any) {
 export const getStaticProps = async ({ params }: any) => {
   const metadata = getSourceMetadata(params.slug);
 
-  const content = `${metadata.description}\n${metadata.props
+  const content = `\n${metadata.description}\n${metadata.props
     .map(
       (prop) =>
-        `### ${prop.name}\n\`${prop.tsType.name}\`\n\n${prop.description}`
+        `\n**${prop.name}**: \`${prop.tsType.name}\`\n\n${prop.description}`
     )
     .join("\n")}`;
 
