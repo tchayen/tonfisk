@@ -8,15 +8,20 @@ import { useRef } from "react";
 import { get, jsx } from "theme-ui";
 import { Button as BButton } from "theme-ui";
 
-// TODO:
-// docs
-
 type Props = {
+  /**
+   * Whether button is disabled. No focus ring when disabled.
+   */
   isDisabled?: boolean;
+  /**
+   * Title of the button.
+   */
   children: string;
-  secondary?: boolean;
 } & AriaButtonProps;
 
+/**
+ * Component for main user interactions in the app.
+ */
 const Button = (props: Props): ReactElement => {
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps, isPressed } = useButton(props, ref);
