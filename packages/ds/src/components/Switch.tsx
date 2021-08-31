@@ -38,7 +38,7 @@ export default function Switch(props: Props): ReactElement {
           display: "flex",
           position: "relative",
           alignItems: "center",
-          ml: 1,
+          ml: 3,
         }}
       >
         <div

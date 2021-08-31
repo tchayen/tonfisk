@@ -22,12 +22,6 @@ const Button = (props: Props): ReactElement => {
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  // TODO:
-  // - hover
-  // - focus
-  // - active
-  // - no double click on mobile
-
   return (
     <BButton
       ref={ref}

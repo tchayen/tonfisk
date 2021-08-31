@@ -48,6 +48,9 @@ export default function Input(props: Props): ReactElement {
           boxShadow: (t) =>
             isFocused ? `0 0 0 3px ${get(t, "colors.blue500opacity")}` : "none",
           outline: "none",
+          "::placeholder": {
+            color: "gray600",
+          },
         }}
       />
     </div>

@@ -76,6 +76,7 @@ export default function Select(props: Props): ReactElement {
           fontFamily: "body",
           position: "relative",
           bg: "white",
+          color: state.selectedItem ? "black" : "gray600",
           WebkitAppearance: "none",
           border: (t) => `1px solid
             ${

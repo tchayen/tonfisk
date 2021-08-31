@@ -2,25 +2,17 @@
 import "./polyfill";
 
 import { OverlayProvider } from "@react-aria/overlays";
-import WalletConnect from "@walletconnect/client";
-import QRCodeModal from "@walletconnect/qrcode-modal";
-import * as ethers from "ethers";
 import { useEffect, useState } from "react";
-import { get, Grid, jsx, ThemeProvider } from "theme-ui";
-import Web3 from "web3";
+import { Grid, jsx, ThemeProvider } from "theme-ui";
 
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
-import horizontalLine from "./components/HorizontalLine";
+import horizontalLine from "./components/horizontalLine";
 import Input from "./components/Input";
 import Select, { Item } from "./components/Select";
 import Switch from "./components/Switch";
 import theme from "./components/theme";
-import * as consts from "./consts";
 import Modal from "./Modal";
-// import Button from "./Button";
-
-const { ethereum } = window;
 
 const shortenAddress = (address: string) =>
   `${address.substring(0, 6)}...${address.substring(
@@ -79,95 +71,95 @@ function App() {
   const [account, setAccount] = useState<string | null>(null);
   const [chainId, setChainId] = useState<number | null>(null);
 
-  const metamask = async () => {
-    const [account] = await ethereum.request({ method: "eth_requestAccounts" });
-    setAccount(account);
+  // const metamask = async () => {
+  //   const [account] = await ethereum.request({ method: "eth_requestAccounts" });
+  //   setAccount(account);
 
-    // Initialize
+  //   // Initialize
 
-    ethereum.on("accountsChanged", ([address]) => {
-      console.log("accountChanged", address);
-      setAccount(address);
+  //   ethereum.on("accountsChanged", ([address]) => {
+  //     console.log("accountChanged", address);
+  //     setAccount(address);
 
-      // `accountsChanged` event can be triggered with an undefined newAddress.
-      // This happens when the user removes the Dapp from the "Connected
-      // list of sites allowed access to your addresses" (Metamask > Settings > Connections)
-      // To avoid errors, we reset the dapp state
-      if (address === undefined) {
-        // Reset state
-      }
+  //     // `accountsChanged` event can be triggered with an undefined newAddress.
+  //     // This happens when the user removes the Dapp from the "Connected
+  //     // list of sites allowed access to your addresses" (Metamask > Settings > Connections)
+  //     // To avoid errors, we reset the dapp state
+  //     if (address === undefined) {
+  //       // Reset state
+  //     }
 
-      // Initiailize
-    });
+  //     // Initiailize
+  //   });
 
-    ethereum.on("connect", (params) => {
-      console.log("connect", params);
-    });
+  //   ethereum.on("connect", (params) => {
+  //     console.log("connect", params);
+  //   });
 
-    ethereum.on("disconnect", (params) => {
-      console.log("disconnect", params);
-    });
+  //   ethereum.on("disconnect", (params) => {
+  //     console.log("disconnect", params);
+  //   });
 
-    // We reset the dapp state if the network is changed
-    ethereum.on("chainChanged", (params) => {
-      console.log("chainChanged", params);
-    });
+  //   // We reset the dapp state if the network is changed
+  //   ethereum.on("chainChanged", (params) => {
+  //     console.log("chainChanged", params);
+  //   });
 
-    ethereum.on("message", (params) => {
-      console.log("message", params);
-    });
+  //   ethereum.on("message", (params) => {
+  //     console.log("message", params);
+  //   });
 
-    const provider = new ethers.providers.Web3Provider(ethereum);
+  //   const provider = new ethers.providers.Web3Provider(ethereum);
 
-    const balance = await provider.getBalance(account);
-    console.log(balance.toString());
-  };
+  //   const balance = await provider.getBalance(account);
+  //   console.log(balance.toString());
+  // };
 
-  const walletConnect = async () => {
-    console.log("a");
+  // const walletConnect = async () => {
+  //   console.log("a");
 
-    const bridge = "https://bridge.walletconnect.org";
-    const connector = new WalletConnect({ bridge, qrcodeModal: QRCodeModal });
+  //   const bridge = "https://bridge.walletconnect.org";
+  //   const connector = new WalletConnect({ bridge, qrcodeModal: QRCodeModal });
 
-    console.log(connector);
-    if (!connector.connected) {
-      // create new session
-      await connector.createSession();
-    } else {
-      const { chainId, accounts } = connector;
-      const address = accounts[0];
-      setChainId(chainId);
-      setAccount(address);
+  //   console.log(connector);
+  //   if (!connector.connected) {
+  //     // create new session
+  //     await connector.createSession();
+  //   } else {
+  //     const { chainId, accounts } = connector;
+  //     const address = accounts[0];
+  //     setChainId(chainId);
+  //     setAccount(address);
 
-      const result = await fetch(
-        `https://ethereum-api.xyz/account-assets?address=${address}&chainId=${chainId}`
-      );
-      const data = await result.json();
-      console.log(data);
-    }
+  //     const result = await fetch(
+  //       `https://ethereum-api.xyz/account-assets?address=${address}&chainId=${chainId}`
+  //     );
+  //     const data = await result.json();
+  //     console.log(data);
+  //   }
 
-    connector.on("connect", (error, payload) => {
-      const { chainId, accounts } = payload.params[0];
-      const address = accounts[0];
-      console.log(chainId, accounts, address);
-    });
+  //   connector.on("connect", (error, payload) => {
+  //     const { chainId, accounts } = payload.params[0];
+  //     const address = accounts[0];
+  //     console.log(chainId, accounts, address);
+  //   });
 
-    connector.on("accountsChanged", (error, payload) => {
-      console.log("accountsChanged", payload);
-    });
+  //   connector.on("accountsChanged", (error, payload) => {
+  //     console.log("accountsChanged", payload);
+  //   });
 
-    connector.on("disconnect", (error, payload) => {
-      console.log("disconnect", payload);
-    });
+  //   connector.on("disconnect", (error, payload) => {
+  //     console.log("disconnect", payload);
+  //   });
 
-    connector.on("chainChanged", (error, payload) => {
-      console.log("chainChanged", payload);
-    });
-  };
+  //   connector.on("chainChanged", (error, payload) => {
+  //     console.log("chainChanged", payload);
+  //   });
+  // };
 
   useEffect(() => {
     // walletConnect();
-    metamask();
+    // metamask();
   }, []);
 
   return (
@@ -175,7 +167,7 @@ function App() {
       <OverlayProvider>
         <Modal />
         <div>
-          <div>
+          {/* <div>
             <Avatar />
             <div style={{ fontSize: 22 }}>@tchayen</div>
             {account ? (
@@ -190,24 +182,16 @@ function App() {
             ) : (
               "..."
             )}
-          </div>
+          </div> */}
           <Grid
-            columns="1fr min(48ch, 100%) 1fr"
+            columns="1fr min(50ch, 100%) 1fr"
             sx={{
               "& > *": {
                 gridColumn: 2,
               },
             }}
           >
-            <Grid
-              gap={0}
-              sx={{
-                m: 3,
-                borderRadius: 3,
-                border: (t) => `1px solid ${get(t, "colors.gray100")}`,
-                boxShadow: consts.boxShadow,
-              }}
-            >
+            <Grid gap={0}>
               <Grid p={3} gap={3}>
                 <Select
                   label="Network"
@@ -226,16 +210,13 @@ function App() {
                 <Input label="Title" placeholder="Crypto punk" />
                 <Input label="Description" placeholder="Cool" />
               </Grid>
-              {horizontalLine}
               <Switch p={3}>
                 Enter a fixed price to allow people to purchase your NFT.
               </Switch>
-              {horizontalLine}
               <Checkbox p={3}>
                 I have the rights to publish this artwork, and understand it
                 will be minted on the Polygon network.
               </Checkbox>
-              {horizontalLine}
               <div
                 sx={{
                   display: "flex",
