@@ -1,15 +1,17 @@
+/** @jsx jsx */
 import "./polyfill";
 
 import { OverlayProvider } from "@react-aria/overlays";
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 import * as ethers from "ethers";
-import React, { useEffect, useState } from "react";
-import { Box, get, Grid, ThemeProvider } from "theme-ui";
+import { useEffect, useState } from "react";
+import { get, Grid, jsx, ThemeProvider } from "theme-ui";
 import Web3 from "web3";
 
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
+import horizontalLine from "./components/HorizontalLine";
 import Input from "./components/Input";
 import Select, { Item } from "./components/Select";
 import Switch from "./components/Switch";
@@ -224,19 +226,27 @@ function App() {
                 <Input label="Title" placeholder="Crypto punk" />
                 <Input label="Description" placeholder="Cool" />
               </Grid>
-              <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+              {horizontalLine}
               <Switch p={3}>
                 Enter a fixed price to allow people to purchase your NFT.
               </Switch>
-              <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+              {horizontalLine}
               <Checkbox p={3}>
                 I have the rights to publish this artwork, and understand it
                 will be minted on the Polygon network.
               </Checkbox>
-              <Box bg="gray100" css={{ width: "100%", height: 1 }} />
-              <Box p={3}>
+              {horizontalLine}
+              <div
+                sx={{
+                  display: "flex",
+                  p: 3,
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                <span sx={{ fontSize: 1 }}>Last saved 2 minutes ago</span>
                 <Button onPress={() => console.log("aaa")}>Create</Button>
-              </Box>
+              </div>
             </Grid>
           </Grid>
         </div>

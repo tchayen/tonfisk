@@ -7,6 +7,7 @@ import { Box, Grid, jsx, Themed } from "theme-ui";
 
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
+import horizontalLine from "./components/HorizontalLine";
 import Input from "./components/Input";
 import ModalDialog from "./components/ModalDialog";
 import Switch from "./components/Switch";
@@ -46,12 +47,12 @@ export default function Modal(): ReactElement {
             onClose={state.close}
             isDismissable
           >
-            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+            {horizontalLine}
             <Grid p={3} gap={3}>
               <Input label="Title" placeholder="Title" />
               <Input label="Description" placeholder="Description" />
             </Grid>
-            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+            {horizontalLine}
             <Switch p={3}>
               Enter a fixed price to allow people to purchase your NFT.
             </Switch>
@@ -62,7 +63,7 @@ export default function Modal(): ReactElement {
               <Themed.strong sx={{ color: "black" }}>Polygon</Themed.strong>{" "}
               network.
             </Checkbox>
-            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+            {horizontalLine}
             <div
               sx={{
                 display: "flex",

@@ -15,6 +15,7 @@ export default {
   breakpoints: ["40em", "52em", "64em"],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512],
+  lineHeights: [1],
   fonts: {
     body: "Inter var",
   },
@@ -39,6 +40,13 @@ export default {
       fontWeight: "bold",
       color: "black",
     },
+    label: {
+      fontFamily: "body",
+      fontSize: 0,
+      fontWeight: "bold",
+      color: "black",
+      mb: 1,
+    },
   },
   forms: {
     label: {
@@ -52,9 +60,11 @@ export default {
   buttons: {
     primary: {
       color: "white",
-      fontSize: 2,
+      fontSize: 1,
       height: 4,
-      fontWeight: "bold",
+      lineHeight: 0,
+      borderRadius: 4,
+      fontWeight: "body",
       fontFamily: "body",
       outline: "none",
       display: "flex",

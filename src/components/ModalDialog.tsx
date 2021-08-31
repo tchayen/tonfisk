@@ -83,7 +83,7 @@ export default function ModalDialog(props) {
         left: 0,
         bottom: 0,
         right: 0,
-        background: "rgba(0, 0, 0, 0.1)",
+        // background: "rgba(0, 0, 0, 0.1)",
         backdropFilter: "blur(15px)",
         display: "flex",
         alignItems: "center",
@@ -101,7 +101,7 @@ export default function ModalDialog(props) {
             background: "white",
             borderRadius: 3,
             width: "48ch",
-            // border: (t) => `1px solid ${get(t, "colors.gray100")}`,
+            border: (t) => `1px solid ${get(t, "colors.gray100")}`,
             boxShadow: consts.boxShadow,
             outline: "none",
           }}
@@ -117,7 +117,7 @@ export default function ModalDialog(props) {
             <Themed.h3 {...titleProps} sx={{ m: 3 }}>
               {title}
             </Themed.h3>
-            <CloseButton />
+            <CloseButton onPress={props.onClose} />
           </div>
           {children}
         </div>
