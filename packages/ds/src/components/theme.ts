@@ -30,6 +30,16 @@ export default {
       fontFamily: "body",
       color: "gray600",
     },
+    h1: {
+      fontSize: 5,
+      color: "black",
+      fontWeight: "body",
+    },
+    h2: {
+      fontSize: 4,
+      color: "black",
+      fontWeight: "body",
+    },
     h3: {
       fontSize: 3,
       color: "black",

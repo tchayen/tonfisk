@@ -1,15 +1,15 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import {
-  Provider,
-  Select,
-  Item,
+  Button,
+  Checkbox,
   Grid,
   Input,
-  Switch,
-  Checkbox,
-  Button,
+  Item,
   jsx,
+  Provider,
+  Select,
+  Switch,
 } from "ds";
 
 export default function Example() {

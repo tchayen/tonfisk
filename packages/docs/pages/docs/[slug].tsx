@@ -1,31 +1,22 @@
-import path from "path";
+import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
-import { docsFilePaths, DOCS_PATH } from "../../utils/mdx";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
+import path from "path";
+import { Themed } from "theme-ui";
 
-import Link from "next/link";
-import { Provider } from "ds";
+import { components } from "../../components/components";
+import { Layout } from "../../components/Layout";
+import { DOCS_PATH, docsFilePaths, getNavigation } from "../../utils/mdx";
 
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
-// here.
-const components = {
-  a: Link,
-};
-
-export default function Doc({ source, frontMatter }: any) {
+export default function Doc({ navigation, source, frontMatter }: any) {
   return (
-    <Provider>
-      <div>
-        <Link href="/">Back</Link>
-        <h1>{frontMatter.title}</h1>
-        <p>{frontMatter.description}</p>
-        <MDXRemote {...source} components={components} />
-      </div>
-    </Provider>
+    <Layout navigation={navigation}>
+      <Themed.h1>{frontMatter.title}</Themed.h1>
+      <p>{frontMatter.description}</p>
+      <MDXRemote {...source} components={components} />
+    </Layout>
   );
 }
 
@@ -38,7 +29,7 @@ export const getStaticProps = async ({ params }: any) => {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
+      rehypePlugins: [rehypePrism],
     },
     scope: data,
   });
@@ -47,6 +38,7 @@ export const getStaticProps = async ({ params }: any) => {
     props: {
       source: mdxSource,
       frontMatter: data,
+      navigation: getNavigation(),
     },
   };
 };

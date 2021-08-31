@@ -1,7 +1,14 @@
-import '../styles/globals.css'
-import type { AppProps } from 'next/app'
+import "../public/theme.css";
+import "../styles/globals.css";
+
+import { Provider } from "ds";
+import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+  return (
+    <Provider>
+      <Component {...pageProps} />
+    </Provider>
+  );
 }
-export default MyApp
+export default MyApp;

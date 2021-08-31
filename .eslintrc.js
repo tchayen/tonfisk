@@ -19,5 +19,6 @@ module.exports = {
   plugins: ["react", "@typescript-eslint", "simple-import-sort"],
   rules: {
     "simple-import-sort/imports": "warn",
+    "react/react-in-jsx-scope": "off",
   },
 };
