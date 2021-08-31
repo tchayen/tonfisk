@@ -6,12 +6,12 @@ import { useOverlayTriggerState } from "@react-stately/overlays";
 import { ReactElement, useRef } from "react";
 import { Box, Grid, jsx, Themed } from "theme-ui";
 
-import Button from "./components/Button";
-import Checkbox from "./components/Checkbox";
-import horizontalLine from "./components/horizontalLine";
-import Input from "./components/Input";
-import ModalDialog from "./components/ModalDialog";
-import Switch from "./components/Switch";
+import { Button } from "./components/Button";
+import { Checkbox } from "./components/Checkbox";
+import { horizontalLine } from "./components/horizontalLine";
+import { Input } from "./components/Input";
+import { ModalDialog } from "./components/ModalDialog";
+import { Switch } from "./components/Switch";
 
 export default function Modal(): ReactElement {
   const state = useOverlayTriggerState({});

@@ -3,11 +3,7 @@
 // to handle import statements. Instead, you must include components in scope
 
 import Link from "next/link";
-import { Themed } from "theme-ui";
 
-// here.
 export const components = {
   a: Link,
-  h2: Themed.h2,
-  code: Themed.code,
 };

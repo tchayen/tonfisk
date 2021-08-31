@@ -3,7 +3,7 @@
 import "./polyfill";
 
 import { OverlayProvider } from "@react-aria/overlays";
-import { useEffect, useState } from "react";
+import { ReactElement, useEffect, useState } from "react";
 import { Grid, jsx, ThemeProvider } from "theme-ui";
 
 import { Button } from "./components/Button";
@@ -20,7 +20,7 @@ const shortenAddress = (address: string) =>
     address.length
   )}`;
 
-function Avatar() {
+function Avatar(): ReactElement {
   return (
     <div style={{ position: "relative" }}>
       <div

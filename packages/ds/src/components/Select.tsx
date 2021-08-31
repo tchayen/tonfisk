@@ -41,6 +41,7 @@ type Props = AriaSelectProps<HTMLInputElement>;
  * <Select label="Select" onSelectionChange={(key) => console.log(key)}>
  *  <Item key={0}>Item 1</Item>
  * </Select>
+ * ```
  */
 export function Select(props: Props): ReactElement {
   const { isFocusVisible, focusProps } = useFocusRing();

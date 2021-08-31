@@ -11,8 +11,9 @@ import {
   Select,
   Switch,
 } from "ds";
+import { ReactElement } from "react";
 
-export default function Example() {
+export default function Example(): ReactElement {
   return (
     <Provider>
       <Grid

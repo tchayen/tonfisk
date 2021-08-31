@@ -2,8 +2,9 @@
 /** @jsx jsx */
 import { Grid, jsx } from "ds";
 import Link from "next/link";
-import React from "react";
-import { Themed, Box, get } from "theme-ui";
+import React, { ReactElement } from "react";
+import { Box, get, Themed } from "theme-ui";
+
 import { getNavigation } from "../utils/mdx";
 
 const NavLink = ({
@@ -50,7 +51,7 @@ export function Layout({
 }: {
   navigation: ReturnType<typeof getNavigation>;
   children: React.ReactNode;
-}) {
+}): ReactElement {
   return (
     <Grid columns="0.1fr min(80ch, 100%)" gap={0}>
       <div
