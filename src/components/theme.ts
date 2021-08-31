@@ -29,6 +29,16 @@ export default {
       fontFamily: "body",
       color: "gray600",
     },
+    h3: {
+      fontSize: 3,
+      color: "black",
+      fontWeight: "body",
+      m: 0,
+    },
+    strong: {
+      fontWeight: "bold",
+      color: "black",
+    },
   },
   forms: {
     label: {

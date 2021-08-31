@@ -28,8 +28,6 @@ const Button = (props: Props): ReactElement => {
   // - active
   // - no double click on mobile
 
-  console.log(isPressed);
-
   return (
     <BButton
       ref={ref}

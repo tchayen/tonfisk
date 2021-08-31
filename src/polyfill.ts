@@ -1,6 +1,6 @@
 (window as any).global = window;
 
-import Buffer from "buffer";
+import * as Buffer from "buffer";
 window.Buffer = Buffer.Buffer;
 
 window.process = {

@@ -9,6 +9,7 @@
   "dependencies": {
     "@react-aria/button": "^3.3.3",
     "@react-aria/checkbox": "^3.2.3",
+    "@react-aria/dialog": "^3.1.4",
     "@react-aria/focus": "^3.4.1",
     "@react-aria/listbox": "^3.3.1",
     "@react-aria/overlays": "^3.7.2",

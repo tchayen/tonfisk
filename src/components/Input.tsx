@@ -1,7 +1,7 @@
 /** @jsx jsx */
 import { useTextField } from "@react-aria/textfield";
 import { AriaTextFieldProps } from "@react-types/textfield";
-import { useRef, useState, ReactElement } from "react";
+import { ReactElement, useRef, useState } from "react";
 import { get, jsx } from "theme-ui";
 import { Label } from "theme-ui";
 

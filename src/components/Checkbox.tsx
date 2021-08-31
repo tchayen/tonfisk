@@ -5,7 +5,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
 import { AriaCheckboxProps } from "@react-types/checkbox";
-import { useRef, ReactElement } from "react";
+import { ReactElement, useRef } from "react";
 import { space, SpaceProps } from "styled-system";
 import { get, jsx } from "theme-ui";
 
@@ -91,7 +91,7 @@ const Checkbox = (props: Props): ReactElement => {
           <Tick />
         </div>
       )}
-      <span sx={{ ml: 2 }}>{children}</span>
+      <span sx={{ ml: 3 }}>{children}</span>
     </Label>
   );
 };

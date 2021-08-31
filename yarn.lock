@@ -889,6 +889,17 @@
     "@react-stately/toggle" "^3.2.3"
     "@react-types/checkbox" "^3.2.3"
 
+"@react-aria/dialog@^3.1.4":
+  version "3.1.4"
+  resolved "https://registry.yarnpkg.com/@react-aria/dialog/-/dialog-3.1.4.tgz#7fe3f33e09b75dcdf598d0523e982262d6c89220"
+  integrity sha512-OtQGBol3CfcbBpjqXDqXzH5Ygny44PIuyAsZ1e3dfIdtaI+XHsoglyZnvDaVVealIgedHkMubreZnyNYnlzPLg==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.4.1"
+    "@react-aria/utils" "^3.8.2"
+    "@react-stately/overlays" "^3.1.3"
+    "@react-types/dialog" "^3.3.1"
+
 "@react-aria/focus@^3.4.1":
   version "3.4.1"
   resolved "https://registry.npmjs.org/@react-aria/focus/-/focus-3.4.1.tgz"
@@ -1212,6 +1223,14 @@
   resolved "https://registry.npmjs.org/@react-types/checkbox/-/checkbox-3.2.3.tgz"
   integrity sha512-YqeAFyrpaxI/eW6zQ7tVkKIASgzpywRrc6C/rV6Mw0zzGGSSvmYvdOBx9yHOEvpts7dLgaGlmLK6CeG7s4yGKg==
   dependencies:
+    "@react-types/shared" "^3.8.0"
+
+"@react-types/dialog@^3.3.1":
+  version "3.3.1"
+  resolved "https://registry.yarnpkg.com/@react-types/dialog/-/dialog-3.3.1.tgz#eb07e3d703643f7967243d56951d58a2cf77096f"
+  integrity sha512-1i6fVtixUNlftSNbVPFRieyEy3N/GNqcqpeOsJUB1jby28ppbM+JCp3Icb0ijaNC9Nl8c/oI8srtOWIQIKUJiQ==
+  dependencies:
+    "@react-types/overlays" "^3.5.1"
     "@react-types/shared" "^3.8.0"
 
 "@react-types/label@^3.4.1":

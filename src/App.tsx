@@ -1,5 +1,6 @@
 import "./polyfill";
 
+import { OverlayProvider } from "@react-aria/overlays";
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
 import * as ethers from "ethers";
@@ -14,6 +15,7 @@ import Select, { Item } from "./components/Select";
 import Switch from "./components/Switch";
 import theme from "./components/theme";
 import * as consts from "./consts";
+import Modal from "./Modal";
 // import Button from "./Button";
 
 const { ethereum } = window;
@@ -168,74 +170,77 @@ function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <div>
+      <OverlayProvider>
+        <Modal />
         <div>
-          <Avatar />
-          <div style={{ fontSize: 22 }}>@tchayen</div>
-          {account ? (
-            <div
-              style={{
-                fontFeatureSettings: consts.numbersPreset,
-                color: "#555",
-              }}
-            >
-              {shortenAddress(account)}
-            </div>
-          ) : (
-            "..."
-          )}
-        </div>
-        <Grid
-          columns="1fr min(48ch, 100%) 1fr"
-          sx={{
-            "& > *": {
-              gridColumn: 2,
-            },
-          }}
-        >
-          <Grid
-            gap={0}
-            sx={{
-              m: 3,
-              borderRadius: 3,
-              border: (t) => `1px solid ${get(t, "colors.gray100")}`,
-              boxShadow: consts.boxShadow,
-            }}
-          >
-            <Grid p={3} gap={3}>
-              <Select
-                label="Network"
-                onSelectionChange={(key) => {
-                  // https://docs.metamask.io/guide/rpc-api.html#wallet-switchethereumchain
-                  // ethereum.request({
-                  //   method: "wallet_switchEthereumChain",
-                  //   params: [{ chainId: key }],
-                  // });
+          <div>
+            <Avatar />
+            <div style={{ fontSize: 22 }}>@tchayen</div>
+            {account ? (
+              <div
+                style={{
+                  fontFeatureSettings: consts.numbersPreset,
+                  color: "#555",
                 }}
               >
-                {networks.map((network) => (
-                  <Item key={network.id}>{network.name}</Item>
-                ))}
-              </Select>
-              <Input label="Title" placeholder="Crypto punk" />
-              <Input label="Description" placeholder="Cool" />
+                {shortenAddress(account)}
+              </div>
+            ) : (
+              "..."
+            )}
+          </div>
+          <Grid
+            columns="1fr min(48ch, 100%) 1fr"
+            sx={{
+              "& > *": {
+                gridColumn: 2,
+              },
+            }}
+          >
+            <Grid
+              gap={0}
+              sx={{
+                m: 3,
+                borderRadius: 3,
+                border: (t) => `1px solid ${get(t, "colors.gray100")}`,
+                boxShadow: consts.boxShadow,
+              }}
+            >
+              <Grid p={3} gap={3}>
+                <Select
+                  label="Network"
+                  onSelectionChange={(key) => {
+                    // https://docs.metamask.io/guide/rpc-api.html#wallet-switchethereumchain
+                    // ethereum.request({
+                    //   method: "wallet_switchEthereumChain",
+                    //   params: [{ chainId: key }],
+                    // });
+                  }}
+                >
+                  {networks.map((network) => (
+                    <Item key={network.id}>{network.name}</Item>
+                  ))}
+                </Select>
+                <Input label="Title" placeholder="Crypto punk" />
+                <Input label="Description" placeholder="Cool" />
+              </Grid>
+              <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+              <Switch p={3}>
+                Enter a fixed price to allow people to purchase your NFT.
+              </Switch>
+              <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+              <Checkbox p={3}>
+                I have the rights to publish this artwork, and understand it
+                will be minted on the Polygon network.
+              </Checkbox>
+              <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+              <Box p={3}>
+                <Button onPress={() => console.log("aaa")}>Create</Button>
+              </Box>
             </Grid>
-            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
-            <Switch p={3}>
-              Enter a fixed price to allow people to purchase your NFT.
-            </Switch>
-            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
-            <Checkbox p={3}>
-              I have the rights to publish this artwork, and understand it will
-              be minted on the Polygon network.
-            </Checkbox>
-            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
-            <Box p={3}>
-              <Button onPress={() => console.log("aaa")}>Create</Button>
-            </Box>
           </Grid>
-        </Grid>
-      </div>
+        </div>
+      </OverlayProvider>
     </ThemeProvider>
   );
 }
