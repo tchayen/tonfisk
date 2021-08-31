@@ -1,6 +1,7 @@
 import rehypePrism from "@mapbox/rehype-prism";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
+import { ReactElement } from "react";
 import { Themed } from "theme-ui";
 
 import { components } from "../../../components/components";
@@ -12,7 +13,11 @@ import {
 } from "../../../utils/mdx";
 import { toKebabCase } from "../../../utils/string";
 
-export default function Doc({ navigation, source, metadata }: any) {
+export default function Doc({
+  navigation,
+  source,
+  metadata,
+}: any): ReactElement {
   return (
     <Layout navigation={navigation}>
       <Themed.h1>{metadata.displayName}</Themed.h1>
@@ -24,7 +29,7 @@ export default function Doc({ navigation, source, metadata }: any) {
 export const getStaticProps = async ({ params }: any) => {
   const metadata = getSourceMetadata(params.slug);
 
-  const content = `\n${metadata.description}\n${metadata.props
+  const content = `\n${metadata.description}\n\n## Props\n\n${metadata.props
     .map(
       (prop) =>
         `\n**${prop.name}**: \`${prop.tsType.name}\`\n\n${prop.description}`

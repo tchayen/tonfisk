@@ -23,7 +23,8 @@ type Props = {
 /**
  * Component for main user interactions in the app.
  *
- * Usage:
+ * ## Usage
+ *
  * ```jsx
  * import { Button } from "ds";
  *

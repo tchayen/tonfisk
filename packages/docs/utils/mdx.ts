@@ -2,6 +2,7 @@ import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import { parse } from "react-docgen";
+
 import { toKebabCase, toPascalCase } from "./string";
 
 export const DOCS_PATH = path.join(process.cwd(), "docs");
@@ -15,23 +16,43 @@ export const componentsFilePaths = fs
   .readdirSync(SOURCE_PATH)
   .filter((path) => /^[A-Z]/.test(path));
 
-export const getSourceMetadata = (slug: string) => {
+export const getSourceMetadata = (
+  slug: string
+): {
+  displayName: string;
+  description: string;
+  props: {
+    name: string;
+    description: string;
+    tsType: {
+      name: string;
+    };
+  }[];
+} => {
   const sourcePath = path.join(SOURCE_PATH, `${toPascalCase(slug)}.tsx`);
   const sourceFile = fs.readFileSync(sourcePath, "utf-8");
 
-  const { description, displayName, props } = parse(sourceFile, null, null, {
-    filename: sourcePath,
-  });
+  try {
+    const { description, displayName, props } = parse(sourceFile, null, null, {
+      filename: sourcePath,
+    });
 
-  return {
-    description,
-    displayName,
-    props: Object.keys(props || {}).map((key) => ({
-      name: key,
-      tsType: props[key].tsType,
-      description: props[key].description,
-    })),
-  };
+    return {
+      description,
+      displayName,
+      props: Object.keys(props || {}).map((key) => ({
+        name: key,
+        tsType: props[key].tsType,
+        description: props[key].description,
+      })),
+    };
+  } catch {
+    return {
+      description: "",
+      displayName: "",
+      props: [],
+    };
+  }
 };
 
 type Directory = {

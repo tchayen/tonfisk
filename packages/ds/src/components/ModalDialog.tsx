@@ -5,7 +5,7 @@ import { useDialog } from "@react-aria/dialog";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
-import { useRef } from "react";
+import { ReactElement, ReactNode, useRef } from "react";
 import { get, jsx, Themed } from "theme-ui";
 
 import * as consts from "../consts";
@@ -59,10 +59,21 @@ const CloseButton = (props: any) => {
   );
 };
 
+type Props = {
+  /**
+   * Title of the modal.
+   */
+  title: string;
+  /**
+   * Components to display inside the modal.
+   */
+  children: ReactNode;
+};
+
 /**
  * ModalDialog component.
  */
-export function ModalDialog(props) {
+export function ModalDialog(props: Props): ReactElement {
   const { title, children } = props;
 
   // Handle interacting outside the dialog and pressing

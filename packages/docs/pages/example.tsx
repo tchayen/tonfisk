@@ -12,6 +12,7 @@ import {
   Switch,
 } from "ds";
 import { ReactElement } from "react";
+import { Themed } from "theme-ui";
 
 export default function Example(): ReactElement {
   return (
@@ -26,7 +27,7 @@ export default function Example(): ReactElement {
       >
         <Grid gap={0}>
           <Grid p={3} gap={3}>
-            <Select label="Network" onSelectionChange={(key) => {}}>
+            <Select label="Fruits" onSelectionChange={(key) => {}}>
               {[
                 { id: 1, name: "Apple" },
                 { id: 2, name: "Orange" },
@@ -43,7 +44,7 @@ export default function Example(): ReactElement {
           </Switch>
           <Checkbox p={3}>
             I have the rights to publish this artwork, and understand it will be
-            minted on the Polygon network.
+            minted on the <Themed.strong>Polygon</Themed.strong> network.
           </Checkbox>
           <div
             sx={{

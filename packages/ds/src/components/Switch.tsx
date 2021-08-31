@@ -17,11 +17,15 @@ type Props = SpaceProps & AriaSwitchProps;
 /**
  * Switch component.
  *
+ * ## Usage
+ *
  * ```jsx
  * import { Switch } from "ds";
  *
  * <Switch>Label</Switch>
  * ```
+ *
+ * <Switch>Label</Switch>
  */
 export function Switch(props: Props): ReactElement {
   const state = useToggleState(props);

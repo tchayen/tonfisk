@@ -53,7 +53,7 @@ export function Layout({
   children: React.ReactNode;
 }): ReactElement {
   return (
-    <Grid columns="0.1fr min(80ch, 100%)" gap={0}>
+    <Grid columns="240px min(80ch, 100%)" gap={0}>
       <div
         sx={{
           borderRight: (t) => `1px solid ${get(t, "colors.gray100")}`,
@@ -63,6 +63,7 @@ export function Layout({
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}
+        <Link href="https://github.com/tchayen/design-system">GitHub</Link>
       </div>
       <div sx={{ p: 3 }}>{children}</div>
     </Grid>
