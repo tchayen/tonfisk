@@ -1,3 +1,4 @@
+import rehypePrism from "@mapbox/rehype-prism";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { Themed } from "theme-ui";
@@ -34,7 +35,7 @@ export const getStaticProps = async ({ params }: any) => {
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [],
+      rehypePlugins: [rehypePrism],
     },
   });
 

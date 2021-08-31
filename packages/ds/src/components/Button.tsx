@@ -22,6 +22,13 @@ type Props = {
 
 /**
  * Component for main user interactions in the app.
+ *
+ * Usage:
+ * ```jsx
+ * import { Button } from "ds";
+ *
+ * <Button onClick={() => console.log("I got clicked!")}>Click me</Button>
+ * ```
  */
 export function Button(props: Props): ReactElement {
   const ref = useRef<HTMLButtonElement>(null);

@@ -31,10 +31,23 @@ const Tick = () => (
 const Label = styled("label")(space);
 
 type Props = {
+  /**
+   * Label of the checkbox.
+   */
   children?: any;
 } & AriaCheckboxProps &
   SpaceProps;
 
+/**
+ * Checkbox component.
+ *
+ * Usage:
+ * ```jsx
+ * import { Checkbox } from "ds";
+ *
+ * <Checkbox>Label</Checkbox>
+ * ```
+ */
 export function Checkbox(props: Props): ReactElement {
   const { children } = props;
   const state = useToggleState(props);

@@ -34,6 +34,7 @@ export default {
       fontSize: 5,
       color: "black",
       fontWeight: "body",
+      m: 0,
     },
     h2: {
       fontSize: 4,

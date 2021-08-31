@@ -4,6 +4,9 @@ import { useListBox, useOption } from "@react-aria/listbox";
 import { ReactElement, useRef } from "react";
 import { jsx, useThemeUI } from "theme-ui";
 
+/**
+ * ListBox component.
+ */
 export function ListBox(props: any): ReactElement {
   const ref = useRef<HTMLUListElement>(null);
   const { listBoxRef = ref, state } = props;
@@ -29,6 +32,9 @@ export function ListBox(props: any): ReactElement {
   );
 }
 
+/**
+ * Option component.
+ */
 function Option({ item, state }: any) {
   const ref = useRef<HTMLLIElement>(null);
   const { optionProps, isSelected, isFocused, isDisabled } = useOption(

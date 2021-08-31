@@ -5,6 +5,9 @@ import { ThemeProvider } from "theme-ui";
 
 import theme from "./theme";
 
+/**
+ * Provider component.
+ */
 export function Provider({
   children,
 }: {

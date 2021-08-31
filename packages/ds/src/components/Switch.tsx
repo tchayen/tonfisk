@@ -14,6 +14,15 @@ const Label = styled("label")(space);
 
 type Props = SpaceProps & AriaSwitchProps;
 
+/**
+ * Switch component.
+ *
+ * ```jsx
+ * import { Switch } from "ds";
+ *
+ * <Switch>Label</Switch>
+ * ```
+ */
 export function Switch(props: Props): ReactElement {
   const state = useToggleState(props);
   const ref = useRef<HTMLInputElement>(null);

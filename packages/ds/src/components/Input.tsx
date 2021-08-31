@@ -10,6 +10,16 @@ import * as consts from "../consts";
 
 type Props = AriaTextFieldProps;
 
+/**
+ * Input component.
+ *
+ * Usage:
+ * ```jsx
+ * import { Input } from "ds";
+ *
+ * <Input label="First name" placeholder="John" />
+ * ```
+ */
 export function Input(props: Props): ReactElement {
   const { label } = props;
   const ref = useRef<HTMLInputElement>(null);

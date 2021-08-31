@@ -32,6 +32,16 @@ const Chevron = () => (
 
 type Props = AriaSelectProps<HTMLInputElement>;
 
+/**
+ * Select component.
+ *
+ * ```jsx
+ * import { Select, Item } from "ds";
+ *
+ * <Select label="Select" onSelectionChange={(key) => console.log(key)}>
+ *  <Item key={0}>Item 1</Item>
+ * </Select>
+ */
 export function Select(props: Props): ReactElement {
   const { isFocusVisible, focusProps } = useFocusRing();
 

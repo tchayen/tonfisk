@@ -52,7 +52,7 @@ export function Layout({
   children: React.ReactNode;
 }) {
   return (
-    <Grid columns="0.1fr 1fr" gap={0}>
+    <Grid columns="0.1fr min(80ch, 100%)" gap={0}>
       <div
         sx={{
           borderRight: (t) => `1px solid ${get(t, "colors.gray100")}`,

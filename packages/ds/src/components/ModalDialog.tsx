@@ -59,6 +59,9 @@ const CloseButton = (props: any) => {
   );
 };
 
+/**
+ * ModalDialog component.
+ */
 export function ModalDialog(props) {
   const { title, children } = props;
 

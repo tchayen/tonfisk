@@ -8,12 +8,27 @@ import { get, jsx } from "theme-ui";
 import * as consts from "../consts";
 
 type Props = {
+  /**
+   * Whether popup is open.
+   */
   isOpen?: boolean;
+  /**
+   * Called when closing.
+   */
   onClose: () => void;
+  /**
+   * Optional ref for popover's div.
+   */
   popoverRef?: React.RefObject<HTMLDivElement>;
+  /**
+   * Components to display inside the popover.
+   */
   children: React.ReactNode;
 };
 
+/**
+ * Popover component.
+ */
 export function Popover(props: Props): ReactElement {
   const ref = useRef<HTMLDivElement>(null);
   const { popoverRef = ref, isOpen, onClose, children } = props;
