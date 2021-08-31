@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import styled from "@emotion/styled";
 import { useFocusRing } from "@react-aria/focus";
@@ -13,7 +14,7 @@ const Label = styled("label")(space);
 
 type Props = SpaceProps & AriaSwitchProps;
 
-export default function Switch(props: Props): ReactElement {
+export function Switch(props: Props): ReactElement {
   const state = useToggleState(props);
   const ref = useRef<HTMLInputElement>(null);
   const { inputProps } = useSwitch(props, state, ref);

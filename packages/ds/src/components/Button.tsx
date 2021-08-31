@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
@@ -22,7 +23,7 @@ type Props = {
 /**
  * Component for main user interactions in the app.
  */
-const Button = (props: Props): ReactElement => {
+export function Button(props: Props): ReactElement {
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
@@ -48,6 +49,4 @@ const Button = (props: Props): ReactElement => {
       {props.children}
     </BButton>
   );
-};
-
-export default Button;
+}

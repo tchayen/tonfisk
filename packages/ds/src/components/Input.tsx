@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { useTextField } from "@react-aria/textfield";
 import { AriaTextFieldProps } from "@react-types/textfield";
@@ -9,7 +10,7 @@ import * as consts from "../consts";
 
 type Props = AriaTextFieldProps;
 
-export default function Input(props: Props): ReactElement {
+export function Input(props: Props): ReactElement {
   const { label } = props;
   const ref = useRef<HTMLInputElement>(null);
   const { labelProps, inputProps } = useTextField(props, ref);

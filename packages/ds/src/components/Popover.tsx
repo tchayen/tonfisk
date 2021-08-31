@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
@@ -13,7 +14,7 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function Popover(props: Props): ReactElement {
+export function Popover(props: Props): ReactElement {
   const ref = useRef<HTMLDivElement>(null);
   const { popoverRef = ref, isOpen, onClose, children } = props;
 

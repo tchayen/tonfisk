@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import styled from "@emotion/styled";
 import { useCheckbox } from "@react-aria/checkbox";
@@ -34,7 +35,7 @@ type Props = {
 } & AriaCheckboxProps &
   SpaceProps;
 
-const Checkbox = (props: Props): ReactElement => {
+export function Checkbox(props: Props): ReactElement {
   const { children } = props;
   const state = useToggleState(props);
   const ref = useRef(null);
@@ -94,6 +95,4 @@ const Checkbox = (props: Props): ReactElement => {
       <span sx={{ ml: 3 }}>{children}</span>
     </Label>
   );
-};
-
-export default Checkbox;
+}

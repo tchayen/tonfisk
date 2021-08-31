@@ -1,9 +1,10 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { useListBox, useOption } from "@react-aria/listbox";
 import { ReactElement, useRef } from "react";
 import { jsx, useThemeUI } from "theme-ui";
 
-export default function ListBox(props: any): ReactElement {
+export function ListBox(props: any): ReactElement {
   const ref = useRef<HTMLUListElement>(null);
   const { listBoxRef = ref, state } = props;
   const { listBoxProps } = useListBox(props, state, listBoxRef);

@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import "./polyfill";
 
@@ -5,12 +6,11 @@ import { OverlayProvider } from "@react-aria/overlays";
 import { useEffect, useState } from "react";
 import { Grid, jsx, ThemeProvider } from "theme-ui";
 
-import Button from "./components/Button";
-import Checkbox from "./components/Checkbox";
-import horizontalLine from "./components/horizontalLine";
-import Input from "./components/Input";
-import Select, { Item } from "./components/Select";
-import Switch from "./components/Switch";
+import { Button } from "./components/Button";
+import { Checkbox } from "./components/Checkbox";
+import { Input } from "./components/Input";
+import { Item, Select } from "./components/Select";
+import { Switch } from "./components/Switch";
 import theme from "./components/theme";
 import Modal from "./Modal";
 

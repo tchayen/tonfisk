@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { useButton } from "@react-aria/button";
 import { OverlayContainer } from "@react-aria/overlays";
@@ -7,7 +8,7 @@ import { Box, Grid, jsx, Themed } from "theme-ui";
 
 import Button from "./components/Button";
 import Checkbox from "./components/Checkbox";
-import horizontalLine from "./components/HorizontalLine";
+import horizontalLine from "./components/horizontalLine";
 import Input from "./components/Input";
 import ModalDialog from "./components/ModalDialog";
 import Switch from "./components/Switch";

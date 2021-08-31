@@ -1,3 +1,4 @@
+/** @jsxRuntime classic */
 /** @jsx jsx */
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
@@ -9,8 +10,8 @@ import { get, jsx } from "theme-ui";
 import { Label } from "theme-ui";
 
 import * as consts from "../consts";
-import ListBox from "./ListBox";
-import Popover from "./Popover";
+import { ListBox } from "./ListBox";
+import { Popover } from "./Popover";
 
 export { Item } from "@react-stately/collections";
 
@@ -31,7 +32,7 @@ const Chevron = () => (
 
 type Props = AriaSelectProps<HTMLInputElement>;
 
-export default function Select(props: Props): ReactElement {
+export function Select(props: Props): ReactElement {
   const { isFocusVisible, focusProps } = useFocusRing();
 
   // Create state based on the incoming props
