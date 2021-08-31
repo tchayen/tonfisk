@@ -1,16 +1,16 @@
 /** @jsx jsx */
-import { get, jsx } from "theme-ui";
-import { useRef } from "react";
-import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useButton } from "@react-aria/button";
+import { useFocusRing } from "@react-aria/focus";
+import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
 import { AriaSelectProps } from "@react-types/select";
+import { ReactElement, useRef } from "react";
+import { get, jsx } from "theme-ui";
+import { Label } from "theme-ui";
 
+import * as consts from "../consts";
 import ListBox from "./ListBox";
 import Popover from "./Popover";
-import * as consts from "../consts";
-import { useFocusRing } from "@react-aria/focus";
-import { Label } from "theme-ui";
 
 export { Item } from "@react-stately/collections";
 
@@ -29,9 +29,9 @@ const Chevron = () => (
   </svg>
 );
 
-type Props = {} & AriaSelectProps<HTMLInputElement>;
+type Props = AriaSelectProps<HTMLInputElement>;
 
-export default function Select(props: Props) {
+export default function Select(props: Props): ReactElement {
   const { isFocusVisible, focusProps } = useFocusRing();
 
   // Create state based on the incoming props
@@ -46,7 +46,7 @@ export default function Select(props: Props) {
   );
 
   // Get props for the button based on the trigger props from useSelect
-  let { buttonProps } = useButton(triggerProps, ref);
+  const { buttonProps } = useButton(triggerProps, ref);
 
   return (
     <div sx={{ position: "relative", display: "inline-block" }}>
@@ -75,7 +75,7 @@ export default function Select(props: Props) {
           paddingRight: `${consts.inputPaddings * 2 + 14}px`, // 14 is the width of the chevron,
           fontFamily: "body",
           position: "relative",
-          background: (t) => get(t, "colors.white"),
+          bg: "white",
           WebkitAppearance: "none",
           border: (t) => `1px solid
             ${

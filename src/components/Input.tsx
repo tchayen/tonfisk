@@ -1,17 +1,18 @@
 /** @jsx jsx */
-import { get, jsx } from "theme-ui";
-import { useRef, useState } from "react";
 import { useTextField } from "@react-aria/textfield";
 import { AriaTextFieldProps } from "@react-types/textfield";
-import * as consts from "../consts";
+import { useRef, useState, ReactElement } from "react";
+import { get, jsx } from "theme-ui";
 import { Label } from "theme-ui";
 
-type Props = {} & AriaTextFieldProps;
+import * as consts from "../consts";
 
-export default function Input(props: Props) {
-  let { label } = props;
-  let ref = useRef<HTMLInputElement>(null);
-  let { labelProps, inputProps } = useTextField(props, ref);
+type Props = AriaTextFieldProps;
+
+export default function Input(props: Props): ReactElement {
+  const { label } = props;
+  const ref = useRef<HTMLInputElement>(null);
+  const { labelProps, inputProps } = useTextField(props, ref);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => {

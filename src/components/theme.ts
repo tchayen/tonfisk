@@ -27,6 +27,7 @@ export default {
   styles: {
     root: {
       fontFamily: "body",
+      color: "gray600",
     },
   },
   forms: {
@@ -41,7 +42,6 @@ export default {
   buttons: {
     primary: {
       color: "white",
-      bg: "blue500",
       fontSize: 2,
       height: 4,
       fontWeight: "bold",

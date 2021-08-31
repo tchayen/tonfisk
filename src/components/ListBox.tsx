@@ -1,12 +1,12 @@
 /** @jsx jsx */
-import { jsx, useThemeUI } from "theme-ui";
-import { useRef } from "react";
 import { useListBox, useOption } from "@react-aria/listbox";
+import { ReactElement, useRef } from "react";
+import { jsx, useThemeUI } from "theme-ui";
 
-export default function ListBox(props) {
-  let ref = useRef<HTMLUListElement>(null);
-  let { listBoxRef = ref, state } = props;
-  let { listBoxProps } = useListBox(props, state, listBoxRef);
+export default function ListBox(props: any): ReactElement {
+  const ref = useRef<HTMLUListElement>(null);
+  const { listBoxRef = ref, state } = props;
+  const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
     <ul
@@ -28,9 +28,9 @@ export default function ListBox(props) {
   );
 }
 
-function Option({ item, state }) {
-  let ref = useRef<HTMLLIElement>(null);
-  let { optionProps, isSelected, isFocused, isDisabled } = useOption(
+function Option({ item, state }: any) {
+  const ref = useRef<HTMLLIElement>(null);
+  const { optionProps, isSelected, isFocused, isDisabled } = useOption(
     { key: item.key },
     state,
     ref

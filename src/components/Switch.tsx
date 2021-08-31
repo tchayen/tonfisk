@@ -1,41 +1,58 @@
 /** @jsx jsx */
-import { get, jsx } from "theme-ui";
-import { useRef } from "react";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { useToggleState } from "@react-stately/toggle";
+import styled from "@emotion/styled";
 import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
+import { VisuallyHidden } from "@react-aria/visually-hidden";
+import { useToggleState } from "@react-stately/toggle";
 import { AriaSwitchProps } from "@react-types/switch";
+import { ReactElement, useRef } from "react";
+import { space, SpaceProps } from "styled-system";
+import { get, jsx } from "theme-ui";
 
-type Props = {} & AriaSwitchProps;
+const Label = styled("label")(space);
 
-export default function Switch(props: Props) {
-  let state = useToggleState(props);
-  let ref = useRef<HTMLInputElement>(null);
-  let { inputProps } = useSwitch(props, state, ref);
-  let { isFocusVisible, focusProps } = useFocusRing();
+type Props = SpaceProps & AriaSwitchProps;
+
+export default function Switch(props: Props): ReactElement {
+  const state = useToggleState(props);
+  const ref = useRef<HTMLInputElement>(null);
+  const { inputProps } = useSwitch(props, state, ref);
+  const { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <label sx={{ display: "flex", alignItems: "center" }}>
+    <Label
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        fontSize: 1,
+        justifyContent: "space-between",
+      }}
+      {...props}
+    >
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
-      <div sx={{ display: "flex", position: "relative", alignItems: "center" }}>
+      {props.children}
+      <div
+        sx={{
+          display: "flex",
+          position: "relative",
+          alignItems: "center",
+          ml: 1,
+        }}
+      >
         <div
           sx={{
-            width: 32,
-            height: 12,
+            width: "32px",
+            height: "12px",
             borderRadius: 3,
-            background: (t) =>
-              state.isSelected
-                ? get(t, "colors.blue500opacity")
-                : get(t, "colors.gray100"),
+            bg: state.isSelected ? "blue500opacity" : "gray100",
           }}
         />
         <div
           sx={{
-            width: 16,
-            height: 16,
+            width: "16px",
+            height: "16px",
             borderRadius: 3,
             position: "absolute",
             right: state.isSelected ? 0 : 16,
@@ -44,14 +61,10 @@ export default function Switch(props: Props) {
               isFocusVisible
                 ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
                 : "0 1px 3px rgba(0, 0, 0, 0.25)",
-            background: (t) =>
-              state.isSelected
-                ? get(t, "colors.blue500")
-                : get(t, "colors.white"),
+            bg: state.isSelected ? "blue500" : "white",
           }}
         />
       </div>
-      {props.children}
-    </label>
+    </Label>
   );
 }

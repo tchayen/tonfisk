@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
-import * as ethers from "ethers";
-import Select, { Item } from "./components/Select";
-import * as consts from "./consts";
 import "./polyfill";
-import Web3 from "web3";
 
 import WalletConnect from "@walletconnect/client";
 import QRCodeModal from "@walletconnect/qrcode-modal";
-
-import { ThemeProvider, Grid } from "theme-ui";
-import theme from "./components/theme";
+import * as ethers from "ethers";
+import React, { useEffect, useState } from "react";
+import { Box, get, Grid, ThemeProvider } from "theme-ui";
+import Web3 from "web3";
 
 import Button from "./components/Button";
-import Switch from "./components/Switch";
 import Checkbox from "./components/Checkbox";
 import Input from "./components/Input";
+import Select, { Item } from "./components/Select";
+import Switch from "./components/Switch";
+import theme from "./components/theme";
+import * as consts from "./consts";
 // import Button from "./Button";
 
 const { ethereum } = window;
@@ -186,26 +185,55 @@ function App() {
             "..."
           )}
         </div>
-
-        <Grid gap={3} p={3}>
-          <Select
-            label="Network"
-            onSelectionChange={(key) => {
-              // https://docs.metamask.io/guide/rpc-api.html#wallet-switchethereumchain
-              // ethereum.request({
-              //   method: "wallet_switchEthereumChain",
-              //   params: [{ chainId: key }],
-              // });
+        <Grid
+          columns="1fr min(48ch, 100%) 1fr"
+          sx={{
+            "& > *": {
+              gridColumn: 2,
+            },
+          }}
+        >
+          <Grid
+            gap={0}
+            sx={{
+              m: 3,
+              borderRadius: 3,
+              border: (t) => `1px solid ${get(t, "colors.gray100")}`,
+              boxShadow: consts.boxShadow,
             }}
           >
-            {networks.map((network) => (
-              <Item key={network.id}>{network.name}</Item>
-            ))}
-          </Select>
-          <Button>Sign in</Button>
-          <Switch>Label</Switch>
-          <Checkbox>Label</Checkbox>
-          <Input placeholder="Abc" label="Def" />
+            <Grid p={3} gap={3}>
+              <Select
+                label="Network"
+                onSelectionChange={(key) => {
+                  // https://docs.metamask.io/guide/rpc-api.html#wallet-switchethereumchain
+                  // ethereum.request({
+                  //   method: "wallet_switchEthereumChain",
+                  //   params: [{ chainId: key }],
+                  // });
+                }}
+              >
+                {networks.map((network) => (
+                  <Item key={network.id}>{network.name}</Item>
+                ))}
+              </Select>
+              <Input label="Title" placeholder="Crypto punk" />
+              <Input label="Description" placeholder="Cool" />
+            </Grid>
+            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+            <Switch p={3}>
+              Enter a fixed price to allow people to purchase your NFT.
+            </Switch>
+            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+            <Checkbox p={3}>
+              I have the rights to publish this artwork, and understand it will
+              be minted on the Polygon network.
+            </Checkbox>
+            <Box bg="gray100" css={{ width: "100%", height: 1 }} />
+            <Box p={3}>
+              <Button onPress={() => console.log("aaa")}>Create</Button>
+            </Box>
+          </Grid>
         </Grid>
       </div>
     </ThemeProvider>

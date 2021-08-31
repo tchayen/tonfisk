@@ -1,8 +1,9 @@
 /** @jsx jsx */
-import { get, jsx } from "theme-ui";
-import { useRef } from "react";
-import { DismissButton, useOverlay } from "@react-aria/overlays";
 import { FocusScope } from "@react-aria/focus";
+import { DismissButton, useOverlay } from "@react-aria/overlays";
+import { ReactElement, useRef } from "react";
+import { get, jsx } from "theme-ui";
+
 import * as consts from "../consts";
 
 type Props = {
@@ -12,13 +13,13 @@ type Props = {
   children: React.ReactNode;
 };
 
-export default function Popover(props: Props) {
-  let ref = useRef<HTMLDivElement>(null);
-  let { popoverRef = ref, isOpen, onClose, children } = props;
+export default function Popover(props: Props): ReactElement {
+  const ref = useRef<HTMLDivElement>(null);
+  const { popoverRef = ref, isOpen, onClose, children } = props;
 
   // Handle events that should cause the popup to close,
   // e.g. blur, clicking outside, or pressing the escape key.
-  let { overlayProps } = useOverlay(
+  const { overlayProps } = useOverlay(
     {
       isOpen,
       onClose,

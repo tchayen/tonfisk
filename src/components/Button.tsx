@@ -1,10 +1,11 @@
 /** @jsx jsx */
-import { get, jsx } from "theme-ui";
-import { useRef } from "react";
-import { AriaButtonProps } from "@react-types/button";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
+import { AriaButtonProps } from "@react-types/button";
+import { ReactElement } from "react";
+import { useRef } from "react";
+import { get, jsx } from "theme-ui";
 import { Button as BButton } from "theme-ui";
 
 // TODO:
@@ -16,7 +17,7 @@ type Props = {
   secondary?: boolean;
 } & AriaButtonProps;
 
-const Button = (props: Props) => {
+const Button = (props: Props): ReactElement => {
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
@@ -27,14 +28,23 @@ const Button = (props: Props) => {
   // - active
   // - no double click on mobile
 
+  console.log(isPressed);
+
   return (
     <BButton
       ref={ref}
       sx={{
+        bg: isPressed ? "blue600" : "blue500",
         boxShadow: (t) =>
           isFocusVisible
             ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
             : "none",
+        "&:hover": {
+          bg: "blue400",
+        },
+        "&:active": {
+          bg: "blue600",
+        },
       }}
       {...mergeProps(focusProps, buttonProps)}
     >
