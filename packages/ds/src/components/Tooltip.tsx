@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 type Props = {
   /**
@@ -11,5 +11,5 @@ type Props = {
  * Tooltip component.
  */
 export function Tooltip(props: Props): ReactElement {
-  return null;
+  return <div>123</div>;
 }

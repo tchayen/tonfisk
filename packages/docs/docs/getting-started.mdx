@@ -5,10 +5,28 @@ description: Quick guide how to use this design system.
 
 This is text.
 
+## Installation
+
+```bash
+yarn add @tchayen/design-system
+```
+
+## Usage
+
 ```jsx
-import { Provider } from "ds";
+import { Provider } from "@tchayen/design-system";
 
 export default function App() {
   return <Provider>{/* Your app */}</Provider>;
 }
+```
+
+```jsx
+<Button
+  onPress={() => console.log("I got pressed!")}
+  variant="secondary"
+  isDisabled
+>
+  Press me
+</Button>
 ```

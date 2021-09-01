@@ -7,7 +7,7 @@ const colors = {
   white: "#FFFFFF",
   gray100: "#DDDDDD",
   gray200: "#AAAAAA",
-  gray600: "#555555",
+  gray600: "#666666",
   black: "#000000",
 };
 
@@ -31,7 +31,7 @@ export default {
       color: "gray600",
     },
     p: {
-      fontSize: 1,
+      fontSize: 2,
     },
     h1: {
       fontSize: 5,
@@ -52,6 +52,9 @@ export default {
     },
     strong: {
       fontWeight: "bold",
+      color: "black",
+    },
+    code: {
       color: "black",
     },
     label: {

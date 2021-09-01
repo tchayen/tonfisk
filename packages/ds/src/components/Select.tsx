@@ -26,10 +26,15 @@ type Props = AriaSelectProps<HTMLInputElement>;
  * ```jsx
  * import { Select, Item } from "ds";
  *
- * <Select label="Select" onSelectionChange={(key) => console.log(key)}>
+ * <Select
+ *   label="Select"
+ *   onSelectionChange={(key) => console.log(key)}
+ * >
  *  <Item key={0}>Item 1</Item>
  * </Select>
  * ```
+ *
+ * ## Example
  *
  * <Select label="Fruits" onSelectionChange={(key) => {}}>
  *   {[

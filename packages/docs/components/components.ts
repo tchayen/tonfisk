@@ -6,11 +6,11 @@ import {
   Button,
   Checkbox,
   Grid,
-  Input,
   Item,
   Provider,
   Select,
   Switch,
+  TextInput,
 } from "ds";
 import Link from "next/link";
 
@@ -20,7 +20,7 @@ export const components = {
   Grid,
   Select,
   Item,
-  Input,
+  TextInput,
   Switch,
   Checkbox,
   Provider,

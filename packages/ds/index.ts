@@ -1,6 +1,6 @@
 export { Button } from "./src/components/Button";
 export { Checkbox } from "./src/components/Checkbox";
-export { Input } from "./src/components/Input";
+export { TextInput } from "./src/components/TextInput";
 export { ListBox } from "./src/components/ListBox";
 export { ModalDialog } from "./src/components/ModalDialog";
 export { Popover } from "./src/components/Popover";

@@ -21,7 +21,7 @@ export default function Doc({
   return (
     <Layout navigation={navigation}>
       <Themed.h1>{frontMatter.title}</Themed.h1>
-      <p sx={{ fontSize: 1 }}>{frontMatter.description}</p>
+      <p>{frontMatter.description}</p>
       <MDXRemote {...source} components={components} />
     </Layout>
   );

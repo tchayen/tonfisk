@@ -11,13 +11,17 @@ import { Button as BButton } from "theme-ui";
 
 type Props = {
   /**
-   * Whether button is disabled. No focus ring when disabled.
+   * Callback for interaction.
    */
-  isDisabled?: boolean;
+  onPress: () => void;
   /**
-   * Title of the button.
+   * Text of the button.
    */
   children: string;
+  /**
+   * Whether user can interact with the button.
+   */
+  isDisabled?: boolean;
 } & AriaButtonProps;
 
 /**
@@ -28,8 +32,12 @@ type Props = {
  * ```jsx
  * import { Button } from "ds";
  *
- * <Button onPress={() => console.log("I got pressed!")}>Press me</Button>
+ * <Button onPress={() => console.log("I got pressed!")}>
+ *   Press me
+ * </Button>
  * ```
+ *
+ * ## Example
  *
  * <Button onPress={() => console.log("I got pressed!")}>Press me</Button>
  */

@@ -24,9 +24,7 @@ export const getSourceMetadata = (
   props: {
     name: string;
     description: string;
-    tsType: {
-      name: string;
-    };
+    type: string;
   }[];
 } => {
   const sourcePath = path.join(SOURCE_PATH, `${toPascalCase(slug)}.tsx`);
@@ -40,11 +38,13 @@ export const getSourceMetadata = (
     return {
       description,
       displayName,
-      props: Object.keys(props || {}).map((key) => ({
-        name: key,
-        tsType: props[key].tsType,
-        description: props[key].description,
-      })),
+      props: Object.keys(props || {}).map((key) => {
+        return {
+          name: `${key}${props[key].required ? "" : "?"}`,
+          type: props[key].tsType.raw || props[key].tsType.name,
+          description: props[key].description,
+        };
+      }),
     };
   } catch {
     return {
@@ -88,8 +88,10 @@ export const getNavigation = (): Directory => {
   return {
     name: "",
     files: [
-      { title: "Example", filePath: "../example" },
-      ...docs,
+      {
+        name: "Overview",
+        files: [{ title: "Example", filePath: "../example" }, ...docs],
+      },
       {
         name: "Components",
         files: components,

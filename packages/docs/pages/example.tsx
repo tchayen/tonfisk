@@ -4,12 +4,12 @@ import {
   Button,
   Checkbox,
   Grid,
-  Input,
   Item,
   jsx,
   Provider,
   Select,
   Switch,
+  TextInput,
 } from "ds";
 import { ReactElement } from "react";
 import { Themed } from "theme-ui";
@@ -36,8 +36,8 @@ export default function Example(): ReactElement {
                 <Item key={item.id}>{item.name}</Item>
               ))}
             </Select>
-            <Input label="Title" placeholder="Title" />
-            <Input label="Description" placeholder="Cool" />
+            <TextInput label="Title" placeholder="Title" />
+            <TextInput label="Description" placeholder="Cool" />
           </Grid>
           <Switch p={3}>
             Enter a fixed price to allow people to purchase your NFT.

@@ -25,6 +25,8 @@ type Props = SpaceProps & AriaSwitchProps;
  * <Switch>Label</Switch>
  * ```
  *
+ * ## Example
+ *
  * <Switch>Label</Switch>
  */
 export function Switch(props: Props): ReactElement {

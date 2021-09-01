@@ -1,7 +1,11 @@
+/** @jsxRuntime classic */
+/** @jsx jsx */
 import rehypePrism from "@mapbox/rehype-prism";
+import { jsx } from "ds";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { ReactElement } from "react";
+import { Box, get } from "theme-ui";
 import { Themed } from "theme-ui";
 
 import { components } from "../../../components/components";
@@ -21,6 +25,33 @@ export default function Doc({
   return (
     <Layout navigation={navigation}>
       <Themed.h1>{metadata.displayName}</Themed.h1>
+      <Themed.h2>Props</Themed.h2>
+      <Box
+        sx={{
+          border: (t) => `1px solid ${get(t, "colors.gray100")}`,
+          p: 3,
+          borderRadius: 3,
+        }}
+      >
+        {metadata.props.map((prop) => (
+          <Box
+            key={prop.name}
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              mb: 3,
+              "&:last-child": {
+                mb: 0,
+              },
+            }}
+          >
+            <code sx={{ color: "black", mb: 1 }}>
+              {prop.name}: {prop.type}
+            </code>
+            <span sx={{ fontSize: 1 }}>{prop.description}</span>
+          </Box>
+        ))}
+      </Box>
       <MDXRemote {...source} components={components} />
     </Layout>
   );
@@ -29,12 +60,7 @@ export default function Doc({
 export const getStaticProps = async ({ params }: any) => {
   const metadata = getSourceMetadata(params.slug);
 
-  const content = `\n${metadata.description}\n\n## Props\n\n${metadata.props
-    .map(
-      (prop) =>
-        `\n**${prop.name}**: \`${prop.tsType.name}\`\n\n${prop.description}`
-    )
-    .join("\n")}`;
+  const content = `\n${metadata.description}`;
 
   const source = await serialize(content, {
     // Optionally pass remark/rehype plugins

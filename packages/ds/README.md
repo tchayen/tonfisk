@@ -24,3 +24,9 @@ Simply paste:
 to the top of the file.
 
 A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/theme-ui/issues/1160#issuecomment-715530924).
+
+## TODO
+
+- Dark mode.
+- Direct props instead of passing to `react-aria`.
+- Interactive props.

@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@mapbox/rehype-prism": "^0.7.0",
+    "@types/": "mapbox/rehype-prism",
     "gray-matter": "^4.0.3",
     "next": "11.1.2",
     "next-mdx-remote": "^3.0.4",

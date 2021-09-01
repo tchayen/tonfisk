@@ -33,6 +33,8 @@ type Props = {
  * <Checkbox>Label</Checkbox>
  * ```
  *
+ * ## Example
+ *
  * <Checkbox>Label</Checkbox>
  */
 export function Checkbox(props: Props): ReactElement {

@@ -9,9 +9,9 @@ import { Box, Grid, jsx, Themed } from "theme-ui";
 import { Button } from "./components/Button";
 import { Checkbox } from "./components/Checkbox";
 import { horizontalLine } from "./components/horizontalLine";
-import { Input } from "./components/Input";
 import { ModalDialog } from "./components/ModalDialog";
 import { Switch } from "./components/Switch";
+import { TextInput } from "./components/TextInput";
 
 export default function Modal(): ReactElement {
   const state = useOverlayTriggerState({});
@@ -50,8 +50,8 @@ export default function Modal(): ReactElement {
           >
             {horizontalLine}
             <Grid p={3} gap={3}>
-              <Input label="Title" placeholder="Title" />
-              <Input label="Description" placeholder="Description" />
+              <TextInput label="Title" placeholder="Title" />
+              <TextInput label="Description" placeholder="Description" />
             </Grid>
             {horizontalLine}
             <Switch p={3}>

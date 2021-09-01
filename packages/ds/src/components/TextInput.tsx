@@ -16,14 +16,16 @@ type Props = AriaTextFieldProps;
  * ## Usage
  *
  * ```jsx
- * import { Input } from "ds";
+ * import { TextInput } from "ds";
  *
- * <Input label="First name" placeholder="John" />
+ * <TextInput label="First name" placeholder="John" />
  * ```
  *
- * <Input label="First name" placeholder="John" />
+ * ## Example
+ *
+ * <TextInput label="First name" placeholder="John" />
  */
-export function Input(props: Props): ReactElement {
+export function TextInput(props: Props): ReactElement {
   const { label } = props;
   const ref = useRef<HTMLInputElement>(null);
   const { labelProps, inputProps } = useTextField(props, ref);
