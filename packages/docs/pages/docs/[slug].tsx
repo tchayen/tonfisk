@@ -4,7 +4,7 @@ import { jsx } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
 import matter from "gray-matter";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import { ReactElement } from "react";
@@ -13,11 +13,17 @@ import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";
 import { DOCS_PATH, docsFilePaths, getNavigation } from "../../utils/mdx";
 
+type Props = {
+  navigation: ReturnType<typeof getNavigation>;
+  source: MDXRemoteSerializeResult;
+  frontMatter: { [key: string]: any };
+};
+
 export default function Doc({
   navigation,
   source,
   frontMatter,
-}: any): ReactElement {
+}: Props): ReactElement {
   return (
     <Layout navigation={navigation}>
       <h1>{frontMatter.title}</h1>
@@ -27,7 +33,11 @@ export default function Doc({
   );
 }
 
-export const getStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<{ props: Props }> => {
   const postPath = path.join(DOCS_PATH, `${params.slug}.mdx`);
   const docFile = fs.readFileSync(postPath, "utf-8");
 
@@ -50,7 +60,14 @@ export const getStaticProps = async ({ params }: any) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<{
+  paths: {
+    params: {
+      slug: string;
+    };
+  }[];
+  fallback: false;
+}> => {
   const paths = docsFilePaths
     .map((path) => path.replace(/\.mdx?$/, ""))
     .map((slug) => ({ params: { slug } }));

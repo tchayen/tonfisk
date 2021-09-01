@@ -28,7 +28,7 @@ export function TextInput(props: Props): ReactElement {
   const { labelProps, inputProps } = useTextField(props, ref);
   const [isFocused, setIsFocused] = useState(false);
   const theme = useTheme();
-  const { colors, space, fontSizes, sizes, radii, fonts } = theme;
+  const { colors, space, fontSizes, fontWeights, sizes, radii, fonts } = theme;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -45,7 +45,17 @@ export function TextInput(props: Props): ReactElement {
         flexDirection: "column",
       }}
     >
-      <label {...labelProps}>{label}</label>
+      <label
+        {...labelProps}
+        css={{
+          fontSize: fontSizes[0],
+          color: colors.primaryText,
+          fontWeight: fontWeights.bold,
+          marginBottom: space[1],
+        }}
+      >
+        {label}
+      </label>
       <input
         {...(inputProps as React.InputHTMLAttributes<HTMLInputElement>)}
         ref={ref}

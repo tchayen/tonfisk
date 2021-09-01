@@ -59,14 +59,22 @@ export function Select(props: Props): ReactElement {
   );
 
   const theme = useTheme();
-  const { space, fonts, sizes, fontSizes, colors, radii } = theme;
+  const { space, fonts, sizes, fontSizes, fontWeights, colors, radii } = theme;
 
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(triggerProps, ref);
 
   return (
     <div css={{ position: "relative", display: "inline-block" }}>
-      <label {...labelProps} css={{ marginBottom: space[1] }}>
+      <label
+        {...labelProps}
+        css={{
+          fontSize: fontSizes[0],
+          color: colors.primaryText,
+          fontWeight: fontWeights.bold,
+          marginBottom: space[1],
+        }}
+      >
         {props.label}
       </label>
       <HiddenSelect

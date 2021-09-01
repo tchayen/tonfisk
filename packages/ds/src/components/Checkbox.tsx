@@ -6,7 +6,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
 import { AriaCheckboxProps } from "@react-types/checkbox";
-import { ReactElement, useRef } from "react";
+import { ReactElement, ReactNode, useRef } from "react";
 
 import { Tick } from "../icons/Tick";
 
@@ -14,7 +14,7 @@ type Props = {
   /**
    * Label of the checkbox.
    */
-  children?: any;
+  children?: ReactNode;
 } & AriaCheckboxProps;
 
 /**

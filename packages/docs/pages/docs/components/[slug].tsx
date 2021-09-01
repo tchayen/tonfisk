@@ -2,7 +2,7 @@
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
-import { MDXRemote } from "next-mdx-remote";
+import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { ReactElement } from "react";
 
@@ -15,11 +15,26 @@ import {
 } from "../../../utils/mdx";
 import { toKebabCase } from "../../../utils/string";
 
+type Metadata = {
+  displayName: string;
+  props: {
+    name: string;
+    type: string;
+    description: string;
+  }[];
+};
+
+type Props = {
+  navigation: ReturnType<typeof getNavigation>;
+  source: MDXRemoteSerializeResult;
+  metadata: Metadata;
+};
+
 export default function Doc({
   navigation,
   source,
   metadata,
-}: any): ReactElement {
+}: Props): ReactElement {
   const theme = useTheme();
   const { space, fontSizes, radii, colors } = theme;
   return (
@@ -52,7 +67,11 @@ export default function Doc({
   );
 }
 
-export const getStaticProps = async ({ params }: any) => {
+export const getStaticProps = async ({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<{ props: Props }> => {
   const metadata = getSourceMetadata(params.slug);
 
   const content = `\n${metadata.description}`;
@@ -74,7 +93,14 @@ export const getStaticProps = async ({ params }: any) => {
   };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths = async (): Promise<{
+  paths: {
+    params: {
+      slug: string;
+    };
+  }[];
+  fallback: false;
+}> => {
   const paths = componentsFilePaths
     .map((path) => toKebabCase(path.replace(/\.tsx?$/, "")))
     .map((slug) => ({ params: { slug } }));

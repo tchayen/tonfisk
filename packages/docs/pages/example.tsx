@@ -1,11 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import {
   Button,
   Checkbox,
-  Grid,
   Item,
-  jsx,
   Provider,
   Select,
   Switch,
@@ -14,18 +13,21 @@ import {
 import { ReactElement } from "react";
 
 export default function Example(): ReactElement {
+  const theme = useTheme();
+  const { space, fontSizes } = theme;
   return (
     <Provider>
-      <Grid
-        columns="1fr min(50ch, 100%) 1fr"
-        sx={{
+      <div
+        css={{
+          display: "grid",
+          gridTemplateColumns: "1fr min(50ch, 100%) 1fr",
           "& > *": {
             gridColumn: 2,
           },
         }}
       >
-        <Grid gap={0}>
-          <Grid p={3} gap={3}>
+        <div css={{ display: "grid", gap: 0 }}>
+          <div css={{ display: "grid", padding: space[3], gap: space[3] }}>
             <Select label="Fruits" onSelectionChange={(key) => {}}>
               {[
                 { id: 1, name: "Apple" },
@@ -37,27 +39,33 @@ export default function Example(): ReactElement {
             </Select>
             <TextInput label="Title" placeholder="Title" />
             <TextInput label="Description" placeholder="Cool" />
-          </Grid>
-          <Switch p={3}>
-            Enter a fixed price to allow people to purchase your NFT.
-          </Switch>
-          <Checkbox p={3}>
-            I have the rights to publish this artwork, and understand it will be
-            minted on the <strong>Polygon</strong> network.
-          </Checkbox>
+          </div>
+          <div css={{ padding: space[3] }}>
+            <Switch>
+              Enter a fixed price to allow people to purchase your NFT.
+            </Switch>
+          </div>
+          <div css={{ padding: space[3] }}>
+            <Checkbox>
+              I have the rights to publish this artwork, and understand it will
+              be minted on the <strong>Polygon</strong> network.
+            </Checkbox>
+          </div>
           <div
-            sx={{
+            css={{
               display: "flex",
-              p: 3,
+              padding: space[3],
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <span sx={{ fontSize: 1 }}>Last saved 2 minutes ago</span>
+            <span css={{ fontSize: fontSizes[1] }}>
+              Last saved 2 minutes ago
+            </span>
             <Button onPress={() => console.log("aaa")}>Create</Button>
           </div>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
     </Provider>
   );
 }

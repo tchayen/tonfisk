@@ -27,8 +27,7 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 
 ## TODO
 
-- [ ] Migrate to pure `emotion`, clean up after `stitches`, `theme-ui` and `styled-components`.
-- [ ] Implement `<X p={3}>` prop for components.
+- [x] Migrate to pure `emotion`, clean up after `stitches`, `theme-ui` and `styled-components`.
 - [ ] Improve colors for dark mode.
 - [ ] User text selection color and background.
 - [ ] Bigger examples to find out missing components.
@@ -39,10 +38,6 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 - [ ] Proper dark mode switch.
 - [ ] Direct props instead of passing to `react-aria`.
 - [ ] Interactive props.
-
-## Maybe
-
-- [ ] Migrate from `theme-ui` to some other lib.
 
 ## CSS in JS
 

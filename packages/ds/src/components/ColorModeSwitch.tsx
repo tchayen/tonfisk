@@ -1,15 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "theme-ui";
-import { useThemeUI } from "theme-ui";
+import { jsx, useTheme } from "@emotion/react";
+
 import { Button } from "./Button";
 
 export function ColorModeSwitch(props) {
-  const {
-    theme: { rawColors },
-    setColorMode,
-  } = useThemeUI();
-
   return (
     <div>
       {/* {Object.entries(rawColors?.modes).map(([mode, values]) => (

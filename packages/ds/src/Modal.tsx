@@ -57,11 +57,11 @@ export default function Modal(): ReactElement {
               <TextInput label="Description" placeholder="Description" />
             </div>
             <HorizontalLine />
-            <Switch p={3}>
+            <Switch>
               Enter a fixed price to allow people to purchase your NFT.
             </Switch>
             <HorizontalLine />
-            <Checkbox p={3}>
+            <Checkbox>
               I have the rights to publish this artwork, and understand it will
               be minted on the{" "}
               <strong css={{ color: colors.primaryText }}>Polygon</strong>{" "}
