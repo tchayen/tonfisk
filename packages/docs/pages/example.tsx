@@ -12,7 +12,6 @@ import {
   TextInput,
 } from "ds";
 import { ReactElement } from "react";
-import { Themed } from "theme-ui";
 
 export default function Example(): ReactElement {
   return (
@@ -44,7 +43,7 @@ export default function Example(): ReactElement {
           </Switch>
           <Checkbox p={3}>
             I have the rights to publish this artwork, and understand it will be
-            minted on the <Themed.strong>Polygon</Themed.strong> network.
+            minted on the <strong>Polygon</strong> network.
           </Checkbox>
           <div
             sx={{

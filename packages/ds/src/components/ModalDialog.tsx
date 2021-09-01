@@ -1,14 +1,12 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { ReactElement, ReactNode, useRef } from "react";
-import { get, jsx, Themed } from "theme-ui";
-
-import * as consts from "../consts";
 
 const Close = () => (
   <svg
@@ -31,24 +29,25 @@ const CloseButton = (props: any) => {
   const { focusProps, isFocusVisible } = useFocusRing();
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton(props, ref);
+  const theme = useTheme();
+  const { colors, space, radii, sizes } = theme;
 
   return (
     <button
       {...mergeProps(focusProps, buttonProps)}
       ref={ref}
-      sx={{
-        p: 2,
-        borderRadius: 4,
-        width: 4,
-        height: 4,
+      css={{
+        padding: space[2],
+        borderRadius: radii[4],
+        width: sizes[4],
+        height: sizes[4],
         cursor: "pointer",
         border: "none",
         background: "transparent",
-        boxShadow: (t) =>
-          isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none",
+        boxShadow: isFocusVisible ? `0 0 0 3px ${colors.outline}` : "none",
         outline: "none",
         "&:hover": {
-          bg: "border",
+          background: colors.border,
         },
       }}
     >
@@ -87,9 +86,12 @@ export function ModalDialog(props: Props): ReactElement {
   // Get props for the dialog and its title
   const { dialogProps, titleProps } = useDialog(props, ref);
 
+  const theme = useTheme();
+  const { space, radii, colors, boxShadow } = theme;
+
   return (
     <div
-      sx={{
+      css={{
         position: "fixed",
         zIndex: 100,
         top: 0,
@@ -110,26 +112,26 @@ export function ModalDialog(props: Props): ReactElement {
           {...dialogProps}
           {...modalProps}
           ref={ref}
-          sx={{
-            background: "background",
-            borderRadius: 3,
+          css={{
+            background: colors.background,
+            borderRadius: radii[3],
             width: "48ch",
-            border: (t) => `1px solid ${get(t, "colors.border")}`,
-            boxShadow: consts.boxShadow,
+            border: `1px solid ${colors.border}`,
+            boxShadow,
             outline: "none",
           }}
         >
           <div
-            sx={{
+            css={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              pr: 2,
+              paddingRight: space[2],
             }}
           >
-            <Themed.h3 {...titleProps} sx={{ m: 3 }}>
+            <h3 {...titleProps} css={{ margin: space[3] }}>
               {title}
-            </Themed.h3>
+            </h3>
             <CloseButton onPress={props.onClose} />
           </div>
           {children}

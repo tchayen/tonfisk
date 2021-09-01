@@ -1,18 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from "@emotion/styled";
+import { jsx, useTheme } from "@emotion/react";
 import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { useToggleState } from "@react-stately/toggle";
 import { AriaSwitchProps } from "@react-types/switch";
 import { ReactElement, useRef } from "react";
-import { space, SpaceProps } from "styled-system";
-import { get, jsx } from "theme-ui";
 
-const Label = styled("label")(space);
-
-type Props = SpaceProps & AriaSwitchProps;
+type Props = AriaSwitchProps;
 
 /**
  * Switch component.
@@ -34,53 +30,53 @@ export function Switch(props: Props): ReactElement {
   const ref = useRef<HTMLInputElement>(null);
   const { inputProps } = useSwitch(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
+  const theme = useTheme();
+  const { space, fontSizes, radii, colors } = theme;
 
   return (
-    <Label
-      sx={{
+    <label
+      css={{
         display: "flex",
         alignItems: "center",
-        fontSize: 1,
+        fontSize: fontSizes[1],
         justifyContent: "space-between",
       }}
-      {...props}
     >
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
       {props.children}
       <div
-        sx={{
+        css={{
           display: "flex",
           position: "relative",
           alignItems: "center",
-          ml: 3,
+          marginLeft: space[3],
         }}
       >
         <div
-          sx={{
+          css={{
             width: "32px",
             height: "12px",
-            borderRadius: 3,
-            bg: state.isSelected ? "outline" : "border",
+            borderRadius: radii[3],
+            background: state.isSelected ? colors.outline : colors.border,
           }}
         />
         <div
-          sx={{
+          css={{
             width: "16px",
             height: "16px",
-            borderRadius: 3,
+            borderRadius: radii[3],
             position: "absolute",
             right: state.isSelected ? 0 : 16,
             transition: "right 0.1s ease-in-out",
-            boxShadow: (t) =>
-              isFocusVisible
-                ? `0 0 0 3px ${get(t, "colors.outline")}`
-                : "0 1px 3px rgba(0, 0, 0, 0.25)",
-            bg: state.isSelected ? "primary" : "background",
+            boxShadow: isFocusVisible
+              ? `0 0 0 3px ${colors.outline}`
+              : "0 1px 3px rgba(0, 0, 0, 0.25)",
+            background: state.isSelected ? colors.primary : colors.background,
           }}
         />
       </div>
-    </Label>
+    </label>
   );
 }

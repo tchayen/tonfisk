@@ -1,8 +1,8 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import { useListBox, useOption } from "@react-aria/listbox";
 import { ReactElement, useRef } from "react";
-import { jsx, useThemeUI } from "theme-ui";
 
 /**
  * ListBox component.
@@ -16,7 +16,7 @@ export function ListBox(props: any): ReactElement {
     <ul
       {...listBoxProps}
       ref={listBoxRef}
-      sx={{
+      css={{
         margin: 0,
         padding: 0,
         listStyle: "none",
@@ -42,34 +42,36 @@ function Option({ item, state }: any) {
     state,
     ref
   );
-  const { theme } = useThemeUI();
+  const theme = useTheme();
+  const { space, sizes, colors, fontSizes } = theme;
 
   let backgroundColor = "transparent";
-  let color = theme.colors.primaryText;
+  let color = colors.primaryText;
 
   if (isSelected) {
-    backgroundColor = theme.colors.primary;
-    color = theme.colors.background;
+    backgroundColor = colors.primary;
+    color = colors.background;
   } else if (isFocused) {
-    backgroundColor = theme.colors.border;
+    backgroundColor = colors.border;
   } else if (isDisabled) {
+    //
   }
 
   return (
     <li
       {...optionProps}
       ref={ref}
-      sx={{
+      css={{
         background: backgroundColor,
-        fontSize: 1,
+        fontSize: fontSizes[1],
         color,
-        paddingLeft: 2,
-        paddingRight: 2,
+        paddingLeft: space[2],
+        paddingRight: space[2],
         outline: "none",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
-        height: 4,
+        height: sizes[4],
       }}
     >
       {item.rendered}

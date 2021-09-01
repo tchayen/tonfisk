@@ -12,7 +12,7 @@ export function ColorModeSwitch(props) {
 
   return (
     <div>
-      {Object.entries(rawColors?.modes).map(([mode, values]) => (
+      {/* {Object.entries(rawColors?.modes).map(([mode, values]) => (
         <Button
           key={mode}
           sx={{ bg: values.background, color: values.text }}
@@ -20,7 +20,7 @@ export function ColorModeSwitch(props) {
         >
           {mode}
         </Button>
-      ))}
+      ))} */}
     </div>
   );
 }

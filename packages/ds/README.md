@@ -27,6 +27,33 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 
 ## TODO
 
-- Dark mode.
-- Direct props instead of passing to `react-aria`.
-- Interactive props.
+- [ ] Migrate to pure `emotion`, clean up after `stitches`, `theme-ui` and `styled-components`.
+- [ ] Implement `<X p={3}>` prop for components.
+- [ ] Improve colors for dark mode.
+- [ ] User text selection color and background.
+- [ ] Bigger examples to find out missing components.
+- [ ] Component: `<Tooltip />`.
+- [ ] Component: `<Pill />`.
+- [ ] Component: `<Tag />`.
+- [ ] Component: `<Menu />`.
+- [ ] Proper dark mode switch.
+- [ ] Direct props instead of passing to `react-aria`.
+- [ ] Interactive props.
+
+## Maybe
+
+- [ ] Migrate from `theme-ui` to some other lib.
+
+## CSS in JS
+
+[jsxstyle](https://github.com/jsxstyle/jsxstyle)
+
+```jsx
+<Row alignItems="center" padding={15}>
+  <Block backgroundColor="#eee" borderRadius={5} height={64} width={64} />
+  <Col fontFamily="sans-serif" fontSize={16} lineHeight="24px">
+    <Block fontWeight={600}>Abc</Block>
+    <Block fontStyle="italic">def</Block>
+  </Col>
+</Row>
+```

@@ -1,15 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
 import { AriaSelectProps } from "@react-types/select";
 import { ReactElement, useRef } from "react";
-import { get, jsx } from "theme-ui";
-import { Label } from "theme-ui";
 
-import * as consts from "../consts";
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "./ListBox";
 import { Popover } from "./Popover";
@@ -60,14 +58,17 @@ export function Select(props: Props): ReactElement {
     ref
   );
 
+  const theme = useTheme();
+  const { space, fonts, sizes, fontSizes, colors, radii } = theme;
+
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(triggerProps, ref);
 
   return (
-    <div sx={{ position: "relative", display: "inline-block" }}>
-      <Label {...labelProps} mb={1}>
+    <div css={{ position: "relative", display: "inline-block" }}>
+      <label {...labelProps} css={{ marginBottom: space[1] }}>
         {props.label}
-      </Label>
+      </label>
       <HiddenSelect
         state={state}
         triggerRef={ref}
@@ -78,31 +79,26 @@ export function Select(props: Props): ReactElement {
         {...buttonProps}
         {...focusProps}
         ref={ref}
-        sx={{
+        css={{
           width: "100%",
           display: "flex",
           justifyContent: "left",
           alignItems: "center",
-          height: 4,
-          fontSize: 1,
-          borderRadius: 3,
-          paddingLeft: 2,
-          paddingRight: `${consts.inputPaddings * 2 + 14}px`, // 14 is the width of the chevron,
-          fontFamily: "body",
+          height: sizes[4],
+          fontSize: fontSizes[1],
+          borderRadius: radii[3],
+          paddingLeft: space[2],
+          paddingRight: `${space[2] * 2 + 14}px`, // 14 is the width of the chevron,
+          fontFamily: fonts.body,
           position: "relative",
-          bg: "background",
-          color: state.selectedItem ? "primaryText" : "secondaryText",
+          background: colors.background,
+          color: state.selectedItem ? colors.primaryText : colors.secondaryText,
           WebkitAppearance: "none",
-          border: (t) => `1px solid
-            ${
-              isFocusVisible
-                ? get(t, "colors.primary")
-                : get(t, "colors.border")
-            }`,
-          boxShadow: (t) =>
-            `${
-              isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none"
-            }`,
+          border: `1px solid
+            ${isFocusVisible ? colors.primary : colors.border}`,
+          boxShadow: `${
+            isFocusVisible ? `0 0 0 3px ${colors.outline}` : "none"
+          }`,
           outline: "none",
         }}
       >
@@ -111,7 +107,10 @@ export function Select(props: Props): ReactElement {
             ? state.selectedItem.rendered
             : "Select an option"}
         </span>
-        <span aria-hidden="true" sx={{ position: "absolute", right: 2 }}>
+        <span
+          aria-hidden="true"
+          css={{ position: "absolute", right: space[2] }}
+        >
           <Chevron />
         </span>
       </button>

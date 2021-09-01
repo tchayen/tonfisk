@@ -1,10 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { ColorModeSwitch, Grid, jsx } from "ds";
+import { jsx, useTheme } from "@emotion/react";
+import { ColorModeSwitch } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
-import { Box, get, Themed } from "theme-ui";
 
 import { getNavigation } from "../utils/mdx";
 
@@ -16,25 +16,30 @@ const ListItem = ({
   href: string;
   children: ReactNode;
   active?: boolean;
-}): ReactElement => (
-  <Link href={href}>
-    <a
-      href={href}
-      sx={{
-        fontSize: 1,
-        color: active ? "primaryText" : "secondaryText",
-        bg: active ? "outline" : "background",
-        height: 4,
-        // borderRight: (t) => `1px solid ${get(t, "colors.outline")}`,
-        px: 3,
-        display: "flex",
-        alignItems: "center",
-      }}
-    >
-      {children}
-    </a>
-  </Link>
-);
+}): ReactElement => {
+  const theme = useTheme();
+  const { fontSizes, colors, sizes, space } = theme;
+  return (
+    <Link href={href}>
+      <a
+        href={href}
+        css={{
+          fontSize: fontSizes[1],
+          color: active ? colors.primaryText : colors.secondaryText,
+          background: active ? colors.outline : colors.background,
+          height: sizes[4],
+          // borderRight: `1px solid ${colors.outline}`,
+          paddingLeft: space[3],
+          paddingRight: space[3],
+          display: "flex",
+          alignItems: "center",
+        }}
+      >
+        {children}
+      </a>
+    </Link>
+  );
+};
 
 const NavLink = ({
   item,
@@ -52,12 +57,12 @@ const NavLink = ({
     );
   } else {
     return (
-      <Box>
-        <Themed.h3 sx={{ px: 3, my: 3 }}>{item.name}</Themed.h3>
+      <div>
+        <h3 css={{ padding: 3, my: 3 }}>{item.name}</h3>
         {item.files.map((file, index) => (
           <NavLink key={index} item={file} />
         ))}
-      </Box>
+      </div>
     );
   }
 };
@@ -69,11 +74,19 @@ export function Layout({
   navigation: ReturnType<typeof getNavigation>;
   children: React.ReactNode;
 }): ReactElement {
+  const theme = useTheme();
+  const { colors, space } = theme;
   return (
-    <Grid columns="240px 1fr min(80ch, 100%) 1fr" gap={0}>
+    <div
+      css={{
+        display: "grid",
+        gridTemplateColumns: "240px 1fr min(80ch, 100%) 1fr",
+        gridGap: 0,
+      }}
+    >
       <div
-        sx={{
-          borderRight: (t) => `1px solid ${get(t, "colors.border")}`,
+        css={{
+          borderRight: `1px solid ${colors.border}`,
           height: "100vh",
         }}
       >
@@ -81,15 +94,15 @@ export function Layout({
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}
-        <Themed.h3 sx={{ px: 3, my: 3 }}>Community</Themed.h3>
+        <h3 css={{ padding: space[3] }}>Community</h3>
         <ListItem href="https://github.com/tchayen/design-system">
           GitHub
         </ListItem>
         <ListItem href="">Discord</ListItem>
       </div>
       <div />
-      <div sx={{ p: 4 }}>{children}</div>
+      <div css={{ padding: space[4] }}>{children}</div>
       <div />
-    </Grid>
+    </div>
   );
 }

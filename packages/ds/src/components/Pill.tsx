@@ -2,7 +2,7 @@ import React, { ReactElement } from "react";
 
 type Props = {
   /**
-   * Content of tooltip.
+   * Content of pill.
    */
   children: string;
 };
@@ -10,6 +10,6 @@ type Props = {
 /**
  * TODO
  */
-export function Tooltip(props: Props): ReactElement {
+export function Pill(props: Props): ReactElement {
   return <div>123</div>;
 }

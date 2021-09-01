@@ -1,5 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
 import matter from "gray-matter";
@@ -7,7 +8,6 @@ import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import { ReactElement } from "react";
-import { jsx, Themed } from "theme-ui";
 
 import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";
@@ -20,7 +20,7 @@ export default function Doc({
 }: any): ReactElement {
   return (
     <Layout navigation={navigation}>
-      <Themed.h1>{frontMatter.title}</Themed.h1>
+      <h1>{frontMatter.title}</h1>
       <p>{frontMatter.description}</p>
       <MDXRemote {...source} components={components} />
     </Layout>

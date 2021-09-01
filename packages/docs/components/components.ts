@@ -5,23 +5,29 @@
 import {
   Button,
   Checkbox,
+  ColorModeSwitch,
   Grid,
   Item,
+  Pill,
   Provider,
   Select,
   Switch,
+  Tag,
   TextInput,
 } from "ds";
 import Link from "next/link";
 
 export const components = {
   a: Link,
+  ColorModeSwitch,
+  Checkbox,
   Button,
   Grid,
-  Select,
   Item,
-  TextInput,
-  Switch,
-  Checkbox,
+  Pill,
   Provider,
+  Select,
+  Switch,
+  Tag,
+  TextInput,
 };

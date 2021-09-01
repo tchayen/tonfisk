@@ -43,9 +43,8 @@ const colors = {
   },
 };
 
-export default {
-  initialColorMode: "light",
-  breakpoints: ["40em", "52em", "64em"],
+const theme = {
+  boxShadow: "0 2px 8px rgba(0, 0, 0, 0.1)",
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   lineHeights: [1],
@@ -109,7 +108,7 @@ export default {
   },
   buttons: {
     primary: {
-      color: "colors.background",
+      color: "background",
       fontSize: 1,
       height: 4,
       lineHeight: 0,
@@ -125,3 +124,11 @@ export default {
   },
   radii: [0, 2, 4, 8, 16, 1000, "100%"],
 };
+
+type A = typeof theme;
+
+declare module "@emotion/react" {
+  export interface Theme extends A {}
+}
+
+export default theme;

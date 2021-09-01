@@ -1,13 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { AriaButtonProps } from "@react-types/button";
-import { ReactElement } from "react";
-import { useRef } from "react";
-import { get, jsx } from "theme-ui";
-import { Button as BButton } from "theme-ui";
+import { ReactElement, useRef } from "react";
 
 type Props = {
   /**
@@ -46,23 +44,37 @@ export function Button(props: Props): ReactElement {
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
+  const theme = useTheme();
+  const { fonts, fontSizes, fontWeights, space, sizes, colors, radii } = theme;
+
   return (
-    <BButton
+    <button
       ref={ref}
-      sx={{
-        bg: isPressed ? "pressedButton" : "primary",
-        boxShadow: (t) =>
-          isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none",
+      css={{
+        border: "none",
+        outline: "none",
+        cursor: "pointer",
+        fontFamily: fonts.body,
+        fontSize: fontSizes[1],
+        fontWeight: fontWeights.bold,
+        paddingLeft: space[3],
+        paddingRight: space[3],
+        height: sizes[4],
+        lineHeight: `${sizes[4]}px`,
+        borderRadius: radii[4],
+        color: colors.background,
+        background: isPressed ? colors.pressedButton : colors.primary,
+        boxShadow: isFocusVisible ? `0 0 0 3px ${colors.outline}` : "none",
         "&:hover": {
-          bg: "hoveredButton",
+          background: colors.hoveredButton,
         },
         "&:active": {
-          bg: "pressedButton",
+          background: colors.pressedButton,
         },
       }}
       {...mergeProps(focusProps, buttonProps)}
     >
       {props.children}
-    </BButton>
+    </button>
   );
 }

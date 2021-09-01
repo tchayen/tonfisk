@@ -1,14 +1,14 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { OverlayContainer } from "@react-aria/overlays";
 import { useOverlayTriggerState } from "@react-stately/overlays";
 import { ReactElement, useRef } from "react";
-import { Box, Grid, jsx, Themed } from "theme-ui";
 
 import { Button } from "./components/Button";
 import { Checkbox } from "./components/Checkbox";
-import { horizontalLine } from "./components/horizontalLine";
+import { HorizontalLine } from "./components/HorizontalLine";
 import { ModalDialog } from "./components/ModalDialog";
 import { Switch } from "./components/Switch";
 import { TextInput } from "./components/TextInput";
@@ -35,6 +35,9 @@ export default function Modal(): ReactElement {
     closeButtonRef
   );
 
+  const theme = useTheme();
+  const { space, colors, fontSizes } = theme;
+
   return (
     <div>
       <button {...openButtonProps} ref={openButtonRef}>
@@ -48,34 +51,34 @@ export default function Modal(): ReactElement {
             onClose={state.close}
             isDismissable
           >
-            {horizontalLine}
-            <Grid p={3} gap={3}>
+            <HorizontalLine />
+            <div css={{ display: "grid", padding: space[3], gap: space[3] }}>
               <TextInput label="Title" placeholder="Title" />
               <TextInput label="Description" placeholder="Description" />
-            </Grid>
-            {horizontalLine}
+            </div>
+            <HorizontalLine />
             <Switch p={3}>
               Enter a fixed price to allow people to purchase your NFT.
             </Switch>
-            <Box bg="border" css={{ width: "100%", height: 1 }} />
+            <HorizontalLine />
             <Checkbox p={3}>
               I have the rights to publish this artwork, and understand it will
               be minted on the{" "}
-              <Themed.strong sx={{ color: "primaryText" }}>
-                Polygon
-              </Themed.strong>{" "}
+              <strong css={{ color: colors.primaryText }}>Polygon</strong>{" "}
               network.
             </Checkbox>
-            {horizontalLine}
+            <HorizontalLine />
             <div
-              sx={{
+              css={{
                 display: "flex",
-                p: 3,
+                p: space[3],
                 justifyContent: "space-between",
                 alignItems: "center",
               }}
             >
-              <span sx={{ fontSize: 1 }}>Last saved 2 minutes ago</span>
+              <span css={{ fontSize: fontSizes[1] }}>
+                Last saved 2 minutes ago
+              </span>
               <Button onPress={() => console.log("aaa")}>Create</Button>
             </div>
           </ModalDialog>

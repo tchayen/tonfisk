@@ -1,11 +1,9 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
 import { ReactElement, useRef } from "react";
-import { get, jsx } from "theme-ui";
-
-import * as consts from "../consts";
 
 type Props = {
   /**
@@ -45,6 +43,9 @@ export function Popover(props: Props): ReactElement {
     popoverRef
   );
 
+  const theme = useTheme();
+  const { colors, space, boxShadow, radii } = theme;
+
   // Add a hidden <DismissButton> component at the end of the popover
   // to allow screen reader users to dismiss the popup easily.
   return (
@@ -52,16 +53,15 @@ export function Popover(props: Props): ReactElement {
       <div
         {...overlayProps}
         ref={popoverRef}
-        sx={{
+        css={{
           position: "absolute",
           zIndex: 100,
           width: "100%",
           overflow: "hidden",
-          boxShadow: (t) =>
-            `0 0 0 1px inset ${get(t, "colors.border")}, ${consts.boxShadow}`,
-          borderRadius: `${consts.fieldRadius}px`,
-          background: (t) => get(t, "colors.background"),
-          marginTop: 2,
+          boxShadow: `0 0 0 1px inset ${colors.border}, ${boxShadow}`,
+          background: colors.background,
+          borderRadius: radii[3],
+          marginTop: space[2],
         }}
       >
         {children}

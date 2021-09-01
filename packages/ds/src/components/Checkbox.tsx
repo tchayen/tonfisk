@@ -1,26 +1,21 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import styled from "@emotion/styled";
+import { jsx, useTheme } from "@emotion/react";
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
 import { AriaCheckboxProps } from "@react-types/checkbox";
 import { ReactElement, useRef } from "react";
-import { space, SpaceProps } from "styled-system";
-import { get, jsx } from "theme-ui";
 
 import { Tick } from "../icons/Tick";
-
-const Label = styled("label")(space);
 
 type Props = {
   /**
    * Label of the checkbox.
    */
   children?: any;
-} & AriaCheckboxProps &
-  SpaceProps;
+} & AriaCheckboxProps;
 
 /**
  * Checkbox component.
@@ -44,36 +39,37 @@ export function Checkbox(props: Props): ReactElement {
   const { inputProps } = useCheckbox(props, state, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
+  const theme = useTheme();
+  const { colors, space, sizes, radii } = theme;
+
   return (
-    <Label
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        position: "relative",
-        fontSize: 1,
+    <label
+      css={(theme) => {
+        const { fontSizes } = theme;
+        return {
+          display: "flex",
+          alignItems: "center",
+          position: "relative",
+          fontSize: fontSizes[1],
+        };
       }}
-      {...props}
     >
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
-        sx={{
+        css={{
           WebkitAppearance: "none",
-          minWidth: 3,
-          height: 3,
-          borderRadius: 2,
-          border: (t) => `1px solid
-            ${
-              state.isSelected || isFocusVisible
-                ? get(t, "colors.primary")
-                : get(t, "colors.border")
-            }`,
+          minWidth: space[3],
+          height: sizes[3],
+          borderRadius: radii[2],
+          border: `1px solid ${
+            state.isSelected || isFocusVisible ? colors.primary : colors.border
+          }`,
           margin: 0,
-          bg: state.isSelected ? "primary" : "background",
-          boxShadow: (t) =>
-            `${
-              isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none"
-            }`,
+          background: state.isSelected ? colors.primary : colors.background,
+          boxShadow: `${
+            isFocusVisible ? `0 0 0 3px ${colors.outline}` : "none"
+          }`,
           outline: "none",
         }}
       />
@@ -92,7 +88,7 @@ export function Checkbox(props: Props): ReactElement {
           <Tick />
         </div>
       )}
-      <span sx={{ ml: 3 }}>{children}</span>
-    </Label>
+      <span css={{ marginLeft: space[3] }}>{children}</span>
+    </label>
   );
 }

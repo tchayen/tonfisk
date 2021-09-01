@@ -1,12 +1,10 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
+import { jsx, useTheme } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
-import { jsx, Switch } from "ds";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { ReactElement } from "react";
-import { Box, get } from "theme-ui";
-import { Themed } from "theme-ui";
 
 import { components } from "../../../components/components";
 import { Layout } from "../../../components/Layout";
@@ -22,31 +20,33 @@ export default function Doc({
   source,
   metadata,
 }: any): ReactElement {
+  const theme = useTheme();
+  const { space, fontSizes, radii, colors } = theme;
   return (
     <Layout navigation={navigation}>
-      <Themed.h1>{metadata.displayName}</Themed.h1>
-      <Themed.h2>Props</Themed.h2>
-      <Box>
+      <h1>{metadata.displayName}</h1>
+      <h2>Props</h2>
+      <div>
         {metadata.props.map((prop) => (
-          <Box key={prop.name} sx={{ display: "flex" }}>
-            <Box
-              sx={{
+          <div key={prop.name} css={{ display: "flex" }}>
+            <div
+              css={{
                 display: "flex",
                 flexDirection: "column",
-                mb: 2,
-                p: 2,
-                borderRadius: 3,
-                bg: "border",
+                marginBottom: space[2],
+                padding: space[2],
+                borderRadius: radii[3],
+                background: colors.border,
               }}
             >
-              <code sx={{ color: "primaryText", mb: 1 }}>
+              <code css={{ color: colors.primaryText, marginBottom: space[1] }}>
                 {prop.name}: {prop.type}
               </code>
-              <span sx={{ fontSize: 1 }}>{prop.description}</span>
-            </Box>
-          </Box>
+              <span css={{ fontSize: fontSizes[1] }}>{prop.description}</span>
+            </div>
+          </div>
         ))}
-      </Box>
+      </div>
       <MDXRemote {...source} components={components} />
     </Layout>
   );
