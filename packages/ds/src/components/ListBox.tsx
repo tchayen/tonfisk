@@ -45,13 +45,13 @@ function Option({ item, state }: any) {
   const { theme } = useThemeUI();
 
   let backgroundColor = "transparent";
-  let color = theme.colors.black;
+  let color = theme.colors.primaryText;
 
   if (isSelected) {
-    backgroundColor = theme.colors.blue500;
-    color = theme.colors.white;
+    backgroundColor = theme.colors.primary;
+    color = theme.colors.background;
   } else if (isFocused) {
-    backgroundColor = theme.colors.gray100;
+    backgroundColor = theme.colors.border;
   } else if (isDisabled) {
   }
 

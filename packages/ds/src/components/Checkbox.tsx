@@ -65,16 +65,14 @@ export function Checkbox(props: Props): ReactElement {
           border: (t) => `1px solid
             ${
               state.isSelected || isFocusVisible
-                ? get(t, "colors.blue500")
-                : get(t, "colors.gray100")
+                ? get(t, "colors.primary")
+                : get(t, "colors.border")
             }`,
           margin: 0,
-          bg: state.isSelected ? "blue500" : "white",
+          bg: state.isSelected ? "primary" : "background",
           boxShadow: (t) =>
             `${
-              isFocusVisible
-                ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
-                : "none"
+              isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none"
             }`,
           outline: "none",
         }}

@@ -90,20 +90,18 @@ export function Select(props: Props): ReactElement {
           paddingRight: `${consts.inputPaddings * 2 + 14}px`, // 14 is the width of the chevron,
           fontFamily: "body",
           position: "relative",
-          bg: "white",
-          color: state.selectedItem ? "black" : "gray600",
+          bg: "background",
+          color: state.selectedItem ? "primaryText" : "secondaryText",
           WebkitAppearance: "none",
           border: (t) => `1px solid
             ${
               isFocusVisible
-                ? get(t, "colors.blue500")
-                : get(t, "colors.gray100")
+                ? get(t, "colors.primary")
+                : get(t, "colors.border")
             }`,
           boxShadow: (t) =>
             `${
-              isFocusVisible
-                ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
-                : "none"
+              isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none"
             }`,
           outline: "none",
         }}

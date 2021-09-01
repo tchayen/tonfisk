@@ -53,6 +53,8 @@ export function TextInput(props: Props): ReactElement {
         onFocus={handleFocus}
         onBlur={handleBlur}
         sx={{
+          bg: "background",
+          color: "primaryText",
           paddingLeft: `${consts.inputPaddings}px`,
           paddingRight: `${consts.inputPaddings}px`,
           fontSize: `${consts.text.normal.fontSize}px`,
@@ -60,12 +62,12 @@ export function TextInput(props: Props): ReactElement {
           height: `${consts.fieldHeight}px`,
           borderRadius: `${consts.fieldRadius}px`,
           border: (t) => `1px solid
-            ${isFocused ? get(t, "colors.blue500") : get(t, "colors.gray100")}`,
+            ${isFocused ? get(t, "colors.primary") : get(t, "colors.border")}`,
           boxShadow: (t) =>
-            isFocused ? `0 0 0 3px ${get(t, "colors.blue500opacity")}` : "none",
+            isFocused ? `0 0 0 3px ${get(t, "colors.outline")}` : "none",
           outline: "none",
           "::placeholder": {
-            color: "gray600",
+            color: "secondaryText",
           },
         }}
       />

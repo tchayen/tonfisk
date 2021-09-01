@@ -58,9 +58,9 @@ export function Popover(props: Props): ReactElement {
           width: "100%",
           overflow: "hidden",
           boxShadow: (t) =>
-            `0 0 0 1px inset ${get(t, "colors.gray100")}, ${consts.boxShadow}`,
+            `0 0 0 1px inset ${get(t, "colors.border")}, ${consts.boxShadow}`,
           borderRadius: `${consts.fieldRadius}px`,
-          background: (t) => get(t, "colors.white"),
+          background: (t) => get(t, "colors.background"),
           marginTop: 2,
         }}
       >

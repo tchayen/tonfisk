@@ -8,4 +8,5 @@ export { Select, Item } from "./src/components/Select";
 export { Switch } from "./src/components/Switch";
 export { horizontalLine } from "./src/components/horizontalLine";
 export { Provider } from "./src/components/Provider";
+export { ColorModeSwitch } from "./src/components/ColorModeSwitch";
 export { Grid, jsx } from "theme-ui";

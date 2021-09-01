@@ -62,7 +62,7 @@ export function Switch(props: Props): ReactElement {
             width: "32px",
             height: "12px",
             borderRadius: 3,
-            bg: state.isSelected ? "blue500opacity" : "gray100",
+            bg: state.isSelected ? "outline" : "border",
           }}
         />
         <div
@@ -75,9 +75,9 @@ export function Switch(props: Props): ReactElement {
             transition: "right 0.1s ease-in-out",
             boxShadow: (t) =>
               isFocusVisible
-                ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
+                ? `0 0 0 3px ${get(t, "colors.outline")}`
                 : "0 1px 3px rgba(0, 0, 0, 0.25)",
-            bg: state.isSelected ? "blue500" : "white",
+            bg: state.isSelected ? "primary" : "background",
           }}
         />
       </div>

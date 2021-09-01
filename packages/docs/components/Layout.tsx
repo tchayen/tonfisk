@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { Grid, jsx } from "ds";
+import { ColorModeSwitch, Grid, jsx } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
@@ -22,10 +22,10 @@ const ListItem = ({
       href={href}
       sx={{
         fontSize: 1,
-        color: active ? "black" : "gray600",
-        bg: active ? "blue500opacity" : "white",
+        color: active ? "primaryText" : "secondaryText",
+        bg: active ? "outline" : "background",
         height: 4,
-        // borderRight: (t) => `1px solid ${get(t, "colors.blue500opacity")}`,
+        // borderRight: (t) => `1px solid ${get(t, "colors.outline")}`,
         px: 3,
         display: "flex",
         alignItems: "center",
@@ -73,10 +73,11 @@ export function Layout({
     <Grid columns="240px 1fr min(80ch, 100%) 1fr" gap={0}>
       <div
         sx={{
-          borderRight: (t) => `1px solid ${get(t, "colors.gray100")}`,
+          borderRight: (t) => `1px solid ${get(t, "colors.border")}`,
           height: "100vh",
         }}
       >
+        <ColorModeSwitch />
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}

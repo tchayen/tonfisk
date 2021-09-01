@@ -50,16 +50,14 @@ export function Button(props: Props): ReactElement {
     <BButton
       ref={ref}
       sx={{
-        bg: isPressed ? "blue600" : "blue500",
+        bg: isPressed ? "pressedButton" : "primary",
         boxShadow: (t) =>
-          isFocusVisible
-            ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
-            : "none",
+          isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none",
         "&:hover": {
-          bg: "blue400",
+          bg: "hoveredButton",
         },
         "&:active": {
-          bg: "blue600",
+          bg: "pressedButton",
         },
       }}
       {...mergeProps(focusProps, buttonProps)}

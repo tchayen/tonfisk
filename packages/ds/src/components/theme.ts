@@ -9,9 +9,42 @@ const colors = {
   gray200: "#AAAAAA",
   gray600: "#666666",
   black: "#000000",
+
+  background: "#FFFFFF",
+  primaryText: "#000000",
+  secondaryText: "#666666",
+  primary: "#1D9BF0",
+  pressedButton: "#177CC0",
+  hoveredButton: "#34A5F2",
+  border: "#DDDDDD",
+  outline: "rgba(29, 155, 240, 0.35)",
+
+  modes: {
+    light: {
+      background: "#FFFFFF",
+      primaryText: "#000000",
+      secondaryText: "#666666",
+      primary: "#1D9BF0",
+      pressedButton: "#177CC0",
+      hoveredButton: "#34A5F2",
+      border: "#DDDDDD",
+      outline: "rgba(29, 155, 240, 0.35)",
+    },
+    dark: {
+      background: "#111111",
+      primaryText: "#FFFFFF",
+      secondaryText: "#888888",
+      primary: "#1D9BF0",
+      pressedButton: "#177CC0",
+      hoveredButton: "#34A5F2",
+      border: "#222222",
+      outline: "rgba(29, 155, 240, 0.35)",
+    },
+  },
 };
 
 export default {
+  initialColorMode: "light",
   breakpoints: ["40em", "52em", "64em"],
   space: [0, 4, 8, 16, 32, 64, 128, 256, 512],
   sizes: [0, 4, 8, 16, 32, 64, 128, 256, 512],
@@ -28,40 +61,40 @@ export default {
   styles: {
     root: {
       fontFamily: "body",
-      color: "gray600",
+      color: "secondaryText",
     },
     p: {
       fontSize: 2,
     },
     h1: {
       fontSize: 5,
-      color: "black",
+      color: "primaryText",
       fontWeight: "body",
       m: 0,
     },
     h2: {
       fontSize: 4,
-      color: "black",
+      color: "primaryText",
       fontWeight: "body",
     },
     h3: {
       fontSize: 3,
-      color: "black",
+      color: "primaryText",
       fontWeight: "body",
       m: 0,
     },
     strong: {
       fontWeight: "bold",
-      color: "black",
+      color: "primaryText",
     },
     code: {
-      color: "black",
+      color: "primaryText",
     },
     label: {
       fontFamily: "body",
       fontSize: 0,
       fontWeight: "bold",
-      color: "black",
+      color: "primaryText",
       mb: 1,
     },
   },
@@ -70,13 +103,13 @@ export default {
       fontFamily: "body",
       fontSize: 0,
       fontWeight: "bold",
-      color: "black",
+      color: "primaryText",
       mb: 1,
     },
   },
   buttons: {
     primary: {
-      color: "white",
+      color: "colors.background",
       fontSize: 1,
       height: 4,
       lineHeight: 0,

@@ -1,8 +1,8 @@
 pre {
   padding: 16px;
   border-radius: 8px;
-  border: 1px solid #dddddd;
-  color: var(--theme-ui-colors-black);
+  border: 1px solid var(--theme-ui-colors-border);
+  color: var(--theme-ui-colors-primary-text);
 }
 
 code {
@@ -17,13 +17,13 @@ code {
 .token.attr-value,
 .token.maybe-class-name,
 .token.arrow.operator {
-  color: var(--theme-ui-colors-blue500);
+  color: var(--theme-ui-colors-primary);
 }
 
 .token.string,
 .token.plain-text,
 .token.parameter {
-  color: var(--theme-ui-colors-gray600);
+  color: var(--theme-ui-colors-secondary-text);
 }
 
 .token.comment {

@@ -1,7 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import rehypePrism from "@mapbox/rehype-prism";
-import { jsx } from "ds";
+import { jsx, Switch } from "ds";
 import { MDXRemote } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import { ReactElement } from "react";
@@ -26,29 +26,24 @@ export default function Doc({
     <Layout navigation={navigation}>
       <Themed.h1>{metadata.displayName}</Themed.h1>
       <Themed.h2>Props</Themed.h2>
-      <Box
-        sx={{
-          border: (t) => `1px solid ${get(t, "colors.gray100")}`,
-          p: 3,
-          borderRadius: 3,
-        }}
-      >
+      <Box>
         {metadata.props.map((prop) => (
-          <Box
-            key={prop.name}
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              mb: 3,
-              "&:last-child": {
-                mb: 0,
-              },
-            }}
-          >
-            <code sx={{ color: "black", mb: 1 }}>
-              {prop.name}: {prop.type}
-            </code>
-            <span sx={{ fontSize: 1 }}>{prop.description}</span>
+          <Box key={prop.name} sx={{ display: "flex" }}>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                mb: 2,
+                p: 2,
+                borderRadius: 3,
+                bg: "border",
+              }}
+            >
+              <code sx={{ color: "primaryText", mb: 1 }}>
+                {prop.name}: {prop.type}
+              </code>
+              <span sx={{ fontSize: 1 }}>{prop.description}</span>
+            </Box>
           </Box>
         ))}
       </Box>

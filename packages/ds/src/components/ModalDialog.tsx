@@ -45,12 +45,10 @@ const CloseButton = (props: any) => {
         border: "none",
         background: "transparent",
         boxShadow: (t) =>
-          isFocusVisible
-            ? `0 0 0 3px ${get(t, "colors.blue500opacity")}`
-            : "none",
+          isFocusVisible ? `0 0 0 3px ${get(t, "colors.outline")}` : "none",
         outline: "none",
         "&:hover": {
-          bg: "gray100",
+          bg: "border",
         },
       }}
     >
@@ -113,10 +111,10 @@ export function ModalDialog(props: Props): ReactElement {
           {...modalProps}
           ref={ref}
           sx={{
-            background: "white",
+            background: "background",
             borderRadius: 3,
             width: "48ch",
-            border: (t) => `1px solid ${get(t, "colors.gray100")}`,
+            border: (t) => `1px solid ${get(t, "colors.border")}`,
             boxShadow: consts.boxShadow,
             outline: "none",
           }}
