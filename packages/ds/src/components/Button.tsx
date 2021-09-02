@@ -37,7 +37,7 @@ type Props = {
  *
  * ## Example
  *
- * <Button onPress={() => console.log("I got pressed!")}>Press me</Button>
+ * <Button onPress={() => console.log("I got pressed!")}>Press me →</Button>
  */
 export function Button(props: Props): ReactElement {
   const ref = useRef<HTMLButtonElement>(null);
@@ -45,12 +45,13 @@ export function Button(props: Props): ReactElement {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   const theme = useTheme();
-  const { fonts, fontSizes, fontWeights, space, sizes, radii } = theme;
+  const { fonts, fontSizes, fontWeights, space, sizes, radii, outline } = theme;
 
   return (
     <button
       ref={ref}
       css={{
+        marginX: 100,
         border: "none",
         outline: "none",
         cursor: "pointer",
@@ -64,7 +65,7 @@ export function Button(props: Props): ReactElement {
         borderRadius: radii[4],
         color: "var(--background)",
         background: isPressed ? "var(--pressed-button)" : "var(--primary)",
-        boxShadow: isFocusVisible ? "0 0 0 3px var(--outline)" : "none",
+        boxShadow: isFocusVisible ? outline : "none",
         "&:hover": {
           background: "var(--hovered-button)",
         },

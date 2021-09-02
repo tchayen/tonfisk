@@ -31,7 +31,7 @@ export function Switch(props: Props): ReactElement {
   const { inputProps } = useSwitch(props, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
   const theme = useTheme();
-  const { space, fontSizes, radii, colors } = theme;
+  const { space, fontSizes, radii, outline, tooltipDotShadow } = theme;
 
   return (
     <label
@@ -70,12 +70,10 @@ export function Switch(props: Props): ReactElement {
             position: "absolute",
             right: state.isSelected ? 0 : 16,
             transition: "right 0.1s ease-in-out",
-            boxShadow: isFocusVisible
-              ? "0 0 0 3px var(--outline)"
-              : "0 1px 3px rgba(0, 0, 0, 0.25)",
+            boxShadow: isFocusVisible ? outline : tooltipDotShadow,
             background: state.isSelected
               ? "var(--primary)"
-              : "var(--background)",
+              : "var(--tooltip-dot)",
           }}
         />
       </div>

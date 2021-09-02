@@ -6,7 +6,6 @@ import {
   Button,
   Checkbox,
   ColorModeSwitch,
-  Grid,
   Item,
   Pill,
   Provider,
@@ -14,6 +13,7 @@ import {
   Switch,
   Tag,
   TextInput,
+  Tooltip,
 } from "ds";
 import Link from "next/link";
 
@@ -22,7 +22,6 @@ export const components = {
   ColorModeSwitch,
   Checkbox,
   Button,
-  Grid,
   Item,
   Pill,
   Provider,
@@ -30,4 +29,5 @@ export const components = {
   Switch,
   Tag,
   TextInput,
+  Tooltip,
 };

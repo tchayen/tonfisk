@@ -40,7 +40,7 @@ export function Checkbox(props: Props): ReactElement {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   const theme = useTheme();
-  const { fontSizes, space, sizes, radii } = theme;
+  const { fontSizes, space, sizes, radii, outline } = theme;
 
   return (
     <label
@@ -66,7 +66,7 @@ export function Checkbox(props: Props): ReactElement {
           }`,
           margin: 0,
           background: state.isSelected ? "var(--primary)" : "var(--background)",
-          boxShadow: `${isFocusVisible ? "0 0 0 3px var(--outline)" : "none"}`,
+          boxShadow: `${isFocusVisible ? outline : "none"}`,
           outline: "none",
         }}
       />

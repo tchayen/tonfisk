@@ -11,7 +11,10 @@ const toKebabCase = (s: string): string =>
   s.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 
 const useDarkMode = () => {
-  const darkMode = useDarkModeLib(false, { storageKey: null, onChange: null });
+  const darkMode = useDarkModeLib(false, {
+    storageKey: "color-mode",
+    onChange: () => {},
+  });
 
   useEffect(() => {
     const mql = window.matchMedia("(prefers-color-scheme: dark)");

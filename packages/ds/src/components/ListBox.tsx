@@ -67,11 +67,11 @@ function Option({ item, state }: any) {
         color,
         paddingLeft: space[2],
         paddingRight: space[2],
+        height: sizes[4],
         outline: "none",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
-        height: sizes[4],
       }}
     >
       {item.rendered}

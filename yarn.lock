@@ -1060,14 +1060,6 @@
     "@react-types/overlays" "^3.5.1"
     "@react-types/shared" "^3.8.0"
 
-"@types/@mapbox/rehype-prism":
-  version "0.7.0"
-  resolved "https://codeload.github.com/mapbox/rehype-prism/tar.gz/f089ab12d78ebce99e96f725aebbbb62d664451a"
-  dependencies:
-    hast-util-to-string "^1.0.4"
-    refractor "^3.4.0"
-    unist-util-visit "^2.0.3"
-
 "@types/hast@^2.0.0":
   version "2.3.4"
   resolved "https://registry.yarnpkg.com/@types/hast/-/hast-2.3.4.tgz#8aa5ef92c117d20d974a82bdfb6a648b08c0bafc"

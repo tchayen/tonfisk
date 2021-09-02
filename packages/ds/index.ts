@@ -11,4 +11,6 @@ export { Provider } from "./src/components/Provider";
 export { ColorModeSwitch } from "./src/components/ColorModeSwitch";
 export { Pill } from "./src/components/Pill";
 export { Tag } from "./src/components/Tag";
+export { Tooltip } from "./src/components/Tooltip";
 export { MagicScriptTag } from "./src/InlineCssVariables";
+export { Card } from "./src/components/Card";

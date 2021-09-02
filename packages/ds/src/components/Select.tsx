@@ -59,7 +59,7 @@ export function Select(props: Props): ReactElement {
   );
 
   const theme = useTheme();
-  const { space, fonts, sizes, fontSizes, fontWeights, radii } = theme;
+  const { space, fonts, sizes, fontSizes, fontWeights, radii, outline } = theme;
 
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(triggerProps, ref);
@@ -98,18 +98,16 @@ export function Select(props: Props): ReactElement {
           paddingLeft: space[2],
           paddingRight: `${space[2] * 2 + 14}px`, // 14 is the width of the chevron,
           fontFamily: fonts.body,
-          position: "relative",
+          outline: "none",
           background: "var(--background)",
+          border: `1px solid
+            ${isFocusVisible ? "var(--primary)" : "var(--border)"}`,
+          boxShadow: `${isFocusVisible ? outline : "none"}`,
+          position: "relative",
           color: state.selectedItem
             ? "var(--primary-text)"
             : "var(--secondary-text)",
           WebkitAppearance: "none",
-          border: `1px solid
-            ${isFocusVisible ? "var(--primary)" : "var(--border)"}`,
-          boxShadow: `${
-            isFocusVisible ? `0 0 0 3px ${"var(--outline)"}` : "none"
-          }`,
-          outline: "none",
         }}
       >
         <span {...valueProps}>

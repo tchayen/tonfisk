@@ -28,7 +28,7 @@ export function TextInput(props: Props): ReactElement {
   const { labelProps, inputProps } = useTextField(props, ref);
   const [isFocused, setIsFocused] = useState(false);
   const theme = useTheme();
-  const { space, fontSizes, fontWeights, sizes, radii, fonts } = theme;
+  const { space, fontSizes, fontWeights, sizes, radii, fonts, outline } = theme;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -62,20 +62,20 @@ export function TextInput(props: Props): ReactElement {
         onFocus={handleFocus}
         onBlur={handleBlur}
         css={{
-          background: "var(--background)",
-          color: "var(--primaryText)",
-          paddingLeft: space[2],
-          paddingRight: space[2],
-          fontSize: fontSizes[1],
-          fontFamily: fonts.body,
           height: sizes[4],
+          fontSize: fontSizes[1],
           borderRadius: radii[3],
+          fontFamily: fonts.body,
+          outline: "none",
+          background: "var(--background)",
           border: `1px solid
             ${isFocused ? "var(--primary)" : "var(--border)"}`,
-          boxShadow: isFocused ? "0 0 0 3px var(--outline)" : "none",
-          outline: "none",
+          boxShadow: isFocused ? outline : "none",
+          paddingLeft: space[2],
+          paddingRight: space[2],
+          color: "var(--primary-text)",
           "::placeholder": {
-            color: "var(--secondaryText)",
+            color: "var(--secondary-text)",
           },
         }}
       />

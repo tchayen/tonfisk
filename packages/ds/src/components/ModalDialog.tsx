@@ -30,7 +30,7 @@ const CloseButton = (props: any) => {
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton(props, ref);
   const theme = useTheme();
-  const { space, radii, sizes } = theme;
+  const { space, radii, sizes, outline } = theme;
 
   return (
     <button
@@ -44,7 +44,7 @@ const CloseButton = (props: any) => {
         cursor: "pointer",
         border: "none",
         background: "transparent",
-        boxShadow: isFocusVisible ? "0 0 0 3px var(--outline)" : "none",
+        boxShadow: isFocusVisible ? outline : "none",
         outline: "none",
         "&:hover": {
           background: "var(--border)",
