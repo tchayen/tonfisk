@@ -59,7 +59,7 @@ export function Switch(props: Props): ReactElement {
             width: "32px",
             height: "12px",
             borderRadius: radii[3],
-            background: state.isSelected ? colors.outline : colors.border,
+            background: state.isSelected ? "var(--outline)" : "var(--border)",
           }}
         />
         <div
@@ -71,9 +71,11 @@ export function Switch(props: Props): ReactElement {
             right: state.isSelected ? 0 : 16,
             transition: "right 0.1s ease-in-out",
             boxShadow: isFocusVisible
-              ? `0 0 0 3px ${colors.outline}`
+              ? "0 0 0 3px var(--outline)"
               : "0 1px 3px rgba(0, 0, 0, 0.25)",
-            background: state.isSelected ? colors.primary : colors.background,
+            background: state.isSelected
+              ? "var(--primary)"
+              : "var(--background)",
           }}
         />
       </div>

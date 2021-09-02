@@ -1,10 +1,13 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
+import { jsx } from "@emotion/react";
+import { ReactElement } from "react";
 
-export const HorizontalLine = () => {
-  const theme = useTheme();
+/**
+ * A horizontal line spanning the full width of the container.
+ */
+export const HorizontalLine = (): ReactElement => {
   return (
-    <div css={{ background: theme.colors.border, width: "100%", height: 1 }} />
+    <div css={{ background: "var(--border)", width: "100%", height: 1 }} />
   );
 };

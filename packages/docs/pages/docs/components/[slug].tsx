@@ -4,7 +4,7 @@ import { jsx, useTheme } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import { ReactElement } from "react";
+import { Fragment, ReactElement } from "react";
 
 import { components } from "../../../components/components";
 import { Layout } from "../../../components/Layout";
@@ -36,32 +36,43 @@ export default function Doc({
   metadata,
 }: Props): ReactElement {
   const theme = useTheme();
-  const { space, fontSizes, radii, colors } = theme;
+  const { space, fontSizes, radii } = theme;
   return (
     <Layout navigation={navigation}>
       <h1>{metadata.displayName}</h1>
-      <h2>Props</h2>
-      <div>
-        {metadata.props.map((prop) => (
-          <div key={prop.name} css={{ display: "flex" }}>
-            <div
-              css={{
-                display: "flex",
-                flexDirection: "column",
-                marginBottom: space[2],
-                padding: space[2],
-                borderRadius: radii[3],
-                background: colors.border,
-              }}
-            >
-              <code css={{ color: colors.primaryText, marginBottom: space[1] }}>
-                {prop.name}: {prop.type}
-              </code>
-              <span css={{ fontSize: fontSizes[1] }}>{prop.description}</span>
-            </div>
+      {metadata.props.length > 0 && (
+        <Fragment>
+          <h2>Props</h2>
+          <div>
+            {metadata.props.map((prop) => (
+              <div key={prop.name} css={{ display: "flex" }}>
+                <div
+                  css={{
+                    display: "flex",
+                    flexDirection: "column",
+                    marginBottom: space[2],
+                    padding: space[2],
+                    borderRadius: radii[3],
+                    background: "var(--border)",
+                  }}
+                >
+                  <code
+                    css={{
+                      color: "var(--primary-text)",
+                      marginBottom: space[1],
+                    }}
+                  >
+                    {prop.name}: {prop.type}
+                  </code>
+                  <span css={{ fontSize: fontSizes[1] }}>
+                    {prop.description}
+                  </span>
+                </div>
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
+        </Fragment>
+      )}
       <MDXRemote {...source} components={components} />
     </Layout>
   );

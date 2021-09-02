@@ -43,16 +43,16 @@ function Option({ item, state }: any) {
     ref
   );
   const theme = useTheme();
-  const { space, sizes, colors, fontSizes } = theme;
+  const { space, sizes, fontSizes } = theme;
 
   let backgroundColor = "transparent";
-  let color = colors.primaryText;
+  let color = "var(--primary-text)";
 
   if (isSelected) {
-    backgroundColor = colors.primary;
-    color = colors.background;
+    backgroundColor = "var(--primary)";
+    color = "var(--background)";
   } else if (isFocused) {
-    backgroundColor = colors.border;
+    backgroundColor = "var(--border)";
   } else if (isDisabled) {
     //
   }

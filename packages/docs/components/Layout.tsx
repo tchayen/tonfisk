@@ -18,17 +18,17 @@ const ListItem = ({
   active?: boolean;
 }): ReactElement => {
   const theme = useTheme();
-  const { fontSizes, colors, sizes, space } = theme;
+  const { fontSizes, sizes, space } = theme;
   return (
     <Link href={href}>
       <a
         href={href}
         css={{
           fontSize: fontSizes[1],
-          color: active ? colors.primaryText : colors.secondaryText,
-          background: active ? colors.outline : colors.background,
+          color: active ? "var(--primary-text)" : "var(--secondary-text)",
+          background: active ? "var(--outline)" : "var(--background)",
           height: sizes[4],
-          // borderRight: `1px solid ${colors.outline}`,
+          // borderRight: '1px solid var(--outline)',
           paddingLeft: space[3],
           paddingRight: space[3],
           display: "flex",
@@ -47,6 +47,8 @@ const NavLink = ({
   item: ReturnType<typeof getNavigation>["files"][0];
 }) => {
   const router = useRouter();
+  const theme = useTheme();
+  const { space } = theme;
 
   if ("title" in item) {
     const href = `/docs/${item.filePath}`;
@@ -58,7 +60,7 @@ const NavLink = ({
   } else {
     return (
       <div>
-        <h3 css={{ padding: 3, my: 3 }}>{item.name}</h3>
+        <h3 css={{ paddingLeft: space[3] }}>{item.name}</h3>
         {item.files.map((file, index) => (
           <NavLink key={index} item={file} />
         ))}
@@ -75,7 +77,7 @@ export function Layout({
   children: React.ReactNode;
 }): ReactElement {
   const theme = useTheme();
-  const { colors, space } = theme;
+  const { space } = theme;
   return (
     <div
       css={{
@@ -86,7 +88,7 @@ export function Layout({
     >
       <div
         css={{
-          borderRight: `1px solid ${colors.border}`,
+          borderRight: "1px solid var(--border)",
           height: "100vh",
         }}
       >
@@ -94,7 +96,7 @@ export function Layout({
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}
-        <h3 css={{ padding: space[3] }}>Community</h3>
+        <h3 css={{ paddingLeft: space[3] }}>Community</h3>
         <ListItem href="https://github.com/tchayen/design-system">
           GitHub
         </ListItem>

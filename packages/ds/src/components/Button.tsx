@@ -45,7 +45,7 @@ export function Button(props: Props): ReactElement {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   const theme = useTheme();
-  const { fonts, fontSizes, fontWeights, space, sizes, colors, radii } = theme;
+  const { fonts, fontSizes, fontWeights, space, sizes, radii } = theme;
 
   return (
     <button
@@ -60,16 +60,16 @@ export function Button(props: Props): ReactElement {
         paddingLeft: space[3],
         paddingRight: space[3],
         height: sizes[4],
-        lineHeight: `${sizes[4]}px`,
+        lineHeight: 1,
         borderRadius: radii[4],
-        color: colors.background,
-        background: isPressed ? colors.pressedButton : colors.primary,
-        boxShadow: isFocusVisible ? `0 0 0 3px ${colors.outline}` : "none",
+        color: "var(--background)",
+        background: isPressed ? "var(--pressed-button)" : "var(--primary)",
+        boxShadow: isFocusVisible ? "0 0 0 3px var(--outline)" : "none",
         "&:hover": {
-          background: colors.hoveredButton,
+          background: "var(--hovered-button)",
         },
         "&:active": {
-          background: colors.pressedButton,
+          background: "var(--pressed-button)",
         },
       }}
       {...mergeProps(focusProps, buttonProps)}

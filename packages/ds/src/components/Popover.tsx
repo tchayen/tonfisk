@@ -44,7 +44,7 @@ export function Popover(props: Props): ReactElement {
   );
 
   const theme = useTheme();
-  const { colors, space, boxShadow, radii } = theme;
+  const { space, boxShadow, radii } = theme;
 
   // Add a hidden <DismissButton> component at the end of the popover
   // to allow screen reader users to dismiss the popup easily.
@@ -58,8 +58,8 @@ export function Popover(props: Props): ReactElement {
           zIndex: 100,
           width: "100%",
           overflow: "hidden",
-          boxShadow: `0 0 0 1px inset ${colors.border}, ${boxShadow}`,
-          background: colors.background,
+          boxShadow: `0 0 0 1px inset var(--border), ${boxShadow}`,
+          background: "var(--background)",
           borderRadius: radii[3],
           marginTop: space[2],
         }}

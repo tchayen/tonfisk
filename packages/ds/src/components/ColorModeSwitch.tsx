@@ -1,10 +1,11 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
+import { ReactElement } from "react";
 
 import { Button } from "./Button";
 
-export function ColorModeSwitch(props) {
+export function ColorModeSwitch(props): ReactElement {
   return (
     <div>
       {/* {Object.entries(rawColors?.modes).map(([mode, values]) => (

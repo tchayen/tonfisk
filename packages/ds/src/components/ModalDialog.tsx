@@ -30,7 +30,7 @@ const CloseButton = (props: any) => {
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton(props, ref);
   const theme = useTheme();
-  const { colors, space, radii, sizes } = theme;
+  const { space, radii, sizes } = theme;
 
   return (
     <button
@@ -44,10 +44,10 @@ const CloseButton = (props: any) => {
         cursor: "pointer",
         border: "none",
         background: "transparent",
-        boxShadow: isFocusVisible ? `0 0 0 3px ${colors.outline}` : "none",
+        boxShadow: isFocusVisible ? "0 0 0 3px var(--outline)" : "none",
         outline: "none",
         "&:hover": {
-          background: colors.border,
+          background: "var(--border)",
         },
       }}
     >
@@ -87,7 +87,7 @@ export function ModalDialog(props: Props): ReactElement {
   const { dialogProps, titleProps } = useDialog(props, ref);
 
   const theme = useTheme();
-  const { space, radii, colors, boxShadow } = theme;
+  const { space, radii, boxShadow } = theme;
 
   return (
     <div
@@ -113,10 +113,10 @@ export function ModalDialog(props: Props): ReactElement {
           {...modalProps}
           ref={ref}
           css={{
-            background: colors.background,
+            background: "var(--background)",
             borderRadius: radii[3],
             width: "48ch",
-            border: `1px solid ${colors.border}`,
+            border: "1px solid var(--border)",
             boxShadow,
             outline: "none",
           }}

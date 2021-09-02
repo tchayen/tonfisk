@@ -36,7 +36,7 @@ export default function Modal(): ReactElement {
   );
 
   const theme = useTheme();
-  const { space, colors, fontSizes } = theme;
+  const { space, fontSizes } = theme;
 
   return (
     <div>
@@ -64,7 +64,7 @@ export default function Modal(): ReactElement {
             <Checkbox>
               I have the rights to publish this artwork, and understand it will
               be minted on the{" "}
-              <strong css={{ color: colors.primaryText }}>Polygon</strong>{" "}
+              <strong css={{ color: "var(--primary-text)" }}>Polygon</strong>{" "}
               network.
             </Checkbox>
             <HorizontalLine />
