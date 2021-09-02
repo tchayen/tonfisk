@@ -31,14 +31,27 @@ const useDarkMode = () => {
   return null;
 };
 
+type Props = {
+  /**
+   * All your app code.
+   */
+  children: React.ReactNode;
+};
+
 /**
- * Provider component.
+ * Provider that is required for the design system to work. Call it in your main `App` component.
+ *
+ *  ## Usage
+ *
+ * ```jsx
+ * import { Provider } from "@tchayen/design-system";
+ *
+ * <Provider>
+ *   // Your app here.
+ * </Provider>
+ * ```
  */
-export function Provider({
-  children,
-}: {
-  children?: React.ReactNode;
-}): ReactElement {
+export function Provider({ children }: Props): ReactElement {
   useDarkMode();
 
   return (
@@ -65,6 +78,19 @@ export function Provider({
             strong: {
               color: "var(--primary-text)",
               fontWeight: theme.fontWeights.bold,
+            },
+            code: {
+              fontSize: 14,
+              fontFamily:
+                "SF Mono, Menlo, Consolas, Liberation Mono, monospace",
+              color: "var(--primary-text)",
+              background: "var(--border)",
+              padding: "2px 4px",
+              borderRadius: theme.radii[2],
+            },
+            "::selection": {
+              color: "var(--primary-text)",
+              background: "var(--primary)",
             },
           }}
         />

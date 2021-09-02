@@ -26,6 +26,8 @@ type Props = {
 
 /**
  * Popover component.
+ *
+ * <Popover>Text</Popover>
  */
 export function Popover(props: Props): ReactElement {
   const ref = useRef<HTMLDivElement>(null);

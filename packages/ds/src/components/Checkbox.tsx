@@ -5,17 +5,20 @@ import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
-import { AriaCheckboxProps } from "@react-types/checkbox";
 import { ReactElement, ReactNode, useRef } from "react";
 
 import { Tick } from "../icons/Tick";
 
 type Props = {
   /**
+   * TODO
+   */
+  onChange: (checked: boolean) => void;
+  /**
    * Label of the checkbox.
    */
   children?: ReactNode;
-} & AriaCheckboxProps;
+};
 
 /**
  * Checkbox component.
@@ -23,7 +26,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Checkbox } from "ds";
+ * import { Checkbox } from "@tchayen/design-system";
  *
  * <Checkbox>Label</Checkbox>
  * ```

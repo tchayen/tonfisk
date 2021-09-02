@@ -5,6 +5,14 @@ import { ReactElement } from "react";
 
 /**
  * A horizontal line spanning the full width of the container.
+ *
+ *  ## Usage
+ *
+ * ```jsx
+ * import { HorizontalLine } from "@tchayen/design-system";
+ *
+ * <HorizontalLine />
+ * ```
  */
 export const HorizontalLine = (): ReactElement => {
   return (

@@ -6,13 +6,27 @@ import { ReactElement } from "react";
 
 type Props = {
   /**
-   *
+   * Content of the card.
    */
   children: ReactNode;
 };
 
 /**
  * Card component.
+ *
+ *  ## Usage
+ *
+ * ```jsx
+ * import { Card } from "@tchayen/design-system";
+ *
+ * <Card>
+ *   Content
+ * </Card>
+ * ```
+ *
+ * ## Example
+ *
+ * <Card>TODO: something is broken here</Card>
  */
 export function Card(props: Props): ReactElement {
   const theme = useTheme();

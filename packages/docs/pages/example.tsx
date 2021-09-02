@@ -12,11 +12,13 @@ import {
   Switch,
   TextInput,
 } from "ds";
+import { useRouter } from "next/dist/client/router";
 import { ReactElement } from "react";
 
 export default function Example(): ReactElement {
   const theme = useTheme();
   const { space, fontSizes } = theme;
+  const router = useRouter();
   return (
     <Provider>
       <div
@@ -29,6 +31,9 @@ export default function Example(): ReactElement {
           },
         }}
       >
+        <div css={{ marginBottom: space[3] }}>
+          <Button onPress={() => router.back()}>← Back</Button>
+        </div>
         <Card>
           <div css={{ display: "grid", padding: space[3], gap: space[3] }}>
             <Select label="Fruits" onSelectionChange={(key) => {}}>

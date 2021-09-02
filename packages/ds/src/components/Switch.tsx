@@ -5,10 +5,18 @@ import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { useToggleState } from "@react-stately/toggle";
-import { AriaSwitchProps } from "@react-types/switch";
 import { ReactElement, useRef } from "react";
 
-type Props = AriaSwitchProps;
+type Props = {
+  /**
+   * TODO
+   */
+  onChange: (value: boolean) => void;
+  /**
+   * Label of the switch.
+   */
+  children?: ReactElement;
+};
 
 /**
  * Switch component.

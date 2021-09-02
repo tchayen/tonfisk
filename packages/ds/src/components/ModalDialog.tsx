@@ -8,22 +8,7 @@ import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { ReactElement, ReactNode, useRef } from "react";
 
-const Close = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 16 16"
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <path
-      d="M3.00012 3.50006L13.0001 13.5001M13.0001 3.50006L3 13.5001"
-      stroke="black"
-      strokeWidth="2"
-      strokeLinecap="round"
-    />
-  </svg>
-);
+import { Close } from "../icons/Close";
 
 const CloseButton = (props: any) => {
   const { focusProps, isFocusVisible } = useFocusRing();
@@ -69,6 +54,14 @@ type Props = {
 
 /**
  * ModalDialog component.
+ *
+ *  ## Usage
+ *
+ * ```jsx
+ * import { ModalDialog } from "@tchayen/design-system";
+ *
+ * <ModalDialog />
+ * ```
  */
 export function ModalDialog(props: Props): ReactElement {
   const { title, children } = props;

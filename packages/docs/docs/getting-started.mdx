@@ -3,8 +3,6 @@ title: Getting started
 description: Quick guide how to use this design system.
 ---
 
-This is text.
-
 ## Installation
 
 ```bash
@@ -12,6 +10,8 @@ yarn add @tchayen/design-system
 ```
 
 ## Usage
+
+`<Provider />` is required for internal theme to be applied to components.
 
 ```jsx
 import { Provider } from "@tchayen/design-system";
@@ -21,6 +21,10 @@ export default function App() {
 }
 ```
 
+### Dark mode
+
+`<MagicScriptTag />` can be used in `_document.tsx` in `Next.js` and its purpose is to prevent page flickering on refresh.
+
 ```jsx
 import { MagicScriptTag } from "@tchayen/design-system";
 
@@ -28,12 +32,6 @@ import { MagicScriptTag } from "@tchayen/design-system";
 <MagicScriptTag />;
 ```
 
-```jsx
-<Button
-  onPress={() => console.log("I got pressed!")}
-  variant="secondary"
-  isDisabled
->
-  Press me
-</Button>
-```
+## Underneath
+
+This project uses `emotion` 👩‍🎤 styling library.

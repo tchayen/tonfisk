@@ -4,7 +4,6 @@ import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import { AriaButtonProps } from "@react-types/button";
 import { ReactElement, useRef } from "react";
 
 type Props = {
@@ -20,7 +19,7 @@ type Props = {
    * Whether user can interact with the button.
    */
   isDisabled?: boolean;
-} & AriaButtonProps;
+};
 
 /**
  * Component for main user interactions in the app.
@@ -28,7 +27,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Button } from "ds";
+ * import { Button } from "@tchayen/design-system";
  *
  * <Button onPress={() => console.log("I got pressed!")}>
  *   Press me

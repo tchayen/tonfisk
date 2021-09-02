@@ -100,7 +100,7 @@ export function Layout({
         <ListItem href="https://github.com/tchayen/design-system">
           GitHub
         </ListItem>
-        <ListItem href="">Discord</ListItem>
+        <ListItem href="https://twitter.com/tchayen">Twitter</ListItem>
       </div>
       <div />
       <div css={{ padding: space[4] }}>{children}</div>

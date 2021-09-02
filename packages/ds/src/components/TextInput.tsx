@@ -2,10 +2,18 @@
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
 import { useTextField } from "@react-aria/textfield";
-import { AriaTextFieldProps } from "@react-types/textfield";
 import { ReactElement, useRef, useState } from "react";
 
-type Props = AriaTextFieldProps;
+type Props = {
+  /**
+   * Placeholder dislayed inside the input when it is empty.
+   */
+  placeholder?: string;
+  /**
+   * Label displayed above the input.
+   */
+  label?: string;
+};
 
 /**
  * Input component.

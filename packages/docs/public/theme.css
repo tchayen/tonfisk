@@ -5,8 +5,10 @@ pre {
   color: var(--primary-text);
 }
 
-code {
+pre code {
   font-size: 14px;
+  background-color: var(--background);
+  padding: 0;
   font-family: SF Mono, Menlo, Consolas, Liberation Mono, monospace;
 }
 

@@ -1,7 +1,7 @@
 import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
-import { parse } from "react-docgen";
+import * as reactDocgen from "react-docgen";
 
 import { toKebabCase, toPascalCase } from "./string";
 
@@ -31,9 +31,17 @@ export const getSourceMetadata = (
   const sourceFile = fs.readFileSync(sourcePath, "utf-8");
 
   try {
-    const { description, displayName, props } = parse(sourceFile, null, null, {
-      filename: sourcePath,
-    });
+    const components = reactDocgen.parse(
+      sourceFile,
+      reactDocgen.resolver.findAllComponentDefinitions,
+      null,
+      {
+        filename: sourcePath,
+      }
+    );
+
+    const { description, displayName, props } =
+      components[components.length - 1];
 
     return {
       description,
@@ -46,7 +54,9 @@ export const getSourceMetadata = (
         };
       }),
     };
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return {
       description: "",
       displayName: "",

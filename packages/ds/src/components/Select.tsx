@@ -9,7 +9,7 @@ import { AriaSelectProps } from "@react-types/select";
 import { ReactElement, useRef } from "react";
 
 import { Chevron } from "../icons/Chevron";
-import { ListBox } from "./ListBox";
+import { ListBox } from "../ListBox";
 import { Popover } from "./Popover";
 
 export { Item } from "@react-stately/collections";
@@ -34,15 +34,7 @@ type Props = AriaSelectProps<HTMLInputElement>;
  *
  * ## Example
  *
- * <Select label="Fruits" onSelectionChange={(key) => {}}>
- *   {[
- *     { id: 1, name: "Apple" },
- *     { id: 2, name: "Orange" },
- *     { id: 3, name: "Plum" },
- *   ].map((item) => (
- *     123 // TODO: fix this - <Item key={item.id}>{item.name}</Item>
- *   ))}
- * </Select>
+ * <SelectExample />
  */
 export function Select(props: Props): ReactElement {
   const { isFocusVisible, focusProps } = useFocusRing();
@@ -73,6 +65,7 @@ export function Select(props: Props): ReactElement {
           color: "var(--primary-text)",
           fontWeight: fontWeights.bold,
           marginBottom: space[1],
+          display: "block",
         }}
       >
         {props.label}

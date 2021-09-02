@@ -45,12 +45,20 @@ export default function Doc({
           <h2>Props</h2>
           <div>
             {metadata.props.map((prop) => (
-              <div key={prop.name} css={{ display: "flex" }}>
+              <div
+                key={prop.name}
+                css={{
+                  display: "flex",
+                  marginBottom: space[2],
+                  "&:last-child": {
+                    marginBottom: 0,
+                  },
+                }}
+              >
                 <div
                   css={{
                     display: "flex",
                     flexDirection: "column",
-                    marginBottom: space[2],
                     padding: space[2],
                     borderRadius: radii[3],
                     background: "var(--border)",

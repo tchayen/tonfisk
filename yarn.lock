@@ -674,6 +674,23 @@
     "@react-types/shared" "^3.8.0"
     clsx "^1.1.1"
 
+"@react-aria/grid@3.0.0-rc.0":
+  version "3.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@react-aria/grid/-/grid-3.0.0-rc.0.tgz#50989472f8b7179b867b947c07381f8e13268229"
+  integrity sha512-M7o0qQPaHo2nOo7d0hTlHxpRpLdsRaW1uiAlGh2Jl6tIfUtfA4jfzBCwAIG2pg8va3Vqd9SBmPdzQYBuwIGIjw==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.4.1"
+    "@react-aria/i18n" "^3.3.2"
+    "@react-aria/interactions" "^3.5.1"
+    "@react-aria/live-announcer" "^3.0.1"
+    "@react-aria/selection" "^3.5.1"
+    "@react-aria/utils" "^3.8.2"
+    "@react-stately/grid" "3.0.0-rc.0"
+    "@react-stately/virtualizer" "^3.1.5"
+    "@react-types/grid" "3.0.0-rc.0"
+    "@react-types/shared" "^3.8.0"
+
 "@react-aria/i18n@^3.3.2":
   version "3.3.2"
   resolved "https://registry.yarnpkg.com/@react-aria/i18n/-/i18n-3.3.2.tgz#891902938333c6ab5491b7acb7581f8567045dbc"
@@ -720,6 +737,15 @@
     "@react-stately/list" "^3.3.0"
     "@react-types/listbox" "^3.2.1"
     "@react-types/shared" "^3.8.0"
+
+"@react-aria/live-announcer@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@react-aria/live-announcer/-/live-announcer-3.0.1.tgz#772888326808d180adc5bc9fa0b4b1416ec08811"
+  integrity sha512-c63UZ4JhXxy29F6FO1LUkQLDRzv17W4g3QQ+sy6tmFw7R5I5r8uh8jR7RCbBX7bdGCLnQDwOQ055KsM/a9MT3A==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/utils" "^3.8.2"
+    "@react-aria/visually-hidden" "^3.2.3"
 
 "@react-aria/menu@^3.2.3":
   version "3.2.3"
@@ -803,6 +829,26 @@
     "@react-stately/toggle" "^3.2.3"
     "@react-types/switch" "^3.1.2"
 
+"@react-aria/table@^3.0.0-rc.1":
+  version "3.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@react-aria/table/-/table-3.0.0-rc.1.tgz#1c2642f20db63e8ef72a15881997b7be9d88e9a0"
+  integrity sha512-dfpFVOx3lQN391nxp05n70gmMsinQa8cnSBmFegrV86AtzpumYhyYWzfWCQXa5LJy1D6Xqmllo0NTacX5cg3Yw==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/focus" "^3.4.1"
+    "@react-aria/grid" "3.0.0-rc.0"
+    "@react-aria/i18n" "^3.3.2"
+    "@react-aria/interactions" "^3.5.1"
+    "@react-aria/live-announcer" "^3.0.1"
+    "@react-aria/selection" "^3.5.1"
+    "@react-aria/utils" "^3.8.2"
+    "@react-stately/table" "3.0.0-rc.1"
+    "@react-stately/virtualizer" "^3.1.5"
+    "@react-types/checkbox" "^3.2.3"
+    "@react-types/grid" "3.0.0-rc.0"
+    "@react-types/shared" "^3.8.0"
+    "@react-types/table" "3.0.0-rc.7"
+
 "@react-aria/textfield@^3.3.1":
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/@react-aria/textfield/-/textfield-3.3.1.tgz#c7a4bcf3f408024456b1001cb38011dc2c972e11"
@@ -881,6 +927,16 @@
     "@babel/runtime" "^7.6.2"
     "@react-types/shared" "^3.8.0"
 
+"@react-stately/grid@3.0.0-rc.0":
+  version "3.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@react-stately/grid/-/grid-3.0.0-rc.0.tgz#ae590c981177f96a2b4413ad624d2d596e15386a"
+  integrity sha512-1A3zXgRDut7h4PeLtNtCjLiEXFlIXxR8kf2/SMozNvpR6P/R1fswdtxWnl4hymNvTWVdDBHS4f5TegsL+wjqeQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/selection" "^3.7.0"
+    "@react-types/grid" "3.0.0-rc.0"
+    "@react-types/shared" "^3.8.0"
+
 "@react-stately/list@^3.3.0":
   version "3.3.0"
   resolved "https://registry.yarnpkg.com/@react-stately/list/-/list-3.3.0.tgz#64ab3a507aa3ef03a8f3afc9f8d0bde0c79efd81"
@@ -936,6 +992,18 @@
     "@react-stately/utils" "^3.2.2"
     "@react-types/shared" "^3.8.0"
 
+"@react-stately/table@3.0.0-rc.1", "@react-stately/table@^3.0.0-rc.1":
+  version "3.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@react-stately/table/-/table-3.0.0-rc.1.tgz#21a1405a722f74e49b5ff78fbcceae850e80370f"
+  integrity sha512-K7Kd5BursCdVMYE+AUP09Pn3R6FENb7dy2OqgJOz4ol62bD0FK5B66O6R7xrKNuv9bFP+Y5nAsQhhwhSyoWuOg==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-stately/collections" "^3.3.3"
+    "@react-stately/grid" "3.0.0-rc.0"
+    "@react-types/grid" "3.0.0-rc.0"
+    "@react-types/shared" "^3.8.0"
+    "@react-types/table" "3.0.0-rc.7"
+
 "@react-stately/toggle@^3.2.3":
   version "3.2.3"
   resolved "https://registry.yarnpkg.com/@react-stately/toggle/-/toggle-3.2.3.tgz#a4de6edc16982990492c6c557e5194f46dacc809"
@@ -974,6 +1042,15 @@
   dependencies:
     "@babel/runtime" "^7.6.2"
 
+"@react-stately/virtualizer@^3.1.5":
+  version "3.1.5"
+  resolved "https://registry.yarnpkg.com/@react-stately/virtualizer/-/virtualizer-3.1.5.tgz#a0a0751f3b291ea25e015ca2c0f933c30d190d05"
+  integrity sha512-SyOBDhURW6Dq5DyazMtj2W/ch91RaIcLPLsHXP580Tsq+Hy5oEX80B31273DAWzzBPYi6sl64w0V2m2GmCWsAA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/utils" "^3.8.2"
+    "@react-types/shared" "^3.8.0"
+
 "@react-types/button@^3.4.1":
   version "3.4.1"
   resolved "https://registry.yarnpkg.com/@react-types/button/-/button-3.4.1.tgz#715ac9d4997c79233be4d9020b58f85936b8252b"
@@ -994,6 +1071,13 @@
   integrity sha512-1i6fVtixUNlftSNbVPFRieyEy3N/GNqcqpeOsJUB1jby28ppbM+JCp3Icb0ijaNC9Nl8c/oI8srtOWIQIKUJiQ==
   dependencies:
     "@react-types/overlays" "^3.5.1"
+    "@react-types/shared" "^3.8.0"
+
+"@react-types/grid@3.0.0-rc.0":
+  version "3.0.0-rc.0"
+  resolved "https://registry.yarnpkg.com/@react-types/grid/-/grid-3.0.0-rc.0.tgz#b8b65af35b5c108b6e90225af97072a2ce1e50c3"
+  integrity sha512-0uFJzUmW2zjDuT7PS4T4xcJMWr7qVdZ2nLvLnvTMe79ItbX9Ido3b7yKgl+3yslwUGklNCOx6/GfUZLNp/j1Aw==
+  dependencies:
     "@react-types/shared" "^3.8.0"
 
 "@react-types/label@^3.4.1":
@@ -1043,6 +1127,14 @@
   integrity sha512-EaYWoLvUCpOnt//Ov8VBxOjbs4hBpYE/rBAzzIknXaFvKOu867iZBFL7FJbcemOgC8/dwyaj6GUZ1Gw3Z1g59w==
   dependencies:
     "@react-types/checkbox" "^3.2.3"
+    "@react-types/shared" "^3.8.0"
+
+"@react-types/table@3.0.0-rc.7":
+  version "3.0.0-rc.7"
+  resolved "https://registry.yarnpkg.com/@react-types/table/-/table-3.0.0-rc.7.tgz#55cafa454c7c1077203caf2c57dcba27cea5336b"
+  integrity sha512-BAoDYl2D8M6aFXPpOwVfJqOfB7xG8cgHm6p6x78eSlj7O5ULv4gJ5qxYYbt31t0gnfPyDDka14zvjenVoy+jbA==
+  dependencies:
+    "@react-types/grid" "3.0.0-rc.0"
     "@react-types/shared" "^3.8.0"
 
 "@react-types/textfield@^3.2.3":
