@@ -14,11 +14,11 @@ import {
   useTableSelectionCheckbox,
 } from "@react-aria/table";
 import { mergeProps } from "@react-aria/utils";
-import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { TableState, useTableState } from "@react-stately/table";
 import { useToggleState } from "@react-stately/toggle";
 import { Fragment, ReactElement } from "react";
 import { useRef } from "react";
+
 import { Tick } from "../icons/Tick";
 
 export {
@@ -52,10 +52,10 @@ export function TableHeaderRow({ item, state, children }): ReactElement {
       css={{
         "& > th": {
           "&:first-child": {
-            borderTopLeftRadius: 8,
+            borderTopLeftRadius: 8, // TODO
           },
           "&:last-child": {
-            borderTopRightRadius: 8,
+            borderTopRightRadius: 8, // TODO
           },
         },
       }}
@@ -127,17 +127,15 @@ export function TableRow({ item, children, state }): ReactElement {
           : item.index % 2
           ? "none" // Background of every second row.
           : "none",
-        // borderRadius: 8,
-        // border: "1px solid var(--border)",
         color: isSelected ? "var(--background)" : undefined,
         boxShadow: isSelected ? "none" : "0 1px 0 inset var(--border)",
         outline: isFocusVisible ? "2px solid var(--primary-text)" : "none",
         "&:last-child > td": {
           "&:first-child": {
-            borderBottomLeftRadius: 8,
+            borderBottomLeftRadius: 8, // TODO
           },
           "&:last-child": {
-            borderBottomRightRadius: 8,
+            borderBottomRightRadius: 8, // TODO
           },
         },
       }}
@@ -167,7 +165,6 @@ export function TableCell({ cell, state }): ReactElement {
         cursor: "default",
         paddingLeft: space[3],
         paddingRight: space[3],
-        // borderTop: "1px solid var(--border)",
       }}
       ref={ref}
     >
@@ -331,7 +328,6 @@ export function TableCheckboxCell({
         paddingRight: space[3],
         position: "relative",
         width: 48,
-        // borderTop: "1px solid var(--border)",
       }}
     >
       <Checkbox
@@ -377,8 +373,7 @@ export function Table(props: Props): ReactElement {
       css={{
         borderCollapse: "separate",
         borderSpacing: 0,
-        // overflow: "hidden",
-        borderRadius: 8,
+        borderRadius: 8, // TODO
         boxShadow: "0 0 0 1px inset var(--border)",
       }}
     >

@@ -30,6 +30,7 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 - [x] Usage and example instructions in each component (or make it not public).
 - [ ] `<Pagination />`.
 - [ ] Disabled state for components.
+- [ ] Proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
 - [ ] Proper color palette.
 - [ ] Proper `404` page.
 
