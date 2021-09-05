@@ -13,6 +13,10 @@ type Props = {
    * Label displayed above the input.
    */
   label?: string;
+  /**
+   * Whether user can interact with the input.
+   */
+  isDisabled?: boolean;
 };
 
 /**
@@ -51,6 +55,7 @@ export function TextInput(props: Props): ReactElement {
       css={{
         display: "flex",
         flexDirection: "column",
+        opacity: props.isDisabled ? 0.5 : 1,
       }}
     >
       <label

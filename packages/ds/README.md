@@ -32,6 +32,7 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 - [ ] Disabled state for components.
 - [ ] Proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
 - [ ] Proper color palette.
+- [ ] Move disabled opacity to theme.
 - [ ] Proper `404` page.
 
 ## Next version

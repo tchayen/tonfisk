@@ -13,6 +13,9 @@ import { Popover } from "../Popover";
 
 export { Item } from "@react-stately/collections";
 
+// TODO:
+// - Prop for pre-selecting option.
+
 type Props = {
   /**
    * Whether user can interact with the select.
@@ -70,7 +73,10 @@ export function Select(props: Props): ReactElement {
   const { space, fonts, sizes, fontSizes, fontWeights, radii, outline } = theme;
 
   // Get props for the button based on the trigger props from useSelect
-  const { buttonProps } = useButton(triggerProps, ref);
+  const { buttonProps } = useButton(
+    { ...triggerProps, isDisabled: props.isDisabled },
+    ref
+  );
 
   return (
     <div css={{ position: "relative", display: "inline-block" }}>
@@ -117,6 +123,8 @@ export function Select(props: Props): ReactElement {
             ? "var(--primary-text)"
             : "var(--secondary-text)",
           WebkitAppearance: "none",
+          cursor: "pointer",
+          opacity: props.isDisabled ? 0.5 : 1,
         }}
       >
         <span {...valueProps}>

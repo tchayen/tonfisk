@@ -16,6 +16,10 @@ type Props = {
    * Label of the switch.
    */
   children?: ReactElement;
+  /**
+   * Whether user can interact with the switch.
+   */
+  isDisabled?: boolean;
 };
 
 /**
@@ -60,6 +64,7 @@ export function Switch(props: Props): ReactElement {
           position: "relative",
           alignItems: "center",
           marginLeft: space[3],
+          opacity: props.isDisabled ? 0.5 : 1,
         }}
       >
         <div

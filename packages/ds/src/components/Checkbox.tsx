@@ -18,6 +18,10 @@ type Props = {
    * Label of the checkbox.
    */
   children?: ReactNode;
+  /**
+   * Whether user can interact with the checkbox.
+   */
+  isDisabled?: boolean;
 };
 
 /**
@@ -71,6 +75,7 @@ export function Checkbox(props: Props): ReactElement {
           background: state.isSelected ? "var(--primary)" : "var(--background)",
           boxShadow: `${isFocusVisible ? outline : "none"}`,
           outline: "none",
+          opacity: props.isDisabled ? 0.5 : 1,
         }}
       />
       {state.isSelected && (

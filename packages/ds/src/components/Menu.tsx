@@ -151,6 +151,10 @@ type Props = {
    * Label of the button.
    */
   label: string;
+  /**
+   * Whether user can interact with the menu.
+   */
+  isDisabled?: boolean;
 };
 
 /**
@@ -167,7 +171,10 @@ export function MenuButton(props: Props): ReactElement {
   const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref);
 
   // Get props for the button based on the trigger props from useMenuTrigger
-  const { buttonProps } = useButton(menuTriggerProps, ref);
+  const { buttonProps } = useButton(
+    { ...menuTriggerProps, isDisabled: props.isDisabled },
+    ref
+  );
 
   const theme = useTheme();
   const { radii, sizes, fonts, fontSizes, fontWeights, space } = theme;
@@ -183,13 +190,15 @@ export function MenuButton(props: Props): ReactElement {
           border: "1px solid var(--border)",
           outline: "none",
           height: sizes[4],
-          cursor: "pointer",
+          cursor: props.isDisabled ? "default" : "pointer",
           fontFamily: fonts.body,
           fontSize: fontSizes[1],
           fontWeight: fontWeights.bold,
           paddingLeft: space[3],
           paddingRight: space[3],
           lineHeight: 1,
+          color: "var(--primary-text)",
+          opacity: props.isDisabled ? 0.5 : 1,
         }}
       >
         {props.label}

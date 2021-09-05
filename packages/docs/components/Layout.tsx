@@ -1,6 +1,7 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
+import { useFocusRing } from "@react-aria/focus";
 import { ColorModeSwitch } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
@@ -19,10 +20,13 @@ const ListItem = ({
 }): ReactElement => {
   const theme = useTheme();
   const { fontSizes, sizes, space } = theme;
+  const { focusProps, isFocusVisible } = useFocusRing();
+
   return (
     <Link href={href}>
       <a
         href={href}
+        {...focusProps}
         css={{
           fontSize: fontSizes[1],
           color: active ? "var(--primary-text)" : "var(--secondary-text)",
@@ -33,6 +37,7 @@ const ListItem = ({
           paddingRight: space[3],
           display: "flex",
           alignItems: "center",
+          outline: isFocusVisible ? "2px solid var(--outline)" : "none",
         }}
       >
         {children}
