@@ -5,18 +5,21 @@ const palette = {
   blue600: "#177cc0",
   blue500opacity: "rgba(29, 155, 240, 0.35)",
   white: "#fff",
+  whiteOpacity: "rgba(255, 255, 255, 0.3)",
   gray100: "#ddd",
   gray200: "#aaa",
   gray500: "#777",
   gray600: "#666",
   gray800: "#24292e",
   black: "#000",
+  blackOpacity: "rgba(0, 0, 0, 0.3)",
 };
 
 const colors = {
   modes: {
     light: {
       background: palette.white,
+      backgroundOpacity: palette.whiteOpacity,
       primaryText: palette.black,
       secondaryText: palette.gray600,
       primary: palette.blue500,
@@ -25,9 +28,11 @@ const colors = {
       border: palette.gray100,
       outline: palette.blue500opacity,
       tooltipDot: palette.white,
+      tagBackground: palette.blue300,
     },
     dark: {
       background: palette.black,
+      backgroundOpacity: palette.blackOpacity,
       primaryText: palette.white,
       secondaryText: palette.gray500,
       primary: palette.blue500,
@@ -36,6 +41,7 @@ const colors = {
       border: palette.gray800,
       outline: palette.blue500opacity,
       tooltipDot: palette.gray200,
+      tagBackground: palette.blue300,
     },
   },
 };

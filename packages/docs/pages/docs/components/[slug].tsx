@@ -68,6 +68,7 @@ export default function Doc({
                     css={{
                       color: "var(--primary-text)",
                       marginBottom: space[1],
+                      padding: 0,
                     }}
                   >
                     {prop.name}: {prop.type}

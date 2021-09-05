@@ -58,10 +58,36 @@ type Props = {
  *  ## Usage
  *
  * ```jsx
- * import { ModalDialog } from "@tchayen/design-system";
+ * import { OverlayContainer } from "@react-aria/overlays";
+ * import { useOverlayTriggerState } from "@react-stately/overlays";
+ * import { Button, HorizontalLine, ModalDialog } from "@tchayen/design-system";
  *
- * <ModalDialog />
+ * export default function Modal() {
+ *   const state = useOverlayTriggerState({});
+ *     return (
+ *     <div>
+ *       <Button onPress={() => state.open()}>Open Dialog</Button>
+ *       {state.isOpen && (
+ *         <OverlayContainer>
+ *           <ModalDialog
+ *             title="Enter your name"
+ *             isOpen
+ *             onClose={state.close}
+ *             isDismissable
+ *           >
+ *             <HorizontalLine />
+ *             <div>Test</div>
+ *           </ModalDialog>
+ *         </OverlayContainer>
+ *       )}
+ *     </div>
+ *   );
+ * }
  * ```
+ *
+ * ## Example
+ *
+ * <ModalExample />
  */
 export function ModalDialog(props: Props): ReactElement {
   const { title, children } = props;
@@ -91,8 +117,8 @@ export function ModalDialog(props: Props): ReactElement {
         left: 0,
         bottom: 0,
         right: 0,
-        // background: "rgba(0, 0, 0, 0.1)",
-        backdropFilter: "blur(15px)",
+        background: "rgba(0, 0, 0, 0.2)",
+        // backdropFilter: "blur(30px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -109,7 +135,7 @@ export function ModalDialog(props: Props): ReactElement {
             background: "var(--background)",
             borderRadius: radii[3],
             width: "48ch",
-            border: "1px solid var(--border)",
+            // border: "1px solid var(--border)",
             boxShadow,
             outline: "none",
           }}

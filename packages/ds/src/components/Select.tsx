@@ -5,16 +5,32 @@ import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
-import { AriaSelectProps } from "@react-types/select";
 import { ReactElement, useRef } from "react";
 
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
-import { Popover } from "./Popover";
+import { Popover } from "../Popover";
 
 export { Item } from "@react-stately/collections";
 
-type Props = AriaSelectProps<HTMLInputElement>;
+type Props = {
+  /**
+   * Whether user can interact with the select.
+   */
+  isDisabled?: boolean;
+  /**
+   * Label displayed above the select component.
+   */
+  label: string;
+  /**
+   *
+   */
+  name: string;
+  /**
+   * Default is "Select an option".
+   */
+  placeholder: string;
+};
 
 /**
  * Select component.
@@ -106,7 +122,7 @@ export function Select(props: Props): ReactElement {
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.rendered
-            : "Select an option"}
+            : props.placeholder || "Select an option"}
         </span>
         <span
           aria-hidden="true"

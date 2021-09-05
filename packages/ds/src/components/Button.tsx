@@ -49,11 +49,13 @@ export function Button(props: Props): ReactElement {
   return (
     <button
       ref={ref}
+      disabled={props.isDisabled}
       css={{
         marginX: 100,
         border: "none",
         outline: "none",
-        cursor: "pointer",
+        cursor: props.isDisabled ? "default" : "pointer",
+        opacity: props.isDisabled ? 0.5 : 1,
         fontFamily: fonts.body,
         fontSize: fontSizes[1],
         fontWeight: fontWeights.bold,
@@ -66,7 +68,9 @@ export function Button(props: Props): ReactElement {
         background: isPressed ? "var(--pressed-button)" : "var(--primary)",
         boxShadow: isFocusVisible ? outline : "none",
         "&:hover": {
-          background: "var(--hovered-button)",
+          background: props.isDisabled
+            ? "var(--primary)"
+            : "var(--hovered-button)",
         },
         "&:active": {
           background: "var(--pressed-button)",

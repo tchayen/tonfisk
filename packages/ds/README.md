@@ -27,24 +27,27 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 
 ## Must have
 
-- [ ] Proper color palette.
-- [ ] `<Tooltip />`.
-- [ ] `<Tag />`.
-- [ ] `<Menu />`.
-- [ ] `<Table />`.
-- [ ] Proper `404` page.
+- [x] Usage and example instructions in each component (or make it not public).
+- [ ] `<Pagination />`.
 - [ ] Disabled state for components.
-- [ ] Usage and example instructions in each component (or make it not public).
+- [ ] Proper color palette.
+- [ ] Proper `404` page.
 
 ## Next version
 
-- [ ] `<Pagination />`.
+- [ ] `<Radio />`.
+- [ ] `<RadioGroup />`.
+- [ ] `<CheckboxGroup />`.
+- [ ] `<SearchField />`.
 - [ ] `<Breadcrumbs />`.
 - [ ] `<ProgressBar />`.
-- [ ] `<Tabs />`.
+- [ ] `<ComboBox />`.
+- [ ] `<Slider />`.
+- [ ] `<TabList />`.
 
 ## Nice to have
 
+- [ ] Missing TS typings (especially `Table`, `Menu`).
 - [ ] Changes `sizes` etc. to use `xs, s, m, l, xl, xxl` instead of indices.
 - [ ] Override `emotion`'s `css` prop to add shorthands (`padding` → `p`). Refer to: `theme-ui` source [1](https://github.com/system-ui/theme-ui/blob/develop/packages/css/src/index.ts), [2](https://github.com/system-ui/theme-ui/blob/develop/packages/parse-props/src/index.ts).
 - [ ] Expose API for switching color modes.
@@ -60,6 +63,11 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 - [x] Improve colors for dark mode.
 - [x] User text selection color and background.
 - [x] `<Spinner />`.
+- [x] `<Tooltip />`.
+- [x] `<Tag />`.
+- [x] `<Menu />`.
+- [x] Designs and styling for `Menu`.
+- [x] `<Table />`.
 
 ## CSS in JS
 

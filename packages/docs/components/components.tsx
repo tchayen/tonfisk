@@ -10,7 +10,7 @@ import {
   ColorModeSwitch,
   Column,
   Item,
-  Menu,
+  MenuButton,
   Pagination,
   Provider,
   Row,
@@ -33,6 +33,7 @@ import {
 } from "ds";
 import Link from "next/link";
 import { ReactElement } from "react";
+import Modal from "./Modal";
 
 const SelectExample = (): ReactElement => {
   return (
@@ -81,6 +82,21 @@ const TableExample = (): ReactElement => {
   );
 };
 
+const MenuExample = (): ReactElement => {
+  return (
+    <MenuButton
+      label="Actions"
+      onAction={() => {
+        console.log("Hej");
+      }}
+    >
+      <Item key="copy">Copy</Item>
+      <Item key="cut">Cut</Item>
+      <Item key="paste">Paste</Item>
+    </MenuButton>
+  );
+};
+
 export const components = {
   a: Link,
   Breadcrumbs,
@@ -88,7 +104,7 @@ export const components = {
   Checkbox,
   ColorModeSwitch,
   Item,
-  Menu,
+  MenuButton,
   Pagination,
   Provider,
   Select,
@@ -108,8 +124,10 @@ export const components = {
   Row,
   TableBody,
   TableHeader,
-  TableExample,
-  SelectExample,
   TableSelectAllCell,
   TableCheckboxCell,
+  TableExample,
+  SelectExample,
+  MenuExample,
+  ModalExample: Modal,
 };

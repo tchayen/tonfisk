@@ -1,6 +1,6 @@
 /** @jsxRuntime classic */
 /** @jsx jsx */
-import { jsx } from "@emotion/react";
+import { jsx, useTheme } from "@emotion/react";
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import {
@@ -15,10 +15,12 @@ import {
 } from "@react-aria/table";
 import { mergeProps } from "@react-aria/utils";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
-import { useTableState } from "@react-stately/table";
+import { TableState, useTableState } from "@react-stately/table";
 import { useToggleState } from "@react-stately/toggle";
-import { ReactElement, ReactNode } from "react";
+import { Fragment, ReactElement } from "react";
 import { useRef } from "react";
+import { Tick } from "../icons/Tick";
+
 export {
   Cell,
   Column,
@@ -27,14 +29,13 @@ export {
   TableHeader,
 } from "@react-stately/table";
 
-export function TableRowGroup({
-  type: Element,
-  style,
-  children,
-}): ReactElement {
+// TODO:
+// - Checkboxes should be styled like checkboxes from the design system.
+
+export function TableRowGroup({ type: Element, css, children }): ReactElement {
   const { rowGroupProps } = useTableRowGroup();
   return (
-    <Element {...rowGroupProps} style={style}>
+    <Element {...rowGroupProps} css={css}>
       {children}
     </Element>
   );
@@ -45,7 +46,20 @@ export function TableHeaderRow({ item, state, children }): ReactElement {
   const { rowProps } = useTableHeaderRow({ node: item }, state, ref);
 
   return (
-    <tr {...rowProps} ref={ref}>
+    <tr
+      {...rowProps}
+      ref={ref}
+      css={{
+        "& > th": {
+          "&:first-child": {
+            borderTopLeftRadius: 8,
+          },
+          "&:last-child": {
+            borderTopRightRadius: 8,
+          },
+        },
+      }}
+    >
       {children}
     </tr>
   );
@@ -61,15 +75,23 @@ export function TableColumnHeader({ column, state }): ReactElement {
   const { isFocusVisible, focusProps } = useFocusRing();
   const arrowIcon = state.sortDescriptor?.direction === "ascending" ? "▲" : "▼";
 
+  const theme = useTheme();
+  const { fontWeights, fontSizes, space } = theme;
+
   return (
     <th
       {...mergeProps(columnHeaderProps, focusProps)}
       colSpan={column.colspan}
       css={{
+        color: "var(--primary-text)",
+        fontWeight: fontWeights.bold,
+        fontSize: fontSizes[1],
         textAlign: column.colspan > 1 ? "center" : "left",
-        padding: "5px 10px",
-        outline: isFocusVisible ? "2px solid orange" : "none",
+        height: 40, // TODO
+        outline: isFocusVisible ? "2px solid var(--primary-text)" : "none",
         cursor: "default",
+        paddingLeft: space[3],
+        paddingRight: space[3],
       }}
       ref={ref}
     >
@@ -78,7 +100,6 @@ export function TableColumnHeader({ column, state }): ReactElement {
         <span
           aria-hidden="true"
           css={{
-            padding: "0 2px",
             visibility:
               state.sortDescriptor?.column === column.key
                 ? "visible"
@@ -102,12 +123,23 @@ export function TableRow({ item, children, state }): ReactElement {
     <tr
       css={{
         background: isSelected
-          ? "blueviolet"
+          ? "var(--primary)"
           : item.index % 2
-          ? "var(--spectrum-alias-highlight-hover)"
+          ? "none" // Background of every second row.
           : "none",
-        color: isSelected ? "white" : null,
-        outline: isFocusVisible ? "2px solid orange" : "none",
+        // borderRadius: 8,
+        // border: "1px solid var(--border)",
+        color: isSelected ? "var(--background)" : undefined,
+        boxShadow: isSelected ? "none" : "0 1px 0 inset var(--border)",
+        outline: isFocusVisible ? "2px solid var(--primary-text)" : "none",
+        "&:last-child > td": {
+          "&:first-child": {
+            borderBottomLeftRadius: 8,
+          },
+          "&:last-child": {
+            borderBottomRightRadius: 8,
+          },
+        },
       }}
       {...mergeProps(rowProps, focusProps)}
       ref={ref}
@@ -122,18 +154,97 @@ export function TableCell({ cell, state }): ReactElement {
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
 
+  const theme = useTheme();
+  const { fontSizes, space } = theme;
+
   return (
     <td
       {...mergeProps(gridCellProps, focusProps)}
       css={{
-        padding: "5px 10px",
-        outline: isFocusVisible ? "2px solid orange" : "none",
+        fontSize: fontSizes[1],
+        height: 40, // TODO
+        outline: isFocusVisible ? "2px solid var(--primary-text)" : "none",
         cursor: "default",
+        paddingLeft: space[3],
+        paddingRight: space[3],
+        // borderTop: "1px solid var(--border)",
       }}
       ref={ref}
     >
       {cell.rendered}
     </td>
+  );
+}
+
+function Checkbox({
+  inputProps,
+  inputRef,
+  focusProps,
+  isFocusVisible,
+  backgroundConflict,
+}) {
+  const theme = useTheme();
+  const { space, sizes, radii } = theme;
+
+  const isChecked = inputProps["aria-checked"];
+
+  return (
+    <Fragment>
+      <input
+        {...mergeProps(inputProps, focusProps)}
+        ref={inputRef}
+        css={{
+          WebkitAppearance: "none",
+          minWidth: space[3],
+          height: sizes[3],
+          borderRadius: radii[2],
+          position: "absolute",
+          top: 12,
+          left: 16,
+          border: `1px solid ${
+            isChecked || isFocusVisible ? "var(--primary)" : "var(--border)"
+          }`,
+          margin: 0,
+          background: isChecked ? "var(--primary)" : "var(--background)",
+          boxShadow: `${
+            isFocusVisible
+              ? backgroundConflict && isChecked
+                ? "0 0 0 2px var(--primary-text)"
+                : "0 0 0 3px var(--outline)"
+              : "none"
+          }`,
+          outline: "none",
+        }}
+      />
+      {isChecked ? (
+        <div
+          css={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            position: "absolute",
+            top: 15,
+            left: 18,
+            pointerEvents: "none",
+          }}
+        >
+          {isChecked === "mixed" ? (
+            <div
+              css={{
+                height: 2,
+                width: 10,
+                position: "absolute",
+                top: 4,
+                left: 1,
+                background: "var(--background)",
+              }}
+            />
+          ) : (
+            <Tick />
+          )}
+        </div>
+      ) : null}
+    </Fragment>
   );
 }
 
@@ -155,29 +266,44 @@ export function TableSelectAllCell({ column, state }): ReactElement {
     inputRef
   );
 
+  const { focusProps, isFocusVisible } = useFocusRing();
+
+  const theme = useTheme();
+  const { space } = theme;
+
+  if (isSingleSelectionMode) {
+    return null;
+  }
+
   return (
-    <th {...columnHeaderProps} ref={ref}>
-      {
-        /*
-          In single selection mode, the checkbox will be hidden.
-          So to avoid leaving a column header with no accessible content,
-          use a VisuallyHidden component to include the aria-label from the checkbox,
-          which for single selection will be "Select."
-        */
-        isSingleSelectionMode && (
-          <VisuallyHidden>{inputProps["aria-label"]}</VisuallyHidden>
-        )
-      }
-      <input
-        {...inputProps}
-        ref={inputRef}
-        style={isSingleSelectionMode ? { visibility: "hidden" } : undefined}
+    <th
+      {...columnHeaderProps}
+      ref={ref}
+      css={{
+        paddingLeft: space[3],
+        paddingRight: space[3],
+        position: "relative",
+        width: 48,
+      }}
+    >
+      <Checkbox
+        focusProps={focusProps}
+        inputProps={inputProps}
+        inputRef={inputRef}
+        isFocusVisible={isFocusVisible}
+        backgroundConflict={false}
       />
     </th>
   );
 }
 
-export function TableCheckboxCell({ cell, state }): ReactElement {
+export function TableCheckboxCell({
+  cell,
+  state,
+}: {
+  cell: any;
+  state: TableState<any>;
+}): ReactElement {
   const ref = useRef<HTMLTableCellElement>(null);
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
   const { checkboxProps } = useTableSelectionCheckbox(
@@ -191,19 +317,43 @@ export function TableCheckboxCell({ cell, state }): ReactElement {
     useToggleState(checkboxProps),
     inputRef
   );
+  const { focusProps, isFocusVisible } = useFocusRing();
+
+  const theme = useTheme();
+  const { space } = theme;
 
   return (
-    <td {...gridCellProps} ref={ref}>
-      <input {...inputProps} />
+    <td
+      {...gridCellProps}
+      ref={ref}
+      css={{
+        paddingLeft: space[3],
+        paddingRight: space[3],
+        position: "relative",
+        width: 48,
+        // borderTop: "1px solid var(--border)",
+      }}
+    >
+      <Checkbox
+        focusProps={focusProps}
+        inputProps={inputProps}
+        inputRef={inputRef}
+        isFocusVisible={isFocusVisible}
+        backgroundConflict
+      />
     </td>
   );
 }
 
 type Props = {
   /**
+   * Whether table allows selection.
+   */
+  selectionMode: "none" | "single" | "multiple";
+  /**
    * Children.
    */
-  children: ReactNode;
+  children: any;
 };
 
 /**
@@ -221,10 +371,20 @@ export function Table(props: Props): ReactElement {
   const { gridProps } = useTable(props, state, ref);
 
   return (
-    <table {...gridProps} ref={ref} style={{ borderCollapse: "collapse" }}>
+    <table
+      {...gridProps}
+      ref={ref}
+      css={{
+        borderCollapse: "separate",
+        borderSpacing: 0,
+        // overflow: "hidden",
+        borderRadius: 8,
+        boxShadow: "0 0 0 1px inset var(--border)",
+      }}
+    >
       <TableRowGroup
         type="thead"
-        style={{
+        css={{
           borderBottom: "2px solid var(--spectrum-global-color-gray-800)",
         }}
       >

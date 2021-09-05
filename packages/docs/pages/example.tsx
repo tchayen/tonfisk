@@ -14,6 +14,7 @@ import {
 } from "ds";
 import { useRouter } from "next/dist/client/router";
 import { ReactElement } from "react";
+import Modal from "../components/Modal";
 
 export default function Example(): ReactElement {
   const theme = useTheme();
@@ -31,12 +32,17 @@ export default function Example(): ReactElement {
           },
         }}
       >
+        <Modal />
         <div css={{ marginBottom: space[3] }}>
           <Button onPress={() => router.back()}>← Back</Button>
         </div>
         <Card>
           <div css={{ display: "grid", padding: space[3], gap: space[3] }}>
-            <Select label="Fruits" onSelectionChange={(key) => {}}>
+            <Select
+              label="Fruits"
+              placeholder="Pick a fruit"
+              onSelectionChange={(key) => {}}
+            >
               {[
                 { id: 1, name: "Apple" },
                 { id: 2, name: "Orange" },

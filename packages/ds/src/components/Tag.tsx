@@ -27,7 +27,7 @@ export function Tag(props: Props): ReactElement {
         borderRadius: 10,
         height: 20,
         padding: "0 8px",
-        background: "var(--primary)",
+        background: "var(--tag-background)",
         display: "inline-flex",
         alignItems: "center",
         justifyContent: "center",
