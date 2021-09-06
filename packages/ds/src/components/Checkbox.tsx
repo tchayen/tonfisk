@@ -37,7 +37,7 @@ type Props = {
  *
  * ## Example
  *
- * <Checkbox>Label</Checkbox>
+ * <CheckboxExample />
  */
 export function Checkbox(props: Props): ReactElement {
   const { children } = props;

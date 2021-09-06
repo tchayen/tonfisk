@@ -29,6 +29,7 @@ const colors = {
       outline: palette.blue500opacity,
       tooltipDot: palette.white,
       tagBackground: palette.blue300,
+      hoverGray: palette.gray200,
     },
     dark: {
       background: palette.black,
@@ -42,6 +43,7 @@ const colors = {
       outline: palette.blue500opacity,
       tooltipDot: palette.gray200,
       tagBackground: palette.blue300,
+      hoverGray: palette.gray600,
     },
   },
 };

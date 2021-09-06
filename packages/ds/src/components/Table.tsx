@@ -347,6 +347,18 @@ type Props = {
    */
   selectionMode: "none" | "single" | "multiple";
   /**
+   * Rows that should be selected from the start.
+   */
+  defaultSelectedKeys?: number[];
+  /**
+   * Some row must be selected at all times.
+   */
+  disallowEmptySelection?: boolean;
+  /**
+   * Callback called when selected keys change.
+   */
+  onSelectionChange?: (selectedKeys: number[]) => void;
+  /**
    * Children.
    */
   children: any;

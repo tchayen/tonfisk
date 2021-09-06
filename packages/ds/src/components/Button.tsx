@@ -49,9 +49,7 @@ export function Button(props: Props): ReactElement {
   return (
     <button
       ref={ref}
-      disabled={props.isDisabled}
       css={{
-        marginX: 100,
         border: "none",
         outline: "none",
         cursor: props.isDisabled ? "default" : "pointer",

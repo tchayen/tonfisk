@@ -27,13 +27,10 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 
 ## Must have
 
-- [x] Usage and example instructions in each component (or make it not public).
-- [ ] `<Pagination />`.
-- [ ] Disabled state for components.
 - [ ] Proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
 - [ ] Proper color palette.
+- [ ] Fix mess with Pagination colors in dark mode.
 - [ ] Move disabled opacity to theme.
-- [ ] Proper `404` page.
 
 ## Next version
 
@@ -70,6 +67,10 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 - [x] `<Menu />`.
 - [x] Designs and styling for `Menu`.
 - [x] `<Table />`.
+- [x] Disabled state for components.
+- [x] Usage and example instructions in each component (or make it not public).
+- [x] Proper `404` page.
+- [x] `<Pagination />`.
 
 ## CSS in JS
 

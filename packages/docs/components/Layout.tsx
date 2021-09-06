@@ -2,7 +2,6 @@
 /** @jsx jsx */
 import { jsx, useTheme } from "@emotion/react";
 import { useFocusRing } from "@react-aria/focus";
-import { ColorModeSwitch } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
@@ -97,7 +96,6 @@ export function Layout({
           height: "100vh",
         }}
       >
-        <ColorModeSwitch />
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}

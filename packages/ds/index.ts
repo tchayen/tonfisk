@@ -6,7 +6,6 @@ export { Provider } from "./src/components/Provider";
 export { Select, Item } from "./src/components/Select";
 export { Switch } from "./src/components/Switch";
 export { HorizontalLine } from "./src/components/HorizontalLine";
-export { ColorModeSwitch } from "./src/components/ColorModeSwitch";
 export { Tag } from "./src/components/Tag";
 export { Tooltip } from "./src/components/Tooltip";
 export { MagicScriptTag } from "./src/InlineCssVariables";

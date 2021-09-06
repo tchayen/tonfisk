@@ -7,7 +7,6 @@ import {
   Button,
   Cell,
   Checkbox,
-  ColorModeSwitch,
   Column,
   Item,
   MenuButton,
@@ -32,17 +31,50 @@ import {
   Tooltip,
 } from "ds";
 import Link from "next/link";
-import { ReactElement } from "react";
+import { ReactElement, useState } from "react";
 
 import Modal from "./Modal";
 
 const SelectExample = (): ReactElement => {
+  const items = [
+    { key: 1, label: "One" },
+    { key: 2, label: "Two" },
+    { key: 3, label: "Three" },
+  ];
+
+  const [selected, setSelected] = useState(null);
+
+  console.log(
+    selected,
+    items.find((item) => {
+      console.log(item.key, selected);
+      return item.key === selected;
+    })
+  );
+
   return (
-    <Select label="Select" onSelectionChange={(key) => console.log(key)}>
-      <Item key={1}>Item 1</Item>
-      <Item key={2}>Item 2</Item>
-      <Item key={3}>Item 3</Item>
-    </Select>
+    <div style={{ display: "flex", flexDirection: "column" }}>
+      <div style={{ marginBottom: 8 }}>
+        Selected:{" "}
+        <code>
+          {selected === null
+            ? "None"
+            : JSON.stringify(
+                items.find((item) => item.key === selected),
+                null,
+                2
+              )}
+        </code>
+      </div>
+      <Select
+        label="Select"
+        onSelectionChange={(key) => setSelected(Number(key))}
+      >
+        {items.map((item) => (
+          <Item key={item.key}>{item.label}</Item>
+        ))}
+      </Select>
+    </div>
   );
 };
 
@@ -51,6 +83,9 @@ const TableExample = (): ReactElement => {
     <Table
       aria-label="Example static collection table"
       selectionMode="multiple"
+      onSelectionChange={(keys) => {
+        console.log(keys);
+      }}
     >
       <TableHeader>
         <Column>Name</Column>
@@ -98,12 +133,29 @@ const MenuExample = (): ReactElement => {
   );
 };
 
+const CheckboxExample = (): ReactElement => {
+  const [value, setValue] = useState(false);
+  return (
+    <div>
+      <div style={{ marginBottom: 8 }}>
+        Value: <code>{JSON.stringify(value)}</code>
+      </div>
+      <Checkbox
+        onChange={(next) => {
+          setValue(next);
+        }}
+      >
+        Label
+      </Checkbox>
+    </div>
+  );
+};
+
 export const components = {
   a: Link,
   Breadcrumbs,
   Button,
   Checkbox,
-  ColorModeSwitch,
   Item,
   MenuButton,
   Pagination,
@@ -131,4 +183,5 @@ export const components = {
   SelectExample,
   MenuExample,
   ModalExample: Modal,
+  CheckboxExample,
 };
