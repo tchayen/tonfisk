@@ -1,15 +1,14 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
-import { ReactElement, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
 
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
 import { Popover } from "../Popover";
+import { atoms } from "../theme.css";
+import { button, label, select, span } from "./Select.css";
 
 export { Item } from "@react-stately/collections";
 
@@ -69,9 +68,6 @@ export function Select(props: Props): ReactElement {
     ref
   );
 
-  const theme = useTheme();
-  const { space, fonts, sizes, fontSizes, fontWeights, radii, outline } = theme;
-
   // Get props for the button based on the trigger props from useSelect
   const { buttonProps } = useButton(
     { ...triggerProps, isDisabled: props.isDisabled },
@@ -79,17 +75,8 @@ export function Select(props: Props): ReactElement {
   );
 
   return (
-    <div css={{ position: "relative", display: "inline-block" }}>
-      <label
-        {...labelProps}
-        css={{
-          fontSize: fontSizes[0],
-          color: "var(--primary-text)",
-          fontWeight: fontWeights.bold,
-          marginBottom: space[1],
-          display: "block",
-        }}
-      >
+    <div className={select}>
+      <label {...labelProps} className={label}>
         {props.label}
       </label>
       <HiddenSelect
@@ -102,40 +89,19 @@ export function Select(props: Props): ReactElement {
         {...buttonProps}
         {...focusProps}
         ref={ref}
-        css={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "left",
-          alignItems: "center",
-          height: sizes[4],
-          fontSize: fontSizes[1],
-          borderRadius: radii[3],
-          paddingLeft: space[2],
-          paddingRight: `${space[2] * 2 + 14}px`, // 14 is the width of the chevron,
-          fontFamily: fonts.body,
-          outline: "none",
-          background: "var(--background)",
-          border: `1px solid
-            ${isFocusVisible ? "var(--primary)" : "var(--border)"}`,
-          boxShadow: `${isFocusVisible ? outline : "none"}`,
-          position: "relative",
-          color: state.selectedItem
-            ? "var(--primary-text)"
-            : "var(--secondary-text)",
-          WebkitAppearance: "none",
-          cursor: "pointer",
+        className={`${button} ${atoms({
+          border: isFocusVisible ? "primary" : "regular",
+          boxShadow: isFocusVisible ? "outline" : "none",
+          color: state.selectedItem ? "black" : "gray-600",
           opacity: props.isDisabled ? 0.5 : 1,
-        }}
+        })}`}
       >
         <span {...valueProps}>
           {state.selectedItem
             ? state.selectedItem.rendered
             : props.placeholder || "Select an option"}
         </span>
-        <span
-          aria-hidden="true"
-          css={{ position: "absolute", right: space[2] }}
-        >
+        <span aria-hidden="true" className={span}>
           <Chevron />
         </span>
       </button>

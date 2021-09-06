@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { FocusScope } from "@react-aria/focus";
 import { useFocus } from "@react-aria/interactions";
@@ -12,9 +9,11 @@ import { useTreeState } from "@react-stately/tree";
 import { TreeState } from "@react-stately/tree";
 import { MenuTriggerProps } from "@react-types/menu";
 import { ReactNode } from "react";
-import { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
+import { atoms } from "../theme.css";
+import { menuButton, menuItem, menuPopup } from "./Menu.css";
 
 function MenuPopup(props: {
   onClose: () => void;
@@ -41,9 +40,6 @@ function MenuPopup(props: {
     overlayRef
   );
 
-  const theme = useTheme();
-  const { radii, boxShadow, space } = theme;
-
   // Wrap in <FocusScope> so that focus is restored back to the
   // trigger when the menu is closed. In addition, add hidden
   // <DismissButton> components at the start and end of the list
@@ -55,20 +51,7 @@ function MenuPopup(props: {
         <ul
           {...mergeProps(menuProps, props.domProps)}
           ref={ref}
-          css={{
-            outline: "none",
-            listStyle: "none",
-            margin: 0,
-            padding: 0,
-            position: "absolute",
-            zIndex: 100,
-            width: "100%",
-            overflow: "hidden",
-            boxShadow: `0 0 0 1px inset var(--border), ${boxShadow}`,
-            background: "var(--background)",
-            borderRadius: radii[3],
-            marginTop: space[2],
-          }}
+          className={menuPopup}
         >
           {[...state.collection].map((item) => (
             <MenuItem
@@ -114,9 +97,6 @@ function MenuItem({
     ref
   );
 
-  const theme = useTheme();
-  const { sizes, fontSizes, space } = theme;
-
   // Handle focus events so we can apply highlighted
   // style to the focused menu item
   const [isFocused, setFocused] = useState(false);
@@ -126,20 +106,10 @@ function MenuItem({
     <li
       {...mergeProps(menuItemProps, focusProps)}
       ref={ref}
-      css={{
-        background: isFocused ? "var(--border)" : "transparent",
-        color: isFocused ? "var(--primary-text)" : "var(--secondary-text)",
-        padding: "2px 5px",
-        outline: "none",
-        cursor: "pointer",
-
-        fontSize: fontSizes[1],
-        paddingLeft: space[2],
-        paddingRight: space[2],
-        height: sizes[4],
-        display: "flex",
-        alignItems: "center",
-      }}
+      className={`${menuItem} ${atoms({
+        background: isFocused ? "gray-200" : "transparent",
+        color: isFocused ? "black" : "gray-600",
+      })}`}
     >
       {item.rendered}
     </li>
@@ -176,33 +146,18 @@ export function MenuButton(props: Props): ReactElement {
     ref
   );
 
-  const theme = useTheme();
-  const { radii, sizes, fonts, fontSizes, fontWeights, space } = theme;
-
   return (
-    <div css={{ position: "relative", display: "inline-block" }}>
+    <div className={atoms({ position: "relative", display: "inline-block" })}>
       <button
         {...buttonProps}
         ref={ref}
-        css={{
-          background: "var(--background)",
-          borderRadius: radii[4],
-          border: "1px solid var(--border)",
-          outline: "none",
-          height: sizes[4],
-          cursor: props.isDisabled ? "default" : "pointer",
-          fontFamily: fonts.body,
-          fontSize: fontSizes[1],
-          fontWeight: fontWeights.bold,
-          paddingLeft: space[3],
-          paddingRight: space[3],
-          lineHeight: 1,
-          color: "var(--primary-text)",
+        className={`${menuButton} ${atoms({
           opacity: props.isDisabled ? 0.5 : 1,
-        }}
+          cursor: props.isDisabled ? "default" : "pointer",
+        })}`}
       >
         {props.label}
-        <span aria-hidden="true" css={{ paddingLeft: 5 }}>
+        <span aria-hidden="true" className={atoms({ paddingLeft: "m" })}>
           <Chevron />
         </span>
       </button>

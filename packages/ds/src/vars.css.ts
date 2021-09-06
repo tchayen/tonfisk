@@ -1,0 +1,123 @@
+import { createGlobalTheme } from "@vanilla-extract/css";
+import { modularScale } from "polished";
+import colors from "tailwindcss/colors";
+
+const createScale = (ratio: number, base: number) => (steps: number) =>
+  `${modularScale(steps, base, ratio)}px`;
+
+const spaceScale = createScale(1.4, 4);
+const fontSizeScale = createScale(1.3, 16);
+const lineHeightScale = createScale(1.25, 24);
+const borderRadiusScale = createScale(1.5, 4);
+
+export const vars = createGlobalTheme(":root", {
+  space: {
+    0: "0",
+    none: "0",
+    xs: "2px",
+    s: "4px",
+    m: "8px",
+    l: "16px",
+    xl: "32px",
+    "2xl": "64px",
+    "3xl": "128px",
+  },
+  size: {
+    "0": "0",
+    "1px": "1px",
+    "2px": "2px",
+    "4px": "4px",
+    "8px": "8px",
+    "16px": "16px",
+    "32px": "32px",
+    "40px": "40px",
+    "64px": "64px",
+    "128px": "128px",
+    "100%": "100%",
+    "24ch": "24ch",
+    "48ch": "48ch",
+    "100vh": "100vh",
+    "100vw": "100vw",
+  },
+  color: {
+    none: "none",
+    white: "#fff",
+    black: "#000",
+    transparent: "transparent",
+
+    "gray-50": colors.coolGray[50],
+    "gray-100": colors.coolGray[100],
+    "gray-200": colors.coolGray[200],
+    "gray-300": colors.coolGray[300],
+    "gray-400": colors.coolGray[400],
+    "gray-500": colors.coolGray[500],
+    "gray-600": colors.coolGray[600],
+    "gray-700": colors.coolGray[700],
+    "gray-800": colors.coolGray[800],
+    "gray-900": colors.coolGray[900],
+
+    "pink-50": colors.pink[50],
+    "pink-100": colors.pink[100],
+    "pink-200": colors.pink[200],
+    "pink-300": colors.pink[300],
+    "pink-400": colors.pink[400],
+    "pink-500": colors.pink[500],
+    "pink-600": colors.pink[600],
+    "pink-700": colors.pink[700],
+    "pink-800": colors.pink[800],
+    "pink-900": colors.pink[900],
+
+    pinkOutline: "rgba(236, 72, 153, 0.3)",
+  },
+  borderRadius: {
+    "0px": "0px",
+    "4px": "4px",
+    "8px": "8px",
+    "16px": "16px",
+    "32px": "32px",
+    "64px": "64px",
+    full: "99999px",
+  },
+  fontFamily: {
+    body: 'Inter var, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+  },
+  fontSize: {
+    "12px": "12px",
+    "14px": "14px",
+    "16px": "16px",
+    "18px": "18px",
+    "24px": "24px",
+    "32px": "32px",
+  },
+  fontWeight: {
+    body: "400",
+    bold: "600",
+  },
+  border: {
+    none: "none",
+    primary: `1px solid ${colors.pink[500]}`, // TODO
+    regular: `1px solid ${colors.coolGray[200]}`, // TODO
+  },
+  boxShadow: {
+    none: "none",
+    outline: "0 0 0 3px rgba(236, 72, 153, 0.3)", // TODO
+    shadow: "0 2px 8px rgba(0, 0, 0, 0.1)", // TODO
+    tooltipDotShadow: "0 1px 3px rgba(0, 0, 0, 0.25)", // TODO
+    tableTopBorder: `0 1px 0 inset ${colors.coolGray[200]}`,
+    tableOutline: "0 0 0 2px #000", // TODO
+    regularBorder: `0 0 0 1px inset ${colors.coolGray[200]}`, // TODO
+    borderAndShadow: `0 0 0 1px inset ${colors.coolGray[200]}, 0 2px 8px rgba(0, 0, 0, 0.1)`,
+  },
+  outline: {
+    none: "none",
+    table: "2px solid #000",
+  },
+  lineHeight: {
+    "0x": lineHeightScale(0),
+    "1x": lineHeightScale(1),
+    "2x": lineHeightScale(2),
+    "3x": lineHeightScale(3),
+    "4x": lineHeightScale(4),
+    "5x": lineHeightScale(5),
+  },
+});

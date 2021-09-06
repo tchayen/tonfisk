@@ -1,8 +1,7 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useListBox, useOption } from "@react-aria/listbox";
-import { ReactElement, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
+
+import { atoms } from "./theme.css";
 
 /**
  * ListBox component.
@@ -16,14 +15,14 @@ export function ListBox(props: any): ReactElement {
     <ul
       {...listBoxProps}
       ref={listBoxRef}
-      css={{
-        margin: 0,
-        padding: 0,
+      className={atoms({
+        margin: "none",
+        padding: "none",
         listStyle: "none",
         // maxHeight: "150px",
         overflow: "auto",
         outline: "none",
-      }}
+      })}
     >
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
@@ -42,17 +41,15 @@ function Option({ item, state }: any) {
     state,
     ref
   );
-  const theme = useTheme();
-  const { space, sizes, fontSizes } = theme;
 
   let backgroundColor = "transparent";
-  let color = "var(--primary-text)";
+  let color = "black";
 
   if (isSelected) {
-    backgroundColor = "var(--primary)";
-    color = "var(--background)";
+    backgroundColor = "pink-500";
+    color = "white";
   } else if (isFocused) {
-    backgroundColor = "var(--border)";
+    backgroundColor = "gray-200";
   } else if (isDisabled) {
     //
   }
@@ -61,18 +58,18 @@ function Option({ item, state }: any) {
     <li
       {...optionProps}
       ref={ref}
-      css={{
+      className={atoms({
         background: backgroundColor,
-        fontSize: fontSizes[1],
         color,
-        paddingLeft: space[2],
-        paddingRight: space[2],
-        height: sizes[4],
+        fontSize: "14px",
+        paddingLeft: "m",
+        paddingRight: "m",
+        height: "32px",
         outline: "none",
         cursor: "pointer",
         display: "flex",
         alignItems: "center",
-      }}
+      })}
     >
       {item.rendered}
     </li>

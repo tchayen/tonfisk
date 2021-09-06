@@ -1,13 +1,10 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
 
 import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";

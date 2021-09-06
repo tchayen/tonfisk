@@ -1,7 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx } from "@emotion/react";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
+
+import { atoms } from "../theme.css";
 
 /**
  * A horizontal line spanning the full width of the container.
@@ -13,9 +12,17 @@ import { ReactElement } from "react";
  *
  * <HorizontalLine />
  * ```
+ *
+ * <HorizontalLine />
  */
-export const HorizontalLine = (): ReactElement => {
+export function HorizontalLine(): ReactElement {
   return (
-    <div css={{ background: "var(--border)", width: "100%", height: 1 }} />
+    <div
+      className={atoms({
+        background: "gray-200",
+        width: "100%",
+        height: "1px",
+      })}
+    />
   );
-};
+}

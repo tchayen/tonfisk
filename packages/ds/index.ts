@@ -10,7 +10,6 @@ export { Tag } from "./src/components/Tag";
 export { Tooltip } from "./src/components/Tooltip";
 export { MagicScriptTag } from "./src/InlineCssVariables";
 export { Card } from "./src/components/Card";
-export { Breadcrumbs } from "./src/components/Breadcrumbs";
 export { MenuButton } from "./src/components/Menu";
 export { Pagination } from "./src/components/Pagination";
 export { Spinner } from "./src/components/Spinner";

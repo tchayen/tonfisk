@@ -1,8 +1,6 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
-import { ReactNode } from "react";
-import { ReactElement } from "react";
+import React, { ReactElement, ReactNode } from "react";
+
+import { atoms } from "../theme.css";
 
 type Props = {
   /**
@@ -29,14 +27,12 @@ type Props = {
  * <Card>TODO: something is broken here</Card>
  */
 export function Card(props: Props): ReactElement {
-  const theme = useTheme();
-  const { radii } = theme;
   return (
     <div
-      css={{
-        borderRadius: radii[3],
-        border: "1px solid var(--border)",
-      }}
+      className={atoms({
+        borderRadius: "8px",
+        border: "regular",
+      })}
     >
       {props.children}
     </div>

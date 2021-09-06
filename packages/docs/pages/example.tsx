@@ -1,6 +1,3 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import {
   Button,
   Card,
@@ -12,32 +9,23 @@ import {
   Switch,
   TextInput,
 } from "ds";
+import { atoms } from "ds/src/theme.css";
 import { useRouter } from "next/dist/client/router";
-import { ReactElement } from "react";
+import React, { ReactElement } from "react";
+
 import Modal from "../components/Modal";
 
 export default function Example(): ReactElement {
-  const theme = useTheme();
-  const { space, fontSizes } = theme;
   const router = useRouter();
   return (
     <Provider>
-      <div
-        css={{
-          marginTop: space[3],
-          display: "grid",
-          gridTemplateColumns: "1fr min(50ch, 100%) 1fr",
-          "& > *": {
-            gridColumn: 2,
-          },
-        }}
-      >
+      <div className={atoms({ width: "48ch" })}>
         <Modal />
-        <div css={{ marginBottom: space[3] }}>
+        <div className={atoms({ marginBottom: "l" })}>
           <Button onPress={() => router.back()}>← Back</Button>
         </div>
         <Card>
-          <div css={{ display: "grid", padding: space[3], gap: space[3] }}>
+          <div className={atoms({ display: "grid", padding: "l", gap: "l" })}>
             <Select
               label="Fruits"
               placeholder="Pick a fruit"
@@ -55,13 +43,13 @@ export default function Example(): ReactElement {
             <TextInput label="Description" placeholder="Cool" />
           </div>
           <HorizontalLine />
-          <div css={{ padding: space[3] }}>
+          <div className={atoms({ padding: "l" })}>
             <Switch>
               Enter a fixed price to allow people to purchase your NFT.
             </Switch>
           </div>
           <HorizontalLine />
-          <div css={{ padding: space[3] }}>
+          <div className={atoms({ padding: "l" })}>
             <Checkbox>
               I have the rights to publish this artwork, and understand it will
               be minted on the <strong>Polygon</strong> network.
@@ -69,14 +57,14 @@ export default function Example(): ReactElement {
           </div>
           <HorizontalLine />
           <div
-            css={{
+            className={atoms({
               display: "flex",
-              padding: space[3],
+              padding: "l",
               justifyContent: "space-between",
               alignItems: "center",
-            }}
+            })}
           >
-            <span css={{ fontSize: fontSizes[1] }}>
+            <span className={atoms({ fontSize: "14px" })}>
               Last saved 2 minutes ago
             </span>
             <Button onPress={() => console.log("aaa")}>Create</Button>

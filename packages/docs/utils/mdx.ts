@@ -14,7 +14,7 @@ export const docsFilePaths = fs
 
 export const componentsFilePaths = fs
   .readdirSync(SOURCE_PATH)
-  .filter((path) => /^[A-Z]/.test(path));
+  .filter((path) => /^[A-Z][a-zA-Z]+\.tsx/.test(path));
 
 export const getSourceMetadata = (
   slug: string

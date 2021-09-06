@@ -1,8 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useTextField } from "@react-aria/textfield";
-import { ReactElement, useRef, useState } from "react";
+import React, { ReactElement, useRef, useState } from "react";
+
+import { atoms } from "../theme.css";
+import { div, input, label as labelClass } from "./TextInput.css";
 
 type Props = {
   /**
@@ -39,8 +39,6 @@ export function TextInput(props: Props): ReactElement {
   const ref = useRef<HTMLInputElement>(null);
   const { labelProps, inputProps } = useTextField(props, ref);
   const [isFocused, setIsFocused] = useState(false);
-  const theme = useTheme();
-  const { space, fontSizes, fontWeights, sizes, radii, fonts, outline } = theme;
 
   const handleFocus = () => {
     setIsFocused(true);
@@ -51,22 +49,8 @@ export function TextInput(props: Props): ReactElement {
   };
 
   return (
-    <div
-      css={{
-        display: "flex",
-        flexDirection: "column",
-        opacity: props.isDisabled ? 0.5 : 1,
-      }}
-    >
-      <label
-        {...labelProps}
-        css={{
-          fontSize: fontSizes[0],
-          color: "var(--primary-text)",
-          fontWeight: fontWeights.bold,
-          marginBottom: space[1],
-        }}
-      >
+    <div className={`${div} ${atoms({ opacity: props.isDisabled ? 0.5 : 1 })}`}>
+      <label {...labelProps} className={labelClass}>
         {label}
       </label>
       <input
@@ -74,23 +58,10 @@ export function TextInput(props: Props): ReactElement {
         ref={ref}
         onFocus={handleFocus}
         onBlur={handleBlur}
-        css={{
-          height: sizes[4],
-          fontSize: fontSizes[1],
-          borderRadius: radii[3],
-          fontFamily: fonts.body,
-          outline: "none",
-          background: "var(--background)",
-          border: `1px solid
-            ${isFocused ? "var(--primary)" : "var(--border)"}`,
-          boxShadow: isFocused ? outline : "none",
-          paddingLeft: space[2],
-          paddingRight: space[2],
-          color: "var(--primary-text)",
-          "::placeholder": {
-            color: "var(--secondary-text)",
-          },
-        }}
+        className={`${input} ${atoms({
+          border: isFocused ? "primary" : "regular",
+          boxShadow: isFocused ? "outline" : "none",
+        })}`}
       />
     </div>
   );

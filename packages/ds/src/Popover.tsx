@@ -1,9 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
-import { ReactElement, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
+
+import { atoms } from "./theme.css";
 
 type Props = {
   /**
@@ -45,9 +44,6 @@ export function Popover(props: Props): ReactElement {
     popoverRef
   );
 
-  const theme = useTheme();
-  const { space, boxShadow, radii } = theme;
-
   // Add a hidden <DismissButton> component at the end of the popover
   // to allow screen reader users to dismiss the popup easily.
   return (
@@ -55,16 +51,16 @@ export function Popover(props: Props): ReactElement {
       <div
         {...overlayProps}
         ref={popoverRef}
-        css={{
+        className={atoms({
           position: "absolute",
           zIndex: 100,
           width: "100%",
           overflow: "hidden",
-          boxShadow: `0 0 0 1px inset var(--border), ${boxShadow}`,
-          background: "var(--background)",
-          borderRadius: radii[3],
-          marginTop: space[2],
-        }}
+          boxShadow: "borderAndShadow",
+          background: "white",
+          borderRadius: "8px",
+          marginTop: "m",
+        })}
       >
         {children}
         <DismissButton onDismiss={onClose} />

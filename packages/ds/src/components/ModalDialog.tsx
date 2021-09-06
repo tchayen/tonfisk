@@ -1,40 +1,26 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
-import { ReactElement, ReactNode, useRef } from "react";
+import React, { ReactElement, ReactNode, useRef } from "react";
 
 import { Close } from "../icons/Close";
+import { atoms } from "../theme.css";
+import { closeButton, fullPageDiv, modalDiv } from "./ModalDialog.css";
 
 const CloseButton = (props: any) => {
   const { focusProps, isFocusVisible } = useFocusRing();
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton(props, ref);
-  const theme = useTheme();
-  const { space, radii, sizes, outline } = theme;
 
   return (
     <button
       {...mergeProps(focusProps, buttonProps)}
       ref={ref}
-      css={{
-        padding: space[2],
-        borderRadius: radii[4],
-        width: sizes[4],
-        height: sizes[4],
-        cursor: "pointer",
-        border: "none",
-        background: "transparent",
-        boxShadow: isFocusVisible ? outline : "none",
-        outline: "none",
-        "&:hover": {
-          background: "var(--border)",
-        },
-      }}
+      className={`${closeButton} ${atoms({
+        boxShadow: isFocusVisible ? "outline" : "none",
+      })}`}
     >
       <Close />
     </button>
@@ -105,50 +91,25 @@ export function ModalDialog(props: Props): ReactElement {
   // Get props for the dialog and its title
   const { dialogProps, titleProps } = useDialog(props, ref);
 
-  const theme = useTheme();
-  const { space, radii, boxShadow } = theme;
-
   return (
-    <div
-      css={{
-        position: "fixed",
-        zIndex: 100,
-        top: 0,
-        left: 0,
-        bottom: 0,
-        right: 0,
-        background: "rgba(0, 0, 0, 0.2)",
-        // backdropFilter: "blur(30px)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-      {...underlayProps}
-    >
+    <div className={fullPageDiv} {...underlayProps}>
       <FocusScope contain restoreFocus autoFocus>
         <div
           {...overlayProps}
           {...dialogProps}
           {...modalProps}
           ref={ref}
-          css={{
-            background: "var(--background)",
-            borderRadius: radii[3],
-            width: "48ch",
-            // border: "1px solid var(--border)",
-            boxShadow,
-            outline: "none",
-          }}
+          className={modalDiv}
         >
           <div
-            css={{
+            className={atoms({
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              paddingRight: space[2],
-            }}
+              paddingRight: "l",
+            })}
           >
-            <h3 {...titleProps} css={{ margin: space[3] }}>
+            <h3 {...titleProps} className={atoms({ margin: "l" })}>
               {title}
             </h3>
             <CloseButton onPress={props.onClose} />

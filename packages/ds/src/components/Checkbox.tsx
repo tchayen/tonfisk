@@ -1,13 +1,12 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
-import { ReactElement, ReactNode, useRef } from "react";
+import React, { ReactElement, ReactNode, useRef } from "react";
 
 import { Tick } from "../icons/Tick";
+import { atoms } from "../theme.css";
+import { checkbox, tick } from "./Checkbox.css";
 
 type Props = {
   /**
@@ -46,54 +45,31 @@ export function Checkbox(props: Props): ReactElement {
   const { inputProps } = useCheckbox(props, state, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  const theme = useTheme();
-  const { fontSizes, space, sizes, radii, outline } = theme;
-
   return (
     <label
-      css={{
+      className={atoms({
         display: "flex",
         alignItems: "center",
         position: "relative",
-        fontSize: fontSizes[1],
-      }}
+        fontSize: "14px",
+      })}
     >
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
-        css={{
-          WebkitAppearance: "none",
-          minWidth: space[3],
-          height: sizes[3],
-          borderRadius: radii[2],
-          border: `1px solid ${
-            state.isSelected || isFocusVisible
-              ? "var(--primary)"
-              : "var(--border)"
-          }`,
-          margin: 0,
-          background: state.isSelected ? "var(--primary)" : "var(--background)",
-          boxShadow: `${isFocusVisible ? outline : "none"}`,
-          outline: "none",
+        className={`${checkbox} ${atoms({
+          border: state.isSelected || isFocusVisible ? "primary" : "regular",
+          background: state.isSelected ? "pink-500" : "white",
+          boxShadow: isFocusVisible ? "outline" : "none",
           opacity: props.isDisabled ? 0.5 : 1,
-        }}
+        })}`}
       />
       {state.isSelected && (
-        <div
-          css={{
-            position: "absolute",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            height: "100%",
-            width: "16px",
-            top: 0,
-          }}
-        >
+        <div className={tick}>
           <Tick />
         </div>
       )}
-      <span css={{ marginLeft: space[3] }}>{children}</span>
+      <span className={atoms({ marginLeft: "m" })}>{children}</span>
     </label>
   );
 }

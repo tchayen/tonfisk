@@ -1,7 +1,5 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useFocusRing } from "@react-aria/focus";
+import { atoms } from "ds/src/theme.css";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
@@ -17,8 +15,6 @@ const ListItem = ({
   children: ReactNode;
   active?: boolean;
 }): ReactElement => {
-  const theme = useTheme();
-  const { fontSizes, sizes, space } = theme;
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
@@ -26,18 +22,18 @@ const ListItem = ({
       <a
         href={href}
         {...focusProps}
-        css={{
-          fontSize: fontSizes[1],
-          color: active ? "var(--primary-text)" : "var(--secondary-text)",
-          background: active ? "var(--outline)" : "var(--background)",
-          height: sizes[4],
-          // borderRight: '1px solid var(--outline)',
-          paddingLeft: space[3],
-          paddingRight: space[3],
+        className={atoms({
+          fontSize: "14px",
+          color: active ? "black" : "gray-600",
+          background: active ? "pinkOutline" : "white",
+          height: "32px",
+          paddingLeft: "l",
+          paddingRight: "l",
           display: "flex",
           alignItems: "center",
-          outline: isFocusVisible ? "2px solid var(--outline)" : "none",
-        }}
+          outline: "none",
+          boxShadow: isFocusVisible ? "outline" : "none",
+        })}
       >
         {children}
       </a>
@@ -51,8 +47,6 @@ const NavLink = ({
   item: ReturnType<typeof getNavigation>["files"][0];
 }) => {
   const router = useRouter();
-  const theme = useTheme();
-  const { space } = theme;
 
   if ("title" in item) {
     const href = `/docs/${item.filePath}`;
@@ -64,7 +58,7 @@ const NavLink = ({
   } else {
     return (
       <div>
-        <h3 css={{ paddingLeft: space[3] }}>{item.name}</h3>
+        <h3 className={atoms({ paddingLeft: "l" })}>{item.name}</h3>
         {item.files.map((file, index) => (
           <NavLink key={index} item={file} />
         ))}
@@ -80,33 +74,31 @@ export function Layout({
   navigation: ReturnType<typeof getNavigation>;
   children: React.ReactNode;
 }): ReactElement {
-  const theme = useTheme();
-  const { space } = theme;
   return (
     <div
-      css={{
-        display: "grid",
-        gridTemplateColumns: "240px 1fr min(80ch, 100%) 1fr",
-        gridGap: 0,
-      }}
+      className={atoms({
+        display: "flex",
+        flexDirection: "row",
+      })}
     >
       <div
-        css={{
-          borderRight: "1px solid var(--border)",
+        className={atoms({
+          borderRight: "regular",
           height: "100vh",
-        }}
+          width: "24ch",
+        })}
       >
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}
-        <h3 css={{ paddingLeft: space[3] }}>Community</h3>
+        <h3 className={atoms({ paddingLeft: "l" })}>Community</h3>
         <ListItem href="https://github.com/tchayen/design-system">
           GitHub
         </ListItem>
         <ListItem href="https://twitter.com/tchayen">Twitter</ListItem>
       </div>
       <div />
-      <div css={{ padding: space[4] }}>{children}</div>
+      <div className={atoms({ padding: "xl" })}>{children}</div>
       <div />
     </div>
   );

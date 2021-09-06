@@ -1,35 +1,18 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useTooltip, useTooltipTrigger } from "@react-aria/tooltip";
 import { mergeProps } from "@react-aria/utils";
 import { useTooltipTriggerState } from "@react-stately/tooltip";
-import { ReactElement, ReactNode, useRef } from "react";
+import React, { ReactElement, ReactNode, useRef } from "react";
+
+import { tooltipBox, tooltipButton, tooltipSpan } from "./Tooltip.css";
 
 function TooltipBox({ state, ...props }): ReactElement {
   const { tooltipProps } = useTooltip(props, state);
-  const theme = useTheme();
-  const { fontSizes, space, radii } = theme;
 
   return (
-    <span
-      css={{
-        position: "absolute",
-        left: 0,
-        top: "calc(100% + 8px)",
-        fontSize: fontSizes[0],
-        padding: space[1],
-        borderRadius: radii[2],
-        border: "1px solid var(--border)",
-        color: "var(--secondary-text)",
-        background: "var(--background)",
-      }}
-      {...mergeProps(props, tooltipProps)}
-    >
-      {/* <svg height="8" width="10" viewBox="0 0 100 100" fill="var(--background)">
+    <span className={tooltipBox} {...mergeProps(props, tooltipProps)}>
+      {/* <svg height="8" width="10" viewBox="0 0 100 100" fill="white">
         <polygon points="50,0 100,100 0,100" />
       </svg> */}
-
       {props.children}
     </span>
   );
@@ -68,25 +51,13 @@ export function Tooltip(props: Props): ReactElement {
   const { tooltip, children, direction } = props;
   const state = useTooltipTriggerState(props);
   const ref = useRef<HTMLButtonElement>(null);
-  const theme = useTheme();
-  const { fonts } = theme;
 
   // Get props for the trigger and its tooltip
   const { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
 
   return (
-    <span css={{ position: "relative" }}>
-      <button
-        ref={ref}
-        {...triggerProps}
-        css={{
-          fontFamily: fonts.body,
-          background: "transparent",
-          appearance: "none",
-          border: "none",
-          outline: "none",
-        }}
-      >
+    <span className={tooltipSpan}>
+      <button ref={ref} {...triggerProps} className={tooltipButton}>
         {children}
       </button>
       {state.isOpen && (

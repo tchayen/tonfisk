@@ -1,12 +1,16 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import { Fragment, ReactElement, useRef, useState } from "react";
+import React, { Fragment, ReactElement, useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
+import { atoms } from "../theme.css";
+import {
+  directionButton,
+  pageButton,
+  rotateLeft,
+  rotateRight,
+} from "./Pagination.css";
 
 // TODO:
 // - Change chevron color to gray200.
@@ -19,57 +23,43 @@ function PageButton(props) {
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  const theme = useTheme();
-  const { sizes, fontSizes, fonts, radii } = theme;
-
   let color;
   let background;
 
   if (props.isSelected) {
-    color = "var(--background)";
+    color = "white";
     if (isPressed) {
-      background = "var(--pressed-button)";
+      background = "pink-600";
     } else {
-      background = "var(--primary)";
+      background = "pink-500";
     }
   } else {
-    color = "var(--secondary-text)";
+    color = "black";
     if (isPressed) {
-      background = "var(--outline)";
+      background = "gray-200";
     } else {
-      background = "var(--background)";
+      background = "white";
     }
   }
+
+  // TODO
+  // "&:hover": {
+  //   background: props.isSelected ? "var(--hovered-button)" : "var(--border)",
+  // },
+  // "&:active": {
+  //   background: props.isSelected
+  //     ? "var(--pressed-button)"
+  //     : "var(--hover-gray)",
+  // },
 
   return (
     <button
       ref={ref}
-      css={{
-        fontFamily: fonts.body,
-        height: sizes[4],
-        width: sizes[4],
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        borderRadius: radii[3],
-        fontSize: fontSizes[1],
+      className={`${pageButton} ${atoms({
         color,
         background,
-        border: "none",
-        cursor: "pointer",
-        outline: "none",
-        boxShadow: isFocusVisible ? theme.outline : "none",
-        "&:hover": {
-          background: props.isSelected
-            ? "var(--hovered-button)"
-            : "var(--border)",
-        },
-        "&:active": {
-          background: props.isSelected
-            ? "var(--pressed-button)"
-            : "var(--hover-gray)",
-        },
-      }}
+        boxShadow: isFocusVisible ? "outline" : "none",
+      })}`}
       {...mergeProps(buttonProps, focusProps)}
     >
       {props.children}
@@ -102,49 +92,35 @@ function DirectionButton(props: {
   variant: "next" | "previous";
   isDisabled?: boolean;
 }) {
-  const theme = useTheme();
-  const { fontSizes, fonts, space, radii } = theme;
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
+  // TODO
+  // "&:hover": {
+  //   background: props.isDisabled ? "none" : "var(--border)",
+  // },
+
   return (
     <button
       ref={ref}
-      css={{
-        color: "var(--primary-text)",
-        border: "none",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        fontFamily: fonts.body,
-        fontSize: fontSizes[1],
-        paddingLeft: space[2],
-        paddingRight: space[2],
-        borderRadius: radii[3],
-        cursor: props.isDisabled ? "default" : "pointer",
-        outline: "none",
+      className={`${directionButton} ${atoms({
         opacity: props.isDisabled ? 0.5 : 1,
-        boxShadow: isFocusVisible ? theme.outline : "none",
-        "&:hover": {
-          background: props.isDisabled ? "none" : "var(--border)",
-        },
-        "&:active": {
-          background: "var(--hover-gray)",
-        },
-      }}
+        cursor: props.isDisabled ? "default" : "pointer",
+        boxShadow: isFocusVisible ? "outline" : "none",
+      })}`}
       {...mergeProps(buttonProps, focusProps)}
     >
       {props.variant === "next" ? (
         <Fragment>
           Next
-          <div css={{ transform: "rotate(-90deg)" }}>
+          <div className={rotateLeft}>
             <Chevron />
           </div>
         </Fragment>
       ) : (
         <Fragment>
-          <div css={{ transform: "rotate(90deg)" }}>
+          <div className={rotateRight}>
             <Chevron />
           </div>
           Previous
@@ -213,7 +189,7 @@ export function Pagination(props: Props): ReactElement {
   }
 
   return (
-    <div css={{ display: "flex", gap: 8 }}>
+    <div className={atoms({ display: "flex", gap: "m" })}>
       {!hidePreviousAndNext && (
         <DirectionButton
           variant="previous"

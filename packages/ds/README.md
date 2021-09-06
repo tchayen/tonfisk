@@ -1,36 +1,13 @@
-## Be careful
-
-In order for `sx` prop to work on HTML elements
-
-```jsx
-<div
-  sx={{
-    fontSize: 1,
-  }}
->
-  Hello world
-</div>
-```
-
-`jsx` transform must be imported from `theme-ui` and set with special pragmas.
-
-Simply paste:
-
-```jsx
-/** @jsxRuntime classic */
-/** @jsx jsx */
-```
-
-to the top of the file.
-
-A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/theme-ui/issues/1160#issuecomment-715530924).
-
 ## Must have
 
-- [ ] Proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
-- [ ] Proper color palette.
-- [ ] Fix mess with Pagination colors in dark mode.
-- [ ] Move disabled opacity to theme.
+- [ ] Global styles for headers and other elements.
+- [ ] Find out what styles should be shared (input and select, buttons in pagination and main button etc.).
+- [ ] Check that there are no dead variables.
+- [ ] Add proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
+- [ ] Copy tailwind color palette and remove import.
+- [ ] Find out how to support color mode in `vanilla-extract`.
+- [ ] Add instructions about setting up `vanilla-extract` plugin for Next.js.
+- [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 
 ## Next version
 
@@ -71,6 +48,12 @@ A bit more about it in the issues: [theme-ui#1160](https://github.com/system-ui/
 - [x] Usage and example instructions in each component (or make it not public).
 - [x] Proper `404` page.
 - [x] `<Pagination />`.
+- [x] Move disabled opacity to theme.
+- [x] Migrate `<Table />` to `vanilla-extract`.
+- [x] Find out how to do `keyframes` in `vanilla-extract` and apply them to `<Spinner />`.
+- [x] Finish missing `<Tag />`, `<TextInput />`.
+- [x] Transfer `<Tooltip />` to `vanilla-extract`.
+- [x] Remove remaining `/** @jsx jsx */` etc. from any code.
 
 ## CSS in JS
 

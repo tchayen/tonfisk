@@ -3,8 +3,8 @@
 // to handle import statements. Instead, you must include components in scope
 
 import {
-  Breadcrumbs,
   Button,
+  Card,
   Cell,
   Checkbox,
   Column,
@@ -153,9 +153,9 @@ const CheckboxExample = (): ReactElement => {
 
 export const components = {
   a: Link,
-  Breadcrumbs,
   Button,
   Checkbox,
+  Card,
   Item,
   MenuButton,
   Pagination,

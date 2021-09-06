@@ -1,10 +1,8 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import rehypePrism from "@mapbox/rehype-prism";
+import { atoms } from "ds/src/theme.css";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import { Fragment, ReactElement } from "react";
+import React, { Fragment, ReactElement } from "react";
 
 import { components } from "../../../components/components";
 import { Layout } from "../../../components/Layout";
@@ -35,8 +33,6 @@ export default function Doc({
   source,
   metadata,
 }: Props): ReactElement {
-  const theme = useTheme();
-  const { space, fontSizes, radii } = theme;
   return (
     <Layout navigation={navigation}>
       <h1>{metadata.displayName}</h1>
@@ -47,33 +43,30 @@ export default function Doc({
             {metadata.props.map((prop) => (
               <div
                 key={prop.name}
-                css={{
+                className={atoms({
                   display: "flex",
-                  marginBottom: space[2],
-                  "&:last-child": {
-                    marginBottom: 0,
-                  },
-                }}
+                  marginBottom: "m",
+                })}
               >
                 <div
-                  css={{
+                  className={atoms({
                     display: "flex",
                     flexDirection: "column",
-                    padding: space[2],
-                    borderRadius: radii[3],
-                    background: "var(--border)",
-                  }}
+                    padding: "m",
+                    borderRadius: "8px",
+                    background: "gray-100",
+                  })}
                 >
                   <code
-                    css={{
-                      color: "var(--primary-text)",
-                      marginBottom: space[1],
-                      padding: 0,
-                    }}
+                    className={atoms({
+                      color: "black",
+                      marginBottom: "s",
+                      padding: "none",
+                    })}
                   >
                     {prop.name}: {prop.type}
                   </code>
-                  <span css={{ fontSize: fontSizes[1] }}>
+                  <span className={atoms({ fontSize: "14px" })}>
                     {prop.description}
                   </span>
                 </div>

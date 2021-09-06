@@ -1,10 +1,11 @@
-/** @jsxRuntime classic */
-/** @jsx jsx */
-import { jsx, useTheme } from "@emotion/react";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import { ReactElement, useRef } from "react";
+import React, { ReactElement, useRef } from "react";
+import { useState } from "react";
+
+import { atoms } from "../theme.css";
+import { button } from "./Button.css";
 
 type Props = {
   /**
@@ -40,40 +41,31 @@ type Props = {
  */
 export function Button(props: Props): ReactElement {
   const ref = useRef<HTMLButtonElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  const theme = useTheme();
-  const { fonts, fontSizes, fontWeights, space, sizes, radii, outline } = theme;
+  const onMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const className = `${button} ${atoms({
+    cursor: props.isDisabled ? "default" : "pointer",
+    opacity: props.isDisabled ? 0.5 : 1,
+    background: isPressed ? "pink-600" : isHovered ? "pink-400" : "pink-500",
+    boxShadow: isFocusVisible ? "outline" : "none",
+  })}`;
 
   return (
     <button
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+      className={className}
       ref={ref}
-      css={{
-        border: "none",
-        outline: "none",
-        cursor: props.isDisabled ? "default" : "pointer",
-        opacity: props.isDisabled ? 0.5 : 1,
-        fontFamily: fonts.body,
-        fontSize: fontSizes[1],
-        fontWeight: fontWeights.bold,
-        paddingLeft: space[3],
-        paddingRight: space[3],
-        height: sizes[4],
-        lineHeight: 1,
-        borderRadius: radii[4],
-        color: "var(--background)",
-        background: isPressed ? "var(--pressed-button)" : "var(--primary)",
-        boxShadow: isFocusVisible ? outline : "none",
-        "&:hover": {
-          background: props.isDisabled
-            ? "var(--primary)"
-            : "var(--hovered-button)",
-        },
-        "&:active": {
-          background: "var(--pressed-button)",
-        },
-      }}
       {...mergeProps(focusProps, buttonProps)}
     >
       {props.children}
