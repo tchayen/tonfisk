@@ -1,19 +1,20 @@
 import { style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
+import { inputLike } from "./TextInput.css";
+import { label as labelBase } from "./TextInput.css";
 
 export const select = atoms({
   position: "relative",
   display: "inline-block",
 });
 
-export const label = atoms({
-  fontSize: "14px",
-  color: "black",
-  fontWeight: "bold",
-  marginBottom: "s",
-  display: "block",
-});
+export const label = style([
+  labelBase,
+  atoms({
+    display: "block",
+  }),
+]);
 
 export const span = atoms({
   position: "absolute",
@@ -21,18 +22,13 @@ export const span = atoms({
 });
 
 export const button = style([
+  inputLike,
   atoms({
+    paddingLeft: "m",
     width: "100%",
     display: "flex",
     justifyContent: "flex-start",
     alignItems: "center",
-    height: "32px",
-    fontSize: "14px",
-    borderRadius: "8px",
-    paddingLeft: "m",
-    fontFamily: "body",
-    outline: "none",
-    background: "white",
     position: "relative",
     cursor: "pointer",
   }),

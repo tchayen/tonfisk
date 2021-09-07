@@ -1,4 +1,4 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalStyle, style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
 
@@ -14,17 +14,30 @@ export const label = atoms({
   marginBottom: "s",
 });
 
-export const input = atoms({
+export const inputLike = atoms({
   height: "32px",
   fontSize: "14px",
   borderRadius: "8px",
   fontFamily: "body",
   outline: "none",
   background: "white",
-  paddingLeft: "m",
-  paddingRight: "m",
   color: "black",
 });
+
+export const input = style([
+  inputLike,
+  atoms({
+    height: "32px",
+    fontSize: "14px",
+    borderRadius: "8px",
+    fontFamily: "body",
+    outline: "none",
+    background: "white",
+    color: "black",
+    paddingLeft: "m",
+    paddingRight: "m",
+  }),
+]);
 
 // TODO: it doesn't work.
 globalStyle("::placeholder", {

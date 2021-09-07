@@ -1,36 +1,25 @@
 import { style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
+import { buttonLike } from "./Button.css";
 
 export const pageButton = style([
+  buttonLike,
   atoms({
-    fontFamily: "body",
-    height: "32px",
     width: "32px",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: "8px",
-    fontSize: "14px",
-    border: "none",
     cursor: "pointer",
-    outline: "none",
+    borderRadius: "8px",
   }),
 ]);
 
 export const directionButton = style([
+  buttonLike,
   atoms({
+    paddingLeft: "l",
+    paddingRight: "l",
+    borderRadius: "16px",
     color: "black",
-    border: "none",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-    outline: "none",
-    fontFamily: "body",
-    fontSize: "14px",
-    paddingLeft: "m",
-    paddingRight: "m",
-    borderRadius: "8px",
+    gap: "m",
   }),
   style({
     ":active": {

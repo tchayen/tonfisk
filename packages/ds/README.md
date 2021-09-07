@@ -1,8 +1,5 @@
 ## Must have
 
-- [ ] Global styles for headers and other elements.
-- [ ] Find out what styles should be shared (input and select, buttons in pagination and main button etc.).
-- [ ] Check that there are no dead variables.
 - [ ] Add proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
 - [ ] Copy tailwind color palette and remove import.
 - [ ] Find out how to support color mode in `vanilla-extract`.
@@ -24,10 +21,9 @@
 ## Nice to have
 
 - [ ] Missing TS typings (especially `Table`, `Menu`).
-- [ ] Changes `sizes` etc. to use `xs, s, m, l, xl, xxl` instead of indices.
-- [ ] Override `emotion`'s `css` prop to add shorthands (`padding` → `p`). Refer to: `theme-ui` source [1](https://github.com/system-ui/theme-ui/blob/develop/packages/css/src/index.ts), [2](https://github.com/system-ui/theme-ui/blob/develop/packages/parse-props/src/index.ts).
+- [x] Changes `sizes` etc. to use `xs, s, m, l, xl, xxl` instead of indices.
 - [ ] Expose API for switching color modes.
-- [ ] Well specified props instead of passing everything to `react-aria`.
+- [x] Well specified props instead of passing everything to `react-aria`.
 - [ ] Interactive props in examples.
 - [ ] Bigger examples to find out missing components.
 - [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
@@ -54,6 +50,9 @@
 - [x] Finish missing `<Tag />`, `<TextInput />`.
 - [x] Transfer `<Tooltip />` to `vanilla-extract`.
 - [x] Remove remaining `/** @jsx jsx */` etc. from any code.
+- [x] Global styles for headers and other elements.
+- [x] Find out what styles should be shared (input and select, buttons in pagination and main button etc.).
+- [x] Check that there are no dead variables.
 
 ## CSS in JS
 

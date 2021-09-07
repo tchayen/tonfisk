@@ -1,14 +1,6 @@
 import { createGlobalTheme } from "@vanilla-extract/css";
-import { modularScale } from "polished";
-import colors from "tailwindcss/colors";
 
-const createScale = (ratio: number, base: number) => (steps: number) =>
-  `${modularScale(steps, base, ratio)}px`;
-
-const spaceScale = createScale(1.4, 4);
-const fontSizeScale = createScale(1.3, 16);
-const lineHeightScale = createScale(1.25, 24);
-const borderRadiusScale = createScale(1.5, 4);
+import colors from "./colors";
 
 export const vars = createGlobalTheme(":root", {
   space: {
@@ -113,11 +105,6 @@ export const vars = createGlobalTheme(":root", {
     table: "2px solid #000",
   },
   lineHeight: {
-    "0x": lineHeightScale(0),
-    "1x": lineHeightScale(1),
-    "2x": lineHeightScale(2),
-    "3x": lineHeightScale(3),
-    "4x": lineHeightScale(4),
-    "5x": lineHeightScale(5),
+    "1": "1",
   },
 });

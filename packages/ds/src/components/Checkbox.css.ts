@@ -1,15 +1,10 @@
 import { style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
+import { checkboxLike } from "./Table.css";
 
 export const checkbox = style([
-  atoms({
-    height: "16px",
-    minWidth: "16px",
-    borderRadius: "4px",
-    margin: "none",
-    outline: "none",
-  }),
+  checkboxLike,
   style({
     WebkitAppearance: "none",
   }),

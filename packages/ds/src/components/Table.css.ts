@@ -47,14 +47,18 @@ export const tableCell = style([
   roundedLastRowSelector,
 ]);
 
+export const checkboxLike = atoms({
+  height: "16px",
+  minWidth: "16px",
+  borderRadius: "4px",
+  margin: "none",
+  outline: "none",
+});
+
 export const checkboxInput = style([
+  checkboxLike,
   atoms({
-    width: "16px",
-    height: "16px",
-    borderRadius: "4px",
     position: "absolute",
-    margin: 0,
-    outline: "none",
   }),
   style({
     WebkitAppearance: "none",
@@ -64,10 +68,10 @@ export const checkboxInput = style([
 ]);
 
 export const tick = style({
+  position: "absolute",
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  position: "absolute",
   top: 15,
   left: 18,
   pointerEvents: "none",

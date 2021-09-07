@@ -1,5 +1,6 @@
 import { style } from "@vanilla-extract/css";
 
+import { option } from "../ListBox.css";
 import { atoms } from "../theme.css";
 
 export const menuPopup = style([
@@ -22,16 +23,7 @@ export const menuPopup = style([
   }),
 ]);
 
-export const menuItem = atoms({
-  outline: "none",
-  cursor: "pointer",
-  fontSize: "14px",
-  paddingLeft: "m",
-  paddingRight: "m",
-  height: "32px",
-  display: "flex",
-  alignItems: "center",
-});
+export const menuItem = style([option]);
 
 export const menuButton = atoms({
   background: "white",

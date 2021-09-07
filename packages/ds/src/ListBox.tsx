@@ -1,6 +1,7 @@
 import { useListBox, useOption } from "@react-aria/listbox";
 import React, { ReactElement, useRef } from "react";
 
+import { listBox, option } from "./ListBox.css";
 import { atoms } from "./theme.css";
 
 /**
@@ -12,18 +13,7 @@ export function ListBox(props: any): ReactElement {
   const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
-    <ul
-      {...listBoxProps}
-      ref={listBoxRef}
-      className={atoms({
-        margin: "none",
-        padding: "none",
-        listStyle: "none",
-        // maxHeight: "150px",
-        overflow: "auto",
-        outline: "none",
-      })}
-    >
+    <ul {...listBoxProps} ref={listBoxRef} className={listBox}>
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}
@@ -58,18 +48,10 @@ function Option({ item, state }: any) {
     <li
       {...optionProps}
       ref={ref}
-      className={atoms({
+      className={`${option} ${atoms({
         background: backgroundColor,
         color,
-        fontSize: "14px",
-        paddingLeft: "m",
-        paddingRight: "m",
-        height: "32px",
-        outline: "none",
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-      })}
+      })}`}
     >
       {item.rendered}
     </li>

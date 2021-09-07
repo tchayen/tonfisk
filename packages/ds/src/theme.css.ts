@@ -1,6 +1,22 @@
+import { globalStyle } from "@vanilla-extract/css";
 import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
 
 import { vars } from "./vars.css";
+
+globalStyle("h1", {
+  fontSize: "28px",
+  fontWeight: 400,
+});
+
+globalStyle("h2", {
+  fontSize: "24px",
+  fontWeight: 400,
+});
+
+globalStyle("h3", {
+  fontSize: "20px",
+  fontWeight: 400,
+});
 
 const responsiveStyles = createAtomicStyles({
   conditions: {

@@ -3,9 +3,9 @@ import { style } from "@vanilla-extract/css";
 import { atoms } from "../theme.css";
 
 export const label = atoms({
+  fontSize: "14px",
   display: "flex",
   alignItems: "center",
-  fontSize: "14px",
   justifyContent: "space-between",
 });
 
