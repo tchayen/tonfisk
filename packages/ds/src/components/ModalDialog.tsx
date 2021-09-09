@@ -109,7 +109,13 @@ export function ModalDialog(props: Props): ReactElement {
               paddingRight: "l",
             })}
           >
-            <h3 {...titleProps} className={atoms({ margin: "l" })}>
+            <h3
+              {...titleProps}
+              className={atoms({
+                color: { lightMode: "black", darkMode: "gray-200" },
+                margin: "l",
+              })}
+            >
               {title}
             </h3>
             <CloseButton onPress={props.onClose} />

@@ -9,9 +9,15 @@ export const tooltipBox = style([
     fontSize: "12px",
     padding: "s",
     borderRadius: "4px",
-    border: "regular",
+    border: {
+      lightMode: "regular",
+      darkMode: "regularDark",
+    },
     color: "gray-600",
-    background: "white",
+    background: {
+      lightMode: "white",
+      darkMode: "gray-900",
+    },
   }),
   style({
     top: "calc(100% + 8px)",

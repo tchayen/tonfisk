@@ -56,8 +56,14 @@ export function Popover(props: Props): ReactElement {
           zIndex: 100,
           width: "100%",
           overflow: "hidden",
-          boxShadow: "borderAndShadow",
-          background: "white",
+          boxShadow: {
+            lightMode: "borderAndShadow",
+            darkMode: "darkBorder",
+          },
+          background: {
+            lightMode: "white",
+            darkMode: "gray-900",
+          },
           borderRadius: "8px",
           marginTop: "m",
         })}

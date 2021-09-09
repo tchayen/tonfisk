@@ -89,6 +89,7 @@ export const vars = createGlobalTheme(":root", {
     none: "none",
     primary: `1px solid ${colors.pink[500]}`, // TODO
     regular: `1px solid ${colors.coolGray[200]}`, // TODO
+    regularDark: `1px solid ${colors.coolGray[600]}`, // TODO
   },
   boxShadow: {
     none: "none",
@@ -96,13 +97,17 @@ export const vars = createGlobalTheme(":root", {
     shadow: "0 2px 8px rgba(0, 0, 0, 0.1)", // TODO
     tooltipDotShadow: "0 1px 3px rgba(0, 0, 0, 0.25)", // TODO
     tableTopBorder: `0 1px 0 inset ${colors.coolGray[200]}`,
+    tableTopBorderDark: `0 1px 0 inset ${colors.coolGray[700]}`,
     tableOutline: "0 0 0 2px #000", // TODO
+    tableOutlineDark: `0 0 0 2px ${colors.coolGray[200]}`, // TODO
     regularBorder: `0 0 0 1px inset ${colors.coolGray[200]}`, // TODO
+    darkBorder: `0 0 0 1px inset ${colors.coolGray[600]}`, // TODO
     borderAndShadow: `0 0 0 1px inset ${colors.coolGray[200]}, 0 2px 8px rgba(0, 0, 0, 0.1)`,
   },
   outline: {
     none: "none",
     table: "2px solid #000",
+    tableDark: `2px solid ${colors.coolGray[200]}`,
   },
   lineHeight: {
     "1": "1",

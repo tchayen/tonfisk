@@ -6,13 +6,19 @@ export const table = atoms({
   borderCollapse: "separate",
   borderSpacing: 0,
   borderRadius: "8px",
-  boxShadow: "regularBorder",
+  boxShadow: {
+    lightMode: "regularBorder",
+    darkMode: "darkBorder",
+  },
 });
 
 export const tableHeaderRow = style({});
 
 export const tableColumnHeader = atoms({
-  color: "black",
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
   fontWeight: "bold",
   fontSize: "14px",
   height: "40px",
@@ -43,6 +49,10 @@ export const tableCell = style([
     cursor: "default",
     paddingLeft: "l",
     paddingRight: "l",
+    color: {
+      lightMode: "black",
+      darkMode: "gray-200",
+    },
   }),
   roundedLastRowSelector,
 ]);
@@ -83,7 +93,7 @@ export const mixed = style({
   position: "absolute",
   top: 4,
   left: 1,
-  background: "white",
+  background: "white", // TODO gray-900 in dark mode once <Tick /> also supports it.
 });
 
 export const tableCheckboxCell = style([

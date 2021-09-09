@@ -74,7 +74,10 @@ export function TableColumnHeader({ column, state }): ReactElement {
       className={`
         ${tableColumnHeader} ${atoms({
         textAlign: column.colspan > 1 ? "center" : "left",
-        outline: isFocusVisible ? "table" : "none",
+        outline: {
+          lightMode: isFocusVisible ? "table" : "none",
+          darkMode: isFocusVisible ? "tableDark" : "none",
+        },
       })}
       `}
       ref={ref}
@@ -111,9 +114,18 @@ export function TableRow({ item, children, state, index, rows }): ReactElement {
           : item.index % 2
           ? "none" // Background of every second row.
           : "none",
-        color: isSelected ? "white" : undefined,
-        boxShadow: isSelected ? "none" : "tableTopBorder",
-        outline: isFocusVisible ? "table" : "none",
+        color: {
+          lightMode: isSelected ? "white" : undefined,
+          darkMode: isSelected ? "gray-900" : undefined,
+        },
+        boxShadow: {
+          lightMode: isSelected ? "none" : "tableTopBorder",
+          darkMode: isSelected ? "none" : "tableTopBorderDark",
+        },
+        outline: {
+          lightMode: isFocusVisible ? "table" : "none",
+          darkMode: isFocusVisible ? "tableDark" : "none",
+        },
       })}`}
       {...mergeProps(rowProps, focusProps)}
       ref={ref}
@@ -132,7 +144,10 @@ export function TableCell({ cell, state }): ReactElement {
     <td
       {...mergeProps(gridCellProps, focusProps)}
       className={`${tableCell} ${atoms({
-        outline: isFocusVisible ? "table" : "none",
+        outline: {
+          lightMode: isFocusVisible ? "table" : "none",
+          darkMode: isFocusVisible ? "tableDark" : "none",
+        },
       })}`}
       ref={ref}
     >
@@ -156,20 +171,37 @@ function Checkbox({
         {...mergeProps(inputProps, focusProps)}
         ref={inputRef}
         className={`${checkboxInput} ${atoms({
-          border: isChecked || isFocusVisible ? "primary" : "regular",
+          border: {
+            lightMode: isChecked || isFocusVisible ? "primary" : "regular",
+            darkMode: isChecked || isFocusVisible ? "primary" : "regularDark",
+          },
           margin: "none",
-          background: isChecked ? "pink-500" : "white",
-          boxShadow: isFocusVisible
-            ? backgroundConflict && isChecked
-              ? "tableOutline"
-              : "outline"
-            : "none",
+          background: {
+            lightMode: isChecked ? "pink-500" : "white",
+            darkMode: isChecked ? "pink-500" : "gray-900",
+          },
+          boxShadow: {
+            lightMode: isFocusVisible
+              ? backgroundConflict && isChecked
+                ? "tableOutline"
+                : "outline"
+              : "none",
+            darkMode: isFocusVisible
+              ? backgroundConflict && isChecked
+                ? "tableOutlineDark"
+                : "outline"
+              : "none",
+          },
           outline: "none",
         })}`}
       />
       {isChecked ? (
         <div className={tick}>
-          {isChecked === "mixed" ? <div className={mixed} /> : <Tick />}
+          {isChecked === "mixed" ? (
+            <div className={mixed} />
+          ) : (
+            <Tick color="white" />
+          )}
         </div>
       ) : null}
     </Fragment>

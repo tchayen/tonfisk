@@ -1,4 +1,3 @@
-import { MagicScriptTag } from "ds";
 import Document, { Head, Html, Main, NextScript } from "next/document";
 import { ReactElement } from "react";
 
@@ -11,9 +10,7 @@ class MyDocument extends Document {
   render(): ReactElement {
     return (
       <Html>
-        <Head>
-          <MagicScriptTag />
-        </Head>
+        <Head></Head>
         <body>
           <Main />
           <NextScript />

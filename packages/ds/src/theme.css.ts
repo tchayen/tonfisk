@@ -1,6 +1,7 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
 
+import colors from "./colors";
 import { vars } from "./vars.css";
 
 globalStyle("h1", {
@@ -18,14 +19,53 @@ globalStyle("h3", {
   fontWeight: 400,
 });
 
+// , .token.punctuation, .token.class-name, .token.method.function.property-access, .token.attr-value, .token.maybe-class-name, .token.arrow.operator
+globalStyle(
+  `
+  .token.keyword,
+  .token.boolean,
+  .token.tag
+`,
+  {
+    color: colors.pink[500],
+  }
+);
+
+globalStyle(
+  `
+  .token.punctuation,
+  .token.tag .token.punctuation,
+  .token.attr-name,
+  .token.operator
+`,
+  {
+    color: colors.gray[500],
+  }
+);
+
+globalStyle(
+  `
+  .token.function,
+  .token.constant
+`,
+  {
+    color: colors.gray[400],
+  }
+);
+
+globalStyle(".language-javascript", {
+  color: colors.gray[200],
+});
+
 const responsiveStyles = createAtomicStyles({
   conditions: {
-    mobile: {},
-    tablet: { "@media": "screen and (min-width: 768px)" },
-    desktop: { "@media": "screen and (min-width: 1024px)" },
+    lightMode: {},
+    darkMode: { "@media": "(prefers-color-scheme: dark)" },
   },
-  defaultCondition: "mobile",
+  defaultCondition: "lightMode",
   properties: {
+    color: vars.color,
+    background: vars.color,
     border: vars.border,
     borderLeft: vars.border,
     borderTop: vars.border,
@@ -66,6 +106,7 @@ const responsiveStyles = createAtomicStyles({
     width: vars.size,
     minWidth: vars.size,
     height: vars.size,
+    minHeight: vars.size,
     borderRadius: vars.borderRadius,
     fontFamily: vars.fontFamily,
     appearance: ["none"],
@@ -86,16 +127,4 @@ const responsiveStyles = createAtomicStyles({
   },
 });
 
-const colorModeStyles = createAtomicStyles({
-  conditions: {
-    lightMode: {},
-    darkMode: { "@media": "(prefers-color-scheme: dark)" },
-  },
-  defaultCondition: "lightMode",
-  properties: {
-    color: vars.color,
-    background: vars.color,
-  },
-});
-
-export const atoms = createAtomsFn(responsiveStyles, colorModeStyles);
+export const atoms = createAtomsFn(responsiveStyles);

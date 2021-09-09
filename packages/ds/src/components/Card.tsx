@@ -31,7 +31,10 @@ export function Card(props: Props): ReactElement {
     <div
       className={atoms({
         borderRadius: "8px",
-        border: "regular",
+        border: {
+          lightMode: "regular",
+          darkMode: "regularDark",
+        },
       })}
     >
       {props.children}

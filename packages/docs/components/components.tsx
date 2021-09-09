@@ -3,6 +3,7 @@
 // to handle import statements. Instead, you must include components in scope
 
 import {
+  atoms,
   Button,
   Card,
   Cell,
@@ -54,9 +55,26 @@ const SelectExample = (): ReactElement => {
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
-      <div style={{ marginBottom: 8 }}>
+      <div
+        className={atoms({
+          color: {
+            lightMode: "gray-600",
+            darkMode: "gray-400",
+          },
+          marginBottom: "m",
+        })}
+      >
         Selected:{" "}
-        <code>
+        <code
+          className={atoms({
+            background: {
+              lightMode: "gray-100",
+              darkMode: "gray-700",
+            },
+            padding: "s",
+            borderRadius: "4px",
+          })}
+        >
           {selected === null
             ? "None"
             : JSON.stringify(
@@ -79,42 +97,66 @@ const SelectExample = (): ReactElement => {
 };
 
 const TableExample = (): ReactElement => {
+  const [selectedKeys, setSelectedKeys] = useState([]);
+
+  const columns = [
+    { name: "Name", key: "name" },
+    { name: "Type", key: "type" },
+    { name: "Date Modified", key: "date" },
+  ];
+
+  const rows = [
+    { id: 1, name: "Games", date: "6/7/2020", type: "File folder" },
+    { id: 2, name: "Program Files", date: "4/7/2021", type: "File folder" },
+    { id: 3, name: "bootmgr", date: "11/20/2010", type: "System file" },
+    { id: 4, name: "log.txt", date: "1/18/2016", type: "Text Document" },
+  ];
+
   return (
-    <Table
-      aria-label="Example static collection table"
-      selectionMode="multiple"
-      onSelectionChange={(keys) => {
-        console.log(keys);
-      }}
-    >
-      <TableHeader>
-        <Column>Name</Column>
-        <Column>Type</Column>
-        <Column>Date Modified</Column>
-      </TableHeader>
-      <TableBody>
-        <Row>
-          <Cell>Games</Cell>
-          <Cell>File folder</Cell>
-          <Cell>6/7/2020</Cell>
-        </Row>
-        <Row>
-          <Cell>Program Files</Cell>
-          <Cell>File folder</Cell>
-          <Cell>4/7/2021</Cell>
-        </Row>
-        <Row>
-          <Cell>bootmgr</Cell>
-          <Cell>System file</Cell>
-          <Cell>11/20/2010</Cell>
-        </Row>
-        <Row>
-          <Cell>log.txt</Cell>
-          <Cell>Text Document</Cell>
-          <Cell>1/18/2016</Cell>
-        </Row>
-      </TableBody>
-    </Table>
+    <div>
+      <div
+        className={atoms({
+          color: {
+            lightMode: "gray-600",
+            darkMode: "gray-400",
+          },
+          marginBottom: "m",
+        })}
+      >
+        Selected:{" "}
+        <code
+          className={atoms({
+            background: {
+              lightMode: "gray-100",
+              darkMode: "gray-700",
+            },
+            padding: "s",
+            borderRadius: "4px",
+          })}
+        >
+          {JSON.stringify(
+            typeof selectedKeys === "string" ? selectedKeys : [...selectedKeys],
+            null,
+            2
+          )}
+        </code>
+      </div>
+      <Table
+        aria-label="Example static collection table"
+        selectionMode="multiple"
+        onSelectionChange={(keys) => {
+          console.log(keys);
+          setSelectedKeys(keys);
+        }}
+      >
+        <TableHeader columns={columns}>
+          {(column) => <Column>{column.name}</Column>}
+        </TableHeader>
+        <TableBody items={rows}>
+          {(item) => <Row>{(columnKey) => <Cell>{item[columnKey]}</Cell>}</Row>}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 
@@ -137,8 +179,28 @@ const CheckboxExample = (): ReactElement => {
   const [value, setValue] = useState(false);
   return (
     <div>
-      <div style={{ marginBottom: 8 }}>
-        Value: <code>{JSON.stringify(value)}</code>
+      <div
+        className={atoms({
+          color: {
+            lightMode: "black",
+            darkMode: "gray-200",
+          },
+          marginBottom: "m",
+        })}
+      >
+        Value:{" "}
+        <code
+          className={atoms({
+            background: {
+              lightMode: "gray-100",
+              darkMode: "gray-700",
+            },
+            padding: "s",
+            borderRadius: "4px",
+          })}
+        >
+          {JSON.stringify(value)}
+        </code>
       </div>
       <Checkbox
         onChange={(next) => {
@@ -153,6 +215,96 @@ const CheckboxExample = (): ReactElement => {
 
 export const components = {
   a: Link,
+  h1: ({ children }) => (
+    <h1
+      className={atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      })}
+    >
+      {children}
+    </h1>
+  ),
+  h2: ({ children }) => (
+    <h2
+      className={atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      })}
+    >
+      {children}
+    </h2>
+  ),
+  h3: ({ children }) => (
+    <h3
+      className={atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      })}
+    >
+      {children}
+    </h3>
+  ),
+  h4: ({ children }) => (
+    <h4
+      className={atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      })}
+    >
+      {children}
+    </h4>
+  ),
+  p: ({ children }) => (
+    <p
+      className={atoms({
+        color: {
+          lightMode: "gray-600",
+          darkMode: "gray-400",
+        },
+      })}
+    >
+      {children}
+    </p>
+  ),
+  pre: ({ children }) => (
+    <pre
+      className={atoms({
+        padding: "l",
+        borderRadius: "8px",
+        border: {
+          lightMode: "none",
+          darkMode: "regularDark",
+        },
+        background: "gray-900",
+        color: "gray-200",
+      })}
+    >
+      {children}
+    </pre>
+  ),
+  // code: ({ children }) => (
+  //   <code
+  //     className={atoms({
+  //       background: {
+  //         lightMode: "gray-100",
+  //         darkMode: "gray-700",
+  //       },
+  //       padding: "s",
+  //       borderRadius: "4px",
+  //     })}
+  //   >
+  //     {children}
+  //   </code>
+  // ),
   Button,
   Checkbox,
   Card,

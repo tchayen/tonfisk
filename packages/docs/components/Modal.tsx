@@ -1,7 +1,6 @@
 import { OverlayContainer } from "@react-aria/overlays";
 import { useOverlayTriggerState } from "@react-stately/overlays";
-import { Button, HorizontalLine, ModalDialog } from "ds";
-import { atoms } from "ds/src/theme.css";
+import { atoms, Button, HorizontalLine, ModalDialog } from "ds";
 import React, { ReactElement } from "react";
 
 export default function Modal(): ReactElement {

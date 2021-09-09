@@ -33,13 +33,26 @@ function Option({ item, state }: any) {
   );
 
   let backgroundColor = "transparent";
-  let color = "black";
+  let color = {
+    lightMode: "black",
+    darkMode: "gray-400",
+  };
 
   if (isSelected) {
     backgroundColor = "pink-500";
-    color = "white";
+    color = {
+      lightMode: "white",
+      darkMode: "gray-200",
+    };
   } else if (isFocused) {
-    backgroundColor = "gray-200";
+    color = {
+      lightMode: "black",
+      darkMode: "gray-200",
+    };
+    backgroundColor = {
+      lightMode: "gray-200",
+      darkMode: "gray-600",
+    };
   } else if (isDisabled) {
     //
   }

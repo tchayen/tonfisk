@@ -1,4 +1,5 @@
 import {
+  atoms,
   Button,
   Card,
   Checkbox,
@@ -9,7 +10,6 @@ import {
   Switch,
   TextInput,
 } from "ds";
-import { atoms } from "ds/src/theme.css";
 import { useRouter } from "next/dist/client/router";
 import React, { ReactElement } from "react";
 
@@ -64,7 +64,15 @@ export default function Example(): ReactElement {
               alignItems: "center",
             })}
           >
-            <span className={atoms({ fontSize: "14px" })}>
+            <span
+              className={atoms({
+                color: {
+                  lightMode: "black",
+                  darkMode: "gray-200",
+                },
+                fontSize: "14px",
+              })}
+            >
               Last saved 2 minutes ago
             </span>
             <Button onPress={() => console.log("aaa")}>Create</Button>

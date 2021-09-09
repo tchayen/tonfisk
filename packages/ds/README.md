@@ -1,9 +1,6 @@
 ## Must have
 
-- [ ] Add proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
-- [ ] Copy tailwind color palette and remove import.
-- [ ] Find out how to support color mode in `vanilla-extract`.
-- [ ] Add instructions about setting up `vanilla-extract` plugin for Next.js.
+- [ ] Style SVG icons in CSS too.
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 
 ## Next version
@@ -21,9 +18,7 @@
 ## Nice to have
 
 - [ ] Missing TS typings (especially `Table`, `Menu`).
-- [x] Changes `sizes` etc. to use `xs, s, m, l, xl, xxl` instead of indices.
 - [ ] Expose API for switching color modes.
-- [x] Well specified props instead of passing everything to `react-aria`.
 - [ ] Interactive props in examples.
 - [ ] Bigger examples to find out missing components.
 - [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
@@ -42,17 +37,25 @@
 - [x] `<Table />`.
 - [x] Disabled state for components.
 - [x] Usage and example instructions in each component (or make it not public).
+- [x] Well specified props instead of passing everything to `react-aria`.
 - [x] Proper `404` page.
 - [x] `<Pagination />`.
 - [x] Move disabled opacity to theme.
 - [x] Migrate `<Table />` to `vanilla-extract`.
 - [x] Find out how to do `keyframes` in `vanilla-extract` and apply them to `<Spinner />`.
 - [x] Finish missing `<Tag />`, `<TextInput />`.
+- [x] Changes `sizes` etc. to use `xs, s, m, l, xl, xxl` instead of indices.
 - [x] Transfer `<Tooltip />` to `vanilla-extract`.
 - [x] Remove remaining `/** @jsx jsx */` etc. from any code.
 - [x] Global styles for headers and other elements.
 - [x] Find out what styles should be shared (input and select, buttons in pagination and main button etc.).
 - [x] Check that there are no dead variables.
+- [x] Copy tailwind color palette and remove import.
+- [x] Pull tailwind colors to Figma.
+- [x] Find out proper colors for dark mode.
+- [x] Add proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
+- [x] Add instructions about setting up `vanilla-extract` plugin for Next.js.
+- [x] Find out how to support color mode in `vanilla-extract`.
 
 ## CSS in JS
 

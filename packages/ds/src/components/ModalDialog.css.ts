@@ -5,7 +5,7 @@ import { atoms } from "../theme.css";
 export const closeButton = style([
   atoms({
     padding: "m",
-    borderRadius: "8px",
+    borderRadius: "16px",
     width: "32px",
     height: "32px",
     cursor: "pointer",
@@ -39,7 +39,10 @@ export const fullPageDiv = style([
 ]);
 
 export const modalDiv = atoms({
-  background: "white",
+  background: {
+    lightMode: "white",
+    darkMode: "gray-900",
+  },
   borderRadius: "8px",
   width: "48ch",
   // border: "regular",

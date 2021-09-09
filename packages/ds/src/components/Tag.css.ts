@@ -4,10 +4,16 @@ import { atoms } from "../theme.css";
 
 export const tag = style([
   atoms({
-    color: "black",
+    color: {
+      lightMode: "black",
+      darkMode: "gray-200",
+    },
     fontSize: "12px",
     fontWeight: "bold",
-    background: "pink-300",
+    background: {
+      lightMode: "pink-300",
+      darkMode: "pink-800",
+    },
     display: "inline-flex",
     alignItems: "center",
     justifyContent: "center",

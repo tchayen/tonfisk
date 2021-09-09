@@ -1,4 +1,3 @@
-import "../public/theme.css";
 import "../styles/globals.css";
 
 import { Provider } from "ds";

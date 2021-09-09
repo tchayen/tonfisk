@@ -1,5 +1,5 @@
 import rehypePrism from "@mapbox/rehype-prism";
-import { atoms } from "ds/src/theme.css";
+import { atoms } from "ds";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import React, { Fragment, ReactElement } from "react";
@@ -35,10 +35,28 @@ export default function Doc({
 }: Props): ReactElement {
   return (
     <Layout navigation={navigation}>
-      <h1>{metadata.displayName}</h1>
+      <h1
+        className={atoms({
+          color: {
+            lightMode: "black",
+            darkMode: "gray-200",
+          },
+        })}
+      >
+        {metadata.displayName}
+      </h1>
       {metadata.props.length > 0 && (
         <Fragment>
-          <h2>Props</h2>
+          <h2
+            className={atoms({
+              color: {
+                lightMode: "black",
+                darkMode: "gray-200",
+              },
+            })}
+          >
+            Props
+          </h2>
           <div>
             {metadata.props.map((prop) => (
               <div
@@ -54,19 +72,33 @@ export default function Doc({
                     flexDirection: "column",
                     padding: "m",
                     borderRadius: "8px",
-                    background: "gray-100",
+                    background: {
+                      lightMode: "gray-100",
+                      darkMode: "gray-800",
+                    },
                   })}
                 >
                   <code
                     className={atoms({
-                      color: "black",
+                      color: {
+                        lightMode: "black",
+                        darkMode: "gray-200",
+                      },
                       marginBottom: "s",
                       padding: "none",
                     })}
                   >
                     {prop.name}: {prop.type}
                   </code>
-                  <span className={atoms({ fontSize: "14px" })}>
+                  <span
+                    className={atoms({
+                      color: {
+                        lightMode: "gray-600",
+                        darkMode: "gray-400",
+                      },
+                      fontSize: "14px",
+                    })}
+                  >
                     {prop.description}
                   </span>
                 </div>

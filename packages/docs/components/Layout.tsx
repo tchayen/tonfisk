@@ -1,7 +1,7 @@
 import "./theme.css";
 
 import { useFocusRing } from "@react-aria/focus";
-import { atoms } from "ds/src/theme.css";
+import { atoms } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactElement, ReactNode } from "react";
@@ -26,8 +26,11 @@ const ListItem = ({
         {...focusProps}
         className={atoms({
           fontSize: "14px",
-          color: active ? "black" : "gray-600",
-          background: active ? "pinkOutline" : "white",
+          color: {
+            lightMode: active ? "black" : "gray-600",
+            darkMode: active ? "gray-200" : "gray-400",
+          },
+          background: active ? "pinkOutline" : "transparent",
           height: "32px",
           paddingLeft: "l",
           paddingRight: "l",
@@ -60,7 +63,18 @@ const NavLink = ({
   } else {
     return (
       <div>
-        <h3 className={atoms({ paddingLeft: "l" })}>{item.name}</h3>
+        <h3
+          className={atoms({
+            color: {
+              lightMode: "black",
+              darkMode: "gray-200",
+            },
+            paddingLeft: "l",
+            paddingRight: "l",
+          })}
+        >
+          {item.name}
+        </h3>
         {item.files.map((file, index) => (
           <NavLink key={index} item={file} />
         ))}
@@ -85,7 +99,10 @@ export function Layout({
     >
       <div
         className={atoms({
-          borderRight: "regular",
+          borderRight: {
+            lightMode: "regular",
+            darkMode: "regularDark",
+          },
           height: "100vh",
           width: "24ch",
         })}
@@ -93,7 +110,18 @@ export function Layout({
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}
-        <h3 className={atoms({ paddingLeft: "l" })}>Community</h3>
+        <h3
+          className={atoms({
+            color: {
+              lightMode: "black",
+              darkMode: "gray-200",
+            },
+            paddingLeft: "l",
+            paddingRight: "l",
+          })}
+        >
+          Community
+        </h3>
         <ListItem href="https://github.com/tchayen/design-system">
           GitHub
         </ListItem>

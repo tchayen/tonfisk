@@ -19,7 +19,10 @@ export function HorizontalLine(): ReactElement {
   return (
     <div
       className={atoms({
-        background: "gray-200",
+        background: {
+          lightMode: "gray-200",
+          darkMode: "gray-600",
+        },
         width: "100%",
         height: "1px",
       })}

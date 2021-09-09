@@ -56,14 +56,23 @@ export function Switch(props: Props): ReactElement {
       >
         <div
           className={`${bar} ${atoms({
-            background: state.isSelected ? "pinkOutline" : "gray-200",
+            background: {
+              lightMode: state.isSelected ? "pinkOutline" : "gray-200",
+              darkMode: state.isSelected ? "pink-900" : "gray-700",
+            },
           })}`}
         />
         <div
           className={`${dot} ${atoms({
             right: state.isSelected ? "none" : "l",
-            boxShadow: isFocusVisible ? "outline" : "tooltipDotShadow",
-            background: state.isSelected ? "pink-500" : "white",
+            boxShadow: {
+              lightMode: isFocusVisible ? "outline" : "tooltipDotShadow",
+              darkMode: isFocusVisible ? "outline" : "none",
+            },
+            background: {
+              lightMode: state.isSelected ? "pink-500" : "white",
+              darkMode: state.isSelected ? "pink-500" : "gray-500",
+            },
           })}`}
         />
       </div>

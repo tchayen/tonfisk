@@ -19,7 +19,10 @@ const basicButton = atoms({
   paddingLeft: "l",
   paddingRight: "l",
   borderRadius: "16px",
-  color: "white",
+  color: {
+    lightMode: "white",
+    darkMode: "gray-900",
+  },
 });
 
 export const button = style([

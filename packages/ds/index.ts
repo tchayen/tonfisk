@@ -8,7 +8,6 @@ export { Switch } from "./src/components/Switch";
 export { HorizontalLine } from "./src/components/HorizontalLine";
 export { Tag } from "./src/components/Tag";
 export { Tooltip } from "./src/components/Tooltip";
-export { MagicScriptTag } from "./src/InlineCssVariables";
 export { Card } from "./src/components/Card";
 export { MenuButton } from "./src/components/Menu";
 export { Pagination } from "./src/components/Pagination";
@@ -28,3 +27,4 @@ export {
   TableSelectAllCell,
   TableCheckboxCell,
 } from "./src/components/Table";
+export { atoms } from "./src/theme.css";

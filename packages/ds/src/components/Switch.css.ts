@@ -7,6 +7,10 @@ export const label = atoms({
   display: "flex",
   alignItems: "center",
   justifyContent: "space-between",
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
 });
 
 export const wrapper = atoms({

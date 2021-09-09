@@ -59,8 +59,14 @@ export function TextInput(props: Props): ReactElement {
         onFocus={handleFocus}
         onBlur={handleBlur}
         className={`${input} ${atoms({
-          border: isFocused ? "primary" : "regular",
-          boxShadow: isFocused ? "outline" : "none",
+          border: {
+            lightMode: isFocused ? "primary" : "regular",
+            darkMode: isFocused ? "primary" : "regularDark",
+          },
+          boxShadow: {
+            lightMode: isFocused ? "outline" : "none",
+            darkMode: isFocused ? "outline" : "none",
+          },
         })}`}
       />
     </div>

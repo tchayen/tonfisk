@@ -52,21 +52,33 @@ export function Checkbox(props: Props): ReactElement {
         alignItems: "center",
         position: "relative",
         fontSize: "14px",
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
       })}
     >
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
         className={`${checkbox} ${atoms({
-          border: state.isSelected || isFocusVisible ? "primary" : "regular",
-          background: state.isSelected ? "pink-500" : "white",
+          border: {
+            lightMode:
+              state.isSelected || isFocusVisible ? "primary" : "regular",
+            darkMode:
+              state.isSelected || isFocusVisible ? "primary" : "regularDark",
+          },
+          background: {
+            lightMode: state.isSelected ? "pink-500" : "white",
+            darkMode: state.isSelected ? "pink-500" : "gray-900",
+          },
           boxShadow: isFocusVisible ? "outline" : "none",
           opacity: props.isDisabled ? 0.5 : 1,
         })}`}
       />
       {state.isSelected && (
         <div className={tick}>
-          <Tick />
+          <Tick color="white" />
         </div>
       )}
       <span className={atoms({ marginLeft: "m" })}>{children}</span>

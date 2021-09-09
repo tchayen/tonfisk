@@ -107,8 +107,14 @@ function MenuItem({
       {...mergeProps(menuItemProps, focusProps)}
       ref={ref}
       className={`${menuItem} ${atoms({
-        background: isFocused ? "gray-200" : "transparent",
-        color: isFocused ? "black" : "gray-600",
+        background: {
+          lightMode: isFocused ? "gray-200" : "transparent",
+          darkMode: isFocused ? "gray-600" : "transparent",
+        },
+        color: {
+          lightMode: isFocused ? "black" : "gray-600",
+          darkMode: isFocused ? "gray-200" : "gray-400",
+        },
       })}`}
     >
       {item.rendered}

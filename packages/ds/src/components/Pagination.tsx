@@ -27,18 +27,30 @@ function PageButton(props) {
   let background;
 
   if (props.isSelected) {
-    color = "white";
+    color = {
+      lightMode: "white",
+      darkMode: "gray-900",
+    };
     if (isPressed) {
       background = "pink-600";
     } else {
       background = "pink-500";
     }
   } else {
-    color = "black";
+    color = {
+      lightMode: "black",
+      darkMode: "gray-500",
+    };
     if (isPressed) {
-      background = "gray-200";
+      background = {
+        lightMode: "gray-200",
+        darkMode: "gray-700",
+      };
     } else {
-      background = "white";
+      background = {
+        lightMode: "white",
+        darkMode: "gray-900",
+      };
     }
   }
 

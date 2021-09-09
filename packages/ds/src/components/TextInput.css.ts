@@ -9,7 +9,10 @@ export const div = atoms({
 
 export const label = atoms({
   fontSize: "12px",
-  color: "black",
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
   fontWeight: "bold",
   marginBottom: "s",
 });
@@ -20,20 +23,19 @@ export const inputLike = atoms({
   borderRadius: "8px",
   fontFamily: "body",
   outline: "none",
-  background: "white",
-  color: "black",
+  background: {
+    lightMode: "white",
+    darkMode: "gray-900",
+  },
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
 });
 
 export const input = style([
   inputLike,
   atoms({
-    height: "32px",
-    fontSize: "14px",
-    borderRadius: "8px",
-    fontFamily: "body",
-    outline: "none",
-    background: "white",
-    color: "black",
     paddingLeft: "m",
     paddingRight: "m",
   }),

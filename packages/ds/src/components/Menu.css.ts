@@ -11,8 +11,14 @@ export const menuPopup = style([
     position: "absolute",
     width: "100%",
     boxShadow: "shadow",
-    background: "white",
-    border: "regular",
+    background: {
+      lightMode: "white",
+      darkMode: "gray-900",
+    },
+    border: {
+      lightMode: "regular",
+      darkMode: "regularDark",
+    },
     borderRadius: "8px",
     marginTop: "m",
   }),
@@ -26,9 +32,15 @@ export const menuPopup = style([
 export const menuItem = style([option]);
 
 export const menuButton = atoms({
-  background: "white",
+  background: {
+    lightMode: "white",
+    darkMode: "gray-900",
+  },
   borderRadius: "16px",
-  border: "regular",
+  border: {
+    lightMode: "regular",
+    darkMode: "regularDark",
+  },
   outline: "none",
   height: "32px",
   fontFamily: "body",
@@ -37,5 +49,8 @@ export const menuButton = atoms({
   paddingLeft: "l",
   paddingRight: "l",
   lineHeight: 1,
-  color: "black",
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
 });

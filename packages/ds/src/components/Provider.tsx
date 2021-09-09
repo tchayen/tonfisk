@@ -2,6 +2,7 @@ import { OverlayProvider } from "@react-aria/overlays";
 import { SSRProvider } from "@react-aria/ssr";
 import React, { ReactElement, useEffect } from "react";
 import useDarkModeLib from "use-dark-mode";
+import { atoms } from "../theme.css";
 
 const toKebabCase = (s: string): string =>
   s.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
@@ -44,13 +45,56 @@ type Props = {
  *   // Your app here.
  * </Provider>
  * ```
+ *
+ * ```tsx
+ * import * from as THREE from "three";
+ * import React, { useState, useRef } from "react";
+ * import { Canvas, useFrame } from "@react-three/fiber";
+ *
+ * const mesh = new THREE.Mesh(
+ *   new THREE.BoxGeometry(),
+ *   new THREE.MeshBasicMaterial,
+ * );
+ * const group = new THREE.Group();
+ * group.add(mesh);
+ *
+ * function Box(props: any) {
+ *   const ref = useRef<THREE.Mesh>(null);
+ *   const [hovered, setHovered] = useState(false);
+ *   const [clicked, setClicked] = useState(false);
+ *
+ *   return (
+ *     <mesh
+ *       ref={ref}
+ *       onPointerOver={() => setHovered(true)}
+ *       onPointerOut={() => setHovered(false)}
+ *       onClick={() => setClicked(!clicked)}
+ *       {...props}
+ *     >
+ *       <boxBufferGeometry />
+ *     </mesh>
+ *   );
+ * }
+ * ```
  */
 export function Provider({ children }: Props): ReactElement {
   useDarkMode();
 
   return (
     <SSRProvider>
-      <OverlayProvider>{children}</OverlayProvider>
+      <OverlayProvider>
+        <div
+          className={atoms({
+            background: {
+              lightMode: "white",
+              darkMode: "gray-900",
+            },
+            minHeight: "100vh",
+          })}
+        >
+          {children}
+        </div>
+      </OverlayProvider>
     </SSRProvider>
   );
 }

@@ -90,7 +90,10 @@ export function Select(props: Props): ReactElement {
         {...focusProps}
         ref={ref}
         className={`${button} ${atoms({
-          border: isFocusVisible ? "primary" : "regular",
+          border: {
+            lightMode: isFocusVisible ? "primary" : "regular",
+            darkMode: isFocusVisible ? "primary" : "regularDark",
+          },
           boxShadow: isFocusVisible ? "outline" : "none",
           color: state.selectedItem ? "black" : "gray-600",
           opacity: props.isDisabled ? 0.5 : 1,

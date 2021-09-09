@@ -1,4 +1,5 @@
 import rehypePrism from "@mapbox/rehype-prism";
+import { atoms } from "ds";
 import fs from "fs";
 import matter from "gray-matter";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
@@ -23,8 +24,26 @@ export default function Doc({
 }: Props): ReactElement {
   return (
     <Layout navigation={navigation}>
-      <h1>{frontMatter.title}</h1>
-      <p>{frontMatter.description}</p>
+      <h1
+        className={atoms({
+          color: {
+            lightMode: "black",
+            darkMode: "gray-200",
+          },
+        })}
+      >
+        {frontMatter.title}
+      </h1>
+      <p
+        className={atoms({
+          color: {
+            lightMode: "gray-600",
+            darkMode: "gray-400",
+          },
+        })}
+      >
+        {frontMatter.description}
+      </p>
       <MDXRemote {...source} components={components} />
     </Layout>
   );
