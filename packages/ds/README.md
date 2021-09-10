@@ -1,6 +1,8 @@
 ## Must have
 
-- [ ] Style SVG icons in CSS too.
+- [ ] Improve styling of Dialog in dark mode.
+- [ ] Update spinner to feature background for the circle in the outline color.
+- [ ] Tag component is unfinished (hide or complete?).
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 
 ## Next version
@@ -17,8 +19,10 @@
 
 ## Nice to have
 
+- [ ] Find out how to access theme in regular JS (not in `atoms`).
 - [ ] Missing TS typings (especially `Table`, `Menu`).
 - [ ] Expose API for switching color modes.
+- [ ] Style browser scrollbars https://github.com/tchayen/md-editor/commit/af7cb357bd6cd6064004af4200ce46ff4a45e7c7.
 - [ ] Interactive props in examples.
 - [ ] Bigger examples to find out missing components.
 - [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
@@ -56,6 +60,7 @@
 - [x] Add proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
 - [x] Add instructions about setting up `vanilla-extract` plugin for Next.js.
 - [x] Find out how to support color mode in `vanilla-extract`.
+- [x] Style SVG icons in CSS too.
 
 ## CSS in JS
 

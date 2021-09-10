@@ -18,7 +18,17 @@ export default function Modal(): ReactElement {
             isDismissable
           >
             <HorizontalLine />
-            <div className={atoms({ padding: "l" })}>Test</div>
+            <div
+              className={atoms({
+                color: {
+                  lightMode: "black",
+                  darkMode: "gray-200",
+                },
+                padding: "l",
+              })}
+            >
+              Test
+            </div>
           </ModalDialog>
         </OverlayContainer>
       )}

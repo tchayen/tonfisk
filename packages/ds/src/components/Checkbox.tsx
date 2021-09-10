@@ -53,8 +53,8 @@ export function Checkbox(props: Props): ReactElement {
         position: "relative",
         fontSize: "14px",
         color: {
-          lightMode: "black",
-          darkMode: "gray-200",
+          lightMode: "gray-600",
+          darkMode: "gray-400",
         },
       })}
     >

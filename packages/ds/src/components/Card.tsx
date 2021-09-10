@@ -24,7 +24,7 @@ type Props = {
  *
  * ## Example
  *
- * <Card>TODO: something is broken here</Card>
+ * <Card>Some text</Card>
  */
 export function Card(props: Props): ReactElement {
   return (

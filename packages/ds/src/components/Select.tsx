@@ -3,6 +3,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
 import React, { ReactElement, useRef } from "react";
+import colors from "../colors";
 
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
@@ -105,7 +106,7 @@ export function Select(props: Props): ReactElement {
             : props.placeholder || "Select an option"}
         </span>
         <span aria-hidden="true" className={span}>
-          <Chevron />
+          <Chevron color={colors.coolGray[700]} />
         </span>
       </button>
       {state.isOpen && (

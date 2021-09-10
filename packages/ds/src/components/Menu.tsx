@@ -14,6 +14,7 @@ import React, { ReactElement, useRef, useState } from "react";
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
 import { menuButton, menuItem, menuPopup } from "./Menu.css";
+import colors from "../colors";
 
 function MenuPopup(props: {
   onClose: () => void;
@@ -164,7 +165,7 @@ export function MenuButton(props: Props): ReactElement {
       >
         {props.label}
         <span aria-hidden="true" className={atoms({ paddingLeft: "m" })}>
-          <Chevron />
+          <Chevron color={colors.coolGray[700]} />
         </span>
       </button>
       {state.isOpen && (

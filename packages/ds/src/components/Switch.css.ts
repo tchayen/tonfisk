@@ -8,8 +8,8 @@ export const label = atoms({
   alignItems: "center",
   justifyContent: "space-between",
   color: {
-    lightMode: "black",
-    darkMode: "gray-200",
+    lightMode: "gray-600",
+    darkMode: "gray-400",
   },
 });
 

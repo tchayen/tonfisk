@@ -214,7 +214,11 @@ const CheckboxExample = (): ReactElement => {
 };
 
 export const components = {
-  a: Link,
+  a: ({ children, href }) => (
+    <Link href={href}>
+      <a href={href}>{children}</a>
+    </Link>
+  ),
   h1: ({ children }) => (
     <h1
       className={atoms({

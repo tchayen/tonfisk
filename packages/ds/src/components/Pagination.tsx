@@ -2,6 +2,7 @@ import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import React, { Fragment, ReactElement, useRef, useState } from "react";
+import colors from "../colors";
 
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
@@ -127,13 +128,13 @@ function DirectionButton(props: {
         <Fragment>
           Next
           <div className={rotateLeft}>
-            <Chevron />
+            <Chevron color={colors.coolGray[700]} />
           </div>
         </Fragment>
       ) : (
         <Fragment>
           <div className={rotateRight}>
-            <Chevron />
+            <Chevron color={colors.coolGray[700]} />
           </div>
           Previous
         </Fragment>
