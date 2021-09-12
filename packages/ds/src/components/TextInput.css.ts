@@ -1,20 +1,10 @@
-import { globalStyle, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
 
 export const div = atoms({
   display: "flex",
   flexDirection: "column",
-});
-
-export const label = atoms({
-  fontSize: "12px",
-  color: {
-    lightMode: "black",
-    darkMode: "gray-200",
-  },
-  fontWeight: "bold",
-  marginBottom: "s",
 });
 
 export const inputLike = atoms({
@@ -40,8 +30,3 @@ export const input = style([
     paddingRight: "m",
   }),
 ]);
-
-// TODO: it doesn't work.
-globalStyle("::placeholder", {
-  color: "pink-600",
-});

@@ -2,8 +2,8 @@ import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import React, { Fragment, ReactElement, useRef, useState } from "react";
-import colors from "../colors";
 
+import colors from "../colors";
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
 import {
@@ -13,16 +13,19 @@ import {
   rotateRight,
 } from "./Pagination.css";
 
-// TODO:
-// - Change chevron color to gray200.
-// - Add popup that appears on click of [...] button and allows user to pick
-//   page to visit
-//   https://www.figma.com/file/02qXWWXRyUT25SGOs2dhk3/Untitled?node-id=89%3A238
-
 function PageButton(props) {
   const ref = useRef<HTMLButtonElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
+
+  const onMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   let color;
   let background;
@@ -33,6 +36,8 @@ function PageButton(props) {
       darkMode: "gray-900",
     };
     if (isPressed) {
+      background = "pink-700";
+    } else if (isHovered) {
       background = "pink-600";
     } else {
       background = "pink-500";
@@ -44,8 +49,13 @@ function PageButton(props) {
     };
     if (isPressed) {
       background = {
-        lightMode: "gray-200",
+        lightMode: "gray-300",
         darkMode: "gray-700",
+      };
+    } else if (isHovered) {
+      background = {
+        lightMode: "gray-200",
+        darkMode: "gray-800",
       };
     } else {
       background = {
@@ -55,16 +65,6 @@ function PageButton(props) {
     }
   }
 
-  // TODO
-  // "&:hover": {
-  //   background: props.isSelected ? "var(--hovered-button)" : "var(--border)",
-  // },
-  // "&:active": {
-  //   background: props.isSelected
-  //     ? "var(--pressed-button)"
-  //     : "var(--hover-gray)",
-  // },
-
   return (
     <button
       ref={ref}
@@ -73,6 +73,8 @@ function PageButton(props) {
         background,
         boxShadow: isFocusVisible ? "outline" : "none",
       })}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       {...mergeProps(buttonProps, focusProps)}
     >
       {props.children}
@@ -106,13 +108,17 @@ function DirectionButton(props: {
   isDisabled?: boolean;
 }) {
   const ref = useRef<HTMLButtonElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  // TODO
-  // "&:hover": {
-  //   background: props.isDisabled ? "none" : "var(--border)",
-  // },
+  const onMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
     <button
@@ -121,20 +127,34 @@ function DirectionButton(props: {
         opacity: props.isDisabled ? 0.5 : 1,
         cursor: props.isDisabled ? "default" : "pointer",
         boxShadow: isFocusVisible ? "outline" : "none",
+        background: {
+          lightMode: isPressed
+            ? "gray-400"
+            : isHovered
+            ? "gray-300"
+            : "gray-200",
+          darkMode: isPressed
+            ? "gray-800"
+            : isHovered
+            ? "gray-700"
+            : "gray-600",
+        },
       })}`}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
       {...mergeProps(buttonProps, focusProps)}
     >
       {props.variant === "next" ? (
         <Fragment>
           Next
           <div className={rotateLeft}>
-            <Chevron color={colors.coolGray[700]} />
+            <Chevron />
           </div>
         </Fragment>
       ) : (
         <Fragment>
           <div className={rotateRight}>
-            <Chevron color={colors.coolGray[700]} />
+            <Chevron />
           </div>
           Previous
         </Fragment>

@@ -4,7 +4,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { atoms } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import React, { ReactElement, ReactNode } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 
 import { getNavigation } from "../utils/mdx";
 
@@ -18,19 +18,34 @@ const ListItem = ({
   active?: boolean;
 }): ReactElement => {
   const { focusProps, isFocusVisible } = useFocusRing();
+  const [isHovered, setIsHovered] = useState(false);
+
+  const onMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
     <Link href={href}>
       <a
         href={href}
         {...focusProps}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
         className={atoms({
           fontSize: "14px",
           color: {
-            lightMode: active ? "black" : "gray-600",
+            lightMode: active ? "white" : "gray-600",
             darkMode: active ? "gray-200" : "gray-400",
           },
-          background: active ? "pinkOutline" : "transparent",
+          background: active
+            ? "pink-500"
+            : isHovered
+            ? "pinkOutline"
+            : "transparent",
           height: "32px",
           paddingLeft: "l",
           paddingRight: "l",
@@ -69,8 +84,7 @@ const NavLink = ({
               lightMode: "black",
               darkMode: "gray-200",
             },
-            paddingLeft: "l",
-            paddingRight: "l",
+            padding: "l",
           })}
         >
           {item.name}
@@ -116,11 +130,10 @@ export function Layout({
               lightMode: "black",
               darkMode: "gray-200",
             },
-            paddingLeft: "l",
-            paddingRight: "l",
+            padding: "l",
           })}
         >
-          Community
+          Links
         </h3>
         <ListItem href="https://github.com/tchayen/design-system">
           GitHub

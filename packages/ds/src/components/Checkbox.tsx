@@ -78,7 +78,7 @@ export function Checkbox(props: Props): ReactElement {
       />
       {state.isSelected && (
         <div className={tick}>
-          <Tick color="white" />
+          <Tick />
         </div>
       )}
       <span className={atoms({ marginLeft: "m" })}>{children}</span>

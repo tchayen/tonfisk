@@ -87,14 +87,21 @@ export const tick = style({
   pointerEvents: "none",
 });
 
-export const mixed = style({
-  height: 2,
-  width: 10,
-  position: "absolute",
-  top: 4,
-  left: 1,
-  background: "white", // TODO gray-900 in dark mode once <Tick /> also supports it.
-});
+export const mixed = style([
+  style({
+    height: 2,
+    width: 10,
+    position: "absolute",
+    top: 4,
+    left: 1,
+  }),
+  atoms({
+    background: {
+      lightMode: "white",
+      darkMode: "gray-900",
+    },
+  }),
+]);
 
 export const tableCheckboxCell = style([
   atoms({

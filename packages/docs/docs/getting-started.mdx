@@ -11,6 +11,16 @@ yarn add @tchayen/design-system
 
 ## Setup
 
+`<Provider />` is required for internal theme to be applied to components.
+
+```jsx
+import { Provider } from "@tchayen/design-system";
+
+export default function App() {
+  return <Provider>{/* Your app */}</Provider>;
+}
+```
+
 ### Next.js
 
 Create (if it does not exist) a `.babelrc` file and include the plugin:
@@ -31,16 +41,6 @@ const withVanillaExtract = createVanillaExtractPlugin();
 const nextConfig = {};
 
 module.exports = withVanillaExtract(nextConfig);
-```
-
-`<Provider />` is required for internal theme to be applied to components.
-
-```jsx
-import { Provider } from "@tchayen/design-system";
-
-export default function App() {
-  return <Provider>{/* Your app */}</Provider>;
-}
 ```
 
 ## Underneath

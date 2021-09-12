@@ -1,4 +1,5 @@
 import "../styles/globals.css";
+import "../components/theme.css";
 
 import { Provider } from "ds";
 import type { AppProps } from "next/app";

@@ -2,7 +2,8 @@ import { useTextField } from "@react-aria/textfield";
 import React, { ReactElement, useRef, useState } from "react";
 
 import { atoms } from "../theme.css";
-import { div, input, label as labelClass } from "./TextInput.css";
+import { label as labelClass } from "./Label.css";
+import { div, input } from "./TextInput.css";
 
 type Props = {
   /**
@@ -17,6 +18,10 @@ type Props = {
    * Whether user can interact with the input.
    */
   isDisabled?: boolean;
+  /**
+   * Whether input should focus on mount.
+   */
+  autoFocus?: boolean;
 };
 
 /**
@@ -58,6 +63,7 @@ export function TextInput(props: Props): ReactElement {
         ref={ref}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        autoFocus={props.autoFocus}
         className={`${input} ${atoms({
           border: {
             lightMode: isFocused ? "primary" : "regular",

@@ -5,13 +5,16 @@
 import {
   atoms,
   Button,
-  Card,
   Cell,
   Checkbox,
   Column,
+  HorizontalLine,
   Item,
+  Label,
   MenuButton,
   Pagination,
+  Pill,
+  Popover,
   Provider,
   Row,
   Select,
@@ -33,8 +36,6 @@ import {
 } from "ds";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
-
-import Modal from "./Modal";
 
 const SelectExample = (): ReactElement => {
   const items = [
@@ -226,6 +227,8 @@ export const components = {
           lightMode: "black",
           darkMode: "gray-200",
         },
+        marginTop: "l",
+        marginBottom: "l",
       })}
     >
       {children}
@@ -238,6 +241,8 @@ export const components = {
           lightMode: "black",
           darkMode: "gray-200",
         },
+        marginTop: "l",
+        marginBottom: "l",
       })}
     >
       {children}
@@ -250,6 +255,8 @@ export const components = {
           lightMode: "black",
           darkMode: "gray-200",
         },
+        marginTop: "l",
+        marginBottom: "l",
       })}
     >
       {children}
@@ -262,6 +269,8 @@ export const components = {
           lightMode: "black",
           darkMode: "gray-200",
         },
+        marginTop: "l",
+        marginBottom: "l",
       })}
     >
       {children}
@@ -311,14 +320,16 @@ export const components = {
   // ),
   Button,
   Checkbox,
-  Card,
   Item,
+  Label,
   MenuButton,
   Pagination,
   Provider,
   Select,
+  Popover,
   Spinner,
   Switch,
+  HorizontalLine,
   Table,
   TableCell,
   TableColumnHeader,
@@ -330,6 +341,7 @@ export const components = {
   Tooltip,
   Cell,
   Column,
+  Pill,
   Row,
   TableBody,
   TableHeader,
@@ -338,6 +350,5 @@ export const components = {
   TableExample,
   SelectExample,
   MenuExample,
-  ModalExample: Modal,
   CheckboxExample,
 };

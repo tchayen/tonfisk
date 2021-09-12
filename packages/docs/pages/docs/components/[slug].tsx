@@ -53,6 +53,8 @@ export default function Doc({
                 lightMode: "black",
                 darkMode: "gray-200",
               },
+              marginTop: "l",
+              marginBottom: "l",
             })}
           >
             Props

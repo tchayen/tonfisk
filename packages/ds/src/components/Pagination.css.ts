@@ -18,10 +18,6 @@ export const directionButton = style([
     paddingLeft: "l",
     paddingRight: "l",
     borderRadius: "16px",
-    background: {
-      lightMode: "gray-200",
-      darkMode: "gray-600",
-    },
     color: {
       lightMode: "black",
       darkMode: "gray-200",

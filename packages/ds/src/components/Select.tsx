@@ -3,18 +3,16 @@ import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
 import React, { ReactElement, useRef } from "react";
-import colors from "../colors";
 
+import colors from "../colors";
+import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
-import { Popover } from "../Popover";
 import { atoms } from "../theme.css";
+import { Label } from "./Label";
 import { button, label, select, span } from "./Select.css";
 
 export { Item } from "@react-stately/collections";
-
-// TODO:
-// - Prop for pre-selecting option.
 
 type Props = {
   /**
@@ -26,13 +24,17 @@ type Props = {
    */
   label: string;
   /**
-   *
+   * Name of the select.
    */
   name: string;
   /**
    * Default is "Select an option".
    */
   placeholder: string;
+  /**
+   * TODO
+   */
+  children: ReactElement;
 };
 
 /**
@@ -80,6 +82,7 @@ export function Select(props: Props): ReactElement {
       <label {...labelProps} className={label}>
         {props.label}
       </label>
+      <Label {...labelProps}>{props.label}</Label>
       <HiddenSelect
         state={state}
         triggerRef={ref}
@@ -106,13 +109,13 @@ export function Select(props: Props): ReactElement {
             : props.placeholder || "Select an option"}
         </span>
         <span aria-hidden="true" className={span}>
-          <Chevron color={colors.coolGray[700]} />
+          <Chevron />
         </span>
       </button>
       {state.isOpen && (
-        <Popover isOpen={state.isOpen} onClose={state.close}>
+        <FormPopover isOpen={state.isOpen} onClose={state.close}>
           <ListBox {...menuProps} state={state} />
-        </Popover>
+        </FormPopover>
       )}
     </div>
   );

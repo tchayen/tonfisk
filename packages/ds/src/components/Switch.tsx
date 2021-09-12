@@ -15,7 +15,7 @@ type Props = {
   /**
    * Label of the switch.
    */
-  children?: ReactElement;
+  children?: string;
   /**
    * Whether user can interact with the switch.
    */

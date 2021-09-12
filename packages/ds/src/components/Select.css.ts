@@ -1,8 +1,8 @@
 import { style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
+import { label as labelBase } from "./Label.css";
 import { inputLike } from "./TextInput.css";
-import { label as labelBase } from "./TextInput.css";
 
 export const select = atoms({
   position: "relative",

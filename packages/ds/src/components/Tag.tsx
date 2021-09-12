@@ -10,9 +10,17 @@ type Props = {
 };
 
 /**
- * TODO
+ * ## Usage
  *
- * <Tag>Hello</Tag>
+ * ```jsx
+ * import { Tag } from "@tchayen/design-system";
+ *
+ * <Tag>Tag</Tag>
+ * ```
+ *
+ * ## Example
+ *
+ * <Tag>Tag</Tag>
  */
 export function Tag(props: Props): ReactElement {
   return <div className={tag}>{props.children}</div>;

@@ -1,60 +1,41 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
-
 import colors from "./colors";
+
 import { vars } from "./vars.css";
+
+globalStyle("::placeholder", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      color: "pink",
+    },
+  },
+  // color: colors.gray[400],
+  opacity: 1,
+});
 
 globalStyle("h1", {
   fontSize: "28px",
-  fontWeight: 400,
+  fontWeight: 600,
+  margin: 0,
 });
 
 globalStyle("h2", {
   fontSize: "24px",
-  fontWeight: 400,
+  fontWeight: 600,
+  margin: 0,
 });
 
 globalStyle("h3", {
   fontSize: "20px",
-  fontWeight: 400,
+  fontWeight: 600,
+  margin: 0,
 });
 
-// , .token.punctuation, .token.class-name, .token.method.function.property-access, .token.attr-value, .token.maybe-class-name, .token.arrow.operator
-globalStyle(
-  `
-  .token.keyword,
-  .token.boolean,
-  .token.tag
-`,
-  {
-    color: colors.pink[500],
-  }
-);
-
-globalStyle(
-  `
-  .token.punctuation,
-  .token.tag .token.punctuation,
-  .token.attr-name,
-  .token.operator
-`,
-  {
-    color: colors.gray[500],
-  }
-);
-
-globalStyle(
-  `
-  .token.function,
-  .token.constant
-`,
-  {
-    color: colors.gray[400],
-  }
-);
-
-globalStyle(".language-javascript", {
-  color: colors.gray[200],
+globalStyle("h4", {
+  fontSize: "16px",
+  fontWeight: 600,
+  margin: 0,
 });
 
 const responsiveStyles = createAtomicStyles({
@@ -112,11 +93,14 @@ const responsiveStyles = createAtomicStyles({
     appearance: ["none"],
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
+    fontFeatureSettings: vars.fontFeatureSettings,
     lineHeight: [1],
-    textAlign: ["center", "left"],
+    textAlign: ["center", "left", "right"],
     boxShadow: vars.boxShadow,
     borderCollapse: ["separate"],
     borderSpacing: [0],
+    fill: vars.color,
+    stroke: vars.color,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

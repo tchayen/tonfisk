@@ -4,7 +4,6 @@ import { mergeProps } from "@react-aria/utils";
 import React, { ReactElement, useRef } from "react";
 import { useState } from "react";
 
-import { atoms } from "../theme.css";
 import { button } from "./Button.css";
 
 type Props = {
@@ -53,12 +52,12 @@ export function Button(props: Props): ReactElement {
     setIsHovered(false);
   };
 
-  const className = `${button} ${atoms({
-    cursor: props.isDisabled ? "default" : "pointer",
-    opacity: props.isDisabled ? 0.5 : 1,
-    background: isPressed ? "pink-600" : isHovered ? "pink-400" : "pink-500",
-    boxShadow: isFocusVisible ? "outline" : "none",
-  })}`;
+  const className = button({
+    cursor: props.isDisabled ? "disabled" : "active",
+    boxShadow: isFocusVisible ? "focusVisible" : "default",
+    opacity: props.isDisabled ? "disabled" : "active",
+    background: isPressed ? "active" : isHovered ? "hover" : "default",
+  });
 
   return (
     <button

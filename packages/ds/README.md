@@ -1,11 +1,19 @@
 ## Must have
 
-- [ ] Improve styling of Dialog in dark mode.
+- [x] Style SVG icons in CSS too.
 - [ ] Update spinner to feature background for the circle in the outline color.
-- [ ] Tag component is unfinished (hide or complete?).
-- [ ] Create wrapper next+babel plugins with `vanilla-extract`.
+- [ ] Case of custom input like in example: how to provide label to the input.
+- [ ] When button is focused but becomes disabled (pagination) it remains with outline and has it until activated and visited again.
+- [ ] User text selection color and background.
+- [ ] Some generic landing page?
 
 ## Next version
+
+- [ ] Ability to remove choice from select.
+- [ ] Create wrapper next+babel plugins with `vanilla-extract`.
+- [ ] Borderless text input.
+- [ ] Plan code: something like `[30] minutes` input from Figma.
+- [ ] Button variants (link).
 
 - [ ] `<Radio />`.
 - [ ] `<RadioGroup />`.
@@ -19,6 +27,10 @@
 
 ## Nice to have
 
+- [ ] Pagination: popover that appears on click on [...] that allows to select arbitrary page.
+- [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
+- [ ] Style `<code>` tags in MDX and override `pre code` through globals to avoid padding and background there.
+- [ ] Placeholder color.
 - [ ] Find out how to access theme in regular JS (not in `atoms`).
 - [ ] Missing TS typings (especially `Table`, `Menu`).
 - [ ] Expose API for switching color modes.
@@ -29,10 +41,8 @@
 
 ## Done
 
-- [x] Component: `<Card />`.
 - [x] Migrate to pure `emotion`, clean up after `stitches`, `theme-ui` and `styled-components`.
 - [x] Improve colors for dark mode.
-- [x] User text selection color and background.
 - [x] `<Spinner />`.
 - [x] `<Tooltip />`.
 - [x] `<Tag />`.
@@ -60,7 +70,14 @@
 - [x] Add proper examples going through actually reacting to change in `<Select />`, `Checkbox />`, picking a row in `<Table />` etc.
 - [x] Add instructions about setting up `vanilla-extract` plugin for Next.js.
 - [x] Find out how to support color mode in `vanilla-extract`.
-- [x] Style SVG icons in CSS too.
+- [x] Improve styling of Dialog in dark mode.
+- [x] Font config for numbers.
+- [x] Clickable rounded pill component.
+- [x] Active state for pagination buttons.
+- [x] Add hovers in docs navigation.
+- [x] Style comments to gray color in code blocks.
+- [x] Tag component is unfinished (hide or complete?).
+- [x] BorderlessInput probably shouldn't be in the DS.
 
 ## CSS in JS
 

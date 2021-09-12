@@ -13,6 +13,8 @@ import { atoms } from "../theme.css";
  * <HorizontalLine />
  * ```
  *
+ * ## Example
+ *
  * <HorizontalLine />
  */
 export function HorizontalLine(): ReactElement {

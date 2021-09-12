@@ -1,5 +1,7 @@
 import React, { ReactElement } from "react";
 
+import { atoms } from "../theme.css";
+
 export function Close(): ReactElement {
   return (
     <svg
@@ -11,7 +13,12 @@ export function Close(): ReactElement {
     >
       <path
         d="M3.00012 3.50006L13.0001 13.5001M13.0001 3.50006L3 13.5001"
-        stroke="black"
+        className={atoms({
+          stroke: {
+            lightMode: "black",
+            darkMode: "gray-200",
+          },
+        })}
         strokeWidth="2"
         strokeLinecap="round"
       />

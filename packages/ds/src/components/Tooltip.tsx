@@ -38,13 +38,13 @@ type Props = {
  * import { Tooltip } from "@tchayen/design-system";
  *
  * <Tooltip tooltip="You don't have to press if you don't want to.">
- *   <Button onPress={() => console.log("Thanks anyway!")}>Press me</Button>
+ *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
  * </Tooltip>
  * ```
  *
  * ## Example
- * <Tooltip tooltip="You don't have to press if you don't want to">
- *   <Button onPress={() => console.log("Thanks anyway!")}>Press me</Button>
+ * <Tooltip tooltip="You don't have to press if you don't want to.">
+ *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
  * </Tooltip>
  */
 export function Tooltip(props: Props): ReactElement {

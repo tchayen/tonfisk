@@ -8,10 +8,12 @@ export { Switch } from "./src/components/Switch";
 export { HorizontalLine } from "./src/components/HorizontalLine";
 export { Tag } from "./src/components/Tag";
 export { Tooltip } from "./src/components/Tooltip";
-export { Card } from "./src/components/Card";
 export { MenuButton } from "./src/components/Menu";
 export { Pagination } from "./src/components/Pagination";
 export { Spinner } from "./src/components/Spinner";
+export { Label } from "./src/components/Label";
+export { Pill } from "./src/components/Pill";
+export { Popover } from "./src/components/Popover";
 export {
   TableRowGroup,
   TableHeaderRow,

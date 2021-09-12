@@ -1,5 +1,5 @@
 import { useButton } from "@react-aria/button";
-import { FocusScope } from "@react-aria/focus";
+import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useFocus } from "@react-aria/interactions";
 import { useMenu, useMenuItem, useMenuTrigger } from "@react-aria/menu";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
@@ -8,13 +8,13 @@ import { useMenuTriggerState } from "@react-stately/menu";
 import { useTreeState } from "@react-stately/tree";
 import { TreeState } from "@react-stately/tree";
 import { MenuTriggerProps } from "@react-types/menu";
-import { ReactNode } from "react";
+import { ForwardedRef, forwardRef, ReactNode } from "react";
 import React, { ReactElement, useRef, useState } from "react";
 
+import colors from "../colors";
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
 import { menuButton, menuItem, menuPopup } from "./Menu.css";
-import colors from "../colors";
 
 function MenuPopup(props: {
   onClose: () => void;
@@ -134,8 +134,70 @@ type Props = {
   isDisabled?: boolean;
 };
 
+type MenuButton_Props = {
+  isDisabled?: boolean;
+  menuTriggerProps?: any;
+  children: string;
+  onPress?: () => void;
+};
+
+const MenuButton_ = (
+  props: MenuButton_Props,
+  ref: ForwardedRef<HTMLButtonElement>
+) => {
+  const { focusProps, isFocusVisible } = useFocusRing();
+
+  const { buttonProps } = useButton(
+    {
+      ...(props.menuTriggerProps || {}),
+      isDisabled: props.isDisabled,
+      onPress: props.onPress,
+    },
+    ref
+  );
+
+  return (
+    <button
+      {...mergeProps(buttonProps, focusProps)}
+      ref={ref}
+      className={`${menuButton} ${atoms({
+        opacity: props.isDisabled ? 0.5 : 1,
+        cursor: props.isDisabled ? "default" : "pointer",
+        border: {
+          lightMode: isFocusVisible ? "primary" : "regular",
+          darkMode: isFocusVisible ? "primary" : "regularDark",
+        },
+        boxShadow: isFocusVisible ? "outline" : "none",
+      })}`}
+    >
+      {props.children}
+      <span aria-hidden="true" className={atoms({ paddingLeft: "m" })}>
+        <Chevron />
+      </span>
+    </button>
+  );
+};
+
+export const MenuButtonComponent = forwardRef(MenuButton_);
+
 /**
- * TODO
+ * ## Usage
+ *
+ * ```jsx
+ * import { MenuButton, Item } from "@tchayen/design-system";
+ * <MenuButton
+ *   label="Actions"
+ *   onAction={() => {
+ *     console.log("Hi!");
+ *   }}
+ * >
+ *   <Item key="copy">Copy</Item>
+ *   <Item key="cut">Cut</Item>
+ *   <Item key="paste">Paste</Item>
+ * </MenuButton>
+ * ```
+ *
+ * ## Example
  *
  * <MenuExample />
  */
@@ -147,27 +209,15 @@ export function MenuButton(props: Props): ReactElement {
   const ref = useRef<HTMLButtonElement>(null);
   const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref);
 
-  // Get props for the button based on the trigger props from useMenuTrigger
-  const { buttonProps } = useButton(
-    { ...menuTriggerProps, isDisabled: props.isDisabled },
-    ref
-  );
-
   return (
     <div className={atoms({ position: "relative", display: "inline-block" })}>
-      <button
-        {...buttonProps}
+      <MenuButtonComponent
         ref={ref}
-        className={`${menuButton} ${atoms({
-          opacity: props.isDisabled ? 0.5 : 1,
-          cursor: props.isDisabled ? "default" : "pointer",
-        })}`}
+        menuTriggerProps={menuTriggerProps}
+        isDisabled={props.isDisabled}
       >
         {props.label}
-        <span aria-hidden="true" className={atoms({ paddingLeft: "m" })}>
-          <Chevron color={colors.coolGray[700]} />
-        </span>
-      </button>
+      </MenuButtonComponent>
       {state.isOpen && (
         <MenuPopup
           {...props}

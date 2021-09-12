@@ -24,11 +24,12 @@ type Props = {
 };
 
 /**
- * Popover component.
+ * Popover component for situations when content outside of the popover should
+ * be visible to screen readers.
  *
  * <Popover>Text</Popover>
  */
-export function Popover(props: Props): ReactElement {
+export function FormPopover(props: Props): ReactElement {
   const ref = useRef<HTMLDivElement>(null);
   const { popoverRef = ref, isOpen, onClose, children } = props;
 

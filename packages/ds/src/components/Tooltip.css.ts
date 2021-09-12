@@ -6,8 +6,8 @@ export const tooltipBox = style([
   atoms({
     position: "absolute",
     left: 0,
-    fontSize: "12px",
-    padding: "s",
+    fontSize: "14px",
+    padding: "m",
     borderRadius: "4px",
     border: {
       lightMode: "regular",
@@ -20,7 +20,7 @@ export const tooltipBox = style([
     },
   }),
   style({
-    top: "calc(100% + 8px)",
+    top: "calc(100% + 16px)",
   }),
 ]);
 

@@ -197,11 +197,7 @@ function Checkbox({
       />
       {isChecked ? (
         <div className={tick}>
-          {isChecked === "mixed" ? (
-            <div className={mixed} />
-          ) : (
-            <Tick color="white" />
-          )}
+          {isChecked === "mixed" ? <div className={mixed} /> : <Tick />}
         </div>
       ) : null}
     </Fragment>
@@ -305,6 +301,29 @@ type Props = {
 
 /**
  * Table.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * const [selectedKeys, setSelectedKeys] = useState([]);
+ *
+ * <Table
+ *   aria-label="Example static collection table"
+ *   selectionMode="multiple"
+ *   onSelectionChange={(keys) => {
+ *     setSelectedKeys(keys);
+ *   }}
+ * >
+ *   <TableHeader columns={columns}>
+ *     {(column) => <Column>{column.name}</Column>}
+ *   </TableHeader>
+ *   <TableBody items={rows}>
+ *     {(item) => <Row>{(columnKey) => <Cell>{item[columnKey]}</Cell>}</Row>}
+ *   </TableBody>
+ * </Table>
+ * ```
+ *
+ * ## Example
  *
  * <TableExample />
  */

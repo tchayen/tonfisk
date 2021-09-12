@@ -73,7 +73,7 @@ type Props = {
  *
  * ## Example
  *
- * <ModalExample />
+ * TODO
  */
 export function ModalDialog(props: Props): ReactElement {
   const { title, children } = props;
@@ -95,9 +95,7 @@ export function ModalDialog(props: Props): ReactElement {
     <div className={fullPageDiv} {...underlayProps}>
       <FocusScope contain restoreFocus autoFocus>
         <div
-          {...overlayProps}
-          {...dialogProps}
-          {...modalProps}
+          {...mergeProps(overlayProps, dialogProps, modalProps)}
           ref={ref}
           className={modalDiv}
         >
@@ -112,7 +110,10 @@ export function ModalDialog(props: Props): ReactElement {
             <h3
               {...titleProps}
               className={atoms({
-                color: { lightMode: "black", darkMode: "gray-200" },
+                color: {
+                  lightMode: "black",
+                  darkMode: "gray-200",
+                },
                 margin: "l",
               })}
             >

@@ -43,9 +43,13 @@ export const modalDiv = atoms({
     lightMode: "white",
     darkMode: "gray-900",
   },
+  overflow: "hidden",
   borderRadius: "8px",
   width: "48ch",
-  // border: "regular",
+  border: {
+    lightMode: "none",
+    darkMode: "regularDark",
+  },
   boxShadow: "shadow",
   outline: "none",
 });
