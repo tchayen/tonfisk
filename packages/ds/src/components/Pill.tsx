@@ -30,7 +30,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Pill } from "@tchayen/design-system";
+ * import { Pill } from "TODO_LIB_NAME";
  *
  * <Pill>Pill</Pill>
  * ```
@@ -62,27 +62,19 @@ export const Pill = (props: Props): ReactElement => {
       lightMode: isPressed ? "white" : "black",
       darkMode: "gray-200",
     },
-    border: {
-      lightMode:
-        isFocusVisible || isPressed
-          ? "primary"
-          : isHovered
-          ? "pinkOutline"
-          : "regular",
-      darkMode:
-        isFocusVisible || isPressed
-          ? "primary"
-          : isHovered
-          ? "pinkOutline"
-          : "regularDark",
-    },
+    border: "none",
     cursor: props.isDisabled ? "default" : "pointer",
     opacity: props.isDisabled ? 0.5 : 1,
     background: {
       lightMode: isPressed ? "pink-500" : isHovered ? "pinkOutline" : "white",
       darkMode: isPressed ? "pink-500" : isHovered ? "pinkOutline" : "gray-900",
     },
-    boxShadow: isFocusVisible ? "outline" : "none",
+    boxShadow: {
+      lightMode:
+        isFocusVisible || isPressed || isHovered ? "primary" : "regularBorder",
+      darkMode:
+        isFocusVisible || isPressed || isHovered ? "primary" : "darkBorder",
+    },
     paddingLeft: props.iconUrl ? "m" : "l",
   })}`;
 

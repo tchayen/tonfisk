@@ -169,11 +169,11 @@ const MenuButton_ = (
       className={`${menuButton} ${atoms({
         opacity: props.isDisabled ? 0.5 : 1,
         cursor: props.isDisabled ? "default" : "pointer",
-        border: {
-          lightMode: isFocusVisible ? "primary" : "regular",
-          darkMode: isFocusVisible ? "primary" : "regularDark",
+        border: "none",
+        boxShadow: {
+          lightMode: isFocusVisible ? "primary" : "regularBorder",
+          darkMode: isFocusVisible ? "primary" : "darkBorder",
         },
-        boxShadow: isFocusVisible ? "outline" : "none",
       })}`}
     >
       {props.children}
@@ -191,7 +191,7 @@ export const MenuButtonComponent = forwardRef(MenuButton_);
  * ## Usage
  *
  * ```jsx
- * import { MenuButton, Item } from "@tchayen/design-system";
+ * import { MenuButton, Item } from "TODO_LIB_NAME";
  * <MenuButton
  *   label="Actions"
  *   onAction={() => {

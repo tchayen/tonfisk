@@ -21,8 +21,10 @@ export const vars = createGlobalTheme(":root", {
     "2px": "2px",
     "4px": "4px",
     "8px": "8px",
+    "12px": "12px",
     "16px": "16px",
     "20px": "20px",
+    "24px": "24px",
     "32px": "32px",
     "40px": "40px",
     "64px": "64px",
@@ -102,6 +104,7 @@ export const vars = createGlobalTheme(":root", {
   boxShadow: {
     none: "none",
     outline: "0 0 0 3px rgba(59, 130, 246, 0.3)", // TODO
+    primary: `0 0 0 2px inset ${colors.blue[500]}`,
     // outline: "0 0 0 3px rgba(236, 72, 153, 0.3)", // TODO
     shadow: "0 2px 8px rgba(0, 0, 0, 0.1)", // TODO
     tooltipDotShadow: "0 1px 3px rgba(0, 0, 0, 0.25)", // TODO

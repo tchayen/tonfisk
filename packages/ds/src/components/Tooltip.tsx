@@ -35,7 +35,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Tooltip } from "@tchayen/design-system";
+ * import { Tooltip } from "TODO_LIB_NAME";
  *
  * <Tooltip tooltip="You don't have to press if you don't want to.">
  *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>

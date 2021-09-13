@@ -20,7 +20,13 @@ import {
 } from "ds";
 import { MenuButtonComponent } from "ds/src/components/Menu";
 import { useRouter } from "next/dist/client/router";
-import React, { ReactElement, useRef, useState } from "react";
+import React, {
+  Dispatch,
+  ReactElement,
+  SetStateAction,
+  useRef,
+  useState,
+} from "react";
 
 import { BorderlessInput } from "../components/BorderlessInput";
 
@@ -112,7 +118,27 @@ const currencies = [
   },
 ];
 
-const SettingsPopover = () => {
+type PropsSpaghetti = {
+  slippageTolerance: number;
+  setSlippageTolerance: Dispatch<SetStateAction<number>>;
+  transactionDeadline: number;
+  setTransactionDeadline: Dispatch<SetStateAction<number>>;
+  expertMode: boolean;
+  setExpertMode: Dispatch<SetStateAction<boolean>>;
+  disableMultihops: boolean;
+  setDisableMultihops: Dispatch<SetStateAction<boolean>>;
+};
+
+const SettingsPopover = ({
+  slippageTolerance,
+  setSlippageTolerance,
+  transactionDeadline,
+  setTransactionDeadline,
+  expertMode,
+  setExpertMode,
+  disableMultihops,
+  setDisableMultihops,
+}: PropsSpaghetti) => {
   const state = useOverlayTriggerState({});
   const triggerRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef(null);
@@ -184,7 +210,16 @@ const SettingsPopover = () => {
             isOpen={state.isOpen}
             onClose={state.close}
           >
-            <Settings />
+            <Settings
+              slippageTolerance={slippageTolerance}
+              setSlippageTolerance={setSlippageTolerance}
+              transactionDeadline={transactionDeadline}
+              setTransactionDeadline={setTransactionDeadline}
+              expertMode={expertMode}
+              setExpertMode={setExpertMode}
+              disableMultihops={disableMultihops}
+              setDisableMultihops={setDisableMultihops}
+            />
           </Popover>
         </OverlayContainer>
       )}
@@ -192,7 +227,16 @@ const SettingsPopover = () => {
   );
 };
 
-const Settings = () => {
+const Settings = ({
+  slippageTolerance,
+  setSlippageTolerance,
+  transactionDeadline,
+  setTransactionDeadline,
+  expertMode,
+  setExpertMode,
+  disableMultihops,
+  setDisableMultihops,
+}: PropsSpaghetti) => {
   const warningState = useOverlayTriggerState({});
   const showWarning = () => {
     if (expertMode === false) {
@@ -201,8 +245,6 @@ const Settings = () => {
       setExpertMode(false);
     }
   };
-
-  const [expertMode, setExpertMode] = useState(false);
 
   return (
     <div>
@@ -224,14 +266,26 @@ const Settings = () => {
         >
           Transaction settings
         </h4>
-        <TextInput label="Slippage tolerance" placeholder="0.10%" />
+        <TextInput
+          label="Slippage tolerance"
+          placeholder="0.10%"
+          value={slippageTolerance}
+          onChange={({ target: { value } }) => setSlippageTolerance(value)}
+        />
         <div>
           <Label>Transaction deadline</Label>
-          <TextInput placeholder="30">
+          <TextInput
+            placeholder="30"
+            value={transactionDeadline}
+            onChange={({ target: { value } }) => setTransactionDeadline(value)}
+          >
             <span
               className={atoms({
                 fontSize: "14px",
-                color: "gray-600",
+                color: {
+                  lightMode: "gray-600",
+                  darkMode: "gray-400",
+                },
                 marginLeft: "m",
               })}
             >
@@ -264,7 +318,12 @@ const Settings = () => {
         <Switch isSelected={expertMode} onChange={showWarning}>
           Toggle expert mode
         </Switch>
-        <Switch>Disable multihops</Switch>
+        <Switch
+          isSelected={disableMultihops}
+          onChange={() => setDisableMultihops(!disableMultihops)}
+        >
+          Disable multihops
+        </Switch>
       </div>
       {warningState.isOpen && (
         <OverlayContainer>
@@ -310,6 +369,7 @@ const Settings = () => {
                 ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
               </p>
               <Button
+                size="large"
                 onPress={() => {
                   setExpertMode(!expertMode);
                   warningState.close();
@@ -325,7 +385,17 @@ const Settings = () => {
   );
 };
 
-const CurrencyInList = ({ onSelect, name, acronym, icon }) => {
+const CurrencyInList = ({
+  onSelect,
+  name,
+  acronym,
+  icon,
+}: {
+  onSelect: (value: string) => void;
+  name: string;
+  acronym: string;
+  icon: string;
+}) => {
   const [isHovered, setIsHovered] = useState(false);
   const onMouseEnter = () => {
     setIsHovered(true);
@@ -359,8 +429,16 @@ const CurrencyInList = ({ onSelect, name, acronym, icon }) => {
     textAlign: "left",
     fontFamily: "body",
     background: {
-      lightMode: isFocusVisible || isHovered ? "gray-200" : "transparent",
-      darkMode: isFocusVisible || isHovered ? "gray-800" : "transparent",
+      lightMode: isPressed
+        ? "gray-300"
+        : isFocusVisible || isHovered
+        ? "gray-200"
+        : "transparent",
+      darkMode: isPressed
+        ? "gray-700"
+        : isFocusVisible || isHovered
+        ? "gray-800"
+        : "transparent",
     },
     outline: "none",
   });
@@ -370,8 +448,8 @@ const CurrencyInList = ({ onSelect, name, acronym, icon }) => {
       ref={ref}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      {...mergeProps(focusProps, buttonProps)}
       className={className}
+      {...mergeProps(focusProps, buttonProps)}
     >
       <img
         className={atoms({
@@ -539,6 +617,10 @@ export default function Example(): ReactElement {
   const router = useRouter();
   const [from, setFrom] = useState<string | null>(null);
   const [to, setTo] = useState<string | null>(null);
+  const [slippageTolerance, setSlippageTolerance] = useState<number>(0);
+  const [transactionDeadline, setTransactionDeadline] = useState<number>(0);
+  const [expertMode, setExpertMode] = useState<boolean>(false);
+  const [disableMultihops, setDisableMultihops] = useState<boolean>(false);
 
   return (
     <div
@@ -585,7 +667,16 @@ export default function Example(): ReactElement {
           >
             Swap
           </h3>
-          <SettingsPopover />
+          <SettingsPopover
+            slippageTolerance={slippageTolerance}
+            setSlippageTolerance={setSlippageTolerance}
+            transactionDeadline={transactionDeadline}
+            setTransactionDeadline={setTransactionDeadline}
+            expertMode={expertMode}
+            setExpertMode={setExpertMode}
+            disableMultihops={disableMultihops}
+            setDisableMultihops={setDisableMultihops}
+          />
         </div>
         <div
           className={atoms({
@@ -628,6 +719,7 @@ export default function Example(): ReactElement {
           </div>
         </div>
         <Button
+          size="large"
           onPress={() => {
             console.log("Swap");
           }}

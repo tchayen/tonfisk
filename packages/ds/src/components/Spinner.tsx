@@ -8,7 +8,7 @@ import { animated } from "./Spinner.css";
  * ## Usage
  *
  * ```jsx
- * import { Spinner } from "@tchayen/design-system";
+ * import { Spinner } from "TODO_LIB_NAME";
  *
  * <Spinner />
  * ```

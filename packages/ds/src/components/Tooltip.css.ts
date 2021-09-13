@@ -13,7 +13,10 @@ export const tooltipBox = style([
       lightMode: "regular",
       darkMode: "regularDark",
     },
-    color: "gray-600",
+    color: {
+      lightMode: "gray-600",
+      darkMode: "gray-400",
+    },
     background: {
       lightMode: "white",
       darkMode: "gray-900",

@@ -13,7 +13,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Tag } from "@tchayen/design-system";
+ * import { Tag } from "TODO_LIB_NAME";
  *
  * <Tag>Tag</Tag>
  * ```

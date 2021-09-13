@@ -1,5 +1,6 @@
 import { useTextField } from "@react-aria/textfield";
 import React, {
+  ChangeEventHandler,
   FocusEvent,
   ReactElement,
   ReactNode,
@@ -31,7 +32,7 @@ type Props = {
   /**
    * TODO
    */
-  onChange?: (value: string) => void;
+  onChange?: ChangeEventHandler;
   /**
    * TODO
    */
@@ -40,6 +41,10 @@ type Props = {
    * TODO
    */
   onBlur?: (event: React.FocusEvent) => void;
+  /**
+   * TODO
+   */
+  value?: string;
   /**
    * Optional children to put next to input. It can be some complementary
    * information, like [30] minutes.
@@ -89,15 +94,14 @@ export function TextInput(props: Props): ReactElement {
       onFocus={handleFocus}
       onBlur={handleBlur}
       autoFocus={props.autoFocus}
-      // TODO: recipe
+      onChange={props.onChange}
+      // TODO: recipe, large variant
       className={`${input} ${atoms({
-        border: {
-          lightMode: isFocused ? "primary" : "regular",
-          darkMode: isFocused ? "primary" : "regularDark",
-        },
+        padding: "xs",
+        border: "none",
         boxShadow: {
-          lightMode: isFocused ? "outline" : "none",
-          darkMode: isFocused ? "outline" : "none",
+          lightMode: isFocused ? "primary" : "regularBorder",
+          darkMode: isFocused ? "primary" : "darkBorder",
         },
       })}`}
     />

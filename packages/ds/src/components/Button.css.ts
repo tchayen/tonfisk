@@ -28,7 +28,7 @@ const basicButton = atoms({
   height: "32px",
   paddingLeft: "l",
   paddingRight: "l",
-  borderRadius: "16px",
+  borderRadius: "full",
   color: {
     lightMode: "white",
     darkMode: "gray-900",
@@ -60,6 +60,16 @@ export const button = recipe({
     boxShadow: {
       focusVisible: atoms({ boxShadow: "outline" }),
       default: atoms({ boxShadow: "none" }),
+    },
+    size: {
+      regular: atoms({
+        fontSize: "14px",
+        height: "32px",
+      }),
+      large: {
+        fontSize: "16px",
+        height: "40px",
+      },
     },
   },
 });

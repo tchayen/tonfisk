@@ -33,7 +33,7 @@ import {
   TextInput,
   Tooltip,
 } from "ds";
-import { Field, Form, Formik, useField } from "formik";
+import { Form, Formik, useField } from "formik";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
 
@@ -214,7 +214,11 @@ const CheckboxExample = (): ReactElement => {
   );
 };
 
-const FormTextInput = (props) => {
+function FormTextInput(props: {
+  name: string;
+  label: string;
+  placeholder?: string;
+}) {
   const [field, meta] = useField(props);
 
   return (
@@ -223,22 +227,17 @@ const FormTextInput = (props) => {
       {meta.touched && meta.error ? <div>{meta.error}</div> : null}
     </>
   );
-};
+}
 
-const FormikExample = (): ReactElement => {
-  // TODO:
-  // - Email does not React to inputs.
-  // - Input values do not appear in onSubmit.
-
+function FormikExample() {
   return (
     <Formik
       initialValues={{
-        firstName: "",
-        lastName: "",
+        name: "",
         email: "",
       }}
       onSubmit={async (values) => {
-        // await new Promise((r) => setTimeout(r, 500));
+        await new Promise((resolve) => setTimeout(resolve, 100));
         alert(JSON.stringify(values, null, 2));
       }}
     >
@@ -246,20 +245,16 @@ const FormikExample = (): ReactElement => {
         className={atoms({
           display: "grid",
           gap: "l",
+          width: "24ch",
         })}
       >
-        <FormTextInput
-          name="first-name"
-          label="First name"
-          placeholder="Jane"
-        />
-        <FormTextInput name="last-name" label="Last name" placeholder="Doe" />
+        <FormTextInput name="name" label="Name" placeholder="Jane Doe" />
         <FormTextInput name="email" label="Email" placeholder="jane@acme.com" />
         <Button type="submit">Submit</Button>
       </Form>
     </Formik>
   );
-};
+}
 
 export const components = {
   a: ({ children, href }) => (

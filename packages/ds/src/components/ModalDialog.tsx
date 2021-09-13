@@ -37,6 +37,19 @@ type Props = {
    * Components to display inside the modal.
    */
   children: ReactNode;
+  /**
+   * Whether modal is open.
+   */
+  isOpen?: boolean;
+  /**
+   * Callback called when modal is closed (can happen with ESC key or clicking
+   * outside).
+   */
+  onClose?: () => void;
+  /**
+   * Whether modal can be dismissed by ESC or click outside.
+   */
+  isDismissable?: boolean;
 };
 
 /**
@@ -47,7 +60,7 @@ type Props = {
  * ```jsx
  * import { OverlayContainer } from "@react-aria/overlays";
  * import { useOverlayTriggerState } from "@react-stately/overlays";
- * import { Button, HorizontalLine, ModalDialog } from "@tchayen/design-system";
+ * import { Button, HorizontalLine, ModalDialog } from "TODO_LIB_NAME";
  *
  * export default function Modal() {
  *   const state = useOverlayTriggerState({});

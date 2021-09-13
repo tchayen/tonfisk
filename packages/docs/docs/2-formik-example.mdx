@@ -3,6 +3,59 @@ title: Formik example
 description: Using this library with Formik.
 ---
 
-TODO
+## Usage
+
+```tsx
+import { Button, TextInput } from "TODO_LIB_NAME";
+import { Form, Formik, useField } from "formik";
+
+/**
+ * Wrapper component to hook into Formik.
+ */
+function FormTextInput(props: {
+  name: string;
+  label: string;
+  placeholder?: string;
+}) {
+  const [field, meta] = useField(props);
+
+  return (
+    <>
+      {/* The text input from the library.` */}
+      <TextInput {...field} {...props} />
+      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+    </>
+  );
+}
+
+function FormikExample() {
+  return (
+    <Formik
+      initialValues={{
+        name: "",
+        email: "",
+      }}
+      onSubmit={async (values) => {
+        await new Promise((resolve) => setTimeout(resolve, 100));
+        alert(JSON.stringify(values, null, 2));
+      }}
+    >
+      <Form
+        className={atoms({
+          display: "grid",
+          gap: "l",
+          width: "24ch",
+        })}
+      >
+        <FormTextInput name="name" label="Name" placeholder="Jane Doe" />
+        <FormTextInput name="email" label="Email" placeholder="jane@acme.com" />
+        <Button type="submit">Submit</Button>
+      </Form>
+    </Formik>
+  );
+}
+```
+
+## Example
 
 <FormikExample />

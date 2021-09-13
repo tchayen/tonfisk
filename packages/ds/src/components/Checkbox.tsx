@@ -29,7 +29,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Checkbox } from "@tchayen/design-system";
+ * import { Checkbox } from "TODO_LIB_NAME";
  *
  * <Checkbox>Label</Checkbox>
  * ```

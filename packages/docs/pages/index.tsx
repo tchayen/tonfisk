@@ -25,7 +25,7 @@ export default function Home(): ReactElement {
             },
           })}
         >
-          @tchayen/design-system
+          TODO_LIB_NAME
         </h1>
         <p
           className={atoms({
@@ -36,9 +36,9 @@ export default function Home(): ReactElement {
           })}
         >
           Check out{" "}
-          <Link href="http://localhost:3000/docs/getting-started">
+          <Link href="http://localhost:3000/docs/1-getting-started">
             <a
-              href="http://localhost:3000/docs/getting-started"
+              href="http://localhost:3000/docs/1-getting-started"
               className={atoms({
                 color: "pink-500",
               })}

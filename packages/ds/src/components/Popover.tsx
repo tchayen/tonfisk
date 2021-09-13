@@ -52,12 +52,12 @@ export const Popover = forwardRef((props: Props, ref) => {
   });
 
   return (
-    <FocusScope restoreFocus>
+    <FocusScope contain restoreFocus>
       <div
-        {...mergeProps(overlayProps, dialogProps, modalProps)}
         ref={ref}
         className={className}
         style={props.style} // TODO: is this necessary and/or working?
+        {...mergeProps(overlayProps, dialogProps, modalProps)}
       >
         {/* <h3 {...titleProps}>{props.title}</h3> */}
         {props.children}

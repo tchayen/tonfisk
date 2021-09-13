@@ -23,6 +23,10 @@ type Props = {
    * When button should act as submit button for a form.
    */
   type?: "submit";
+  /**
+   * Defaults to "regular".
+   */
+  size?: "regular" | "large";
 };
 
 /**
@@ -31,7 +35,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Button } from "@tchayen/design-system";
+ * import { Button } from "TODO_LIB_NAME";
  *
  * <Button onPress={() => console.log("I got pressed!")}>
  *   Press me
@@ -61,6 +65,7 @@ export function Button(props: Props): ReactElement {
     boxShadow: isFocusVisible && !props.isDisabled ? "focusVisible" : "default",
     opacity: props.isDisabled ? "disabled" : "active",
     background: isPressed ? "active" : isHovered ? "hover" : "default",
+    size: props.size || "regular",
   });
 
   return (

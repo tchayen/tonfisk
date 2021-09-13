@@ -15,25 +15,25 @@ globalStyle("::placeholder", {
 });
 
 globalStyle("h1", {
-  fontSize: "28px",
+  fontSize: "32px",
   fontWeight: 600,
   margin: 0,
 });
 
 globalStyle("h2", {
-  fontSize: "24px",
+  fontSize: "26px",
   fontWeight: 600,
   margin: 0,
 });
 
 globalStyle("h3", {
-  fontSize: "20px",
+  fontSize: "22px",
   fontWeight: 600,
   margin: 0,
 });
 
 globalStyle("h4", {
-  fontSize: "16px",
+  fontSize: "18px",
   fontWeight: 600,
   margin: 0,
 });

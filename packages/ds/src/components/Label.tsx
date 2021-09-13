@@ -9,9 +9,9 @@ type Props = {
   children: string;
   /**
    * Optional props passed to the label element. Usually they come from
-   * `react-aria` hooks such as `useSelect` or `useTextField`.
+   * react-aria hooks such as useSelect() or useTextField().
    */
-  props: any;
+  props?: any;
 };
 
 /**
@@ -20,7 +20,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Label } from "@tchayen/design-system";
+ * import { Label } from "TODO_LIB_NAME";
  *
  * <Label>Text</Label>
  * ```

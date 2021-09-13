@@ -1,5 +1,7 @@
 ## Must have
 
+- [ ] Change focus outline on buttons to look more like twitter.
+- [ ] Change design and implement new look for switch to look like classic iOS switch and not material design one.
 - [ ] Case of custom input like in example: how to provide label to the input.
 
 - [ ] Update spinner to feature background for the circle in the outline color.

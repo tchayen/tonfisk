@@ -91,11 +91,11 @@ export function Select(props: Props): ReactElement {
         ref={ref}
         // TODO: recipe
         className={`${button} ${atoms({
-          border: {
-            lightMode: isFocusVisible ? "primary" : "regular",
-            darkMode: isFocusVisible ? "primary" : "regularDark",
+          border: "none",
+          boxShadow: {
+            lightMode: isFocusVisible ? "primary" : "regularBorder",
+            darkMode: isFocusVisible ? "primary" : "darkBorder",
           },
-          boxShadow: isFocusVisible ? "outline" : "none",
           color: state.selectedItem ? "black" : "gray-600",
           opacity: props.isDisabled ? 0.5 : 1,
         })}`}

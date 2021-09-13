@@ -39,7 +39,7 @@ type Props = {
  *  ## Usage
  *
  * ```jsx
- * import { Provider } from "@tchayen/design-system";
+ * import { Provider } from "TODO_LIB_NAME";
  *
  * <Provider>
  *   // Your app here.
