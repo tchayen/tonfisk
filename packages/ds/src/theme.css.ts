@@ -1,16 +1,16 @@
 import { globalStyle } from "@vanilla-extract/css";
 import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
-import colors from "./colors";
 
+import colors from "./colors";
 import { vars } from "./vars.css";
 
 globalStyle("::placeholder", {
   "@media": {
     "(prefers-color-scheme: dark)": {
-      color: "pink",
+      color: colors.gray[500],
     },
   },
-  // color: colors.gray[400],
+  color: colors.gray[400],
   opacity: 1,
 });
 
@@ -57,13 +57,14 @@ const responsiveStyles = createAtomicStyles({
     opacity: [0.5, 1],
     display: ["none", "block", "flex", "grid", "inline-block", "inline-flex"],
     position: ["fixed", "absolute", "relative"],
-    zIndex: [100],
+    zIndex: [1, 10, 100, 1000, 10000, 100000],
     top: vars.space,
     bottom: vars.space,
     left: vars.space,
     right: vars.space,
     visibility: ["hidden", "visible"],
     flexDirection: ["row", "column"],
+    flex: [1],
     alignItems: ["stretch", "flex-start", "center", "flex-end"],
     justifyContent: [
       "stretch",

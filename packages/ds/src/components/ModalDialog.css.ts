@@ -23,7 +23,7 @@ export const closeButton = style([
 export const fullPageDiv = style([
   atoms({
     position: "fixed",
-    zIndex: 100,
+    zIndex: 100000,
     top: 0,
     left: 0,
     bottom: 0,

@@ -6,6 +6,7 @@ export const label = atoms({
     lightMode: "black",
     darkMode: "gray-200",
   },
+  display: "block",
   fontWeight: "bold",
   marginBottom: "s",
 });

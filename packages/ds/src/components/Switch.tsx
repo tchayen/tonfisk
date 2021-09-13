@@ -20,6 +20,10 @@ type Props = {
    * Whether user can interact with the switch.
    */
   isDisabled?: boolean;
+  /**
+   *
+   */
+  isSelected?: boolean;
 };
 
 /**
@@ -50,11 +54,13 @@ export function Switch(props: Props): ReactElement {
       </VisuallyHidden>
       {props.children}
       <div
+        // TODO: recipe
         className={`${wrapper} ${atoms({
           opacity: props.isDisabled ? 0.5 : 1,
         })}`}
       >
         <div
+          // TODO: recipe
           className={`${bar} ${atoms({
             background: {
               lightMode: state.isSelected ? "pinkOutline" : "gray-200",
@@ -63,6 +69,7 @@ export function Switch(props: Props): ReactElement {
           })}`}
         />
         <div
+          // TODO: recipe
           className={`${dot} ${atoms({
             right: state.isSelected ? "none" : "l",
             boxShadow: {

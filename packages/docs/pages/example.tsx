@@ -28,40 +28,92 @@ const currencies = [
   {
     name: "Aragon Network Token",
     acronym: "ANT",
+    icon: "https://cryptologos.cc/logos/aragon-ant-logo.svg?v=013",
   },
   {
     name: "Balancer",
     acronym: "BAL",
+    icon: "https://cryptologos.cc/logos/balancer-bal-logo.svg?v=013",
   },
   {
     name: "Band Protocol",
     acronym: "BAND",
+    icon: "https://cryptologos.cc/logos/band-protocol-band-logo.svg?v=013",
   },
   {
     name: "Basic Attention Token",
     acronym: "BAT",
+    icon: "https://cryptologos.cc/logos/basic-attention-token-bat-logo.svg?v=013",
+  },
+  {
+    name: "Bancor",
+    acronym: "BNT",
+    icon: "https://cryptologos.cc/logos/bancor-bnt-logo.svg?v=013",
   },
   {
     name: "Compound",
     acronym: "COMP",
+    icon: "https://cryptologos.cc/logos/compound-comp-logo.svg?v=013",
+  },
+  {
+    name: "CurveDAOToken",
+    acronym: "CRV",
+    icon: "https://cryptologos.cc/logos/curve-dao-token-crv-logo.svg?v=013",
+  },
+  {
+    name: "CVC",
+    acronym: "Civic",
+    icon: "https://cryptologos.cc/logos/civic-cvc-logo.svg?v=013",
+  },
+  {
+    name: "DAI",
+    acronym: "DaiStablecoin",
+    icon: "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.svg?v=013",
   },
   {
     name: "Decentraland",
     acronym: "MANA",
+    icon: "https://cryptologos.cc/logos/decentraland-mana-logo.svg?v=013",
+  },
+  {
+    name: "UMAVotingTokenv1",
+    acronym: "UMA",
+    icon: "https://cryptologos.cc/logos/uma-uma-logo.svg?v=013",
   },
   {
     name: "Uniswap",
     acronym: "UNI",
+    icon: "https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=013",
   },
   {
-    name: "Wrapped ETH",
-    acronym: "WETH",
+    name: "USDCoin",
+    acronym: "USDC",
+    icon: "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=013",
+  },
+  {
+    name: "Tether USD",
+    acronym: "USDT",
+    icon: "https://cryptologos.cc/logos/tether-usdt-logo.svg?v=013",
+  },
+  {
+    name: "Wrapped BTC",
+    acronym: "WBTC",
+    icon: "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.svg?v=013",
+  },
+  {
+    name: "yearn.finance",
+    acronym: "YFI",
+    icon: "https://cryptologos.cc/logos/yearn-finance-yfi-logo.svg?v=013",
+  },
+  {
+    name: "0xProtocol",
+    acronym: "ZRX",
+    icon: "https://cryptologos.cc/logos/0x-zrx-logo.svg?v=013",
   },
 ];
 
 const SettingsPopover = () => {
   const state = useOverlayTriggerState({});
-
   const triggerRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef(null);
 
@@ -93,35 +145,41 @@ const SettingsPopover = () => {
     triggerRef
   );
 
+  const { focusProps, isFocusVisible } = useFocusRing();
+
+  const className = atoms({
+    fontFamily: "body",
+    fontSize: "14px",
+    fontWeight: "bold",
+    border: "none",
+    background: "transparent",
+    margin: "none",
+    display: "inline-block",
+    cursor: "pointer",
+    outline: "none",
+    borderRadius: "8px",
+    padding: "s",
+    color: {
+      lightMode: "black",
+      darkMode: "gray-200",
+    },
+    boxShadow: isFocusVisible ? "outline" : "none",
+  });
+
   return (
     <>
       <button
-        {...buttonProps}
-        {...triggerProps}
+        // TODO: this can become a text variant of button.
+        {...mergeProps(buttonProps, triggerProps, focusProps)}
         ref={triggerRef}
-        className={atoms({
-          fontFamily: "body",
-          fontSize: "14px",
-          fontWeight: "bold",
-          border: "none",
-          background: "transparent",
-          padding: "none",
-          margin: "none",
-          display: "inline-block",
-          cursor: "pointer",
-          color: {
-            lightMode: "black",
-            darkMode: "gray-200",
-          },
-        })}
+        className={className}
       >
         Settings
       </button>
       {state.isOpen && (
         <OverlayContainer>
           <Popover
-            {...overlayProps}
-            {...positionProps}
+            {...mergeProps(overlayProps, positionProps)}
             ref={overlayRef}
             isOpen={state.isOpen}
             onClose={state.close}
@@ -135,6 +193,17 @@ const SettingsPopover = () => {
 };
 
 const Settings = () => {
+  const warningState = useOverlayTriggerState({});
+  const showWarning = () => {
+    if (expertMode === false) {
+      warningState.open();
+    } else {
+      setExpertMode(false);
+    }
+  };
+
+  const [expertMode, setExpertMode] = useState(false);
+
   return (
     <div>
       <div
@@ -158,13 +227,7 @@ const Settings = () => {
         <TextInput label="Slippage tolerance" placeholder="0.10%" />
         <div>
           <Label>Transaction deadline</Label>
-          <div
-            className={atoms({
-              display: "flex",
-              alignItems: "center",
-            })}
-          >
-            <TextInput placeholder="30" />
+          <TextInput placeholder="30">
             <span
               className={atoms({
                 fontSize: "14px",
@@ -174,7 +237,7 @@ const Settings = () => {
             >
               minutes
             </span>
-          </div>
+          </TextInput>
         </div>
       </div>
       <HorizontalLine />
@@ -198,14 +261,71 @@ const Settings = () => {
           gap: "l",
         })}
       >
-        <Switch>Toggle expert mode</Switch>
+        <Switch isSelected={expertMode} onChange={showWarning}>
+          Toggle expert mode
+        </Switch>
         <Switch>Disable multihops</Switch>
       </div>
+      {warningState.isOpen && (
+        <OverlayContainer>
+          <ModalDialog
+            title="Are you sure?"
+            isOpen
+            onClose={warningState.close}
+            isDismissable
+          >
+            <HorizontalLine />
+            <div
+              className={atoms({
+                display: "grid",
+                gap: "l",
+                padding: "l",
+              })}
+            >
+              <p
+                className={atoms({
+                  padding: "none",
+                  margin: "none",
+                  color: {
+                    lightMode: "gray-600",
+                    darkMode: "gray-400",
+                  },
+                })}
+              >
+                Expert mode turns off the confirm transaction prompt and allows
+                high slippage trades that often result in bad rates and lost
+                funds.
+              </p>
+              <p
+                className={atoms({
+                  padding: "none",
+                  margin: "none",
+                  fontWeight: "bold",
+                  color: {
+                    lightMode: "black",
+                    darkMode: "gray-200",
+                  },
+                })}
+              >
+                ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
+              </p>
+              <Button
+                onPress={() => {
+                  setExpertMode(!expertMode);
+                  warningState.close();
+                }}
+              >
+                TURN ON EXPERT MODE
+              </Button>
+            </div>
+          </ModalDialog>
+        </OverlayContainer>
+      )}
     </div>
   );
 };
 
-const CurrencyInList = ({ onSelect, name, acronym }) => {
+const CurrencyInList = ({ onSelect, name, acronym, icon }) => {
   const [isHovered, setIsHovered] = useState(false);
   const onMouseEnter = () => {
     setIsHovered(true);
@@ -253,10 +373,20 @@ const CurrencyInList = ({ onSelect, name, acronym }) => {
       {...mergeProps(focusProps, buttonProps)}
       className={className}
     >
+      <img
+        className={atoms({
+          width: "32px",
+          height: "32px",
+          borderRadius: "full",
+          marginRight: "m",
+        })}
+        src={icon}
+      />
       <div
         className={atoms({
           display: "flex",
           flexDirection: "column",
+          flex: 1,
         })}
       >
         <div

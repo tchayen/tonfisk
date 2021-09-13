@@ -18,6 +18,7 @@ const CloseButton = (props: any) => {
     <button
       {...mergeProps(focusProps, buttonProps)}
       ref={ref}
+      // TODO: recipe
       className={`${closeButton} ${atoms({
         boxShadow: isFocusVisible ? "outline" : "none",
       })}`}
@@ -100,15 +101,17 @@ export function ModalDialog(props: Props): ReactElement {
           className={modalDiv}
         >
           <div
+            // TODO: move to *.css.ts.
             className={atoms({
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
-              paddingRight: "l",
+              paddingRight: "m",
             })}
           >
             <h3
               {...titleProps}
+              // TODO: move to *.css.ts.
               className={atoms({
                 color: {
                   lightMode: "black",

@@ -4,13 +4,12 @@ import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
 import React, { ReactElement, useRef } from "react";
 
-import colors from "../colors";
 import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
 import { atoms } from "../theme.css";
 import { Label } from "./Label";
-import { button, label, select, span } from "./Select.css";
+import { button, select, span } from "./Select.css";
 
 export { Item } from "@react-stately/collections";
 
@@ -79,10 +78,7 @@ export function Select(props: Props): ReactElement {
 
   return (
     <div className={select}>
-      <label {...labelProps} className={label}>
-        {props.label}
-      </label>
-      <Label {...labelProps}>{props.label}</Label>
+      {props.label && <Label {...labelProps}>{props.label}</Label>}
       <HiddenSelect
         state={state}
         triggerRef={ref}
@@ -93,6 +89,7 @@ export function Select(props: Props): ReactElement {
         {...buttonProps}
         {...focusProps}
         ref={ref}
+        // TODO: recipe
         className={`${button} ${atoms({
           border: {
             lightMode: isFocusVisible ? "primary" : "regular",

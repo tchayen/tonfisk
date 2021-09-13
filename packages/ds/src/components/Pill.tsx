@@ -56,6 +56,7 @@ export const Pill = (props: Props): ReactElement => {
     setIsHovered(false);
   };
 
+  // TODO: recipe
   const className = `${pill} ${atoms({
     color: {
       lightMode: isPressed ? "white" : "black",
@@ -95,6 +96,7 @@ export const Pill = (props: Props): ReactElement => {
     >
       {props.iconUrl && (
         <img
+          // TODO: move to *.css.ts.
           className={atoms({
             width: "20px",
             height: "20px",

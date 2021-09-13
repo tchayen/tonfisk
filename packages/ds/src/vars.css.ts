@@ -50,19 +50,19 @@ export const vars = createGlobalTheme(":root", {
     "gray-800": colors.coolGray[800],
     "gray-900": colors.coolGray[900],
 
-    "pink-50": colors.pink[50],
-    "pink-100": colors.pink[100],
-    "pink-200": colors.pink[200],
-    "pink-300": colors.pink[300],
-    "pink-400": colors.pink[400],
-    "pink-500": colors.pink[500],
-    "pink-600": colors.pink[600],
-    "pink-700": colors.pink[700],
-    "pink-800": colors.pink[800],
-    "pink-900": colors.pink[900],
+    "pink-50": colors.blue[50],
+    "pink-100": colors.blue[100],
+    "pink-200": colors.blue[200],
+    "pink-300": colors.blue[300],
+    "pink-400": colors.blue[400],
+    "pink-500": colors.blue[500],
+    "pink-600": colors.blue[600],
+    "pink-700": colors.blue[700],
+    "pink-800": colors.blue[800],
+    "pink-900": colors.blue[900],
 
-    // pinkOutline: "rgba(59, 130, 246, 0.3)",
-    pinkOutline: "rgba(236, 72, 153, 0.3)",
+    pinkOutline: "rgba(59, 130, 246, 0.3)",
+    // pinkOutline: "rgba(236, 72, 153, 0.3)",
   },
   borderRadius: {
     "0px": "0px",
@@ -93,16 +93,16 @@ export const vars = createGlobalTheme(":root", {
   },
   border: {
     none: "none",
-    primary: `1px solid ${colors.pink[500]}`, // TODO
-    // pinkOutline: `1px solid rgba(59, 130, 246, 0.3)`, // TODO
-    pinkOutline: `1px solid rgba(236, 72, 153, 0.3)`, // TODO
+    primary: `1px solid ${colors.blue[500]}`, // TODO
+    pinkOutline: `1px solid rgba(59, 130, 246, 0.3)`, // TODO
+    // pinkOutline: `1px solid rgba(236, 72, 153, 0.3)`, // TODO
     regular: `1px solid ${colors.coolGray[200]}`, // TODO
     regularDark: `1px solid ${colors.coolGray[600]}`, // TODO
   },
   boxShadow: {
     none: "none",
-    // outline: "0 0 0 3px rgba(59, 130, 246, 0.3)", // TODO
-    outline: "0 0 0 3px rgba(236, 72, 153, 0.3)", // TODO
+    outline: "0 0 0 3px rgba(59, 130, 246, 0.3)", // TODO
+    // outline: "0 0 0 3px rgba(236, 72, 153, 0.3)", // TODO
     shadow: "0 2px 8px rgba(0, 0, 0, 0.1)", // TODO
     tooltipDotShadow: "0 1px 3px rgba(0, 0, 0, 0.25)", // TODO
     tableTopBorder: `0 1px 0 inset ${colors.coolGray[200]}`,

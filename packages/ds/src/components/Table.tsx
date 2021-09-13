@@ -71,6 +71,7 @@ export function TableColumnHeader({ column, state }): ReactElement {
     <th
       {...mergeProps(columnHeaderProps, focusProps)}
       colSpan={column.colspan}
+      // TODO: recipe
       className={`
         ${tableColumnHeader} ${atoms({
         textAlign: column.colspan > 1 ? "center" : "left",
@@ -86,6 +87,7 @@ export function TableColumnHeader({ column, state }): ReactElement {
       {column.props.allowsSorting && (
         <span
           aria-hidden="true"
+          // TODO: recipe
           className={atoms({
             visibility:
               state.sortDescriptor?.column === column.key
@@ -108,6 +110,7 @@ export function TableRow({ item, children, state, index, rows }): ReactElement {
 
   return (
     <tr
+      // TODO: recipe
       className={`${index === rows - 1 ? lastRow : ""} ${atoms({
         background: isSelected
           ? "pink-500"
@@ -170,6 +173,7 @@ function Checkbox({
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={inputRef}
+        // TODO: recipe
         className={`${checkboxInput} ${atoms({
           border: {
             lightMode: isChecked || isFocusVisible ? "primary" : "regular",

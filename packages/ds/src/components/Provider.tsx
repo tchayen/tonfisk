@@ -53,6 +53,7 @@ export function Provider({ children }: Props): ReactElement {
     <SSRProvider>
       <OverlayProvider>
         <div
+          // TODO: move to *.css.ts.
           className={atoms({
             background: {
               lightMode: "white",

@@ -8,10 +8,10 @@ import { useMenuTriggerState } from "@react-stately/menu";
 import { useTreeState } from "@react-stately/tree";
 import { TreeState } from "@react-stately/tree";
 import { MenuTriggerProps } from "@react-types/menu";
+import { FocusStrategy } from "@react-types/shared";
 import { ForwardedRef, forwardRef, ReactNode } from "react";
 import React, { ReactElement, useRef, useState } from "react";
 
-import colors from "../colors";
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
 import { menuButton, menuItem, menuPopup } from "./Menu.css";
@@ -20,6 +20,7 @@ function MenuPopup(props: {
   onClose: () => void;
   domProps: any;
   onAction: (action: string) => void;
+  autoFocus?: FocusStrategy;
 }): ReactElement {
   // Create menu state based on the incoming props
   const state = useTreeState({ ...props, selectionMode: "none" });
@@ -79,7 +80,7 @@ function MenuItem({
   item: {
     key: any;
     rendered: ReactNode;
-    isDisabled: boolean;
+    isDisabled?: boolean;
   };
   state: TreeState<any>;
   onAction: (item: any) => void;
@@ -132,6 +133,10 @@ type Props = {
    * Whether user can interact with the menu.
    */
   isDisabled?: boolean;
+  /**
+   * Callback called when user chooses one of the options.
+   */
+  onAction: (action: string) => void;
 };
 
 type MenuButton_Props = {
@@ -160,6 +165,7 @@ const MenuButton_ = (
     <button
       {...mergeProps(buttonProps, focusProps)}
       ref={ref}
+      // TODO: recipe.
       className={`${menuButton} ${atoms({
         opacity: props.isDisabled ? 0.5 : 1,
         cursor: props.isDisabled ? "default" : "pointer",
@@ -171,6 +177,7 @@ const MenuButton_ = (
       })}`}
     >
       {props.children}
+      {/* TODO: move to *.css.ts. */}
       <span aria-hidden="true" className={atoms({ paddingLeft: "m" })}>
         <Chevron />
       </span>
@@ -210,6 +217,7 @@ export function MenuButton(props: Props): ReactElement {
   const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref);
 
   return (
+    // TODO: move to *.css.ts.
     <div className={atoms({ position: "relative", display: "inline-block" })}>
       <MenuButtonComponent
         ref={ref}

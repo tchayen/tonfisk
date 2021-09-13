@@ -47,6 +47,7 @@ export function Checkbox(props: Props): ReactElement {
 
   return (
     <label
+      // TODO: move to *.css.ts.
       className={atoms({
         display: "flex",
         alignItems: "center",
@@ -61,6 +62,7 @@ export function Checkbox(props: Props): ReactElement {
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
+        // TODO: recipe
         className={`${checkbox} ${atoms({
           border: {
             lightMode:

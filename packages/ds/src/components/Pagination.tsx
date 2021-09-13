@@ -1,9 +1,14 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import React, { Fragment, ReactElement, useRef, useState } from "react";
+import React, {
+  Fragment,
+  ReactElement,
+  ReactNode,
+  useRef,
+  useState,
+} from "react";
 
-import colors from "../colors";
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
 import {
@@ -13,7 +18,11 @@ import {
   rotateRight,
 } from "./Pagination.css";
 
-function PageButton(props) {
+function PageButton(props: {
+  isSelected: boolean;
+  onPress: () => void;
+  children: ReactNode;
+}) {
   const ref = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);
@@ -68,10 +77,11 @@ function PageButton(props) {
   return (
     <button
       ref={ref}
+      // TODO: recipe
       className={`${pageButton} ${atoms({
         color,
         background,
-        boxShadow: isFocusVisible ? "outline" : "none",
+        boxShadow: isFocusVisible && !props.isDisabled ? "outline" : "none",
       })}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
@@ -82,10 +92,18 @@ function PageButton(props) {
   );
 }
 
-const Item = (props) => {
+const Item = ({
+  children,
+  onPress,
+  isSelected,
+}: {
+  children: ReactNode;
+  onPress: () => void;
+  isSelected: boolean;
+}) => {
   return (
-    <PageButton onPress={props.onPress} isSelected={props.isSelected}>
-      {props.children}
+    <PageButton onPress={onPress} isSelected={isSelected}>
+      {children}
     </PageButton>
   );
 };
@@ -123,10 +141,11 @@ function DirectionButton(props: {
   return (
     <button
       ref={ref}
+      // TODO: recipe
       className={`${directionButton} ${atoms({
         opacity: props.isDisabled ? 0.5 : 1,
         cursor: props.isDisabled ? "default" : "pointer",
-        boxShadow: isFocusVisible ? "outline" : "none",
+        boxShadow: isFocusVisible && !props.isDisabled ? "outline" : "none",
         background: {
           lightMode: isPressed
             ? "gray-400"
@@ -148,13 +167,35 @@ function DirectionButton(props: {
         <Fragment>
           Next
           <div className={rotateLeft}>
-            <Chevron />
+            <Chevron
+              className={atoms({
+                fill: {
+                  lightMode: isPressed ? "gray-500" : "gray-400",
+                  darkMode: isPressed
+                    ? "gray-900"
+                    : isHovered
+                    ? "gray-800"
+                    : "gray-700",
+                },
+              })}
+            />
           </div>
         </Fragment>
       ) : (
         <Fragment>
           <div className={rotateRight}>
-            <Chevron />
+            <Chevron
+              className={atoms({
+                fill: {
+                  lightMode: isPressed ? "gray-500" : "gray-400",
+                  darkMode: isPressed
+                    ? "gray-900"
+                    : isHovered
+                    ? "gray-800"
+                    : "gray-700",
+                },
+              })}
+            />
           </div>
           Previous
         </Fragment>
@@ -222,6 +263,7 @@ export function Pagination(props: Props): ReactElement {
   }
 
   return (
+    // TODO: move to *.css.ts.
     <div className={atoms({ display: "flex", gap: "m" })}>
       {!hidePreviousAndNext && (
         <DirectionButton

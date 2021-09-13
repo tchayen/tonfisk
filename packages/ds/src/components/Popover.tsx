@@ -23,9 +23,7 @@ type Props = {
 
 /**
  * Popover component for situations when content outside of the popover should
- * NOT be visible to screen readers.
- *
- * <Popover>Text</Popover>
+ * **not** be visible to screen readers.
  */
 export const Popover = forwardRef((props: Props, ref) => {
   const { overlayProps } = useOverlay(
@@ -59,7 +57,7 @@ export const Popover = forwardRef((props: Props, ref) => {
         {...mergeProps(overlayProps, dialogProps, modalProps)}
         ref={ref}
         className={className}
-        style={props.style}
+        style={props.style} // TODO: is this necessary and/or working?
       >
         {/* <h3 {...titleProps}>{props.title}</h3> */}
         {props.children}

@@ -8,17 +8,21 @@ import { button } from "./Button.css";
 
 type Props = {
   /**
-   * Callback for interaction.
-   */
-  onPress: () => void;
-  /**
    * Text of the button.
    */
   children: string;
   /**
+   * Callback for interaction.
+   */
+  onPress?: () => void;
+  /**
    * Whether user can interact with the button.
    */
   isDisabled?: boolean;
+  /**
+   * When button should act as submit button for a form.
+   */
+  type?: "submit";
 };
 
 /**
@@ -54,7 +58,7 @@ export function Button(props: Props): ReactElement {
 
   const className = button({
     cursor: props.isDisabled ? "disabled" : "active",
-    boxShadow: isFocusVisible ? "focusVisible" : "default",
+    boxShadow: isFocusVisible && !props.isDisabled ? "focusVisible" : "default",
     opacity: props.isDisabled ? "disabled" : "active",
     background: isPressed ? "active" : isHovered ? "hover" : "default",
   });

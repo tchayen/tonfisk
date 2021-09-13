@@ -1,7 +1,6 @@
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
 // to handle import statements. Instead, you must include components in scope
-
 import {
   atoms,
   Button,
@@ -34,6 +33,7 @@ import {
   TextInput,
   Tooltip,
 } from "ds";
+import { Field, Form, Formik, useField } from "formik";
 import Link from "next/link";
 import { ReactElement, useState } from "react";
 
@@ -214,11 +214,71 @@ const CheckboxExample = (): ReactElement => {
   );
 };
 
+const FormTextInput = (props) => {
+  const [field, meta] = useField(props);
+
+  return (
+    <>
+      <TextInput {...field} {...props} />
+      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+    </>
+  );
+};
+
+const FormikExample = (): ReactElement => {
+  // TODO:
+  // - Email does not React to inputs.
+  // - Input values do not appear in onSubmit.
+
+  return (
+    <Formik
+      initialValues={{
+        firstName: "",
+        lastName: "",
+        email: "",
+      }}
+      onSubmit={async (values) => {
+        // await new Promise((r) => setTimeout(r, 500));
+        alert(JSON.stringify(values, null, 2));
+      }}
+    >
+      <Form
+        className={atoms({
+          display: "grid",
+          gap: "l",
+        })}
+      >
+        <FormTextInput
+          name="first-name"
+          label="First name"
+          placeholder="Jane"
+        />
+        <FormTextInput name="last-name" label="Last name" placeholder="Doe" />
+        <FormTextInput name="email" label="Email" placeholder="jane@acme.com" />
+        <Button type="submit">Submit</Button>
+      </Form>
+    </Formik>
+  );
+};
+
 export const components = {
   a: ({ children, href }) => (
     <Link href={href}>
       <a href={href}>{children}</a>
     </Link>
+  ),
+  strong: ({ children }) => (
+    <strong
+      className={atoms({
+        fontWeight: "bold",
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      })}
+    >
+      {children}
+    </strong>
   ),
   h1: ({ children }) => (
     <h1
@@ -351,4 +411,5 @@ export const components = {
   SelectExample,
   MenuExample,
   CheckboxExample,
+  FormikExample,
 };

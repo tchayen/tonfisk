@@ -1,8 +1,35 @@
-import React from "react";
+import React, { ReactElement } from "react";
 
 import { label } from "./Label.css";
 
-export const Label = ({ children, props }) => {
+type Props = {
+  /**
+   * Text content of label.
+   */
+  children: string;
+  /**
+   * Optional props passed to the label element. Usually they come from
+   * `react-aria` hooks such as `useSelect` or `useTextField`.
+   */
+  props: any;
+};
+
+/**
+ * Label component used in form elements.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import { Label } from "@tchayen/design-system";
+ *
+ * <Label>Text</Label>
+ * ```
+ *
+ * ## Example
+ *
+ * <Label>Text</Label>
+ */
+export const Label = ({ children, ...props }: Props): ReactElement => {
   return (
     <label {...props} className={label}>
       {children}

@@ -37,10 +37,13 @@ const ListItem = ({
         onMouseLeave={onMouseLeave}
         className={atoms({
           fontSize: "14px",
+          fontWeight: active ? "bold" : "body",
           color: {
-            lightMode: active ? "white" : "gray-600",
-            darkMode: active ? "gray-200" : "gray-400",
+            lightMode: active ? "white" : "black",
+            darkMode: active ? "gray-200" : "gray-200",
           },
+          borderRadius: "8px",
+          margin: "s",
           background: active
             ? "pink-500"
             : isHovered
@@ -113,10 +116,6 @@ export function Layout({
     >
       <div
         className={atoms({
-          borderRight: {
-            lightMode: "regular",
-            darkMode: "regularDark",
-          },
           height: "100vh",
           width: "24ch",
         })}
