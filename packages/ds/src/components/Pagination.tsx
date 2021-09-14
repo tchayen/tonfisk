@@ -1,6 +1,12 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
+import {
+  OverlayContainer,
+  useOverlayPosition,
+  useOverlayTrigger,
+} from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
+import { useOverlayTriggerState } from "@react-stately/overlays";
 import React, {
   Fragment,
   ReactElement,
@@ -17,13 +23,18 @@ import {
   rotateLeft,
   rotateRight,
 } from "./Pagination.css";
+import { Popover } from "./Popover";
+import { TextInput } from "./TextInput";
 
 function PageButton(props: {
-  isSelected: boolean;
-  onPress: () => void;
   children: ReactNode;
+  onPress?: () => void;
+  isSelected?: boolean;
+  triggerRef?: React.RefObject<HTMLElement>;
+  isDisabled?: boolean;
+  overrideButtonProps?: any;
 }) {
-  const ref = useRef<HTMLButtonElement>(null);
+  const ref = props.triggerRef || useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
@@ -85,7 +96,7 @@ function PageButton(props: {
       })}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      {...mergeProps(buttonProps, focusProps)}
+      {...mergeProps(props.overrideButtonProps || buttonProps, focusProps)}
     >
       {props.children}
     </button>
@@ -108,15 +119,76 @@ const Item = ({
   );
 };
 
-const Dots = (props) => {
+const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
+  const state = useOverlayTriggerState({});
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const overlayRef = useRef(null);
+
+  const { triggerProps, overlayProps } = useOverlayTrigger(
+    { type: "dialog" },
+    state,
+    triggerRef
+  );
+
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: triggerRef,
+    overlayRef,
+    placement: "bottom",
+    offset: 8,
+    isOpen: state.isOpen,
+  });
+
+  const { buttonProps } = useButton(
+    { onPress: () => state.open() },
+    triggerRef
+  );
+
+  const [pageNumber, setPageNumber] = useState<number | null>(null);
+
+  const submit = () => {
+    if (pageNumber !== null) {
+      onChange(Number(pageNumber - 1));
+    }
+    setPageNumber(null);
+    state.close();
+  };
+
   return (
-    <PageButton
-      onPress={() => {
-        // TODO
-      }}
-    >
-      ...
-    </PageButton>
+    <>
+      <PageButton
+        triggerRef={triggerRef}
+        overrideButtonProps={mergeProps(triggerProps, buttonProps)}
+      >
+        ...
+      </PageButton>
+      {state.isOpen && (
+        <OverlayContainer>
+          <Popover
+            {...mergeProps(overlayProps, positionProps)}
+            ref={overlayRef}
+            isOpen={state.isOpen}
+            onClose={submit}
+          >
+            <div style={{ width: "48px" }}>
+              <TextInput
+                aria-label="Page number"
+                placeholder="0"
+                autoFocus
+                value={pageNumber}
+                onKeyPress={(event) => {
+                  if (event.key === "Enter") {
+                    submit();
+                  }
+                }}
+                onChange={(event) => {
+                  setPageNumber(event.target.value);
+                }}
+              />
+            </div>
+          </Popover>
+        </OverlayContainer>
+      )}
+    </>
   );
 };
 
@@ -275,7 +347,11 @@ export function Pagination(props: Props): ReactElement {
       {pages.map((page, index) => (
         <Fragment key={index}>
           {page === undefined ? (
-            <Dots />
+            <Dots
+              onChange={(number) =>
+                setSelected(Math.min(Math.max(0, number), pageCount - 1))
+              }
+            />
           ) : (
             <Item
               isSelected={selected === page}

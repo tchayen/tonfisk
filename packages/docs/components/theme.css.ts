@@ -2,7 +2,7 @@ import { globalStyle } from "@vanilla-extract/css";
 import colors from "ds/src/colors";
 
 globalStyle("code", {
-  fontSize: "16px",
+  fontSize: "15px",
   fontFamily: "SF Mono, Menlo, Consolas, Liberation Mono, monospace",
   // background: "gray-200",
 });

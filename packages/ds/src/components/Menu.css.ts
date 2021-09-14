@@ -37,10 +37,10 @@ export const menuButton = style([
   atoms({
     display: "flex",
     alignItems: "center",
-    borderRadius: "full",
-    fontWeight: "bold",
-    paddingLeft: "l",
-    paddingRight: "l",
+    borderRadius: "8px",
+    // fontWeight: "bold",
+    paddingLeft: "m",
+    paddingRight: "m",
     lineHeight: 1,
   }),
 ]);

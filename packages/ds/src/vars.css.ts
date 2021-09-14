@@ -31,6 +31,7 @@ export const vars = createGlobalTheme(":root", {
     "128px": "128px",
     "100%": "100%",
     "24ch": "24ch",
+    "36ch": "36ch",
     "48ch": "48ch",
     "100vh": "100vh",
     "100vw": "100vw",
@@ -65,6 +66,9 @@ export const vars = createGlobalTheme(":root", {
 
     pinkOutline: "rgba(59, 130, 246, 0.3)",
     // pinkOutline: "rgba(236, 72, 153, 0.3)",
+
+    backdropLight: "rgba(107, 114, 128, 0.35)",
+    backdropDark: "rgba(17, 24, 39, 0.5)",
   },
   borderRadius: {
     "0px": "0px",

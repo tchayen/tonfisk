@@ -1,44 +1,40 @@
 ## Must have
 
-- [ ] Change focus outline on buttons to look more like twitter.
-- [ ] Change design and implement new look for switch to look like classic iOS switch and not material design one.
-- [ ] Case of custom input like in example: how to provide label to the input.
-
-- [ ] Update spinner to feature background for the circle in the outline color.
-- [ ] When button is focused but becomes disabled (pagination) it remains with outline and has it until activated and visited again.
-- [ ] User text selection color and background.
 - [ ] [50%] Some generic landing page?
+- [ ] Pagination dots popover does not always appear on keyboard.
 
 ## Next version
 
-- [ ] Order of modals in example is wrong (settings and warning).
+- [ ] Change design and implement new look for switch to look like classic iOS switch and not material design one.
+- [ ] When button is focused but becomes disabled (pagination) it remains with outline and has it until activated and visited again.
+- [ ] Update spinner to feature background for the circle in the outline color.
+- [ ] Case of custom input like in example: how to provide label to the input.
+- [ ] Change focus outline on buttons to look more like twitter.
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 - [ ] Button variants (link).
 
-- [ ] `<Radio />`.
-- [ ] `<RadioGroup />`.
-- [ ] `<CheckboxGroup />`.
-- [ ] `<SearchField />`.
-- [ ] `<Breadcrumbs />`.
-- [ ] `<ProgressBar />`.
-- [ ] `<ComboBox />`.
-- [ ] `<Slider />`.
-- [ ] `<TabList />`.
+- [ ] Accordion
+- [ ] Radio
+- [ ] RadioGroup
+- [ ] CheckboxGroup
+- [ ] SearchField
+- [ ] Breadcrumbs
+- [ ] ProgressBar
+- [ ] ComboBox
+- [ ] Slider
+- [ ] TabList
 
 ## Nice to have
 
+- [ ] Releases tab as in Braid https://seek-oss.github.io/braid-design-system/components/Box/releases
 - [ ] Borderless text input.
 - [ ] Ability to remove choice from select.
-- [ ] Pagination: popover that appears on click on [...] that allows to select arbitrary page.
 - [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
 - [ ] Style `<code>` tags in MDX and override `pre code` through globals to avoid padding and background there.
-- [x] Placeholder color.
 - [ ] Find out how to access theme in regular JS (not in `atoms`).
 - [ ] Missing TS typings (especially `Table`, `Menu`).
 - [ ] Expose API for switching color modes.
-- [ ] Style browser scrollbars https://github.com/tchayen/md-editor/commit/af7cb357bd6cd6064004af4200ce46ff4a45e7c7.
 - [ ] Interactive props in examples.
-- [ ] Bigger examples to find out missing components.
 - [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
 
 ## Done
@@ -82,6 +78,12 @@
 - [x] BorderlessInput probably shouldn't be in the DS.
 - [x] Style SVG icons in CSS too.
 - [x] Plan code: something like `[30] minutes` input from Figma.
+- [x] Placeholder color.
+- [x] Order of modals in example is wrong (settings and warning).
+- [x] Style browser scrollbars.
+- [x] User text selection color and background.
+- [x] Pagination: popover that appears on click on [...] that allows to select arbitrary page.
+- [x] Bigger examples to find out missing components.
 
 ## CSS in JS
 

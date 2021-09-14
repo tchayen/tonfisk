@@ -2,41 +2,32 @@ import { style } from "@vanilla-extract/css";
 
 import { atoms } from "../theme.css";
 
-export const closeButton = style([
-  atoms({
-    padding: "m",
-    borderRadius: "16px",
-    width: "32px",
-    height: "32px",
-    cursor: "pointer",
-    border: "none",
-    background: "transparent",
-    outline: "none",
-  }),
-  style({
-    ":hover": {
-      background: "gray-200",
-    },
-  }),
-]);
+export const closeButton = atoms({
+  padding: "m",
+  borderRadius: "16px",
+  width: "32px",
+  height: "32px",
+  cursor: "pointer",
+  border: "none",
+  background: "transparent",
+  outline: "none",
+});
 
-export const fullPageDiv = style([
-  atoms({
-    position: "fixed",
-    zIndex: 100000,
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-  }),
-  style({
-    background: "rgba(0, 0, 0, 0.2)",
-    // backdropFilter: "blur(30px)",
-  }),
-]);
+export const fullPageDiv = atoms({
+  position: "fixed",
+  zIndex: 100000,
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  background: {
+    lightMode: "backdropLight",
+    darkMode: "backdropDark",
+  },
+});
 
 export const modalDiv = atoms({
   background: {

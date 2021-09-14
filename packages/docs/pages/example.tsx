@@ -119,10 +119,10 @@ const currencies = [
 ];
 
 type PropsSpaghetti = {
-  slippageTolerance: number;
-  setSlippageTolerance: Dispatch<SetStateAction<number>>;
-  transactionDeadline: number;
-  setTransactionDeadline: Dispatch<SetStateAction<number>>;
+  slippageTolerance: number | undefined;
+  setSlippageTolerance: Dispatch<SetStateAction<number | undefined>>;
+  transactionDeadline: number | undefined;
+  setTransactionDeadline: Dispatch<SetStateAction<number | undefined>>;
   expertMode: boolean;
   setExpertMode: Dispatch<SetStateAction<boolean>>;
   disableMultihops: boolean;
@@ -266,32 +266,51 @@ const Settings = ({
         >
           Transaction settings
         </h4>
-        <TextInput
-          label="Slippage tolerance"
-          placeholder="0.10%"
-          value={slippageTolerance}
-          onChange={({ target: { value } }) => setSlippageTolerance(value)}
-        />
-        <div>
-          <Label>Transaction deadline</Label>
+        <div style={{ width: "50%" }}>
           <TextInput
-            placeholder="30"
-            value={transactionDeadline}
-            onChange={({ target: { value } }) => setTransactionDeadline(value)}
+            label="Slippage tolerance"
+            placeholder="0.10%"
+            value={slippageTolerance}
+            onChange={({ target: { value } }) => setSlippageTolerance(value)}
+          />
+        </div>
+        <div>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+            }}
           >
-            <span
+            <Label>Transaction deadline</Label>
+            <div
               className={atoms({
-                fontSize: "14px",
-                color: {
-                  lightMode: "gray-600",
-                  darkMode: "gray-400",
-                },
-                marginLeft: "m",
+                display: "flex",
+                alignItems: "center",
               })}
             >
-              minutes
-            </span>
-          </TextInput>
+              <div style={{ width: "25%" }}>
+                <TextInput
+                  placeholder="30"
+                  value={transactionDeadline}
+                  onChange={({ target: { value } }) =>
+                    setTransactionDeadline(value)
+                  }
+                />
+              </div>
+              <span
+                className={atoms({
+                  fontSize: "14px",
+                  color: {
+                    lightMode: "gray-600",
+                    darkMode: "gray-400",
+                  },
+                  marginLeft: "m",
+                })}
+              >
+                minutes
+              </span>
+            </div>
+          </div>
         </div>
       </div>
       <HorizontalLine />
@@ -492,9 +511,10 @@ const CurrencyInList = ({
       </div>
       <div
         className={atoms({
+          fontSize: "16px",
           color: {
-            lightMode: "gray-600",
-            darkMode: "gray-500",
+            lightMode: "gray-500",
+            darkMode: "gray-400",
           },
           fontFeatureSettings: "numbers",
         })}
@@ -588,7 +608,7 @@ const SelectTokenModal = ({
   const state = useOverlayTriggerState({});
 
   return (
-    <div>
+    <div className={atoms({ display: "flex", flex: 1 })}>
       <MenuButtonComponent onPress={() => state.open()}>
         {children}
       </MenuButtonComponent>
@@ -617,8 +637,12 @@ export default function Example(): ReactElement {
   const router = useRouter();
   const [from, setFrom] = useState<string | null>(null);
   const [to, setTo] = useState<string | null>(null);
-  const [slippageTolerance, setSlippageTolerance] = useState<number>(0);
-  const [transactionDeadline, setTransactionDeadline] = useState<number>(0);
+  const [slippageTolerance, setSlippageTolerance] = useState<
+    number | undefined
+  >();
+  const [transactionDeadline, setTransactionDeadline] = useState<
+    number | undefined
+  >();
   const [expertMode, setExpertMode] = useState<boolean>(false);
   const [disableMultihops, setDisableMultihops] = useState<boolean>(false);
 
@@ -626,6 +650,9 @@ export default function Example(): ReactElement {
     <div
       className={atoms({
         padding: "2xl",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
       })}
     >
       <div className={atoms({ marginBottom: "l" })}>
@@ -645,7 +672,7 @@ export default function Example(): ReactElement {
 
       <div
         className={atoms({
-          width: "48ch",
+          width: "36ch",
           display: "flex",
           flexDirection: "column",
           gap: "l",
@@ -680,7 +707,7 @@ export default function Example(): ReactElement {
         </div>
         <div
           className={atoms({
-            width: "48ch",
+            width: "36ch",
             borderRadius: "8px",
             border: {
               lightMode: "regular",

@@ -4,14 +4,42 @@ import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
 import colors from "./colors";
 import { vars } from "./vars.css";
 
+globalStyle("::selection", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {},
+  },
+  background: colors.blue[500],
+  color: colors.white,
+});
+
 globalStyle("::placeholder", {
   "@media": {
     "(prefers-color-scheme: dark)": {
-      color: colors.gray[500],
+      color: colors.coolGray[500],
     },
   },
-  color: colors.gray[400],
+  color: colors.coolGray[400],
   opacity: 1,
+});
+
+globalStyle("*::-webkit-scrollbar", {
+  width: 12,
+});
+
+globalStyle("*::-webkit-scrollbar-track", {
+  boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+});
+
+globalStyle("*::-webkit-scrollbar-thumb", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      backgroundColor: colors.coolGray[700],
+      boxShadow: `0 0 0 2px inset ${colors.coolGray[900]}`,
+    },
+  },
+  backgroundColor: colors.coolGray[300],
+  boxShadow: "0 0 0 2px inset white",
+  borderRadius: 6,
 });
 
 globalStyle("h1", {
@@ -21,19 +49,19 @@ globalStyle("h1", {
 });
 
 globalStyle("h2", {
-  fontSize: "26px",
+  fontSize: "24px",
   fontWeight: 600,
   margin: 0,
 });
 
 globalStyle("h3", {
-  fontSize: "22px",
+  fontSize: "20px",
   fontWeight: 600,
   margin: 0,
 });
 
 globalStyle("h4", {
-  fontSize: "18px",
+  fontSize: "16px",
   fontWeight: 600,
   margin: 0,
 });

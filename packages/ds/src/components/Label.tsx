@@ -27,7 +27,7 @@ type Props = {
  *
  * ## Example
  *
- * <Label>Text</Label>
+ * <Label>Yes, this one is actually pretty tiny and not impressive on its own</Label>
  */
 export const Label = ({ children, ...props }: Props): ReactElement => {
   return (

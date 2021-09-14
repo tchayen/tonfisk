@@ -3,7 +3,6 @@ import React, {
   ChangeEventHandler,
   FocusEvent,
   ReactElement,
-  ReactNode,
   useRef,
   useState,
 } from "react";
@@ -46,10 +45,13 @@ type Props = {
    */
   value?: string;
   /**
-   * Optional children to put next to input. It can be some complementary
-   * information, like [30] minutes.
+   *
    */
-  children?: ReactNode;
+  onKeyPress?: (event: React.KeyboardEvent) => void;
+  /**
+   * TODO
+   */
+  "aria-label"?: string;
 };
 
 /**
@@ -87,43 +89,27 @@ export function TextInput(props: Props): ReactElement {
     }
   };
 
-  const inputElement = (
-    <input
-      {...inputProps}
-      ref={ref}
-      onFocus={handleFocus}
-      onBlur={handleBlur}
-      autoFocus={props.autoFocus}
-      onChange={props.onChange}
-      // TODO: recipe, large variant
-      className={`${input} ${atoms({
-        padding: "xs",
-        border: "none",
-        boxShadow: {
-          lightMode: isFocused ? "primary" : "regularBorder",
-          darkMode: isFocused ? "primary" : "darkBorder",
-        },
-      })}`}
-    />
-  );
-
   return (
     <div className={`${div} ${atoms({ opacity: props.isDisabled ? 0.5 : 1 })}`}>
       {label && <Label {...labelProps}>{label}</Label>}
-      {props.children ? (
-        <div
-          // TODO: move to *.css.ts.
-          className={atoms({
-            display: "flex",
-            alignItems: "center",
-          })}
-        >
-          {inputElement}
-          {props.children}
-        </div>
-      ) : (
-        inputElement
-      )}
+      <input
+        {...inputProps}
+        ref={ref}
+        onFocus={handleFocus}
+        onBlur={handleBlur}
+        autoFocus={props.autoFocus}
+        onChange={props.onChange}
+        onKeyPress={props.onKeyPress}
+        // TODO: recipe, large variant
+        className={`${input} ${atoms({
+          padding: "xs",
+          border: "none",
+          boxShadow: {
+            lightMode: isFocused ? "primary" : "regularBorder",
+            darkMode: isFocused ? "primary" : "darkBorder",
+          },
+        })}`}
+      />
     </div>
   );
 }

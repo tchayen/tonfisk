@@ -346,13 +346,9 @@ export const components = {
   pre: ({ children }) => (
     <pre
       className={atoms({
-        padding: "l",
+        padding: "xl",
         borderRadius: "8px",
-        border: {
-          lightMode: "none",
-          darkMode: "regularDark",
-        },
-        background: "gray-900",
+        background: "gray-800",
         color: "gray-200",
       })}
     >

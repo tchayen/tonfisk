@@ -43,10 +43,10 @@ export const button = recipe({
         background: "pink-500",
       }),
       hover: atoms({
-        background: "pink-400",
+        background: "pink-600",
       }),
       active: atoms({
-        background: "pink-600",
+        background: "pink-700",
       }),
     },
     cursor: {
