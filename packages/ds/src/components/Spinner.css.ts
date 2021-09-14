@@ -1,10 +1,9 @@
-import { keyframes, style } from "@vanilla-extract/css";
+import { atoms } from "../theme.css";
 
-const rotate = keyframes({
-  "0%": { transform: "rotate(0deg)" },
-  "100%": { transform: "rotate(360deg)" },
+export const background = atoms({
+  stroke: "pinkOutline",
 });
 
-export const animated = style({
-  animation: `1s linear infinite ${rotate}`,
+export const main = atoms({
+  stroke: "pink-500",
 });

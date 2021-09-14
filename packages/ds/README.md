@@ -19,9 +19,9 @@
 - [ ] CheckboxGroup
 - [ ] SearchField
 - [ ] Breadcrumbs
-- [ ] ProgressBar
-- [ ] ComboBox
-- [ ] Slider
+- [ ] [ProgressBar](https://react-spectrum.adobe.com/react-aria/useProgressBar.html)
+- [ ] [ComboBox](https://react-spectrum.adobe.com/react-aria/useComboBox.html)
+- [ ] [Slider](https://react-spectrum.adobe.com/react-aria/useSlider.html)
 - [ ] TabList
 
 ## Nice to have
@@ -84,22 +84,3 @@
 - [x] User text selection color and background.
 - [x] Pagination: popover that appears on click on [...] that allows to select arbitrary page.
 - [x] Bigger examples to find out missing components.
-
-## CSS in JS
-
-[jsxstyle](https://github.com/jsxstyle/jsxstyle)
-
-```jsx
-<Row alignItems="center" padding={15}>
-  <Block backgroundColor="#eee" borderRadius={5} height={64} width={64} />
-  <Col fontFamily="sans-serif" fontSize={16} lineHeight="24px">
-    <Block fontWeight={600}>Abc</Block>
-    <Block fontStyle="italic">def</Block>
-  </Col>
-</Row>
-```
-
-## Interesting CSS in JS related projects
-
-[styled-map](https://github.com/scf4/styled-map)
-[manipulative](https://github.com/paulshen/manipulative)

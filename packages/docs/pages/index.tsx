@@ -1,4 +1,4 @@
-import { atoms } from "ds";
+import { atoms, commonStyles } from "ds";
 import Link from "next/link";
 import { ReactElement } from "react";
 
@@ -24,16 +24,7 @@ export default function Home(): ReactElement {
           marginTop: "2xl",
         })}
       >
-        <h1
-          className={atoms({
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-          })}
-        >
-          TODO_LIB_NAME
-        </h1>
+        <h1 className={commonStyles.primaryTextColor}>TODO_LIB_NAME</h1>
         <h2>What is this?</h2>
         <p className={p}>
           A design system with a component library built on top of{" "}

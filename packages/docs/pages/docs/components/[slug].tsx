@@ -1,5 +1,5 @@
 import rehypePrism from "@mapbox/rehype-prism";
-import { atoms } from "ds";
+import { atoms, commonStyles } from "ds";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import React, { Fragment, ReactElement } from "react";
@@ -35,16 +35,7 @@ export default function Doc({
 }: Props): ReactElement {
   return (
     <Layout navigation={navigation}>
-      <h1
-        className={atoms({
-          color: {
-            lightMode: "black",
-            darkMode: "gray-200",
-          },
-        })}
-      >
-        {metadata.displayName}
-      </h1>
+      <h1 className={commonStyles.primaryTextColor}>{metadata.displayName}</h1>
       {metadata.props.length > 0 && (
         <Fragment>
           <h2

@@ -10,6 +10,7 @@ import { useOverlayTriggerState } from "@react-stately/overlays";
 import {
   atoms,
   Button,
+  commonStyles,
   HorizontalLine,
   Label,
   ModalDialog,
@@ -18,6 +19,7 @@ import {
   Switch,
   TextInput,
 } from "ds";
+import { primaryTextColor } from "ds/src/commonStyles.css";
 import { MenuButtonComponent } from "ds/src/components/Menu";
 import { useRouter } from "next/dist/client/router";
 import React, {
@@ -248,24 +250,8 @@ const Settings = ({
 
   return (
     <div>
-      <div
-        className={atoms({
-          display: "flex",
-          flexDirection: "column",
-          gap: "l",
-          padding: "l",
-        })}
-      >
-        <h4
-          className={atoms({
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-          })}
-        >
-          Transaction settings
-        </h4>
+      <div className={commonStyles.flexColumn}>
+        <h4 className={primaryTextColor}>Transaction settings</h4>
         <div style={{ width: "50%" }}>
           <TextInput
             label="Slippage tolerance"
@@ -326,14 +312,7 @@ const Settings = ({
       >
         Interface settings
       </h4>
-      <div
-        className={atoms({
-          padding: "l",
-          display: "flex",
-          flexDirection: "column",
-          gap: "l",
-        })}
-      >
+      <div className={commonStyles.flexColumn}>
         <Switch isSelected={expertMode} onChange={showWarning}>
           Toggle expert mode
         </Switch>
@@ -657,14 +636,7 @@ export default function Example(): ReactElement {
     >
       <div className={atoms({ marginBottom: "l" })}>
         <Button onPress={() => router.back()}>← Back</Button>
-        <p
-          className={atoms({
-            color: {
-              lightMode: "gray-600",
-              darkMode: "gray-400",
-            },
-          })}
-        >
+        <p className={commonStyles.secondaryTextColor}>
           This is a tiny Uniswap UI clone to show what the component library is
           capable of.
         </p>
@@ -684,16 +656,7 @@ export default function Example(): ReactElement {
             justifyContent: "space-between",
           })}
         >
-          <h3
-            className={atoms({
-              color: {
-                lightMode: "black",
-                darkMode: "gray-200",
-              },
-            })}
-          >
-            Swap
-          </h3>
+          <h3 className={primaryTextColor}>Swap</h3>
           <SettingsPopover
             slippageTolerance={slippageTolerance}
             setSlippageTolerance={setSlippageTolerance}
