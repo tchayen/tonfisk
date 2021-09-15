@@ -4,7 +4,7 @@ import { mergeProps } from "@react-aria/utils";
 import React, { useRef, useState } from "react";
 
 import { atoms } from "../theme.css";
-import { pill } from "./Pill.css";
+import { icon, pill } from "./Pill.css";
 
 type Props = {
   /**
@@ -86,17 +86,7 @@ export const Pill = (props: Props): JSX.Element => {
       onMouseLeave={onMouseLeave}
       className={className}
     >
-      {props.iconUrl && (
-        <img
-          // TODO: move to *.css.ts.
-          className={atoms({
-            width: "20px",
-            height: "20px",
-            borderRadius: "full",
-          })}
-          src={props.iconUrl}
-        />
-      )}
+      {props.iconUrl && <img className={icon} src={props.iconUrl} />}
       {props.children}
     </button>
   );

@@ -14,7 +14,13 @@ import React, { useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
-import { menuButton, menuItem, menuPopup } from "./Menu.css";
+import {
+  chevronPadding,
+  div,
+  menuButton,
+  menuItem,
+  menuPopup,
+} from "./Menu.css";
 
 function MenuPopup(props: {
   onClose: () => void;
@@ -158,6 +164,7 @@ const MenuButton_ = (
       isDisabled: props.isDisabled,
       onPress: props.onPress,
     },
+    // TODO: TS
     ref
   );
 
@@ -177,8 +184,7 @@ const MenuButton_ = (
       })}`}
     >
       {props.children}
-      {/* TODO: move to *.css.ts. */}
-      <span aria-hidden="true" className={atoms({ paddingLeft: "m" })}>
+      <span aria-hidden="true" className={chevronPadding}>
         <Chevron />
       </span>
     </button>
@@ -217,8 +223,7 @@ export function MenuButton(props: Props): JSX.Element {
   const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref);
 
   return (
-    // TODO: move to *.css.ts.
-    <div className={atoms({ position: "relative", display: "inline-block" })}>
+    <div className={div}>
       <MenuButtonComponent
         ref={ref}
         menuTriggerProps={menuTriggerProps}

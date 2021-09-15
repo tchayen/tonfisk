@@ -256,8 +256,8 @@ type Props = {
    */
   pageCount: number;
   /**
-   * Number of visible pages (including dots). For example, 1 ... 4 5 6 ... 10
-   * is 7 visible pages. Minimum is 7 (or component will throw).
+   * Number of visible pages (including dots). For example, (1) (...) (4) (5) (6) (...) (10)
+   * is 7 visible pages. Minimum is 7 (or component will throw an error).
    */
   visiblePages: number;
   /**
@@ -267,7 +267,7 @@ type Props = {
 };
 
 /**
- * Pagination component. Features previous/next buttons, does not allowed
+ * Pagination component. Features previous/next buttons, does not allow
  * visiting pages outside of the specified range. In case there is a gap between
  * pages, a three-dot button appears that after clicking show popover with input
  * that takes to provided page on enter/escape/blur.

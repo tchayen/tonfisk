@@ -13,7 +13,7 @@ import {
 import { mergeProps } from "@react-aria/utils";
 import { TableState, useTableState } from "@react-stately/table";
 import { useToggleState } from "@react-stately/toggle";
-import { Fragment, ReactElement } from "react";
+import { Fragment } from "react";
 import React, { useRef } from "react";
 
 import { Tick } from "../icons/Tick";
@@ -38,14 +38,13 @@ export {
   TableHeader,
 } from "@react-stately/table";
 
-// TODO:
-// - Reuse style for checkboxes from the overall DS.
-
+// TODO: TS
 export function TableRowGroup({ type: Element, children }): JSX.Element {
   const { rowGroupProps } = useTableRowGroup();
   return <Element {...rowGroupProps}>{children}</Element>;
 }
 
+// TODO: TS
 export function TableHeaderRow({ item, state, children }): JSX.Element {
   const ref = useRef<HTMLTableRowElement>(null);
   const { rowProps } = useTableHeaderRow({ node: item }, state, ref);
@@ -57,6 +56,7 @@ export function TableHeaderRow({ item, state, children }): JSX.Element {
   );
 }
 
+// TODO: TS
 export function TableColumnHeader({ column, state }): JSX.Element {
   const ref = useRef<HTMLTableHeaderCellElement>(null);
   const { columnHeaderProps } = useTableColumnHeader(
@@ -102,6 +102,7 @@ export function TableColumnHeader({ column, state }): JSX.Element {
   );
 }
 
+// TODO: TS
 export function TableRow({ item, children, state, index, rows }): JSX.Element {
   const ref = useRef<HTMLTableRowElement>(null);
   const isSelected = state.selectionManager.isSelected(item.key);
@@ -138,6 +139,7 @@ export function TableRow({ item, children, state, index, rows }): JSX.Element {
   );
 }
 
+// TODO: TS
 export function TableCell({ cell, state }): JSX.Element {
   const ref = useRef<HTMLTableCellElement>(null);
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
@@ -159,6 +161,7 @@ export function TableCell({ cell, state }): JSX.Element {
   );
 }
 
+// TODO: TS
 function Checkbox({
   inputProps,
   inputRef,
@@ -208,6 +211,7 @@ function Checkbox({
   );
 }
 
+// TODO: TS
 export function TableSelectAllCell({ column, state }): JSX.Element {
   const ref = useRef<HTMLTableHeaderCellElement>(null);
   const isSingleSelectionMode =

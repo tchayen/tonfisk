@@ -18,3 +18,9 @@ export const pill = style([
     outline: "none",
   }),
 ]);
+
+export const icon = atoms({
+  width: "20px",
+  height: "20px",
+  borderRadius: "full",
+});

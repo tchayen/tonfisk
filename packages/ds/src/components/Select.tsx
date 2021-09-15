@@ -2,14 +2,13 @@ import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
-import React, { useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
-import { atoms } from "../theme.css";
 import { Label } from "./Label";
-import { button, select, span } from "./Select.css";
+import { select, selectButton, span } from "./Select.css";
 
 export { Item } from "@react-stately/collections";
 
@@ -90,17 +89,11 @@ export function Select(props: Props): JSX.Element {
         {...focusProps}
         ref={ref}
         // TODO: recipe
-        className={`${button} ${atoms({
-          boxShadow: {
-            lightMode: isFocusVisible ? "primary" : "regularBorder",
-            darkMode: isFocusVisible ? "primary" : "darkBorder",
-          },
-          color: {
-            lightMode: state.selectedItem ? "black" : "gray-600",
-            darkMode: state.selectedItem ? "gray-200" : "gray-400",
-          },
-          opacity: props.isDisabled ? 0.5 : 1,
-        })}`}
+        className={selectButton({
+          boxShadow: isFocusVisible ? "focusVisible" : "default",
+          color: state.selectedItem ? "selected" : "empty",
+          opacity: props.isDisabled ? "disabled" : "active",
+        })}
       >
         <span {...valueProps}>
           {state.selectedItem

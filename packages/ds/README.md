@@ -1,14 +1,26 @@
 ## Must have
 
-- [ ] Active link in sidebar on homepage.
+- [ ] Update `react-aria` and `@vanilla-extract/css`.
+- [ ] Fix TODOs about converting code to recipes.
+- [ ] Active link is missing in sidebar on homepage.
+- [ ] External links are missing hovers.
 - [ ] Homepage in MDX.
+- [ ] Fix margins (getting started paragraphs and headers as example).
 - [ ] Style `<code>` properly.
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
-- [ ] External links are missing hovers.
-- [ ] Fix margins (getting started paragraphs and headers as example).
+- [ ] Import CSS from `*.css.ts` files as `import * from ...` to refer to them as `styles.className` instead of just `className` (too much wondering where did this variable come from).
 - [ ] [50%] Some generic landing page?
+- [ ] Review styles to find out what is worth reusing.
+- [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
+- [ ] Add a 'copy code' button for code blocks.
+- [ ] `(?)` button? for form labels that show tooltip.
 
-- [x] Make all pages have equal width.
+### Example improvements
+
+- [ ] Refactor example a lot, share code, get rid of props spaghetti, split main form into two components.
+- [ ] In example, when user presses swap, show non-dismisable modal with progress of transaction (TODO: find out what are the steps).
+
+[Ethereum Docs / Transactions](https://ethereum.org/en/developers/docs/transactions/)
 
 ## Bugs
 
@@ -95,3 +107,4 @@
 - [x] Pagination: popover that appears on click on [...] that allows to select arbitrary page.
 - [x] Bigger examples to find out missing components.
 - [x] Update spinner to feature background for the circle in the outline color.
+- [x] Make all pages have equal width.

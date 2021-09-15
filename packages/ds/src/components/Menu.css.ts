@@ -4,6 +4,8 @@ import { option } from "../ListBox.css";
 import { atoms } from "../theme.css";
 import { inputLike } from "./TextInput.css";
 
+export const div = atoms({ position: "relative", display: "inline-block" });
+
 export const menuPopup = style([
   atoms({
     outline: "none",
@@ -31,6 +33,8 @@ export const menuPopup = style([
 ]);
 
 export const menuItem = style([option]);
+
+export const chevronPadding = atoms({ paddingLeft: "m" });
 
 export const menuButton = style([
   inputLike,

@@ -361,8 +361,8 @@ function ParagraphComponent({
           darkMode: "gray-400",
         },
         lineHeight: 1.5,
-        marginTop: "xl",
-        marginBottom: "xl",
+        marginTop: "l",
+        marginBottom: "l",
       })}
     >
       {children}

@@ -1,5 +1,3 @@
-import { style } from "@vanilla-extract/css";
-
 import { atoms } from "../theme.css";
 
 export const closeButton = atoms({

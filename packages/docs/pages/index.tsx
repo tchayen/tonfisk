@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Layout } from "../components/Layout";
 import { getNavigation } from "../utils/mdx";
 
+// TODO: TS
 export default function Home({ navigation }): JSX.Element {
   const p = atoms({
     color: {
@@ -35,7 +36,7 @@ export default function Home({ navigation }): JSX.Element {
         {/* https://github.com/seek-oss/vanilla-extract
         https://react-spectrum.adobe.com/react-aria */}
         <p className={paragraph}>
-          A design system with a component library built on top of{" "}
+          A React design system with a component library built on top of{" "}
           <code>react-aria</code>, a wonderful accessibility library, and{" "}
           <code>vanilla-extract</code>, lightweight and powerful styling
           solution.

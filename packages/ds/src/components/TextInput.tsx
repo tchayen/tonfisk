@@ -1,11 +1,5 @@
 import { useTextField } from "@react-aria/textfield";
-import React, {
-  ChangeEventHandler,
-  FocusEvent,
-  ReactElement,
-  useRef,
-  useState,
-} from "react";
+import React, { ChangeEventHandler, FocusEvent, useRef, useState } from "react";
 
 import { atoms } from "../theme.css";
 import { Label } from "./Label";

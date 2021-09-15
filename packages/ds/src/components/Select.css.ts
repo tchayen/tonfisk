@@ -19,7 +19,7 @@ export const span = style([
   }),
 ]);
 
-export const button = style([
+const button = style([
   inputLike,
   atoms({
     paddingLeft: "m",
@@ -37,7 +37,6 @@ export const button = style([
   }),
 ]);
 
-// TODO: start using it.
 export const selectButton = recipe({
   base: button,
   variants: {

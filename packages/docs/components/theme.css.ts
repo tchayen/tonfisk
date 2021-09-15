@@ -4,12 +4,7 @@ import colors from "ds/src/colors";
 globalStyle("code", {
   fontSize: "15px",
   fontFamily: "SF Mono, Menlo, Consolas, Liberation Mono, monospace",
-  // background: "gray-200",
 });
-
-// globalStyle("pre code", {
-//   background: "transparent",
-// });
 
 // , .token.punctuation, .token.class-name, .token.method.function.property-access, .token.attr-value, .token.maybe-class-name, .token.arrow.operator
 globalStyle(

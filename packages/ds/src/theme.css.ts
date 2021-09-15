@@ -8,10 +8,12 @@ globalStyle("html", {
   "@media": {
     "(prefers-color-scheme: dark)": {
       background: colors.coolGray[900],
+      color: colors.coolGray[400],
     },
   },
   fontFeatureSettings: "'ss01' on,'ss02' on,'cv01' on,'cv03' on",
   background: colors.white,
+  color: colors.coolGray[600],
 });
 
 globalStyle("::selection", {

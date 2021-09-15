@@ -5,6 +5,7 @@ import React, { ReactNode, useRef } from "react";
 
 import { tooltipBox, tooltipButton, tooltipSpan } from "./Tooltip.css";
 
+// TODO: TS
 function TooltipBox({ state, ...props }): JSX.Element {
   const { tooltipProps } = useTooltip(props, state);
 

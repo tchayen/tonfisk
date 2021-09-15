@@ -27,6 +27,7 @@ import React, {
   Dispatch,
   ReactNode,
   SetStateAction,
+  useEffect,
   useRef,
   useState,
 } from "react";
@@ -606,9 +607,9 @@ const SelectTokenModal = ({
         <OverlayContainer>
           <ModalDialog
             title="Select a token"
-            isOpen
             onClose={state.close}
             isDismissable
+            isOpen
           >
             <SelectToken
               onSelect={(token) => {
@@ -678,7 +679,24 @@ export default function Example(): ReactNode {
   const [expertMode, setExpertMode] = useState<boolean>(false);
   const [disableMultihops, setDisableMultihops] = useState<boolean>(false);
 
+  const [fromBalance, setFromBalance] = useState<number | null>(null);
+  const [toBalance, setToBalance] = useState<number | null>(null);
+
   const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    setFromBalance(null);
+    setTimeout(() => {
+      setFromBalance(0.000135);
+    }, 2000);
+  }, [from]);
+
+  useEffect(() => {
+    setToBalance(null);
+    setTimeout(() => {
+      setToBalance(0.253);
+    }, 2000);
+  }, [to]);
 
   return (
     <div
@@ -743,12 +761,33 @@ export default function Example(): ReactNode {
               padding: "l",
             })}
           >
-            <SelectTokenModal
-              onSelect={(from) => setFrom(from)}
-              isDisabled={loading}
+            <div
+              className={atoms({
+                display: "flex",
+                flexDirection: "column",
+                gap: "m",
+              })}
             >
-              {from || "Select token"}
-            </SelectTokenModal>
+              <SelectTokenModal
+                onSelect={(from) => setFrom(from)}
+                isDisabled={loading}
+              >
+                {from || "Select token"}
+              </SelectTokenModal>
+              {from && fromBalance && (
+                <div
+                  className={atoms({
+                    fontSize: "14px",
+                    color: {
+                      lightMode: "gray-600",
+                      darkMode: "gray-400",
+                    },
+                  })}
+                >
+                  Balance: {fromBalance} {from}
+                </div>
+              )}
+            </div>
             <BorderlessInput placeholder="0.00" isDisabled={loading} />
           </div>
           <HorizontalLine />
@@ -761,9 +800,33 @@ export default function Example(): ReactNode {
               padding: "l",
             })}
           >
-            <SelectTokenModal onSelect={(to) => setTo(to)} isDisabled={loading}>
-              {to || "Select token"}
-            </SelectTokenModal>
+            <div
+              className={atoms({
+                display: "flex",
+                flexDirection: "column",
+                gap: "m",
+              })}
+            >
+              <SelectTokenModal
+                onSelect={(to) => setTo(to)}
+                isDisabled={loading}
+              >
+                {to || "Select token"}
+              </SelectTokenModal>
+              {to && toBalance && (
+                <div
+                  className={atoms({
+                    fontSize: "14px",
+                    color: {
+                      lightMode: "gray-600",
+                      darkMode: "gray-400",
+                    },
+                  })}
+                >
+                  Balance: {toBalance} {to}
+                </div>
+              )}
+            </div>
             <BorderlessInput placeholder="0.00" isDisabled={loading} />
           </div>
         </div>

@@ -16,16 +16,6 @@ export const buttonLike = atoms({
 });
 
 const basicButton = atoms({
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  border: "none",
-  outline: "none",
-  fontFamily: "body",
-  fontSize: "14px",
-  fontWeight: "bold",
-  lineHeight: 1,
-  height: "32px",
   paddingLeft: "l",
   paddingRight: "l",
   borderRadius: "full",
@@ -36,7 +26,7 @@ const basicButton = atoms({
 });
 
 export const button = recipe({
-  base: basicButton,
+  base: [buttonLike, basicButton],
   variants: {
     background: {
       default: atoms({
