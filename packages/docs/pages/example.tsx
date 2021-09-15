@@ -16,6 +16,7 @@ import {
   ModalDialog,
   Pill,
   Popover,
+  Spinner,
   Switch,
   TextInput,
 } from "ds";
@@ -24,7 +25,7 @@ import { MenuButtonComponent } from "ds/src/components/Menu";
 import { useRouter } from "next/dist/client/router";
 import React, {
   Dispatch,
-  ReactElement,
+  ReactNode,
   SetStateAction,
   useRef,
   useState,
@@ -113,11 +114,6 @@ const currencies = [
     acronym: "YFI",
     icon: "https://cryptologos.cc/logos/yearn-finance-yfi-logo.svg?v=013",
   },
-  {
-    name: "0xProtocol",
-    acronym: "ZRX",
-    icon: "https://cryptologos.cc/logos/0x-zrx-logo.svg?v=013",
-  },
 ];
 
 type PropsSpaghetti = {
@@ -132,6 +128,7 @@ type PropsSpaghetti = {
 };
 
 const SettingsPopover = ({
+  isDisabled,
   slippageTolerance,
   setSlippageTolerance,
   transactionDeadline,
@@ -140,7 +137,7 @@ const SettingsPopover = ({
   setExpertMode,
   disableMultihops,
   setDisableMultihops,
-}: PropsSpaghetti) => {
+}: PropsSpaghetti & { isDisabled?: boolean }) => {
   const state = useOverlayTriggerState({});
   const triggerRef = useRef<HTMLButtonElement>(null);
   const overlayRef = useRef(null);
@@ -169,6 +166,7 @@ const SettingsPopover = ({
   const { buttonProps } = useButton(
     {
       onPress: () => state.open(),
+      isDisabled,
     },
     triggerRef
   );
@@ -183,7 +181,7 @@ const SettingsPopover = ({
     background: "transparent",
     margin: "none",
     display: "inline-block",
-    cursor: "pointer",
+    cursor: isDisabled ? "default" : "pointer",
     outline: "none",
     borderRadius: "8px",
     padding: "s",
@@ -423,6 +421,9 @@ const CurrencyInList = ({
     padding: "l",
     paddingBottom: "m",
     paddingTop: "m",
+    marginLeft: "s",
+    marginRight: "xs",
+    borderRadius: "8px",
     border: "none",
     textAlign: "left",
     fontFamily: "body",
@@ -560,6 +561,9 @@ const SelectToken = ({ onSelect }: { onSelect: (token: string) => void }) => {
           className={atoms({
             display: "flex",
             flexDirection: "column",
+            gap: "s",
+            paddingTop: "s",
+            paddingBottom: "s",
             height: "24ch",
             overflow: "auto",
           })}
@@ -579,16 +583,23 @@ const SelectToken = ({ onSelect }: { onSelect: (token: string) => void }) => {
 
 const SelectTokenModal = ({
   onSelect,
+  isDisabled,
   children,
 }: {
   onSelect: (token: string) => void;
+  isDisabled?: boolean;
   children: string;
 }) => {
   const state = useOverlayTriggerState({});
 
   return (
     <div className={atoms({ display: "flex", flex: 1 })}>
-      <MenuButtonComponent onPress={() => state.open()}>
+      <MenuButtonComponent
+        onPress={() => {
+          state.open();
+        }}
+        isDisabled={isDisabled}
+      >
         {children}
       </MenuButtonComponent>
       {state.isOpen && (
@@ -612,7 +623,49 @@ const SelectTokenModal = ({
   );
 };
 
-export default function Example(): ReactElement {
+const SpinnerContainer = ({
+  className,
+  loading,
+  children,
+}: {
+  className: string;
+  loading?: boolean;
+  children: ReactNode;
+}): ReactNode => {
+  if (!loading) {
+    return <div className={className}>{children}</div>;
+  }
+
+  return (
+    <div
+      className={atoms({
+        position: "relative",
+      })}
+    >
+      <div
+        className={atoms({
+          width: "100%",
+          height: "100%",
+          position: "absolute",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        })}
+      >
+        <Spinner />
+      </div>
+      <div
+        className={`${className} ${atoms({
+          opacity: loading ? 0.5 : 1,
+        })}`}
+      >
+        {children}
+      </div>
+    </div>
+  );
+};
+
+export default function Example(): ReactNode {
   const router = useRouter();
   const [from, setFrom] = useState<string | null>(null);
   const [to, setTo] = useState<string | null>(null);
@@ -624,6 +677,8 @@ export default function Example(): ReactElement {
   >();
   const [expertMode, setExpertMode] = useState<boolean>(false);
   const [disableMultihops, setDisableMultihops] = useState<boolean>(false);
+
+  const [loading, setLoading] = useState(false);
 
   return (
     <div
@@ -641,8 +696,8 @@ export default function Example(): ReactElement {
           capable of.
         </p>
       </div>
-
-      <div
+      <SpinnerContainer
+        loading={loading}
         className={atoms({
           width: "36ch",
           display: "flex",
@@ -658,6 +713,7 @@ export default function Example(): ReactElement {
         >
           <h3 className={primaryTextColor}>Swap</h3>
           <SettingsPopover
+            isDisabled={loading}
             slippageTolerance={slippageTolerance}
             setSlippageTolerance={setSlippageTolerance}
             transactionDeadline={transactionDeadline}
@@ -687,10 +743,13 @@ export default function Example(): ReactElement {
               padding: "l",
             })}
           >
-            <SelectTokenModal onSelect={(from) => setFrom(from)}>
+            <SelectTokenModal
+              onSelect={(from) => setFrom(from)}
+              isDisabled={loading}
+            >
               {from || "Select token"}
             </SelectTokenModal>
-            <BorderlessInput placeholder="0.00" />
+            <BorderlessInput placeholder="0.00" isDisabled={loading} />
           </div>
           <HorizontalLine />
           <div
@@ -702,21 +761,25 @@ export default function Example(): ReactElement {
               padding: "l",
             })}
           >
-            <SelectTokenModal onSelect={(to) => setTo(to)}>
+            <SelectTokenModal onSelect={(to) => setTo(to)} isDisabled={loading}>
               {to || "Select token"}
             </SelectTokenModal>
-            <BorderlessInput placeholder="0.00" />
+            <BorderlessInput placeholder="0.00" isDisabled={loading} />
           </div>
         </div>
         <Button
           size="large"
           onPress={() => {
-            console.log("Swap");
+            setLoading(true);
+            setTimeout(() => {
+              setLoading(false);
+            }, 1500);
           }}
+          isDisabled={loading}
         >
           Swap
         </Button>
-      </div>
+      </SpinnerContainer>
     </div>
   );
 }

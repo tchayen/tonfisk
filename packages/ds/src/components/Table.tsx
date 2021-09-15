@@ -41,12 +41,12 @@ export {
 // TODO:
 // - Reuse style for checkboxes from the overall DS.
 
-export function TableRowGroup({ type: Element, children }): ReactElement {
+export function TableRowGroup({ type: Element, children }): JSX.Element {
   const { rowGroupProps } = useTableRowGroup();
   return <Element {...rowGroupProps}>{children}</Element>;
 }
 
-export function TableHeaderRow({ item, state, children }): ReactElement {
+export function TableHeaderRow({ item, state, children }): JSX.Element {
   const ref = useRef<HTMLTableRowElement>(null);
   const { rowProps } = useTableHeaderRow({ node: item }, state, ref);
 
@@ -57,7 +57,7 @@ export function TableHeaderRow({ item, state, children }): ReactElement {
   );
 }
 
-export function TableColumnHeader({ column, state }): ReactElement {
+export function TableColumnHeader({ column, state }): JSX.Element {
   const ref = useRef<HTMLTableHeaderCellElement>(null);
   const { columnHeaderProps } = useTableColumnHeader(
     { node: column },
@@ -102,7 +102,7 @@ export function TableColumnHeader({ column, state }): ReactElement {
   );
 }
 
-export function TableRow({ item, children, state, index, rows }): ReactElement {
+export function TableRow({ item, children, state, index, rows }): JSX.Element {
   const ref = useRef<HTMLTableRowElement>(null);
   const isSelected = state.selectionManager.isSelected(item.key);
   const { rowProps } = useTableRow({ node: item }, state, ref);
@@ -138,7 +138,7 @@ export function TableRow({ item, children, state, index, rows }): ReactElement {
   );
 }
 
-export function TableCell({ cell, state }): ReactElement {
+export function TableCell({ cell, state }): JSX.Element {
   const ref = useRef<HTMLTableCellElement>(null);
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
@@ -208,7 +208,7 @@ function Checkbox({
   );
 }
 
-export function TableSelectAllCell({ column, state }): ReactElement {
+export function TableSelectAllCell({ column, state }): JSX.Element {
   const ref = useRef<HTMLTableHeaderCellElement>(null);
   const isSingleSelectionMode =
     state.selectionManager.selectionMode === "single";
@@ -251,7 +251,7 @@ export function TableCheckboxCell({
 }: {
   cell: any;
   state: TableState<any>;
-}): ReactElement {
+}): JSX.Element {
   const ref = useRef<HTMLTableCellElement>(null);
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
   const { checkboxProps } = useTableSelectionCheckbox(
@@ -331,7 +331,7 @@ type Props = {
  *
  * <TableExample />
  */
-export function Table(props: Props): ReactElement {
+export function Table(props: Props): JSX.Element {
   const state = useTableState({
     ...props,
     showSelectionCheckboxes: props.selectionMode === "multiple",

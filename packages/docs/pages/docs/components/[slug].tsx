@@ -2,7 +2,7 @@ import rehypePrism from "@mapbox/rehype-prism";
 import { atoms, commonStyles } from "ds";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
-import React, { Fragment, ReactElement } from "react";
+import React, { Fragment } from "react";
 
 import { components } from "../../../components/components";
 import { Layout } from "../../../components/Layout";
@@ -32,7 +32,7 @@ export default function Doc({
   navigation,
   source,
   metadata,
-}: Props): ReactElement {
+}: Props): JSX.Element {
   return (
     <Layout navigation={navigation}>
       <h1 className={commonStyles.primaryTextColor}>{metadata.displayName}</h1>
@@ -69,6 +69,7 @@ export default function Doc({
                       lightMode: "gray-100",
                       darkMode: "gray-800",
                     },
+                    maxWidth: "64ch",
                   })}
                 >
                   <code

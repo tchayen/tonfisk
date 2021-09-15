@@ -21,7 +21,6 @@ function FormTextInput(props: {
 
   return (
     <>
-      {/* The text input from the library.` */}
       <TextInput {...field} {...props} />
       {meta.touched && meta.error ? <div>{meta.error}</div> : null}
     </>

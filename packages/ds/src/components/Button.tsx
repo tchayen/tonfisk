@@ -1,7 +1,7 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import React, { ReactElement, useRef } from "react";
+import React, { useRef } from "react";
 import { useState } from "react";
 
 import { button } from "./Button.css";
@@ -46,7 +46,7 @@ type Props = {
  *
  * <Button onPress={() => console.log("I got pressed!")}>Press me →</Button>
  */
-export function Button(props: Props): ReactElement {
+export function Button(props: Props): JSX.Element {
   const ref = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);

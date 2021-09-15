@@ -1,24 +1,34 @@
 ## Must have
 
+- [ ] Active link in sidebar on homepage.
+- [ ] Homepage in MDX.
+- [ ] Style `<code>` properly.
+- [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
+- [ ] External links are missing hovers.
+- [ ] Fix margins (getting started paragraphs and headers as example).
 - [ ] [50%] Some generic landing page?
+
+- [x] Make all pages have equal width.
+
+## Bugs
+
 - [ ] Pagination dots popover does not always appear on keyboard.
+- [ ] Case of custom input like in example: how to provide label to the input.
+- [ ] When button is focused but becomes disabled (pagination) it remains with outline and has it until activated and visited again.
 
 ## Next version
 
 - [ ] Change design and implement new look for switch to look like classic iOS switch and not material design one.
-- [ ] When button is focused but becomes disabled (pagination) it remains with outline and has it until activated and visited again.
-- [ ] Update spinner to feature background for the circle in the outline color.
-- [ ] Case of custom input like in example: how to provide label to the input.
 - [ ] Change focus outline on buttons to look more like twitter.
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 - [ ] Button variants (link).
 
 - [ ] Accordion
 - [ ] Radio
-- [ ] RadioGroup
-- [ ] CheckboxGroup
-- [ ] SearchField
-- [ ] Breadcrumbs
+- [ ] [RadioGroup](https://react-spectrum.adobe.com/react-aria/useRadioGroup.html)
+- [ ] [CheckboxGroup](https://react-spectrum.adobe.com/react-aria/useCheckboxGroup.html)
+- [ ] [SearchField](https://react-spectrum.adobe.com/react-aria/useSearchField.html)
+- [ ] [Breadcrumbs](https://react-spectrum.adobe.com/react-aria/useBreadcrumbs.html)
 - [ ] [ProgressBar](https://react-spectrum.adobe.com/react-aria/useProgressBar.html)
 - [ ] [ComboBox](https://react-spectrum.adobe.com/react-aria/useComboBox.html)
 - [ ] [Slider](https://react-spectrum.adobe.com/react-aria/useSlider.html)
@@ -84,3 +94,4 @@
 - [x] User text selection color and background.
 - [x] Pagination: popover that appears on click on [...] that allows to select arbitrary page.
 - [x] Bigger examples to find out missing components.
+- [x] Update spinner to feature background for the circle in the outline color.

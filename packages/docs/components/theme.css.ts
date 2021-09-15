@@ -28,7 +28,7 @@ globalStyle(
   .token.comment
 `,
   {
-    color: colors.gray[600],
+    color: colors.coolGray[600],
   }
 );
 
@@ -40,7 +40,7 @@ globalStyle(
   .token.operator
 `,
   {
-    color: colors.gray[400],
+    color: colors.coolGray[400],
   }
 );
 
@@ -50,12 +50,12 @@ globalStyle(
   .token.constant
 `,
   {
-    color: colors.gray[300],
+    color: colors.coolGray[300],
   }
 );
 
 globalStyle(".language-javascript", {
-  color: colors.gray[200],
+  color: colors.coolGray[200],
 });
 
 // pre code {

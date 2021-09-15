@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 
 import { atoms } from "../theme.css";
 
@@ -17,7 +17,7 @@ import { atoms } from "../theme.css";
  *
  * <HorizontalLine />
  */
-export function HorizontalLine(): ReactElement {
+export function HorizontalLine(): JSX.Element {
   return (
     <div
       className={atoms({

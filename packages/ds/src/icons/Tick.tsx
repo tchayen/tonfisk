@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React from "react";
 
 import { atoms } from "../theme.css";
 
-export function Tick(): ReactElement {
+export function Tick(): JSX.Element {
   return (
     <svg
       width="13"

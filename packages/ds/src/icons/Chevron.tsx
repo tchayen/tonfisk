@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React from "react";
 
 import { atoms } from "../theme.css";
 
-export function Chevron({ className }: { className?: string }): ReactElement {
+export function Chevron({ className }: { className?: string }): JSX.Element {
   return (
     <svg
       width="14"

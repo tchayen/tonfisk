@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 
 import { tag } from "./Tag.css";
 
@@ -22,6 +22,6 @@ type Props = {
  *
  * <Tag>Tag</Tag>
  */
-export function Tag(props: Props): ReactElement {
+export function Tag(props: Props): JSX.Element {
   return <div className={tag}>{props.children}</div>;
 }

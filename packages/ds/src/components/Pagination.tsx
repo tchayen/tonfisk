@@ -7,19 +7,14 @@ import {
 } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
-import React, {
-  Fragment,
-  ReactElement,
-  ReactNode,
-  useRef,
-  useState,
-} from "react";
+import React, { Fragment, ReactNode, useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
 import {
   directionButton,
   pageButton,
+  pagination,
   rotateLeft,
   rotateRight,
 } from "./Pagination.css";
@@ -210,27 +205,28 @@ function DirectionButton(props: {
     setIsHovered(false);
   };
 
+  const buttonClassName = atoms({
+    opacity: props.isDisabled ? 0.5 : 1,
+    cursor: props.isDisabled ? "default" : "pointer",
+    boxShadow: isFocusVisible && !props.isDisabled ? "outline" : "none",
+    background: {
+      lightMode: isPressed ? "gray-400" : isHovered ? "gray-300" : "gray-200",
+      darkMode: isPressed ? "gray-800" : isHovered ? "gray-700" : "gray-600",
+    },
+  });
+
+  const chevron = atoms({
+    fill: {
+      lightMode: isPressed ? "gray-500" : "gray-400",
+      darkMode: isPressed ? "gray-900" : isHovered ? "gray-800" : "gray-700",
+    },
+  });
+
   return (
     <button
       ref={ref}
       // TODO: recipe
-      className={`${directionButton} ${atoms({
-        opacity: props.isDisabled ? 0.5 : 1,
-        cursor: props.isDisabled ? "default" : "pointer",
-        boxShadow: isFocusVisible && !props.isDisabled ? "outline" : "none",
-        background: {
-          lightMode: isPressed
-            ? "gray-400"
-            : isHovered
-            ? "gray-300"
-            : "gray-200",
-          darkMode: isPressed
-            ? "gray-800"
-            : isHovered
-            ? "gray-700"
-            : "gray-600",
-        },
-      })}`}
+      className={`${directionButton} ${buttonClassName}`}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...mergeProps(buttonProps, focusProps)}
@@ -239,35 +235,13 @@ function DirectionButton(props: {
         <Fragment>
           Next
           <div className={rotateLeft}>
-            <Chevron
-              className={atoms({
-                fill: {
-                  lightMode: isPressed ? "gray-500" : "gray-400",
-                  darkMode: isPressed
-                    ? "gray-900"
-                    : isHovered
-                    ? "gray-800"
-                    : "gray-700",
-                },
-              })}
-            />
+            <Chevron className={chevron} />
           </div>
         </Fragment>
       ) : (
         <Fragment>
           <div className={rotateRight}>
-            <Chevron
-              className={atoms({
-                fill: {
-                  lightMode: isPressed ? "gray-500" : "gray-400",
-                  darkMode: isPressed
-                    ? "gray-900"
-                    : isHovered
-                    ? "gray-800"
-                    : "gray-700",
-                },
-              })}
-            />
+            <Chevron className={chevron} />
           </div>
           Previous
         </Fragment>
@@ -293,11 +267,14 @@ type Props = {
 };
 
 /**
- * WIP.
+ * Pagination component. Features previous/next buttons, does not allowed
+ * visiting pages outside of the specified range. In case there is a gap between
+ * pages, a three-dot button appears that after clicking show popover with input
+ * that takes to provided page on enter/escape/blur.
  *
  * <Pagination pageCount={10} visiblePages={7} />
  */
-export function Pagination(props: Props): ReactElement {
+export function Pagination(props: Props): JSX.Element {
   const { pageCount, visiblePages, hidePreviousAndNext } = props;
 
   if (visiblePages < 7) {
@@ -335,8 +312,7 @@ export function Pagination(props: Props): ReactElement {
   }
 
   return (
-    // TODO: move to *.css.ts.
-    <div className={atoms({ display: "flex", gap: "m" })}>
+    <div className={pagination}>
       {!hidePreviousAndNext && (
         <DirectionButton
           variant="previous"

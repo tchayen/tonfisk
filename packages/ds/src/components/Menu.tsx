@@ -10,7 +10,7 @@ import { TreeState } from "@react-stately/tree";
 import { MenuTriggerProps } from "@react-types/menu";
 import { FocusStrategy } from "@react-types/shared";
 import { ForwardedRef, forwardRef, ReactNode } from "react";
-import React, { ReactElement, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
 import { atoms } from "../theme.css";
@@ -21,7 +21,7 @@ function MenuPopup(props: {
   domProps: any;
   onAction: (action: string) => void;
   autoFocus?: FocusStrategy;
-}): ReactElement {
+}): JSX.Element {
   // Create menu state based on the incoming props
   const state = useTreeState({ ...props, selectionMode: "none" });
 
@@ -85,7 +85,7 @@ function MenuItem({
   state: TreeState<any>;
   onAction: (item: any) => void;
   onClose: () => void;
-}): ReactElement {
+}): JSX.Element {
   // Get props for the menu item element
   const ref = useRef<HTMLLIElement>(null);
   const { menuItemProps } = useMenuItem(
@@ -208,7 +208,7 @@ export const MenuButtonComponent = forwardRef(MenuButton_);
  *
  * <MenuExample />
  */
-export function MenuButton(props: Props): ReactElement {
+export function MenuButton(props: Props): JSX.Element {
   // Create state based on the incoming props
   const state = useMenuTriggerState(props as MenuTriggerProps);
 

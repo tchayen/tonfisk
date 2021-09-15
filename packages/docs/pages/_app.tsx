@@ -3,9 +3,8 @@ import "../components/theme.css";
 
 import { Provider } from "ds";
 import type { AppProps } from "next/app";
-import { ReactElement } from "react";
 
-function MyApp({ Component, pageProps }: AppProps): ReactElement {
+function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
     <Provider>
       <Component {...pageProps} />

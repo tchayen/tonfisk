@@ -16,7 +16,7 @@ import { background, main } from "./Spinner.css";
  *
  * <Spinner />
  */
-export function Spinner(): ReactElement {
+export function Spinner(): JSX.Element {
   const size = 32;
 
   const center = 16;

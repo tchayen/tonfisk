@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import React from "react";
 
 import { label } from "./Label.css";
 
@@ -29,7 +29,7 @@ type Props = {
  *
  * <Label>Yes, this one is actually pretty tiny and not impressive on its own</Label>
  */
-export const Label = ({ children, ...props }: Props): ReactElement => {
+export const Label = ({ children, ...props }: Props): JSX.Element => {
   return (
     <label {...props} className={label}>
       {children}

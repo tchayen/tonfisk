@@ -2,14 +2,14 @@ import { useFocusRing } from "@react-aria/focus";
 import { useSwitch } from "@react-aria/switch";
 import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { useToggleState } from "@react-stately/toggle";
-import React, { ReactElement, useRef } from "react";
+import React, { useRef } from "react";
 
 import { atoms } from "../theme.css";
 import { bar, dot, label, wrapper } from "./Switch.css";
 
 type Props = {
   /**
-   * TODO
+   * Callback called when selected value changes.
    */
   onChange: (value: boolean) => void;
   /**
@@ -21,7 +21,7 @@ type Props = {
    */
   isDisabled?: boolean;
   /**
-   *
+   * Whether the switch is selected. Used for manual control of the component.
    */
   isSelected?: boolean;
 };
@@ -39,9 +39,9 @@ type Props = {
  *
  * ## Example
  *
- * <Switch>Label</Switch>
+ * <Switch>Select this switch either by clicking on the label or on the switch element on the right.</Switch>
  */
-export function Switch(props: Props): ReactElement {
+export function Switch(props: Props): JSX.Element {
   const state = useToggleState(props);
   const ref = useRef<HTMLInputElement>(null);
   const { inputProps } = useSwitch(props, state, ref);

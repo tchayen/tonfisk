@@ -1,11 +1,11 @@
 import { useTooltip, useTooltipTrigger } from "@react-aria/tooltip";
 import { mergeProps } from "@react-aria/utils";
 import { useTooltipTriggerState } from "@react-stately/tooltip";
-import React, { ReactElement, ReactNode, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 import { tooltipBox, tooltipButton, tooltipSpan } from "./Tooltip.css";
 
-function TooltipBox({ state, ...props }): ReactElement {
+function TooltipBox({ state, ...props }): JSX.Element {
   const { tooltipProps } = useTooltip(props, state);
 
   return (
@@ -47,7 +47,7 @@ type Props = {
  *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
  * </Tooltip>
  */
-export function Tooltip(props: Props): ReactElement {
+export function Tooltip(props: Props): JSX.Element {
   const { tooltip, children, direction } = props;
   const state = useTooltipTriggerState(props);
   const ref = useRef<HTMLButtonElement>(null);

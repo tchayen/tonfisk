@@ -1,8 +1,8 @@
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
-import React, { ReactElement, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
-import { atoms } from "./theme.css";
+import { div } from "./FormPopover.css";
 
 type Props = {
   /**
@@ -20,7 +20,7 @@ type Props = {
   /**
    * Components to display inside the popover.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**
@@ -29,7 +29,7 @@ type Props = {
  *
  * <Popover>Text</Popover>
  */
-export function FormPopover(props: Props): ReactElement {
+export function FormPopover(props: Props): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const { popoverRef = ref, isOpen, onClose, children } = props;
 
@@ -49,27 +49,7 @@ export function FormPopover(props: Props): ReactElement {
   // to allow screen reader users to dismiss the popup easily.
   return (
     <FocusScope restoreFocus>
-      <div
-        {...overlayProps}
-        ref={popoverRef}
-        // TODO: move to *.css.ts.
-        className={atoms({
-          position: "absolute",
-          zIndex: 100,
-          width: "100%",
-          overflow: "hidden",
-          boxShadow: {
-            lightMode: "borderAndShadow",
-            darkMode: "darkBorder",
-          },
-          background: {
-            lightMode: "white",
-            darkMode: "gray-900",
-          },
-          borderRadius: "8px",
-          marginTop: "m",
-        })}
-      >
+      <div {...overlayProps} ref={popoverRef} className={div}>
         {children}
         <DismissButton onDismiss={onClose} />
       </div>

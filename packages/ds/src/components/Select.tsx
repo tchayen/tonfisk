@@ -2,7 +2,7 @@ import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
-import React, { ReactElement, useRef } from "react";
+import React, { useRef } from "react";
 
 import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
@@ -31,9 +31,9 @@ type Props = {
    */
   placeholder: string;
   /**
-   * TODO
+   * List of Item components.
    */
-  children: ReactElement;
+  children: ReactNode;
 };
 
 /**
@@ -56,7 +56,7 @@ type Props = {
  *
  * <SelectExample />
  */
-export function Select(props: Props): ReactElement {
+export function Select(props: Props): JSX.Element {
   const { isFocusVisible, focusProps } = useFocusRing();
 
   // Create state based on the incoming props
@@ -91,12 +91,14 @@ export function Select(props: Props): ReactElement {
         ref={ref}
         // TODO: recipe
         className={`${button} ${atoms({
-          border: "none",
           boxShadow: {
             lightMode: isFocusVisible ? "primary" : "regularBorder",
             darkMode: isFocusVisible ? "primary" : "darkBorder",
           },
-          color: state.selectedItem ? "black" : "gray-600",
+          color: {
+            lightMode: state.selectedItem ? "black" : "gray-600",
+            darkMode: state.selectedItem ? "gray-200" : "gray-400",
+          },
           opacity: props.isDisabled ? 0.5 : 1,
         })}`}
       >

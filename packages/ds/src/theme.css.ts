@@ -4,6 +4,16 @@ import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
 import colors from "./colors";
 import { vars } from "./vars.css";
 
+globalStyle("html", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      background: colors.coolGray[900],
+    },
+  },
+  fontFeatureSettings: "'ss01' on,'ss02' on,'cv01' on,'cv03' on",
+  background: colors.white,
+});
+
 globalStyle("::selection", {
   "@media": {
     "(prefers-color-scheme: dark)": {},
@@ -23,11 +33,23 @@ globalStyle("::placeholder", {
 });
 
 globalStyle("*::-webkit-scrollbar", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      background: colors.coolGray[900],
+    },
+  },
+  background: colors.white,
   width: 12,
+  height: 12,
 });
 
-globalStyle("*::-webkit-scrollbar-track", {
-  boxShadow: "inset 0 0 6px rgba(0,0,0,0.00)",
+globalStyle("*::-webkit-scrollbar-corner", {
+  "@media": {
+    "(prefers-color-scheme: dark)": {
+      background: colors.coolGray[900],
+    },
+  },
+  background: colors.white,
 });
 
 globalStyle("*::-webkit-scrollbar-thumb", {
@@ -115,21 +137,24 @@ const responsiveStyles = createAtomicStyles({
     marginBottom: vars.space,
     width: vars.size,
     minWidth: vars.size,
+    maxWidth: vars.size,
     height: vars.size,
     minHeight: vars.size,
+    maxHeight: vars.size,
     borderRadius: vars.borderRadius,
     fontFamily: vars.fontFamily,
     appearance: ["none"],
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
     fontFeatureSettings: vars.fontFeatureSettings,
-    lineHeight: [1],
+    lineHeight: [1, 1.5],
     textAlign: ["center", "left", "right"],
     boxShadow: vars.boxShadow,
     borderCollapse: ["separate"],
     borderSpacing: [0],
     fill: vars.color,
     stroke: vars.color,
+    WebkitAppearance: vars.WebkitAppearance,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

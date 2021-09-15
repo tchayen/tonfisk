@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
-import React, { ReactElement } from "react";
+import React, { ReactNode } from "react";
 
 import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";
@@ -21,7 +21,7 @@ export default function Doc({
   navigation,
   source,
   frontMatter,
-}: Props): ReactElement {
+}: Props): JSX.Element {
   return (
     <Layout navigation={navigation}>
       <h1 className={commonStyles.primaryTextColor}>{frontMatter.title}</h1>

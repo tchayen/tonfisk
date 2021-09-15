@@ -35,9 +35,9 @@ import {
 } from "ds";
 import { Form, Formik, useField } from "formik";
 import Link from "next/link";
-import { ReactElement, useState } from "react";
+import { ReactNode, useState } from "react";
 
-const SelectExample = (): ReactElement => {
+const SelectExample = (): JSX.Element => {
   const items = [
     { key: 1, label: "One" },
     { key: 2, label: "Two" },
@@ -66,16 +66,10 @@ const SelectExample = (): ReactElement => {
         })}
       >
         Selected:{" "}
-        <code
-          className={atoms({
-            background: {
-              lightMode: "gray-100",
-              darkMode: "gray-700",
-            },
-            padding: "s",
-            borderRadius: "4px",
-          })}
-        >
+        {/* TODO:
+         * Export components.tsx nodes and use <code> one here.
+         */}
+        <code>
           {selected === null
             ? "None"
             : JSON.stringify(
@@ -97,7 +91,7 @@ const SelectExample = (): ReactElement => {
   );
 };
 
-const TableExample = (): ReactElement => {
+const TableExample = (): JSX.Element => {
   const [selectedKeys, setSelectedKeys] = useState([]);
 
   const columns = [
@@ -125,16 +119,10 @@ const TableExample = (): ReactElement => {
         })}
       >
         Selected:{" "}
-        <code
-          className={atoms({
-            background: {
-              lightMode: "gray-100",
-              darkMode: "gray-700",
-            },
-            padding: "s",
-            borderRadius: "4px",
-          })}
-        >
+        {/* TODO:
+         * Export components.tsx nodes and use <code> one here.
+         */}
+        <code>
           {JSON.stringify(
             typeof selectedKeys === "string" ? selectedKeys : [...selectedKeys],
             null,
@@ -161,7 +149,7 @@ const TableExample = (): ReactElement => {
   );
 };
 
-const MenuExample = (): ReactElement => {
+const MenuExample = (): JSX.Element => {
   return (
     <MenuButton
       label="Actions"
@@ -176,7 +164,7 @@ const MenuExample = (): ReactElement => {
   );
 };
 
-const CheckboxExample = (): ReactElement => {
+const CheckboxExample = (): JSX.Element => {
   const [value, setValue] = useState(false);
   return (
     <div>
@@ -229,7 +217,7 @@ function FormTextInput(props: {
   );
 }
 
-function FormikExample() {
+function FormikExample(): JSX.Element {
   return (
     <Formik
       initialValues={{
@@ -256,13 +244,28 @@ function FormikExample() {
   );
 }
 
-export const components = {
-  a: ({ children, href }) => (
+function LinkComponent({
+  href,
+  children,
+}: {
+  children: ReactNode;
+}): JSX.Element {
+  return (
     <Link href={href}>
-      <a href={href}>{children}</a>
+      <a
+        href={href}
+        className={atoms({
+          color: "pink-500",
+        })}
+      >
+        {children}
+      </a>
     </Link>
-  ),
-  strong: ({ children }) => (
+  );
+}
+
+function StrongComponent({ children }: { children: ReactNode }): JSX.Element {
+  return (
     <strong
       className={atoms({
         fontWeight: "bold",
@@ -274,8 +277,11 @@ export const components = {
     >
       {children}
     </strong>
-  ),
-  h1: ({ children }) => (
+  );
+}
+
+function H1Component({ children }: { children: ReactNode }): JSX.Element {
+  return (
     <h1
       className={atoms({
         color: {
@@ -288,8 +294,11 @@ export const components = {
     >
       {children}
     </h1>
-  ),
-  h2: ({ children }) => (
+  );
+}
+
+function H2Component({ children }: { children: ReactNode }): JSX.Element {
+  return (
     <h2
       className={atoms({
         color: {
@@ -302,8 +311,11 @@ export const components = {
     >
       {children}
     </h2>
-  ),
-  h3: ({ children }) => (
+  );
+}
+
+function H3Component({ children }: { children: ReactNode }): JSX.Element {
+  return (
     <h3
       className={atoms({
         color: {
@@ -316,8 +328,11 @@ export const components = {
     >
       {children}
     </h3>
-  ),
-  h4: ({ children }) => (
+  );
+}
+
+function H4Component({ children }: { children: ReactNode }): JSX.Element {
+  return (
     <h4
       className={atoms({
         color: {
@@ -330,20 +345,33 @@ export const components = {
     >
       {children}
     </h4>
-  ),
-  p: ({ children }) => (
+  );
+}
+
+function ParagraphComponent({
+  children,
+}: {
+  children: ReactNode;
+}): JSX.Element {
+  return (
     <p
       className={atoms({
         color: {
           lightMode: "gray-600",
           darkMode: "gray-400",
         },
+        lineHeight: 1.5,
+        marginTop: "xl",
+        marginBottom: "xl",
       })}
     >
       {children}
     </p>
-  ),
-  pre: ({ children }) => (
+  );
+}
+
+function PreComponent({ children }: { children: ReactNode }): JSX.Element {
+  return (
     <pre
       className={atoms({
         padding: "xl",
@@ -354,21 +382,18 @@ export const components = {
     >
       {children}
     </pre>
-  ),
-  // code: ({ children }) => (
-  //   <code
-  //     className={atoms({
-  //       background: {
-  //         lightMode: "gray-100",
-  //         darkMode: "gray-700",
-  //       },
-  //       padding: "s",
-  //       borderRadius: "4px",
-  //     })}
-  //   >
-  //     {children}
-  //   </code>
-  // ),
+  );
+}
+
+export const components = {
+  a: LinkComponent,
+  strong: StrongComponent,
+  h1: H1Component,
+  h2: H2Component,
+  h3: H3Component,
+  h4: H4Component,
+  p: ParagraphComponent,
+  pre: PreComponent,
   Button,
   Checkbox,
   Item,

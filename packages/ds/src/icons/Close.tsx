@@ -1,8 +1,8 @@
-import React, { ReactElement } from "react";
+import React from "react";
 
 import { atoms } from "../theme.css";
 
-export function Close(): ReactElement {
+export function Close(): JSX.Element {
   return (
     <svg
       width="16"

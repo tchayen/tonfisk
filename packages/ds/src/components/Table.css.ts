@@ -63,15 +63,16 @@ export const checkboxLike = atoms({
   borderRadius: "4px",
   margin: "none",
   outline: "none",
+  WebkitAppearance: "none",
 });
 
 export const checkboxInput = style([
   checkboxLike,
   atoms({
     position: "absolute",
+    WebkitAppearance: "none",
   }),
   style({
-    WebkitAppearance: "none",
     top: 12,
     left: 16,
   }),

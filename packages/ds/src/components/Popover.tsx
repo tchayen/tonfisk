@@ -2,7 +2,7 @@ import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useModal, useOverlay } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
-import React, { forwardRef } from "react";
+import React, { forwardRef, ReactNode } from "react";
 
 import { atoms } from "../theme.css";
 
@@ -18,7 +18,7 @@ type Props = {
   /**
    * Components to display inside the popover.
    */
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 /**

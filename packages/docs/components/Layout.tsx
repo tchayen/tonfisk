@@ -4,7 +4,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { atoms } from "ds";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
-import React, { ReactElement, ReactNode, useState } from "react";
+import React, { ReactNode, useState } from "react";
 
 import { getNavigation } from "../utils/mdx";
 
@@ -16,7 +16,7 @@ const ListItem = ({
   href: string;
   children: ReactNode;
   active?: boolean;
-}): ReactElement => {
+}): JSX.Element => {
   const { focusProps, isFocusVisible } = useFocusRing();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -105,19 +105,21 @@ export function Layout({
   children,
 }: {
   navigation: ReturnType<typeof getNavigation>;
-  children: React.ReactNode;
-}): ReactElement {
+  children: ReactNode;
+}): JSX.Element {
   return (
     <div
-      className={atoms({
-        display: "flex",
-        flexDirection: "row",
-      })}
+      style={{
+        margin: "0 auto",
+        width: "106ch",
+      }}
     >
       <div
         className={atoms({
-          height: "100vh",
           width: "24ch",
+          marginTop: "l",
+          marginBottom: "l",
+          position: "fixed",
         })}
       >
         {navigation.files.map((item, index) => {
@@ -135,12 +137,22 @@ export function Layout({
           Links
         </h3>
         <ListItem href="https://github.com/tchayen/design-system">
-          GitHub
+          GitHub ↗
         </ListItem>
-        <ListItem href="https://twitter.com/tchayen">Twitter</ListItem>
+        <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
       </div>
-      <div />
-      <div className={atoms({ padding: "xl" })}>{children}</div>
+      <div
+        className={atoms({
+          padding: "xl",
+          paddingRight: "none",
+          marginRight: "none",
+        })}
+        style={{
+          marginLeft: "24ch",
+        }}
+      >
+        {children}
+      </div>
       <div />
     </div>
   );

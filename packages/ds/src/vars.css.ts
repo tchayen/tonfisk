@@ -33,6 +33,8 @@ export const vars = createGlobalTheme(":root", {
     "24ch": "24ch",
     "36ch": "36ch",
     "48ch": "48ch",
+    "64ch": "64ch",
+    "96ch": "96ch",
     "100vh": "100vh",
     "100vw": "100vw",
   },
@@ -67,8 +69,8 @@ export const vars = createGlobalTheme(":root", {
     pinkOutline: "rgba(59, 130, 246, 0.3)",
     // pinkOutline: "rgba(236, 72, 153, 0.3)",
 
-    backdropLight: "rgba(107, 114, 128, 0.35)",
-    backdropDark: "rgba(17, 24, 39, 0.5)",
+    backdropLight: "rgba(107, 114, 128, 0.35)", // gray-500
+    backdropDark: "rgba(0, 0, 0, 0.35)",
   },
   borderRadius: {
     "0px": "0px",
@@ -119,6 +121,9 @@ export const vars = createGlobalTheme(":root", {
     regularBorder: `0 0 0 1px inset ${colors.coolGray[200]}`, // TODO
     darkBorder: `0 0 0 1px inset ${colors.coolGray[600]}`, // TODO
     borderAndShadow: `0 0 0 1px inset ${colors.coolGray[200]}, 0 2px 8px rgba(0, 0, 0, 0.1)`,
+  },
+  WebkitAppearance: {
+    none: "none",
   },
   outline: {
     none: "none",

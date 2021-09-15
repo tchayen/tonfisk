@@ -1,8 +1,10 @@
 import { atoms, commonStyles } from "ds";
 import Link from "next/link";
-import { ReactElement } from "react";
 
-export default function Home(): ReactElement {
+import { Layout } from "../components/Layout";
+import { getNavigation } from "../utils/mdx";
+
+export default function Home({ navigation }): JSX.Element {
   const p = atoms({
     color: {
       lightMode: "gray-600",
@@ -10,29 +12,35 @@ export default function Home(): ReactElement {
     },
   });
 
+  const paragraph = atoms({
+    color: {
+      lightMode: "gray-600",
+      darkMode: "gray-400",
+    },
+    lineHeight: 1.5,
+    margin: "none",
+  });
+
   return (
-    <div
-      className={atoms({
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      })}
-    >
+    <Layout navigation={navigation}>
       <div
         className={atoms({
-          width: "48ch",
-          marginTop: "2xl",
+          display: "flex",
+          flexDirection: "column",
+          gap: "l",
         })}
       >
         <h1 className={commonStyles.primaryTextColor}>TODO_LIB_NAME</h1>
-        <h2>What is this?</h2>
-        <p className={p}>
+        <h2 className={commonStyles.primaryTextColor}>What is this?</h2>
+        {/* https://github.com/seek-oss/vanilla-extract
+        https://react-spectrum.adobe.com/react-aria */}
+        <p className={paragraph}>
           A design system with a component library built on top of{" "}
           <code>react-aria</code>, a wonderful accessibility library, and{" "}
           <code>vanilla-extract</code>, lightweight and powerful styling
           solution.
         </p>
-        <p className={p}>
+        <p className={paragraph}>
           Check out{" "}
           <Link href="http://localhost:3000/docs/1-getting-started">
             <a
@@ -47,6 +55,14 @@ export default function Home(): ReactElement {
           .
         </p>
       </div>
-    </div>
+    </Layout>
   );
 }
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      navigation: getNavigation(),
+    },
+  };
+};

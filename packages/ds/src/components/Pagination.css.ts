@@ -38,3 +38,8 @@ export const rotateLeft = style({
 export const rotateRight = style({
   transform: "rotate(90deg)",
 });
+
+export const pagination = atoms({
+  display: "flex",
+  gap: "m",
+});

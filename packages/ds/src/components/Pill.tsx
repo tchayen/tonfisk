@@ -1,7 +1,7 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import React, { ReactElement, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 
 import { atoms } from "../theme.css";
 import { pill } from "./Pill.css";
@@ -42,7 +42,7 @@ type Props = {
  *   <Pill iconUrl="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=013">Pill</Pill>
  * </div>
  */
-export const Pill = (props: Props): ReactElement => {
+export const Pill = (props: Props): JSX.Element => {
   const ref = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);

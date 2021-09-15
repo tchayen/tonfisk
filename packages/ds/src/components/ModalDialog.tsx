@@ -3,7 +3,7 @@ import { useDialog } from "@react-aria/dialog";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
-import React, { ReactElement, ReactNode, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 import { Close } from "../icons/Close";
 import { atoms } from "../theme.css";
@@ -87,9 +87,9 @@ type Props = {
  *
  * ## Example
  *
- * TODO
+ * See [Example](/example).
  */
-export function ModalDialog(props: Props): ReactElement {
+export function ModalDialog(props: Props): JSX.Element {
   const { title, children } = props;
 
   // Handle interacting outside the dialog and pressing

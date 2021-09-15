@@ -2,15 +2,15 @@ import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { useToggleState } from "@react-stately/toggle";
-import React, { ReactElement, ReactNode, useRef } from "react";
+import React, { ReactNode, useRef } from "react";
 
 import { Tick } from "../icons/Tick";
 import { atoms } from "../theme.css";
-import { checkbox, tick } from "./Checkbox.css";
+import { checkbox, label, tick } from "./Checkbox.css";
 
 type Props = {
   /**
-   * TODO
+   * Callback called when state of the checkbox changes.
    */
   onChange: (checked: boolean) => void;
   /**
@@ -38,7 +38,7 @@ type Props = {
  *
  * <CheckboxExample />
  */
-export function Checkbox(props: Props): ReactElement {
+export function Checkbox(props: Props): JSX.Element {
   const { children } = props;
   const state = useToggleState(props);
   const ref = useRef(null);
@@ -46,37 +46,17 @@ export function Checkbox(props: Props): ReactElement {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <label
-      // TODO: move to *.css.ts.
-      className={atoms({
-        display: "flex",
-        alignItems: "center",
-        position: "relative",
-        fontSize: "14px",
-        color: {
-          lightMode: "gray-600",
-          darkMode: "gray-400",
-        },
-      })}
-    >
+    <label className={label}>
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
-        // TODO: recipe
-        className={`${checkbox} ${atoms({
-          border: {
-            lightMode:
-              state.isSelected || isFocusVisible ? "primary" : "regular",
-            darkMode:
-              state.isSelected || isFocusVisible ? "primary" : "regularDark",
-          },
-          background: {
-            lightMode: state.isSelected ? "pink-500" : "white",
-            darkMode: state.isSelected ? "pink-500" : "gray-900",
-          },
-          boxShadow: isFocusVisible ? "outline" : "none",
-          opacity: props.isDisabled ? 0.5 : 1,
-        })}`}
+        className={checkbox({
+          border:
+            state.isSelected || isFocusVisible ? "focusVisible" : "default",
+          background: state.isSelected ? "selected" : "default",
+          boxShadow: isFocusVisible ? "focusVisible" : "default",
+          opacity: props.isDisabled ? "disabled" : "active",
+        })}
       />
       {state.isSelected && (
         <div className={tick}>

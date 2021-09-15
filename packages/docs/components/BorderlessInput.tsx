@@ -1,8 +1,8 @@
 import { useTextField } from "@react-aria/textfield";
 import { atoms } from "ds";
-import React, { ReactElement, useRef } from "react";
+import React, { useRef } from "react";
 
-export function BorderlessInput(props): ReactElement {
+export function BorderlessInput(props): JSX.Element {
   const ref = useRef<HTMLInputElement>(null);
   const { inputProps } = useTextField(props, ref);
 

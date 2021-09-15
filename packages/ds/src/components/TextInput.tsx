@@ -69,7 +69,7 @@ type Props = {
  *
  * <TextInput label="First name" placeholder="John" />
  */
-export function TextInput(props: Props): ReactElement {
+export function TextInput(props: Props): JSX.Element {
   const { label } = props;
   const ref = useRef<HTMLInputElement>(null);
   const { labelProps, inputProps } = useTextField(props, ref);
