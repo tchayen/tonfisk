@@ -27,13 +27,13 @@ export const pageButton = recipe({
     },
     background: {
       selected: atoms({
-        background: "pink-500",
+        background: "blue-500",
       }),
       selectedPressed: atoms({
-        background: "pink-700",
+        background: "blue-700",
       }),
       selectedHovered: atoms({
-        background: "pink-600",
+        background: "blue-600",
       }),
       default: atoms({
         background: {

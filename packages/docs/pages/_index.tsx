@@ -50,7 +50,7 @@ export default function Home({
             <a
               href="http://localhost:3000/docs/1-getting-started"
               className={atoms({
-                color: "pink-500",
+                color: "blue-500",
               })}
             >
               Getting started

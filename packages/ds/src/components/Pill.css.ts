@@ -53,7 +53,7 @@ export const pill = recipe({
     },
     background: {
       pressed: atoms({
-        background: "pink-500",
+        background: "blue-500",
       }),
       hovered: atoms({
         background: "pinkOutline",

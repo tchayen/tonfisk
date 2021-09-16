@@ -52,7 +52,7 @@ export const tableRow = recipe({
   variants: {
     background: {
       selected: atoms({
-        background: "pink-500",
+        background: "blue-500",
       }),
       even: atoms({
         background: "none",
@@ -164,7 +164,7 @@ export const checkboxInput = recipe({
     },
     background: {
       checked: atoms({
-        background: "pink-500",
+        background: "blue-500",
       }),
       default: atoms({
         background: {

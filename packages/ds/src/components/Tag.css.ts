@@ -11,8 +11,8 @@ export const tag = style([
     fontSize: "12px",
     fontWeight: "bold",
     background: {
-      lightMode: "pink-300",
-      darkMode: "pink-800",
+      lightMode: "blue-300",
+      darkMode: "blue-800",
     },
     display: "inline-flex",
     alignItems: "center",

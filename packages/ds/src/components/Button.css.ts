@@ -30,13 +30,13 @@ export const button = recipe({
   variants: {
     background: {
       default: atoms({
-        background: "pink-500",
+        background: "blue-500",
       }),
       hover: atoms({
-        background: "pink-600",
+        background: "blue-600",
       }),
       active: atoms({
-        background: "pink-700",
+        background: "blue-700",
       }),
     },
     cursor: {

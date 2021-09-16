@@ -3,6 +3,7 @@
 - [ ] [50%] Some generic landing page?
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
+- [ ] Rename all pink colors to blue.
 
 ### Example improvements
 

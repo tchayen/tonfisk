@@ -5,5 +5,5 @@ export const background = atoms({
 });
 
 export const main = atoms({
-  stroke: "pink-500",
+  stroke: "blue-500",
 });

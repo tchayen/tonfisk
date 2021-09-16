@@ -37,7 +37,7 @@ const ListItem = ({
     },
     borderRadius: "8px",
     margin: "s",
-    background: active ? "pink-500" : isHovered ? "pinkOutline" : "transparent",
+    background: active ? "blue-500" : isHovered ? "pinkOutline" : "transparent",
     height: "32px",
     paddingLeft: "m",
     paddingRight: "m",

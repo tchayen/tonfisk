@@ -18,7 +18,7 @@ export const option = recipe({
   variants: {
     background: {
       selected: atoms({
-        background: "pink-500",
+        background: "blue-500",
       }),
       focused: atoms({
         background: {

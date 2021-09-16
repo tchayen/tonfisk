@@ -36,7 +36,7 @@ export const checkbox = recipe({
       }),
     },
     background: {
-      selected: atoms({ background: "pink-500" }),
+      selected: atoms({ background: "blue-500" }),
       default: atoms({
         background: {
           lightMode: "white",

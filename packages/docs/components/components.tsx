@@ -260,7 +260,7 @@ function LinkComponent({
       <a
         href={href}
         className={atoms({
-          color: "pink-500",
+          color: "blue-500",
         })}
       >
         {children}
