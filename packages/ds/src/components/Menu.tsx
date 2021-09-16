@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { useButton } from "@react-aria/button";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useFocus } from "@react-aria/interactions";
@@ -9,7 +10,8 @@ import { useTreeState } from "@react-stately/tree";
 import { TreeState } from "@react-stately/tree";
 import { MenuTriggerProps } from "@react-types/menu";
 import { FocusStrategy } from "@react-types/shared";
-import { ForwardedRef, forwardRef, ReactNode } from "react";
+import { CollectionChildren } from "@react-types/shared/src/collections";
+import { ForwardedRef, forwardRef, Key, ReactNode, RefObject } from "react";
 import React, { useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
@@ -23,9 +25,10 @@ import {
 
 function MenuPopup(props: {
   onClose: () => void;
-  domProps: any;
-  onAction: (action: string) => void;
+  domProps: React.HTMLAttributes<HTMLElement>;
+  onAction: (action: Key) => void;
   autoFocus?: FocusStrategy;
+  children: CollectionChildren<object>;
 }): JSX.Element {
   // Create menu state based on the incoming props
   const state = useTreeState({ ...props, selectionMode: "none" });
@@ -83,12 +86,12 @@ function MenuItem({
   onClose,
 }: {
   item: {
-    key: any;
+    key: Key;
     rendered: ReactNode;
     isDisabled?: boolean;
   };
-  state: TreeState<any>;
-  onAction: (item: any) => void;
+  state: TreeState<object>;
+  onAction: (action: Key) => void;
   onClose: () => void;
 }): JSX.Element {
   // Get props for the menu item element.
@@ -133,9 +136,13 @@ type Props = {
    */
   isDisabled?: boolean;
   /**
-   * Callback called when user chooses one of the options.
+   * Callback called when user chooses one of the options. `Key` is `number | string`.
    */
-  onAction: (action: string) => void;
+  onAction: (action: Key) => void;
+  /**
+   * Array of `<Item />` elements.
+   */
+  children: CollectionChildren<object>;
 };
 
 type MenuButton_Props = {
@@ -157,8 +164,7 @@ const MenuButton_ = (
       isDisabled: props.isDisabled,
       onPress: props.onPress,
     },
-    // TODO: TS
-    ref
+    ref as RefObject<HTMLButtonElement>
   );
 
   return (

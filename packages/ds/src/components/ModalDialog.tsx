@@ -6,10 +6,9 @@ import { mergeProps } from "@react-aria/utils";
 import React, { ReactNode, useRef } from "react";
 
 import { Close } from "../icons/Close";
-import { atoms } from "../theme.css";
 import * as styles from "./ModalDialog.css";
 
-const CloseButton = (props: any) => {
+const CloseButton = (props: { onPress?: () => void }) => {
   const { focusProps, isFocusVisible } = useFocusRing();
   const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton(props, ref);
@@ -41,12 +40,12 @@ type Props = {
    */
   isOpen?: boolean;
   /**
-   * Callback called when modal is closed (can happen with ESC key or clicking
+   * Callback called when modal is closed (can happen with `ESC` key or clicking
    * outside).
    */
   onClose?: () => void;
   /**
-   * Whether modal can be dismissed by ESC or click outside.
+   * Whether modal can be dismissed by `ESC` or click outside.
    */
   isDismissable?: boolean;
 };
@@ -103,7 +102,7 @@ export function ModalDialog(props: Props): JSX.Element {
   const { modalProps } = useModal();
 
   // Get props for the dialog and its title
-  const { dialogProps, titleProps } = useDialog(props, ref);
+  const { dialogProps, titleProps } = useDialog({}, ref);
 
   return (
     <div className={styles.fullPageDiv} {...underlayProps}>
@@ -113,26 +112,8 @@ export function ModalDialog(props: Props): JSX.Element {
           ref={ref}
           className={styles.modalDiv}
         >
-          <div
-            // TODO: move to *.css.ts.
-            className={atoms({
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              paddingRight: "m",
-            })}
-          >
-            <h3
-              {...titleProps}
-              // TODO: move to *.css.ts.
-              className={atoms({
-                color: {
-                  lightMode: "black",
-                  darkMode: "gray-200",
-                },
-                margin: "l",
-              })}
-            >
+          <div className={styles.titleRow}>
+            <h3 {...titleProps} className={styles.title}>
               {title}
             </h3>
             <CloseButton onPress={props.onClose} />

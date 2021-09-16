@@ -110,13 +110,13 @@ const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
     triggerRef
   );
 
-  const [pageNumber, setPageNumber] = useState<number | null>(null);
+  const [pageNumber, setPageNumber] = useState<number | undefined>();
 
   const submit = () => {
-    if (pageNumber !== null) {
+    if (pageNumber) {
       onChange(Number(pageNumber - 1));
     }
-    setPageNumber(null);
+    setPageNumber(undefined);
     state.close();
   };
 
@@ -141,14 +141,14 @@ const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
                 aria-label="Page number"
                 placeholder="0"
                 autoFocus
-                value={pageNumber}
+                value={pageNumber ? pageNumber.toString() : undefined}
                 onKeyPress={(event) => {
                   if (event.key === "Enter") {
                     submit();
                   }
                 }}
-                onChange={(event) => {
-                  setPageNumber(event.target.value);
+                onChange={(value) => {
+                  setPageNumber(Number(value));
                 }}
               />
             </div>
@@ -224,8 +224,9 @@ type Props = {
    */
   pageCount: number;
   /**
-   * Number of visible pages (including dots). For example, (1) (...) (4) (5) (6) (...) (10)
-   * is 7 visible pages. Minimum is 7 (or component will throw an error).
+   * Number of visible pages (including dots). For example, `(1) (...) (4) (5)
+   * (6) (...) (10)` is 7 visible pages. Minimum is 7 (or component will throw
+   * an error).
    */
   visiblePages: number;
   /**

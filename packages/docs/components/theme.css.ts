@@ -2,8 +2,8 @@ import { globalStyle } from "@vanilla-extract/css";
 import colors from "ds/src/colors";
 
 globalStyle("code", {
-  fontSize: "15px",
-  fontFamily: "SF Mono, Menlo, Consolas, Liberation Mono, monospace",
+  fontSize: "14px",
+  fontFamily: "Menlo, Consolas, Liberation Mono, monospace",
   padding: 4,
   borderRadius: 4,
   "@media": {

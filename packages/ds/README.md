@@ -1,13 +1,11 @@
 ## Must have
 
-- [ ] Rename table components without prefix Table to contain it.
 - [ ] [50%] Some generic landing page?
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
 
 ### Example improvements
 
-- [ ] Make tick and selection in tables white in dark mode and text white in light mode.
 - [ ] Refactor example a lot, share code, get rid of props spaghetti, split main form into two components.
 - [ ] In example, when user presses swap, show non-dismisable modal with progress of transaction (TODO: find out what are the steps).
 
@@ -43,7 +41,6 @@
 - [ ] Releases tab as in Braid https://seek-oss.github.io/braid-design-system/components/Box/releases
 - [ ] Borderless text input.
 - [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
-- [ ] Missing TS typings (especially `Table`, `Menu`).
 - [ ] Expose API for switching color modes.
 - [ ] Interactive props in examples.
 - [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
@@ -107,3 +104,5 @@
 - [x] Homepage in MDX.
 - [x] Add a 'copy code' button for code blocks.
 - [x] Style `<code>` tags in MDX and override `pre code` through globals to avoid padding and background there.
+- [x] Make tick and selection in tables white in dark mode and text white in light mode.
+- [x] Missing TS typings (especially `Table`, `Menu`).

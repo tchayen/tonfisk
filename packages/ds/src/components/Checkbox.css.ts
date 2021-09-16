@@ -2,8 +2,15 @@ import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { atoms } from "../theme.css";
-// TODO: it should be the other way round, table should import from checkbox.
-import { checkboxLike } from "./Table.css";
+
+export const checkboxLike = atoms({
+  height: "16px",
+  minWidth: "16px",
+  borderRadius: "4px",
+  margin: "none",
+  outline: "none",
+  WebkitAppearance: "none",
+});
 
 export const label = atoms({
   display: "flex",

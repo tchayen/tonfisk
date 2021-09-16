@@ -1,19 +1,22 @@
 import { useTooltip, useTooltipTrigger } from "@react-aria/tooltip";
 import { mergeProps } from "@react-aria/utils";
 import { useTooltipTriggerState } from "@react-stately/tooltip";
+import { TooltipTriggerState } from "@react-stately/tooltip";
 import React, { ReactNode, useRef } from "react";
 
 import { tooltipBox, tooltipButton, tooltipSpan } from "./Tooltip.css";
 
-// TODO: TS
-function TooltipBox({ state, ...props }): JSX.Element {
-  const { tooltipProps } = useTooltip(props, state);
+function TooltipBox({
+  state,
+  ...props
+}: {
+  state: TooltipTriggerState;
+  children: ReactNode;
+}): JSX.Element {
+  const { tooltipProps } = useTooltip({}, state);
 
   return (
     <span className={tooltipBox} {...mergeProps(props, tooltipProps)}>
-      {/* <svg height="8" width="10" viewBox="0 0 100 100" fill="white">
-        <polygon points="50,0 100,100 0,100" />
-      </svg> */}
       {props.children}
     </span>
   );
@@ -54,12 +57,12 @@ type Props = {
  * </Tooltip>
  */
 export function Tooltip(props: Props): JSX.Element {
-  const { tooltip, children, direction } = props;
-  const state = useTooltipTriggerState(props);
+  const { tooltip, children } = props;
+  const state = useTooltipTriggerState();
   const ref = useRef<HTMLButtonElement>(null);
 
   // Get props for the trigger and its tooltip
-  const { triggerProps, tooltipProps } = useTooltipTrigger(props, state, ref);
+  const { triggerProps, tooltipProps } = useTooltipTrigger({}, state, ref);
 
   return (
     <span className={tooltipSpan}>
@@ -67,7 +70,7 @@ export function Tooltip(props: Props): JSX.Element {
         {children}
       </button>
       {state.isOpen && (
-        <TooltipBox state={state} {...tooltipProps} direction={direction}>
+        <TooltipBox state={state} {...tooltipProps}>
           {tooltip}
         </TooltipBox>
       )}

@@ -44,7 +44,7 @@ export const getStaticProps = async (): Promise<{ props: Props }> => {
 
   const { content, data } = matter(docFile);
   const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
+    // Optionally pass remark/rehype plugins.
     mdxOptions: {
       remarkPlugins: [],
       rehypePlugins: [rehypePrism],

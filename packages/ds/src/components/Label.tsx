@@ -9,9 +9,9 @@ type Props = {
   children: string;
   /**
    * Optional props passed to the label element. Usually they come from
-   * react-aria hooks such as useSelect() or useTextField().
+   * `react-aria` hooks such as `useSelect()` or `useTextField()`.
    */
-  props?: any;
+  props?: React.LabelHTMLAttributes<HTMLLabelElement>;
 };
 
 /**

@@ -24,7 +24,7 @@ type Props = {
    */
   type?: "submit";
   /**
-   * Defaults to "regular".
+   * Defaults to `"regular"`.
    */
   size?: "regular" | "large";
 };

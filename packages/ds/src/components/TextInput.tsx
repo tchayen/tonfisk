@@ -1,5 +1,5 @@
 import { useTextField } from "@react-aria/textfield";
-import React, { ChangeEventHandler, FocusEvent, useRef, useState } from "react";
+import React, { FocusEvent, useRef, useState } from "react";
 
 import { Label } from "./Label";
 import * as styles from "./TextInput.css";
@@ -24,7 +24,7 @@ type Props = {
   /**
    * Callback called when value of the input changes.
    */
-  onChange?: ChangeEventHandler;
+  onChange?: (value: string) => void;
   /**
    * Callback called when input gains focus.
    */
@@ -95,12 +95,11 @@ export function TextInput(props: Props): JSX.Element {
     >
       {label && <Label {...labelProps}>{label}</Label>}
       <input
-        {...inputProps}
+        {...(inputProps as React.InputHTMLAttributes<HTMLInputElement>)}
         ref={ref}
         onFocus={handleFocus}
         onBlur={handleBlur}
         autoFocus={props.autoFocus}
-        onChange={props.onChange}
         onKeyPress={props.onKeyPress}
         className={styles.input({
           boxShadow: isFocused ? "focused" : "default",

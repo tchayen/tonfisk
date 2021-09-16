@@ -2,6 +2,7 @@ import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
 import { atoms } from "../theme.css";
+import { checkboxLike } from "./Checkbox.css";
 
 export const table = atoms({
   borderCollapse: "separate",
@@ -60,17 +61,6 @@ export const tableRow = recipe({
         background: "none",
       }),
     },
-    color: {
-      selected: atoms({
-        color: {
-          lightMode: "white",
-          darkMode: "gray-900",
-        },
-      }),
-      default: atoms({
-        color: undefined,
-      }),
-    },
     boxShadow: {
       selected: atoms({
         boxShadow: "none",
@@ -117,14 +107,21 @@ export const tableCell = recipe({
       cursor: "default",
       paddingLeft: "l",
       paddingRight: "l",
-      color: {
-        lightMode: "black",
-        darkMode: "gray-200",
-      },
     }),
     roundedLastRowSelector,
   ],
   variants: {
+    color: {
+      selected: atoms({
+        color: "white",
+      }),
+      default: atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      }),
+    },
     outline: {
       focusVisible: atoms({
         outline: {
@@ -137,15 +134,6 @@ export const tableCell = recipe({
       }),
     },
   },
-});
-
-export const checkboxLike = atoms({
-  height: "16px",
-  minWidth: "16px",
-  borderRadius: "4px",
-  margin: "none",
-  outline: "none",
-  WebkitAppearance: "none",
 });
 
 export const checkboxInput = recipe({
@@ -221,10 +209,7 @@ export const mixed = style([
     left: 1,
   }),
   atoms({
-    background: {
-      lightMode: "white",
-      darkMode: "gray-900",
-    },
+    background: "white",
   }),
 ]);
 

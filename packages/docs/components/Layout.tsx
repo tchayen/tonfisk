@@ -29,7 +29,7 @@ const ListItem = ({
   };
 
   const className = atoms({
-    fontSize: "14px",
+    fontSize: "16px",
     fontWeight: active ? "bold" : "body",
     color: {
       lightMode: active ? "white" : "black",
@@ -39,8 +39,8 @@ const ListItem = ({
     margin: "s",
     background: active ? "pink-500" : isHovered ? "pinkOutline" : "transparent",
     height: "32px",
-    paddingLeft: "l",
-    paddingRight: "l",
+    paddingLeft: "m",
+    paddingRight: "m",
     display: "flex",
     alignItems: "center",
     outline: "none",
@@ -57,16 +57,20 @@ const ListItem = ({
 
   if (href.startsWith("https")) {
     return (
-      <a {...props} target="_blank" rel="noopener noreferrer">
-        {children}
-      </a>
+      <div className={atoms({ display: "flex" })}>
+        <a {...props} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      </div>
     );
   }
 
   return (
-    <Link href={href}>
-      <a {...props}>{children}</a>
-    </Link>
+    <div className={atoms({ display: "flex" })}>
+      <Link href={href}>
+        <a {...props}>{children}</a>
+      </Link>
+    </div>
   );
 };
 
@@ -87,7 +91,12 @@ const NavLink = ({
     );
   } else {
     return (
-      <div>
+      <div
+        className={atoms({
+          display: "flex",
+          flexDirection: "column",
+        })}
+      >
         <h3
           className={atoms({
             color: {

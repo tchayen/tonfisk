@@ -196,7 +196,6 @@ const SettingsPopover = ({
   return (
     <>
       <button
-        // TODO: this can become a text variant of button.
         {...mergeProps(buttonProps, triggerProps, focusProps)}
         ref={triggerRef}
         className={className}
@@ -256,7 +255,7 @@ const Settings = ({
             label="Slippage tolerance"
             placeholder="0.10%"
             value={slippageTolerance}
-            onChange={({ target: { value } }) => setSlippageTolerance(value)}
+            onChange={(value) => setSlippageTolerance(Number(value))}
           />
         </div>
         <div>
@@ -277,9 +276,7 @@ const Settings = ({
                 <TextInput
                   placeholder="30"
                   value={transactionDeadline}
-                  onChange={({ target: { value } }) =>
-                    setTransactionDeadline(value)
-                  }
+                  onChange={(value) => setTransactionDeadline(Number(value))}
                 />
               </div>
               <span

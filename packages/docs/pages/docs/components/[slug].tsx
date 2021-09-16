@@ -22,6 +22,84 @@ type Metadata = {
   }[];
 };
 
+function Prop({
+  name,
+  type,
+  description,
+}: {
+  name: string;
+  type: string;
+  description: string;
+}) {
+  let i = 0;
+  const escapedDescription = description
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;")
+    .replaceAll("`", () => {
+      i += 1;
+      if (i % 2 === 1) {
+        return "<code>";
+      } else {
+        return "</code>";
+      }
+    });
+
+  // description.replace(/`(.*?)`/g, (match) => {
+  //   const result = match.replaceAll("`", `<${i % 2 === 1 ? "/" : ""}code>`);
+  //   i += 1;
+  //   return result;
+  // });
+  console.log(escapedDescription);
+  return (
+    <div
+      className={atoms({
+        display: "flex",
+        marginBottom: "m",
+      })}
+    >
+      <div
+        className={atoms({
+          display: "flex",
+          flexDirection: "column",
+          padding: "m",
+          borderRadius: "8px",
+          background: {
+            lightMode: "gray-100",
+            darkMode: "gray-800",
+          },
+          maxWidth: "64ch",
+        })}
+      >
+        <code
+          className={atoms({
+            color: {
+              lightMode: "black",
+              darkMode: "gray-200",
+            },
+            marginBottom: "s",
+            padding: "none",
+          })}
+        >
+          {name}: {type}
+        </code>
+        <span
+          className={atoms({
+            color: {
+              lightMode: "gray-600",
+              darkMode: "gray-400",
+            },
+            fontSize: "14px",
+          })}
+          dangerouslySetInnerHTML={{ __html: escapedDescription }}
+        ></span>
+      </div>
+    </div>
+  );
+}
+
 type Props = {
   navigation: ReturnType<typeof getNavigation>;
   source: MDXRemoteSerializeResult;
@@ -52,51 +130,7 @@ export default function Doc({
           </h2>
           <div>
             {metadata.props.map((prop) => (
-              <div
-                key={prop.name}
-                className={atoms({
-                  display: "flex",
-                  marginBottom: "m",
-                })}
-              >
-                <div
-                  className={atoms({
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "m",
-                    borderRadius: "8px",
-                    background: {
-                      lightMode: "gray-100",
-                      darkMode: "gray-800",
-                    },
-                    maxWidth: "64ch",
-                  })}
-                >
-                  <code
-                    className={atoms({
-                      color: {
-                        lightMode: "black",
-                        darkMode: "gray-200",
-                      },
-                      marginBottom: "s",
-                      padding: "none",
-                    })}
-                  >
-                    {prop.name}: {prop.type}
-                  </code>
-                  <span
-                    className={atoms({
-                      color: {
-                        lightMode: "gray-600",
-                        darkMode: "gray-400",
-                      },
-                      fontSize: "14px",
-                    })}
-                  >
-                    {prop.description}
-                  </span>
-                </div>
-              </div>
+              <Prop key={prop.name} {...prop} />
             ))}
           </div>
         </Fragment>

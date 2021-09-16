@@ -212,11 +212,11 @@ function FormTextInput(props: {
   label: string;
   placeholder?: string;
 }) {
-  const [field, meta] = useField(props);
+  const [field, meta, { setValue }] = useField(props);
 
   return (
     <>
-      <TextInput {...field} {...props} />
+      <TextInput {...field} onChange={(value) => setValue(value)} {...props} />
       {meta.touched && meta.error ? <div>{meta.error}</div> : null}
     </>
   );

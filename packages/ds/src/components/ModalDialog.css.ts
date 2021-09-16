@@ -56,3 +56,18 @@ export const modalDiv = atoms({
   boxShadow: "shadow",
   outline: "none",
 });
+
+export const titleRow = atoms({
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  paddingRight: "m",
+});
+
+export const title = atoms({
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
+  margin: "l",
+});

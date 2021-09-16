@@ -4,8 +4,11 @@ import Link from "next/link";
 import { Layout } from "../components/Layout";
 import { getNavigation } from "../utils/mdx";
 
-// TODO: TS
-export default function Home({ navigation }): JSX.Element {
+export default function Home({
+  navigation,
+}: {
+  navigation: ReturnType<typeof getNavigation>;
+}): JSX.Element {
   const p = atoms({
     color: {
       lightMode: "gray-600",

@@ -1,8 +1,11 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
+import { AriaListBoxOptions } from "@react-aria/listbox";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
-import React, { ReactNode, useRef } from "react";
+import { CollectionChildren } from "@react-types/shared/src/collections";
+import React, { useRef } from "react";
 
 import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
@@ -26,13 +29,13 @@ type Props = {
    */
   name: string;
   /**
-   * Default is "Select an option".
+   * Default is `"Select an option"`.
    */
   placeholder: string;
   /**
    * List of Item components.
    */
-  children: ReactNode;
+  children: CollectionChildren<object>;
 };
 
 /**
@@ -109,7 +112,10 @@ export function Select(props: Props): JSX.Element {
       </button>
       {state.isOpen && (
         <FormPopover isOpen={state.isOpen} onClose={state.close}>
-          <ListBox {...menuProps} state={state} />
+          <ListBox
+            {...(menuProps as AriaListBoxOptions<object>)}
+            state={state}
+          />
         </FormPopover>
       )}
     </div>

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+/* eslint-disable @typescript-eslint/ban-types */
 import { useCheckbox } from "@react-aria/checkbox";
 import { useFocusRing } from "@react-aria/focus";
 import {
@@ -13,13 +15,14 @@ import {
 import { mergeProps } from "@react-aria/utils";
 import { TableState, useTableState } from "@react-stately/table";
 import { useToggleState } from "@react-stately/toggle";
-import { Fragment } from "react";
+import { CollectionChildren, Node } from "@react-types/shared/src/collections";
+import { Selection } from "@react-types/shared/src/selection";
+import { Fragment, ReactNode } from "react";
 import React, { useRef } from "react";
 
 import { Tick } from "../icons/Tick";
 import { atoms } from "../theme.css";
 import * as styles from "./Table.css";
-
 export {
   Cell,
   Column,
@@ -28,14 +31,26 @@ export {
   TableHeader,
 } from "@react-stately/table";
 
-// TODO: TS
-export function TableRowGroup({ type: Element, children }): JSX.Element {
+export function TableRowGroup({
+  type: Element,
+  children,
+}: {
+  type: "thead" | "tbody";
+  children: ReactNode;
+}): JSX.Element {
   const { rowGroupProps } = useTableRowGroup();
   return <Element {...rowGroupProps}>{children}</Element>;
 }
 
-// TODO: TS
-export function TableHeaderRow({ item, state, children }): JSX.Element {
+export function TableHeaderRow({
+  item,
+  state,
+  children,
+}: {
+  item: Node<object>;
+  state: TableState<object>;
+  children: ReactNode;
+}): JSX.Element {
   const ref = useRef<HTMLTableRowElement>(null);
   const { rowProps } = useTableHeaderRow({ node: item }, state, ref);
 
@@ -46,9 +61,14 @@ export function TableHeaderRow({ item, state, children }): JSX.Element {
   );
 }
 
-// TODO: TS
-export function TableColumnHeader({ column, state }): JSX.Element {
-  const ref = useRef<HTMLTableHeaderCellElement>(null);
+export function TableColumnHeader({
+  column,
+  state,
+}: {
+  column: Node<object>;
+  state: TableState<object>;
+}): JSX.Element {
+  const ref = useRef<HTMLTableCellElement>(null);
   const { columnHeaderProps } = useTableColumnHeader(
     { node: column },
     state,
@@ -60,8 +80,12 @@ export function TableColumnHeader({ column, state }): JSX.Element {
   return (
     <th
       {...mergeProps(columnHeaderProps, focusProps)}
+      // For some reason colspan is not present in the Node<object> type and
+      // needed here.
+      // @ts-ignore
       colSpan={column.colspan}
       className={styles.tableColumnHeader({
+        // @ts-ignore
         textAlign: column.colspan > 1 ? "wideColumn" : "default",
         outline: isFocusVisible ? "focusVisible" : "default",
       })}
@@ -85,8 +109,19 @@ export function TableColumnHeader({ column, state }): JSX.Element {
   );
 }
 
-// TODO: TS
-export function TableRow({ item, children, state, index, rows }): JSX.Element {
+export function TableRow({
+  item,
+  children,
+  state,
+  index,
+  rows,
+}: {
+  item: Node<object>;
+  children: ReactNode;
+  state: TableState<object>;
+  index: number;
+  rows: number;
+}): JSX.Element {
   const ref = useRef<HTMLTableRowElement>(null);
   const isSelected = state.selectionManager.isSelected(item.key);
   const { rowProps } = useTableRow({ node: item }, state, ref);
@@ -94,7 +129,6 @@ export function TableRow({ item, children, state, index, rows }): JSX.Element {
 
   const className = styles.tableRow({
     background: isSelected ? "selected" : "default",
-    color: isSelected ? "selected" : "default",
     boxShadow: isSelected ? "selected" : "default",
     outline: isFocusVisible ? "focusVisible" : "default",
   });
@@ -110,8 +144,15 @@ export function TableRow({ item, children, state, index, rows }): JSX.Element {
   );
 }
 
-// TODO: TS
-export function TableCell({ cell, state }): JSX.Element {
+export function TableCell({
+  cell,
+  state,
+  isSelected,
+}: {
+  cell: Node<object>;
+  state: TableState<object>;
+  isSelected?: boolean;
+}): JSX.Element {
   const ref = useRef<HTMLTableCellElement>(null);
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
@@ -121,6 +162,7 @@ export function TableCell({ cell, state }): JSX.Element {
       {...mergeProps(gridCellProps, focusProps)}
       className={styles.tableCell({
         outline: isFocusVisible ? "focusVisible" : "default",
+        color: isSelected ? "selected" : "default",
       })}
       ref={ref}
     >
@@ -129,13 +171,18 @@ export function TableCell({ cell, state }): JSX.Element {
   );
 }
 
-// TODO: TS
 function Checkbox({
   inputProps,
   inputRef,
   focusProps,
   isFocusVisible,
   backgroundConflict,
+}: {
+  inputProps: React.InputHTMLAttributes<HTMLInputElement>;
+  inputRef: React.RefObject<HTMLInputElement>;
+  focusProps: React.HTMLAttributes<HTMLElement>;
+  isFocusVisible?: boolean;
+  backgroundConflict?: boolean;
 }) {
   const isChecked = inputProps["aria-checked"];
 
@@ -156,16 +203,25 @@ function Checkbox({
       />
       {isChecked ? (
         <div className={styles.tick}>
-          {isChecked === "mixed" ? <div className={styles.mixed} /> : <Tick />}
+          {isChecked === "mixed" ? (
+            <div className={styles.mixed} />
+          ) : (
+            <Tick className={atoms({ fill: "white" })} />
+          )}
         </div>
       ) : null}
     </Fragment>
   );
 }
 
-// TODO: TS
-export function TableSelectAllCell({ column, state }): JSX.Element {
-  const ref = useRef<HTMLTableHeaderCellElement>(null);
+export function TableSelectAllCell({
+  column,
+  state,
+}: {
+  column: Node<object>;
+  state: TableState<object>;
+}): JSX.Element | null {
+  const ref = useRef<HTMLTableCellElement>(null);
   const isSingleSelectionMode =
     state.selectionManager.selectionMode === "single";
   const { columnHeaderProps } = useTableColumnHeader(
@@ -175,7 +231,7 @@ export function TableSelectAllCell({ column, state }): JSX.Element {
   );
 
   const { checkboxProps } = useTableSelectAllCheckbox(state);
-  const inputRef = useRef(null);
+  const inputRef = useRef<HTMLInputElement>(null);
   const { inputProps } = useCheckbox(
     checkboxProps,
     useToggleState(checkboxProps),
@@ -205,13 +261,13 @@ export function TableCheckboxCell({
   cell,
   state,
 }: {
-  cell: any;
-  state: TableState<any>;
+  cell: Node<object>;
+  state: TableState<object>;
 }): JSX.Element {
   const ref = useRef<HTMLTableCellElement>(null);
   const { gridCellProps } = useTableCell({ node: cell }, state, ref);
   const { checkboxProps } = useTableSelectionCheckbox(
-    { key: cell.parentKey },
+    { key: cell.parentKey! },
     state
   );
 
@@ -250,17 +306,23 @@ type Props = {
    */
   disallowEmptySelection?: boolean;
   /**
-   * Callback called when selected keys change.
+   * Callback called when selected keys change. Selection type is: `"all"
+   * | Set<string | number>`.
    */
-  onSelectionChange?: (selectedKeys: number[]) => void;
+  onSelectionChange?: (selectedKeys: Selection) => void;
   /**
-   * Children.
+   * Table is defined by composing children.
    */
-  children: any;
+  children: CollectionChildren<object>;
+  /**
+   * Value used to describe the table to screen readers.
+   */
+  "aria-label": string;
 };
 
 /**
- * Table.
+ * Table component. Supports single and multiple row selection. Pairs well with
+ * [Pagination](/docs/components/pagination) component.
  *
  * ## Usage
  *
@@ -274,9 +336,23 @@ type Props = {
  *   Cell,
  * } from "TODO_LIB_NAME";
  *
- * const [selectedKeys, setSelectedKeys] = useState([]);
  *
  * function TableExample() {
+ *   const [selectedKeys, setSelectedKeys] = useState([]);
+ *
+ *   const columns = [
+ *     { name: "Name", key: "name" },
+ *     { name: "Type", key: "type" },
+ *     { name: "Date Modified", key: "date" },
+ *   ];
+ *
+ *   const rows = [
+ *     { id: 1, name: "Games", date: "6/7/2020", type: "File folder" },
+ *     { id: 2, name: "Program Files", date: "4/7/2021", type: "File folder" },
+ *     { id: 3, name: "bootmgr", date: "11/20/2010", type: "System file" },
+ *     { id: 4, name: "log.txt", date: "1/18/2016", type: "Text Document" },
+ *   ];
+ *
  *   return (
  *     <Table
  *       aria-label="Example static collection table"
@@ -307,7 +383,11 @@ export function Table(props: Props): JSX.Element {
   });
   const ref = useRef<HTMLTableElement>(null);
   const { collection } = state;
-  const { gridProps } = useTable(props, state, ref);
+  const { gridProps } = useTable(
+    { "aria-label": props["aria-label"] },
+    state,
+    ref
+  );
 
   return (
     <table {...gridProps} ref={ref} className={styles.table}>
@@ -345,7 +425,12 @@ export function Table(props: Props): JSX.Element {
               cell.props.isSelectionCell ? (
                 <TableCheckboxCell key={cell.key} cell={cell} state={state} />
               ) : (
-                <TableCell key={cell.key} cell={cell} state={state} />
+                <TableCell
+                  key={cell.key}
+                  cell={cell}
+                  state={state}
+                  isSelected={state.selectionManager.selectedKeys.has(row.key)}
+                />
               )
             )}
           </TableRow>
