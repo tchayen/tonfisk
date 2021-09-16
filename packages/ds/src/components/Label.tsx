@@ -1,6 +1,6 @@
 import React from "react";
 
-import { label } from "./Label.css";
+import * as styles from "./Label.css";
 
 type Props = {
   /**
@@ -31,7 +31,7 @@ type Props = {
  */
 export const Label = ({ children, ...props }: Props): JSX.Element => {
   return (
-    <label {...props} className={label}>
+    <label {...props} className={styles.label}>
       {children}
     </label>
   );

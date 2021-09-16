@@ -13,7 +13,6 @@ import { ForwardedRef, forwardRef, ReactNode } from "react";
 import React, { useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
-import { atoms } from "../theme.css";
 import {
   chevronPadding,
   div,
@@ -92,7 +91,7 @@ function MenuItem({
   onAction: (item: any) => void;
   onClose: () => void;
 }): JSX.Element {
-  // Get props for the menu item element
+  // Get props for the menu item element.
   const ref = useRef<HTMLLIElement>(null);
   const { menuItemProps } = useMenuItem(
     {
@@ -105,8 +104,8 @@ function MenuItem({
     ref
   );
 
-  // Handle focus events so we can apply highlighted
-  // style to the focused menu item
+  // Handle focus events so we can apply highlighted  style to the focused menu
+  // item.
   const [isFocused, setFocused] = useState(false);
   const { focusProps } = useFocus({ onFocusChange: setFocused });
 
@@ -114,16 +113,10 @@ function MenuItem({
     <li
       {...mergeProps(menuItemProps, focusProps)}
       ref={ref}
-      className={`${menuItem} ${atoms({
-        background: {
-          lightMode: isFocused ? "gray-200" : "transparent",
-          darkMode: isFocused ? "gray-600" : "transparent",
-        },
-        color: {
-          lightMode: isFocused ? "black" : "gray-600",
-          darkMode: isFocused ? "gray-200" : "gray-400",
-        },
-      })}`}
+      className={menuItem({
+        background: isFocused ? "focused" : "default",
+        color: isFocused ? "focused" : "default",
+      })}
     >
       {item.rendered}
     </li>
@@ -172,16 +165,11 @@ const MenuButton_ = (
     <button
       {...mergeProps(buttonProps, focusProps)}
       ref={ref}
-      // TODO: recipe.
-      className={`${menuButton} ${atoms({
-        opacity: props.isDisabled ? 0.5 : 1,
-        cursor: props.isDisabled ? "default" : "pointer",
-        border: "none",
-        boxShadow: {
-          lightMode: isFocusVisible ? "primary" : "regularBorder",
-          darkMode: isFocusVisible ? "primary" : "darkBorder",
-        },
-      })}`}
+      className={menuButton({
+        boxShadow: isFocusVisible ? "focusVisible" : "default",
+        cursor: props.isDisabled ? "disabled" : "default",
+        opacity: props.isDisabled ? "disabled" : "default",
+      })}
     >
       {props.children}
       <span aria-hidden="true" className={chevronPadding}>

@@ -5,7 +5,7 @@ import matter from "gray-matter";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
-import React, { ReactNode } from "react";
+import React from "react";
 
 import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";

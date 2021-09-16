@@ -18,17 +18,7 @@ import React, { useRef } from "react";
 
 import { Tick } from "../icons/Tick";
 import { atoms } from "../theme.css";
-import {
-  checkboxInput,
-  lastRow,
-  mixed,
-  table,
-  tableCell,
-  tableCheckboxCell,
-  tableColumnHeader,
-  tableHeaderRow,
-  tick,
-} from "./Table.css";
+import * as styles from "./Table.css";
 
 export {
   Cell,
@@ -50,7 +40,7 @@ export function TableHeaderRow({ item, state, children }): JSX.Element {
   const { rowProps } = useTableHeaderRow({ node: item }, state, ref);
 
   return (
-    <tr {...rowProps} ref={ref} className={tableHeaderRow}>
+    <tr {...rowProps} ref={ref} className={styles.tableHeaderRow}>
       {children}
     </tr>
   );
@@ -71,23 +61,16 @@ export function TableColumnHeader({ column, state }): JSX.Element {
     <th
       {...mergeProps(columnHeaderProps, focusProps)}
       colSpan={column.colspan}
-      // TODO: recipe
-      className={`
-        ${tableColumnHeader} ${atoms({
-        textAlign: column.colspan > 1 ? "center" : "left",
-        outline: {
-          lightMode: isFocusVisible ? "table" : "none",
-          darkMode: isFocusVisible ? "tableDark" : "none",
-        },
+      className={styles.tableColumnHeader({
+        textAlign: column.colspan > 1 ? "wideColumn" : "default",
+        outline: isFocusVisible ? "focusVisible" : "default",
       })}
-      `}
       ref={ref}
     >
       {column.rendered}
       {column.props.allowsSorting && (
         <span
           aria-hidden="true"
-          // TODO: recipe
           className={atoms({
             visibility:
               state.sortDescriptor?.column === column.key
@@ -109,28 +92,16 @@ export function TableRow({ item, children, state, index, rows }): JSX.Element {
   const { rowProps } = useTableRow({ node: item }, state, ref);
   const { isFocusVisible, focusProps } = useFocusRing();
 
+  const className = styles.tableRow({
+    background: isSelected ? "selected" : "default",
+    color: isSelected ? "selected" : "default",
+    boxShadow: isSelected ? "selected" : "default",
+    outline: isFocusVisible ? "focusVisible" : "default",
+  });
+
   return (
     <tr
-      // TODO: recipe
-      className={`${index === rows - 1 ? lastRow : ""} ${atoms({
-        background: isSelected
-          ? "pink-500"
-          : item.index % 2
-          ? "none" // Background of every second row.
-          : "none",
-        color: {
-          lightMode: isSelected ? "white" : undefined,
-          darkMode: isSelected ? "gray-900" : undefined,
-        },
-        boxShadow: {
-          lightMode: isSelected ? "none" : "tableTopBorder",
-          darkMode: isSelected ? "none" : "tableTopBorderDark",
-        },
-        outline: {
-          lightMode: isFocusVisible ? "table" : "none",
-          darkMode: isFocusVisible ? "tableDark" : "none",
-        },
-      })}`}
+      className={`${index === rows - 1 ? styles.lastRow : ""} ${className}`}
       {...mergeProps(rowProps, focusProps)}
       ref={ref}
     >
@@ -148,12 +119,9 @@ export function TableCell({ cell, state }): JSX.Element {
   return (
     <td
       {...mergeProps(gridCellProps, focusProps)}
-      className={`${tableCell} ${atoms({
-        outline: {
-          lightMode: isFocusVisible ? "table" : "none",
-          darkMode: isFocusVisible ? "tableDark" : "none",
-        },
-      })}`}
+      className={styles.tableCell({
+        outline: isFocusVisible ? "focusVisible" : "default",
+      })}
       ref={ref}
     >
       {cell.rendered}
@@ -176,35 +144,19 @@ function Checkbox({
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={inputRef}
-        // TODO: recipe
-        className={`${checkboxInput} ${atoms({
-          border: {
-            lightMode: isChecked || isFocusVisible ? "primary" : "regular",
-            darkMode: isChecked || isFocusVisible ? "primary" : "regularDark",
-          },
-          margin: "none",
-          background: {
-            lightMode: isChecked ? "pink-500" : "white",
-            darkMode: isChecked ? "pink-500" : "gray-900",
-          },
-          boxShadow: {
-            lightMode: isFocusVisible
-              ? backgroundConflict && isChecked
-                ? "tableOutline"
-                : "outline"
-              : "none",
-            darkMode: isFocusVisible
-              ? backgroundConflict && isChecked
-                ? "tableOutlineDark"
-                : "outline"
-              : "none",
-          },
-          outline: "none",
-        })}`}
+        className={styles.checkboxInput({
+          background: isChecked ? "checked" : "default",
+          border: isChecked || isFocusVisible ? "checkedOrFocused" : "default",
+          boxShadow: isFocusVisible
+            ? backgroundConflict && isChecked
+              ? "focusedChecked"
+              : "focused"
+            : "default",
+        })}
       />
       {isChecked ? (
-        <div className={tick}>
-          {isChecked === "mixed" ? <div className={mixed} /> : <Tick />}
+        <div className={styles.tick}>
+          {isChecked === "mixed" ? <div className={styles.mixed} /> : <Tick />}
         </div>
       ) : null}
     </Fragment>
@@ -237,7 +189,7 @@ export function TableSelectAllCell({ column, state }): JSX.Element {
   }
 
   return (
-    <th {...columnHeaderProps} ref={ref} className={tableCheckboxCell}>
+    <th {...columnHeaderProps} ref={ref} className={styles.tableCheckboxCell}>
       <Checkbox
         focusProps={focusProps}
         inputProps={inputProps}
@@ -272,7 +224,7 @@ export function TableCheckboxCell({
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <td {...gridCellProps} ref={ref} className={tableCheckboxCell}>
+    <td {...gridCellProps} ref={ref} className={styles.tableCheckboxCell}>
       <Checkbox
         focusProps={focusProps}
         inputProps={inputProps}
@@ -345,7 +297,7 @@ export function Table(props: Props): JSX.Element {
   const { gridProps } = useTable(props, state, ref);
 
   return (
-    <table {...gridProps} ref={ref} className={table}>
+    <table {...gridProps} ref={ref} className={styles.table}>
       <TableRowGroup type="thead">
         {collection.headerRows.map((headerRow) => (
           <TableHeaderRow key={headerRow.key} item={headerRow} state={state}>

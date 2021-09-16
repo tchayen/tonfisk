@@ -2,7 +2,7 @@ import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
 import React, { ReactNode, useRef } from "react";
 
-import { div } from "./FormPopover.css";
+import * as styles from "./FormPopover.css";
 
 type Props = {
   /**
@@ -49,7 +49,7 @@ export function FormPopover(props: Props): JSX.Element {
   // to allow screen reader users to dismiss the popup easily.
   return (
     <FocusScope restoreFocus>
-      <div {...overlayProps} ref={popoverRef} className={div}>
+      <div {...overlayProps} ref={popoverRef} className={styles.div}>
         {children}
         <DismissButton onDismiss={onClose} />
       </div>

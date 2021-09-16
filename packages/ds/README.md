@@ -1,19 +1,10 @@
 ## Must have
 
-- [ ] Update `react-aria` and `@vanilla-extract/css`.
-- [ ] Fix TODOs about converting code to recipes.
-- [ ] Active link is missing in sidebar on homepage.
-- [ ] External links are missing hovers.
-- [ ] Homepage in MDX.
-- [ ] Fix margins (getting started paragraphs and headers as example).
-- [ ] Style `<code>` properly.
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
-- [ ] Import CSS from `*.css.ts` files as `import * from ...` to refer to them as `styles.className` instead of just `className` (too much wondering where did this variable come from).
 - [ ] [50%] Some generic landing page?
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
 - [ ] Add a 'copy code' button for code blocks.
-- [ ] `(?)` button? for form labels that show tooltip.
 
 ### Example improvements
 
@@ -30,6 +21,7 @@
 
 ## Next version
 
+- [ ] `(?)` button? for form labels that show tooltip.
 - [ ] Change design and implement new look for switch to look like classic iOS switch and not material design one.
 - [ ] Change focus outline on buttons to look more like twitter.
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
@@ -108,3 +100,11 @@
 - [x] Bigger examples to find out missing components.
 - [x] Update spinner to feature background for the circle in the outline color.
 - [x] Make all pages have equal width.
+- [x] Update `react-aria` and `@vanilla-extract/css`.
+- [x] Import CSS from `*.css.ts` files as `import * from ...` to refer to them as `styles.className` instead of just `className` (too much wondering where did this variable come from).
+- [x] Implement TODOs about converting code to recipes.
+- [x] Active link is missing in sidebar on homepage.
+- [x] External links are missing hovers.
+- [x] Style `<code>` properly.
+- [x] Fix margins (getting started paragraphs and headers as example).
+- [x] Homepage in MDX.

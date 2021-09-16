@@ -42,53 +42,25 @@ function PageButton(props: {
     setIsHovered(false);
   };
 
-  let color;
-  let background;
-
-  if (props.isSelected) {
-    color = {
-      lightMode: "white",
-      darkMode: "gray-900",
-    };
-    if (isPressed) {
-      background = "pink-700";
-    } else if (isHovered) {
-      background = "pink-600";
-    } else {
-      background = "pink-500";
-    }
-  } else {
-    color = {
-      lightMode: "black",
-      darkMode: "gray-500",
-    };
-    if (isPressed) {
-      background = {
-        lightMode: "gray-300",
-        darkMode: "gray-700",
-      };
-    } else if (isHovered) {
-      background = {
-        lightMode: "gray-200",
-        darkMode: "gray-800",
-      };
-    } else {
-      background = {
-        lightMode: "white",
-        darkMode: "gray-900",
-      };
-    }
-  }
-
   return (
     <button
       ref={ref}
-      // TODO: recipe
-      className={`${pageButton} ${atoms({
-        color,
-        background,
-        boxShadow: isFocusVisible && !props.isDisabled ? "outline" : "none",
-      })}`}
+      className={pageButton({
+        color: props.isSelected ? "default" : "selected",
+        background: props.isSelected
+          ? isPressed
+            ? "selectedPressed"
+            : isHovered
+            ? "selectedHovered"
+            : "selected"
+          : isPressed
+          ? "pressed"
+          : isHovered
+          ? "hovered"
+          : "default",
+        boxShadow:
+          isFocusVisible && !props.isDisabled ? "focusVisible" : "default",
+      })}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...mergeProps(props.overrideButtonProps || buttonProps, focusProps)}
@@ -205,14 +177,11 @@ function DirectionButton(props: {
     setIsHovered(false);
   };
 
-  const buttonClassName = atoms({
-    opacity: props.isDisabled ? 0.5 : 1,
-    cursor: props.isDisabled ? "default" : "pointer",
-    boxShadow: isFocusVisible && !props.isDisabled ? "outline" : "none",
-    background: {
-      lightMode: isPressed ? "gray-400" : isHovered ? "gray-300" : "gray-200",
-      darkMode: isPressed ? "gray-800" : isHovered ? "gray-700" : "gray-600",
-    },
+  const className = directionButton({
+    background: isPressed ? "pressed" : isHovered ? "hovered" : "default",
+    cursor: props.isDisabled ? "disabled" : "default",
+    opacity: props.isDisabled ? "disabled" : "default",
+    boxShadow: isFocusVisible && !props.isDisabled ? "focusVisible" : "default",
   });
 
   const chevron = atoms({
@@ -225,8 +194,7 @@ function DirectionButton(props: {
   return (
     <button
       ref={ref}
-      // TODO: recipe
-      className={`${directionButton} ${buttonClassName}`}
+      className={className}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       {...mergeProps(buttonProps, focusProps)}

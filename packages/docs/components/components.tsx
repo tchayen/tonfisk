@@ -1,6 +1,8 @@
 // Custom components/renderers to pass to MDX.
 // Since the MDX files aren't loaded by webpack, they have no knowledge of how
 // to handle import statements. Instead, you must include components in scope
+import "./theme.css";
+
 import {
   atoms,
   Button,
@@ -288,7 +290,7 @@ function H1Component({ children }: { children: ReactNode }): JSX.Element {
           lightMode: "black",
           darkMode: "gray-200",
         },
-        marginTop: "l",
+        marginTop: "xl",
         marginBottom: "l",
       })}
     >
@@ -305,7 +307,7 @@ function H2Component({ children }: { children: ReactNode }): JSX.Element {
           lightMode: "black",
           darkMode: "gray-200",
         },
-        marginTop: "l",
+        marginTop: "xl",
         marginBottom: "l",
       })}
     >
@@ -322,7 +324,7 @@ function H3Component({ children }: { children: ReactNode }): JSX.Element {
           lightMode: "black",
           darkMode: "gray-200",
         },
-        marginTop: "l",
+        marginTop: "xl",
         marginBottom: "l",
       })}
     >
@@ -339,7 +341,7 @@ function H4Component({ children }: { children: ReactNode }): JSX.Element {
           lightMode: "black",
           darkMode: "gray-200",
         },
-        marginTop: "l",
+        marginTop: "xl",
         marginBottom: "l",
       })}
     >
@@ -370,6 +372,19 @@ function ParagraphComponent({
   );
 }
 
+function LiComponent({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <li
+      className={atoms({
+        marginBottom: "l",
+        marginTop: "l",
+      })}
+    >
+      {children}
+    </li>
+  );
+}
+
 function PreComponent({ children }: { children: ReactNode }): JSX.Element {
   return (
     <pre
@@ -393,6 +408,7 @@ export const components = {
   h3: H3Component,
   h4: H4Component,
   p: ParagraphComponent,
+  li: LiComponent,
   pre: PreComponent,
   Button,
   Checkbox,

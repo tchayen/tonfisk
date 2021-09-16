@@ -7,7 +7,7 @@ import React, { ReactNode, useRef } from "react";
 
 import { Close } from "../icons/Close";
 import { atoms } from "../theme.css";
-import { closeButton, fullPageDiv, modalDiv } from "./ModalDialog.css";
+import * as styles from "./ModalDialog.css";
 
 const CloseButton = (props: any) => {
   const { focusProps, isFocusVisible } = useFocusRing();
@@ -18,10 +18,9 @@ const CloseButton = (props: any) => {
     <button
       {...mergeProps(focusProps, buttonProps)}
       ref={ref}
-      // TODO: recipe
-      className={`${closeButton} ${atoms({
-        boxShadow: isFocusVisible ? "outline" : "none",
-      })}`}
+      className={styles.closeButton({
+        boxShadow: isFocusVisible ? "focusVisible" : "default",
+      })}
     >
       <Close />
     </button>
@@ -106,12 +105,12 @@ export function ModalDialog(props: Props): JSX.Element {
   const { dialogProps, titleProps } = useDialog(props, ref);
 
   return (
-    <div className={fullPageDiv} {...underlayProps}>
+    <div className={styles.fullPageDiv} {...underlayProps}>
       <FocusScope contain restoreFocus autoFocus>
         <div
           {...mergeProps(overlayProps, dialogProps, modalProps)}
           ref={ref}
-          className={modalDiv}
+          className={styles.modalDiv}
         >
           <div
             // TODO: move to *.css.ts.

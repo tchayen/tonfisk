@@ -8,7 +8,7 @@ import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
 import { ListBox } from "../ListBox";
 import { Label } from "./Label";
-import { select, selectButton, span } from "./Select.css";
+import * as styles from "./Select.css";
 
 export { Item } from "@react-stately/collections";
 
@@ -76,7 +76,7 @@ export function Select(props: Props): JSX.Element {
   );
 
   return (
-    <div className={select}>
+    <div className={styles.select}>
       {props.label && <Label {...labelProps}>{props.label}</Label>}
       <HiddenSelect
         state={state}
@@ -88,8 +88,7 @@ export function Select(props: Props): JSX.Element {
         {...buttonProps}
         {...focusProps}
         ref={ref}
-        // TODO: recipe
-        className={selectButton({
+        className={styles.selectButton({
           boxShadow: isFocusVisible ? "focusVisible" : "default",
           color: state.selectedItem ? "selected" : "empty",
           opacity: props.isDisabled ? "disabled" : "active",
@@ -100,7 +99,7 @@ export function Select(props: Props): JSX.Element {
             ? state.selectedItem.rendered
             : props.placeholder || "Select an option"}
         </span>
-        <span aria-hidden="true" className={span}>
+        <span aria-hidden="true" className={styles.span}>
           <Chevron />
         </span>
       </button>

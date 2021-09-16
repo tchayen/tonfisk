@@ -1,7 +1,7 @@
 import { useListBox, useOption } from "@react-aria/listbox";
 import React, { useRef } from "react";
 
-import { listBox, option } from "./ListBox.css";
+import * as styles from "./ListBox.css";
 import { atoms } from "./theme.css";
 
 /**
@@ -13,7 +13,7 @@ export function ListBox(props: any): JSX.Element {
   const { listBoxProps } = useListBox(props, state, listBoxRef);
 
   return (
-    <ul {...listBoxProps} ref={listBoxRef} className={listBox}>
+    <ul {...listBoxProps} ref={listBoxRef} className={styles.listBox}>
       {[...state.collection].map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}
@@ -32,40 +32,15 @@ function Option({ item, state }: any) {
     ref
   );
 
-  let backgroundColor = "transparent";
-  let color = {
-    lightMode: "black",
-    darkMode: "gray-400",
-  };
-
-  if (isSelected) {
-    backgroundColor = "pink-500";
-    color = {
-      lightMode: "white",
-      darkMode: "gray-200",
-    };
-  } else if (isFocused) {
-    color = {
-      lightMode: "black",
-      darkMode: "gray-200",
-    };
-    backgroundColor = {
-      lightMode: "gray-200",
-      darkMode: "gray-600",
-    };
-  } else if (isDisabled) {
-    //
-  }
-
   return (
     <li
       {...optionProps}
       ref={ref}
-      // TODO: recipe
-      className={`${option} ${atoms({
-        background: backgroundColor,
-        color,
-      })}`}
+      className={styles.option({
+        background: isSelected ? "selected" : isFocused ? "focused" : "default",
+        color: isSelected ? "selected" : isFocused ? "focused" : "default",
+        opacity: isDisabled ? "disabled" : "default",
+      })}
     >
       {item.rendered}
     </li>

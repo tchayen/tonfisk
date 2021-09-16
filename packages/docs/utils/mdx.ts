@@ -82,7 +82,7 @@ export const getNavigation = (): Directory => {
 
     return {
       title: data.title,
-      filePath: filePath.replace(/\.mdx?$/, ""),
+      filePath: `/docs/${filePath.replace(/\.mdx?$/, "")}`,
     };
   });
 
@@ -91,7 +91,9 @@ export const getNavigation = (): Directory => {
 
     return {
       title,
-      filePath: `components/${toKebabCase(filePath.replace(/\.tsx?$/, ""))}`,
+      filePath: `/docs/components/${toKebabCase(
+        filePath.replace(/\.tsx?$/, "")
+      )}`,
     };
   });
 
@@ -101,8 +103,8 @@ export const getNavigation = (): Directory => {
       {
         name: "Overview",
         files: [
-          { title: "Homepage", filePath: ".." },
-          { title: "Example", filePath: "../example" },
+          { title: "Homepage", filePath: "/" },
+          { title: "Example", filePath: "/example" },
           ...docs,
         ],
       },

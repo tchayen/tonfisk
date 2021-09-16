@@ -4,8 +4,7 @@ import { VisuallyHidden } from "@react-aria/visually-hidden";
 import { useToggleState } from "@react-stately/toggle";
 import React, { useRef } from "react";
 
-import { atoms } from "../theme.css";
-import { bar, dot, label, wrapper } from "./Switch.css";
+import * as styles from "./Switch.css";
 
 type Props = {
   /**
@@ -48,39 +47,27 @@ export function Switch(props: Props): JSX.Element {
   const { isFocusVisible, focusProps } = useFocusRing();
 
   return (
-    <label className={label}>
+    <label className={styles.label}>
       <VisuallyHidden>
         <input {...inputProps} {...focusProps} ref={ref} />
       </VisuallyHidden>
       {props.children}
       <div
-        // TODO: recipe
-        className={`${wrapper} ${atoms({
-          opacity: props.isDisabled ? 0.5 : 1,
-        })}`}
+        className={styles.wrapper({
+          opacity: props.isDisabled ? "isDisabled" : "default",
+        })}
       >
         <div
-          // TODO: recipe
-          className={`${bar} ${atoms({
-            background: {
-              lightMode: state.isSelected ? "pinkOutline" : "gray-200",
-              darkMode: state.isSelected ? "pink-900" : "gray-700",
-            },
-          })}`}
+          className={styles.bar({
+            background: state.isSelected ? "isSelected" : "default",
+          })}
         />
         <div
-          // TODO: recipe
-          className={`${dot} ${atoms({
-            right: state.isSelected ? "none" : "l",
-            boxShadow: {
-              lightMode: isFocusVisible ? "outline" : "tooltipDotShadow",
-              darkMode: isFocusVisible ? "outline" : "none",
-            },
-            background: {
-              lightMode: state.isSelected ? "pink-500" : "white",
-              darkMode: state.isSelected ? "pink-500" : "gray-500",
-            },
-          })}`}
+          className={styles.dot({
+            background: state.isSelected ? "isSelected" : "default",
+            boxShadow: isFocusVisible ? "isFocusVisible" : "default",
+            right: state.isSelected ? "isSelected" : "default",
+          })}
         />
       </div>
     </label>

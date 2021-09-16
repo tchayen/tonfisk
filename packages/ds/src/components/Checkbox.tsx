@@ -6,7 +6,7 @@ import React, { ReactNode, useRef } from "react";
 
 import { Tick } from "../icons/Tick";
 import { atoms } from "../theme.css";
-import { checkbox, label, tick } from "./Checkbox.css";
+import * as styles from "./Checkbox.css";
 
 type Props = {
   /**
@@ -46,11 +46,11 @@ export function Checkbox(props: Props): JSX.Element {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <label className={label}>
+    <label className={styles.label}>
       <input
         {...mergeProps(inputProps, focusProps)}
         ref={ref}
-        className={checkbox({
+        className={styles.checkbox({
           border:
             state.isSelected || isFocusVisible ? "focusVisible" : "default",
           background: state.isSelected ? "selected" : "default",
@@ -59,7 +59,7 @@ export function Checkbox(props: Props): JSX.Element {
         })}
       />
       {state.isSelected && (
-        <div className={tick}>
+        <div className={styles.tick}>
           <Tick />
         </div>
       )}

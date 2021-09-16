@@ -1,14 +1,28 @@
+import { recipe } from "@vanilla-extract/recipes";
+
 import { atoms } from "../theme.css";
 
-export const closeButton = atoms({
-  padding: "m",
-  borderRadius: "16px",
-  width: "32px",
-  height: "32px",
-  cursor: "pointer",
-  border: "none",
-  background: "transparent",
-  outline: "none",
+export const closeButton = recipe({
+  base: atoms({
+    padding: "m",
+    borderRadius: "16px",
+    width: "32px",
+    height: "32px",
+    cursor: "pointer",
+    border: "none",
+    background: "transparent",
+    outline: "none",
+  }),
+  variants: {
+    boxShadow: {
+      focusVisible: atoms({
+        boxShadow: "outline",
+      }),
+      default: atoms({
+        boxShadow: "none",
+      }),
+    },
+  },
 });
 
 export const fullPageDiv = atoms({

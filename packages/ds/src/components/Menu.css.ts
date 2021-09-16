@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { option } from "../ListBox.css";
 import { atoms } from "../theme.css";
@@ -32,19 +33,80 @@ export const menuPopup = style([
   }),
 ]);
 
-export const menuItem = style([option]);
+export const menuItem = recipe({
+  base: option,
+  variants: {
+    background: {
+      focused: atoms({
+        background: {
+          lightMode: "gray-200",
+          darkMode: "gray-600",
+        },
+      }),
+      default: atoms({
+        background: "transparent",
+      }),
+    },
+    color: {
+      focused: atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      }),
+      default: atoms({
+        color: {
+          lightMode: "gray-600",
+          darkMode: "gray-400",
+        },
+      }),
+    },
+  },
+});
 
 export const chevronPadding = atoms({ paddingLeft: "m" });
 
-export const menuButton = style([
-  inputLike,
-  atoms({
-    display: "flex",
-    alignItems: "center",
-    borderRadius: "8px",
-    // fontWeight: "bold",
-    paddingLeft: "m",
-    paddingRight: "m",
-    lineHeight: 1,
-  }),
-]);
+export const menuButton = recipe({
+  base: [
+    inputLike,
+    atoms({
+      display: "flex",
+      alignItems: "center",
+      borderRadius: "8px",
+      // fontWeight: "bold",
+      paddingLeft: "m",
+      paddingRight: "m",
+      lineHeight: 1,
+      border: "none",
+    }),
+  ],
+  variants: {
+    opacity: {
+      disabled: atoms({
+        opacity: 0.5,
+      }),
+      default: atoms({
+        opacity: 1,
+      }),
+    },
+    cursor: {
+      disabled: atoms({
+        cursor: "default",
+      }),
+      default: atoms({
+        cursor: "pointer",
+      }),
+    },
+    boxShadow: {
+      focusVisible: atoms({
+        boxShadow: "primary",
+      }),
+      default: atoms({
+        boxShadow: {
+          lightMode: "regularBorder",
+          darkMode: "darkBorder",
+        },
+      }),
+    },
+  },
+});

@@ -1,10 +1,23 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { atoms } from "../theme.css";
 
-export const div = atoms({
-  display: "flex",
-  flexDirection: "column",
+export const div = recipe({
+  base: atoms({
+    display: "flex",
+    flexDirection: "column",
+  }),
+  variants: {
+    opacity: {
+      disabled: atoms({
+        opacity: 0.5,
+      }),
+      default: atoms({
+        opacity: 1,
+      }),
+    },
+  },
 });
 
 export const inputLike = atoms({
@@ -23,10 +36,27 @@ export const inputLike = atoms({
   },
 });
 
-export const input = style([
-  inputLike,
-  atoms({
-    paddingLeft: "m",
-    paddingRight: "m",
-  }),
-]);
+export const input = recipe({
+  base: [
+    inputLike,
+    atoms({
+      paddingLeft: "m",
+      paddingRight: "m",
+      padding: "xs",
+      border: "none",
+    }),
+  ],
+  variants: {
+    boxShadow: {
+      focused: atoms({
+        boxShadow: "primary",
+      }),
+      default: atoms({
+        boxShadow: {
+          lightMode: "regularBorder",
+          darkMode: "darkBorder",
+        },
+      }),
+    },
+  },
+});

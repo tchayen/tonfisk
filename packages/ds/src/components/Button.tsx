@@ -4,7 +4,7 @@ import { mergeProps } from "@react-aria/utils";
 import React, { useRef } from "react";
 import { useState } from "react";
 
-import { button } from "./Button.css";
+import * as styles from "./Button.css";
 
 type Props = {
   /**
@@ -60,7 +60,7 @@ export function Button(props: Props): JSX.Element {
     setIsHovered(false);
   };
 
-  const className = button({
+  const className = styles.button({
     cursor: props.isDisabled ? "disabled" : "active",
     boxShadow: isFocusVisible && !props.isDisabled ? "focusVisible" : "default",
     opacity: props.isDisabled ? "disabled" : "active",

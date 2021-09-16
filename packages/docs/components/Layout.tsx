@@ -1,4 +1,4 @@
-import "./theme.css";
+// import "./theme.css";
 
 import { useFocusRing } from "@react-aria/focus";
 import { atoms } from "ds";
@@ -28,38 +28,44 @@ const ListItem = ({
     setIsHovered(false);
   };
 
-  return (
-    <Link href={href}>
-      <a
-        href={href}
-        {...focusProps}
-        onMouseEnter={onMouseEnter}
-        onMouseLeave={onMouseLeave}
-        className={atoms({
-          fontSize: "14px",
-          fontWeight: active ? "bold" : "body",
-          color: {
-            lightMode: active ? "white" : "black",
-            darkMode: active ? "gray-200" : "gray-200",
-          },
-          borderRadius: "8px",
-          margin: "s",
-          background: active
-            ? "pink-500"
-            : isHovered
-            ? "pinkOutline"
-            : "transparent",
-          height: "32px",
-          paddingLeft: "l",
-          paddingRight: "l",
-          display: "flex",
-          alignItems: "center",
-          outline: "none",
-          boxShadow: isFocusVisible ? "outline" : "none",
-        })}
-      >
+  const className = atoms({
+    fontSize: "14px",
+    fontWeight: active ? "bold" : "body",
+    color: {
+      lightMode: active ? "white" : "black",
+      darkMode: active ? "gray-200" : "gray-200",
+    },
+    borderRadius: "8px",
+    margin: "s",
+    background: active ? "pink-500" : isHovered ? "pinkOutline" : "transparent",
+    height: "32px",
+    paddingLeft: "l",
+    paddingRight: "l",
+    display: "flex",
+    alignItems: "center",
+    outline: "none",
+    boxShadow: isFocusVisible ? "outline" : "none",
+  });
+
+  const props = {
+    href,
+    onMouseEnter,
+    onMouseLeave,
+    className,
+    ...focusProps,
+  };
+
+  if (href.startsWith("https")) {
+    return (
+      <a {...props} target="_blank" rel="noopener noreferrer">
         {children}
       </a>
+    );
+  }
+
+  return (
+    <Link href={href}>
+      <a {...props}>{children}</a>
     </Link>
   );
 };
@@ -72,7 +78,8 @@ const NavLink = ({
   const router = useRouter();
 
   if ("title" in item) {
-    const href = `/docs/${item.filePath}`;
+    const href = item.filePath;
+
     return (
       <ListItem href={href} active={router.asPath === href}>
         {item.title}

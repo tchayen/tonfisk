@@ -4,7 +4,7 @@ import { mergeProps } from "@react-aria/utils";
 import React, { useRef, useState } from "react";
 
 import { atoms } from "../theme.css";
-import { icon, pill } from "./Pill.css";
+import * as styles from "./Pill.css";
 
 type Props = {
   /**
@@ -56,27 +56,17 @@ export const Pill = (props: Props): JSX.Element => {
     setIsHovered(false);
   };
 
-  // TODO: recipe
-  const className = `${pill} ${atoms({
-    color: {
-      lightMode: isPressed ? "white" : "black",
-      darkMode: "gray-200",
-    },
-    border: "none",
-    cursor: props.isDisabled ? "default" : "pointer",
-    opacity: props.isDisabled ? 0.5 : 1,
-    background: {
-      lightMode: isPressed ? "pink-500" : isHovered ? "pinkOutline" : "white",
-      darkMode: isPressed ? "pink-500" : isHovered ? "pinkOutline" : "gray-900",
-    },
-    boxShadow: {
-      lightMode:
-        isFocusVisible || isPressed || isHovered ? "primary" : "regularBorder",
-      darkMode:
-        isFocusVisible || isPressed || isHovered ? "primary" : "darkBorder",
-    },
-    paddingLeft: props.iconUrl ? "m" : "l",
-  })}`;
+  const className = styles.pill({
+    color: isPressed ? "pressed" : "default",
+    background: isPressed ? "pressed" : isHovered ? "hovered" : "default",
+    boxShadow:
+      isFocusVisible || isPressed || isHovered
+        ? "focusedOrPressedOrHovered"
+        : "default",
+    cursor: props.isDisabled ? "disabled" : "default",
+    opacity: props.isDisabled ? "disabled" : "default",
+    paddingLeft: props.iconUrl ? "hasIcon" : "default",
+  });
 
   return (
     <button
@@ -86,7 +76,7 @@ export const Pill = (props: Props): JSX.Element => {
       onMouseLeave={onMouseLeave}
       className={className}
     >
-      {props.iconUrl && <img className={icon} src={props.iconUrl} />}
+      {props.iconUrl && <img className={styles.icon} src={props.iconUrl} />}
       {props.children}
     </button>
   );

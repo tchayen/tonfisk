@@ -1,9 +1,8 @@
 import { useTextField } from "@react-aria/textfield";
 import React, { ChangeEventHandler, FocusEvent, useRef, useState } from "react";
 
-import { atoms } from "../theme.css";
 import { Label } from "./Label";
-import { div, input } from "./TextInput.css";
+import * as styles from "./TextInput.css";
 
 type Props = {
   /**
@@ -23,27 +22,30 @@ type Props = {
    */
   autoFocus?: boolean;
   /**
-   * TODO
+   * Callback called when value of the input changes.
    */
   onChange?: ChangeEventHandler;
   /**
-   * TODO
+   * Callback called when input gains focus.
    */
   onFocus?: (event: React.FocusEvent) => void;
   /**
-   * TODO
+   * Callback called when input loses focus.
    */
   onBlur?: (event: React.FocusEvent) => void;
   /**
-   * TODO
+   * Value of the input in case user wants to control it from outside of the
+   * component.
    */
   value?: string;
   /**
-   *
+   * Callback called when key is pressed. Can be used for example to learn when
+   * enter key is pressed.
    */
   onKeyPress?: (event: React.KeyboardEvent) => void;
   /**
-   * TODO
+   * Value used to describe input to screen readers. Necessary if label prop is
+   * missing.
    */
   "aria-label"?: string;
 };
@@ -84,7 +86,11 @@ export function TextInput(props: Props): JSX.Element {
   };
 
   return (
-    <div className={`${div} ${atoms({ opacity: props.isDisabled ? 0.5 : 1 })}`}>
+    <div
+      className={styles.div({
+        opacity: props.isDisabled ? "disabled" : "default",
+      })}
+    >
       {label && <Label {...labelProps}>{label}</Label>}
       <input
         {...inputProps}
@@ -94,15 +100,9 @@ export function TextInput(props: Props): JSX.Element {
         autoFocus={props.autoFocus}
         onChange={props.onChange}
         onKeyPress={props.onKeyPress}
-        // TODO: recipe, large variant
-        className={`${input} ${atoms({
-          padding: "xs",
-          border: "none",
-          boxShadow: {
-            lightMode: isFocused ? "primary" : "regularBorder",
-            darkMode: isFocused ? "primary" : "darkBorder",
-          },
-        })}`}
+        className={styles.input({
+          boxShadow: isFocused ? "focused" : "default",
+        })}
       />
     </div>
   );

@@ -45,7 +45,10 @@ export const selectButton = recipe({
         boxShadow: "primary",
       }),
       default: atoms({
-        boxShadow: "regularBorder",
+        boxShadow: {
+          lightMode: "regularBorder",
+          darkMode: "darkBorder",
+        },
       }),
     },
     color: {

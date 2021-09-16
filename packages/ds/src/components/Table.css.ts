@@ -1,4 +1,5 @@
 import { style } from "@vanilla-extract/css";
+import { recipe } from "@vanilla-extract/recipes";
 
 import { atoms } from "../theme.css";
 
@@ -14,22 +15,88 @@ export const table = atoms({
 
 export const tableHeaderRow = style({});
 
-export const tableColumnHeader = atoms({
-  color: {
-    lightMode: "black",
-    darkMode: "gray-200",
+export const tableColumnHeader = recipe({
+  base: atoms({
+    color: {
+      lightMode: "black",
+      darkMode: "gray-200",
+    },
+    fontWeight: "bold",
+    fontSize: "14px",
+    height: "40px",
+    cursor: "default",
+    paddingLeft: "l",
+    paddingRight: "l",
+  }),
+  variants: {
+    textAlign: {
+      wideColumn: atoms({ textAlign: "center" }),
+      default: atoms({ textAlign: "left" }),
+    },
+    outline: {
+      focusVisible: atoms({
+        outline: {
+          lightMode: "table",
+          darkMode: "tableDark",
+        },
+      }),
+      default: atoms({
+        outline: "none",
+      }),
+    },
   },
-  fontWeight: "bold",
-  fontSize: "14px",
-  height: "40px",
-  cursor: "default",
-  paddingLeft: "l",
-  paddingRight: "l",
 });
 
-export const tableRow = atoms({});
+export const tableRow = recipe({
+  variants: {
+    background: {
+      selected: atoms({
+        background: "pink-500",
+      }),
+      even: atoms({
+        background: "none",
+      }),
+      default: atoms({
+        background: "none",
+      }),
+    },
+    color: {
+      selected: atoms({
+        color: {
+          lightMode: "white",
+          darkMode: "gray-900",
+        },
+      }),
+      default: atoms({
+        color: undefined,
+      }),
+    },
+    boxShadow: {
+      selected: atoms({
+        boxShadow: "none",
+      }),
+      default: atoms({
+        boxShadow: {
+          lightMode: "tableTopBorder",
+          darkMode: "tableTopBorderDark",
+        },
+      }),
+    },
+    outline: {
+      focusVisible: atoms({
+        outline: {
+          lightMode: "table",
+          darkMode: "tableDark",
+        },
+      }),
+      default: atoms({
+        outline: "none",
+      }),
+    },
+  },
+});
 
-export const lastRow = style({});
+export const lastRow = atoms({});
 
 const roundedLastRowSelector = style({
   selectors: {
@@ -42,20 +109,35 @@ const roundedLastRowSelector = style({
   },
 });
 
-export const tableCell = style([
-  atoms({
-    fontSize: "14px",
-    height: "40px",
-    cursor: "default",
-    paddingLeft: "l",
-    paddingRight: "l",
-    color: {
-      lightMode: "black",
-      darkMode: "gray-200",
+export const tableCell = recipe({
+  base: [
+    atoms({
+      fontSize: "14px",
+      height: "40px",
+      cursor: "default",
+      paddingLeft: "l",
+      paddingRight: "l",
+      color: {
+        lightMode: "black",
+        darkMode: "gray-200",
+      },
+    }),
+    roundedLastRowSelector,
+  ],
+  variants: {
+    outline: {
+      focusVisible: atoms({
+        outline: {
+          lightMode: "table",
+          darkMode: "tableDark",
+        },
+      }),
+      default: atoms({
+        outline: "none",
+      }),
     },
-  }),
-  roundedLastRowSelector,
-]);
+  },
+});
 
 export const checkboxLike = atoms({
   height: "16px",
@@ -66,17 +148,59 @@ export const checkboxLike = atoms({
   WebkitAppearance: "none",
 });
 
-export const checkboxInput = style([
-  checkboxLike,
-  atoms({
-    position: "absolute",
-    WebkitAppearance: "none",
-  }),
-  style({
-    top: 12,
-    left: 16,
-  }),
-]);
+export const checkboxInput = recipe({
+  base: [
+    checkboxLike,
+    atoms({
+      position: "absolute",
+      WebkitAppearance: "none",
+      margin: "none",
+      outline: "none",
+    }),
+    style({
+      top: 12,
+      left: 16,
+    }),
+  ],
+  variants: {
+    border: {
+      checkedOrFocused: atoms({
+        border: "primary",
+      }),
+      default: atoms({
+        border: {
+          lightMode: "regular",
+          darkMode: "regularDark",
+        },
+      }),
+    },
+    background: {
+      checked: atoms({
+        background: "pink-500",
+      }),
+      default: atoms({
+        background: {
+          lightMode: "white",
+          darkMode: "gray-900",
+        },
+      }),
+    },
+    boxShadow: {
+      focusedChecked: atoms({
+        boxShadow: {
+          lightMode: "tableOutline",
+          darkMode: "tableOutlineDark",
+        },
+      }),
+      focused: atoms({
+        boxShadow: "outline",
+      }),
+      default: atoms({
+        boxShadow: "none",
+      }),
+    },
+  },
+});
 
 export const tick = style({
   position: "absolute",
