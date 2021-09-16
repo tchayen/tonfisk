@@ -105,8 +105,11 @@ export const getNavigation = (): Directory => {
         files: [
           { title: "Homepage", filePath: "/" },
           { title: "Example", filePath: "/example" },
-          ...docs,
         ],
+      },
+      {
+        name: "Guides",
+        files: docs,
       },
       {
         name: "Components",

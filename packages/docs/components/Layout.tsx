@@ -95,6 +95,7 @@ const NavLink = ({
         className={atoms({
           display: "flex",
           flexDirection: "column",
+          marginBottom: "xl",
         })}
       >
         <h3
@@ -103,7 +104,7 @@ const NavLink = ({
               lightMode: "black",
               darkMode: "gray-200",
             },
-            padding: "l",
+            padding: "m",
           })}
         >
           {item.name}
@@ -132,10 +133,14 @@ export function Layout({
     >
       <div
         className={atoms({
-          width: "24ch",
-          marginTop: "l",
-          marginBottom: "l",
           position: "fixed",
+          width: "24ch",
+          height: "100vh",
+          top: 0,
+          bottom: 0,
+          paddingTop: "xl",
+          paddingBottom: "xl",
+          overflowY: "scroll",
         })}
       >
         {navigation.files.map((item, index) => {
@@ -147,7 +152,7 @@ export function Layout({
               lightMode: "black",
               darkMode: "gray-200",
             },
-            padding: "l",
+            padding: "m",
           })}
         >
           Links
@@ -156,6 +161,7 @@ export function Layout({
           GitHub ↗
         </ListItem>
         <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
+        <ListItem href="#">Discord ↗</ListItem>
       </div>
       <div
         className={atoms({

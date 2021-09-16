@@ -159,7 +159,7 @@ const MenuExample = (): JSX.Element => {
     <MenuButton
       label="Actions"
       onAction={() => {
-        console.log("Hej");
+        console.log("Hej!");
       }}
     >
       <Item key="copy">Copy</Item>

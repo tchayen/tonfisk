@@ -33,89 +33,8 @@ import React, {
 } from "react";
 
 import { BorderlessInput } from "../components/BorderlessInput";
-
-const currencies = [
-  {
-    name: "Aragon Network Token",
-    acronym: "ANT",
-    icon: "https://cryptologos.cc/logos/aragon-ant-logo.svg?v=013",
-  },
-  {
-    name: "Balancer",
-    acronym: "BAL",
-    icon: "https://cryptologos.cc/logos/balancer-bal-logo.svg?v=013",
-  },
-  {
-    name: "Band Protocol",
-    acronym: "BAND",
-    icon: "https://cryptologos.cc/logos/band-protocol-band-logo.svg?v=013",
-  },
-  {
-    name: "Basic Attention Token",
-    acronym: "BAT",
-    icon: "https://cryptologos.cc/logos/basic-attention-token-bat-logo.svg?v=013",
-  },
-  {
-    name: "Bancor",
-    acronym: "BNT",
-    icon: "https://cryptologos.cc/logos/bancor-bnt-logo.svg?v=013",
-  },
-  {
-    name: "Compound",
-    acronym: "COMP",
-    icon: "https://cryptologos.cc/logos/compound-comp-logo.svg?v=013",
-  },
-  {
-    name: "CurveDAOToken",
-    acronym: "CRV",
-    icon: "https://cryptologos.cc/logos/curve-dao-token-crv-logo.svg?v=013",
-  },
-  {
-    name: "CVC",
-    acronym: "Civic",
-    icon: "https://cryptologos.cc/logos/civic-cvc-logo.svg?v=013",
-  },
-  {
-    name: "DAI",
-    acronym: "DaiStablecoin",
-    icon: "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.svg?v=013",
-  },
-  {
-    name: "Decentraland",
-    acronym: "MANA",
-    icon: "https://cryptologos.cc/logos/decentraland-mana-logo.svg?v=013",
-  },
-  {
-    name: "UMAVotingTokenv1",
-    acronym: "UMA",
-    icon: "https://cryptologos.cc/logos/uma-uma-logo.svg?v=013",
-  },
-  {
-    name: "Uniswap",
-    acronym: "UNI",
-    icon: "https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=013",
-  },
-  {
-    name: "USDCoin",
-    acronym: "USDC",
-    icon: "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=013",
-  },
-  {
-    name: "Tether USD",
-    acronym: "USDT",
-    icon: "https://cryptologos.cc/logos/tether-usdt-logo.svg?v=013",
-  },
-  {
-    name: "Wrapped BTC",
-    acronym: "WBTC",
-    icon: "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.svg?v=013",
-  },
-  {
-    name: "yearn.finance",
-    acronym: "YFI",
-    icon: "https://cryptologos.cc/logos/yearn-finance-yfi-logo.svg?v=013",
-  },
-];
+import currencies from "../examples/exchange/currencies.json";
+import { CurrencyInList } from "../examples/exchange/CurrencyInList";
 
 type PropsSpaghetti = {
   slippageTolerance: number | undefined;
@@ -227,7 +146,7 @@ const SettingsPopover = ({
   );
 };
 
-const Settings = ({
+function Settings({
   slippageTolerance,
   setSlippageTolerance,
   transactionDeadline,
@@ -236,7 +155,7 @@ const Settings = ({
   setExpertMode,
   disableMultihops,
   setDisableMultihops,
-}: PropsSpaghetti) => {
+}: PropsSpaghetti) {
   const warningState = useOverlayTriggerState({});
   const showWarning = () => {
     if (expertMode === false) {
@@ -254,7 +173,7 @@ const Settings = ({
           <TextInput
             label="Slippage tolerance"
             placeholder="0.10%"
-            value={slippageTolerance}
+            value={slippageTolerance?.toString()}
             onChange={(value) => setSlippageTolerance(Number(value))}
           />
         </div>
@@ -275,7 +194,7 @@ const Settings = ({
               <div style={{ width: "25%" }}>
                 <TextInput
                   placeholder="30"
-                  value={transactionDeadline}
+                  value={transactionDeadline?.toString()}
                   onChange={(value) => setTransactionDeadline(Number(value))}
                 />
               </div>
@@ -377,133 +296,9 @@ const Settings = ({
       )}
     </div>
   );
-};
+}
 
-const CurrencyInList = ({
-  onSelect,
-  name,
-  acronym,
-  icon,
-}: {
-  onSelect: (value: string) => void;
-  name: string;
-  acronym: string;
-  icon: string;
-}) => {
-  const [isHovered, setIsHovered] = useState(false);
-  const onMouseEnter = () => {
-    setIsHovered(true);
-  };
-
-  const onMouseLeave = () => {
-    setIsHovered(false);
-  };
-
-  const ref = useRef<HTMLButtonElement>(null);
-
-  const { buttonProps, isPressed } = useButton(
-    {
-      onPress: () => {
-        onSelect(acronym);
-      },
-    },
-    ref
-  );
-  const { focusProps, isFocusVisible } = useFocusRing();
-
-  const className = atoms({
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    cursor: "pointer",
-    padding: "l",
-    paddingBottom: "m",
-    paddingTop: "m",
-    marginLeft: "s",
-    marginRight: "xs",
-    borderRadius: "8px",
-    border: "none",
-    textAlign: "left",
-    fontFamily: "body",
-    background: {
-      lightMode: isPressed
-        ? "gray-300"
-        : isFocusVisible || isHovered
-        ? "gray-200"
-        : "transparent",
-      darkMode: isPressed
-        ? "gray-700"
-        : isFocusVisible || isHovered
-        ? "gray-800"
-        : "transparent",
-    },
-    outline: "none",
-  });
-
-  return (
-    <button
-      ref={ref}
-      onMouseEnter={onMouseEnter}
-      onMouseLeave={onMouseLeave}
-      className={className}
-      {...mergeProps(focusProps, buttonProps)}
-    >
-      <img
-        className={atoms({
-          width: "32px",
-          height: "32px",
-          borderRadius: "full",
-          marginRight: "m",
-        })}
-        src={icon}
-      />
-      <div
-        className={atoms({
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-        })}
-      >
-        <div
-          className={atoms({
-            fontWeight: "bold",
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-          })}
-        >
-          {acronym}
-        </div>
-        <div
-          className={atoms({
-            fontSize: "12px",
-            color: {
-              lightMode: "gray-600",
-              darkMode: "gray-500",
-            },
-          })}
-        >
-          {name}
-        </div>
-      </div>
-      <div
-        className={atoms({
-          fontSize: "16px",
-          color: {
-            lightMode: "gray-500",
-            darkMode: "gray-400",
-          },
-          fontFeatureSettings: "numbers",
-        })}
-      >
-        0.0
-      </div>
-    </button>
-  );
-};
-
-const SelectToken = ({ onSelect }: { onSelect: (token: string) => void }) => {
+function SelectToken({ onSelect }: { onSelect: (token: string) => void }) {
   return (
     <>
       <div
@@ -577,9 +372,9 @@ const SelectToken = ({ onSelect }: { onSelect: (token: string) => void }) => {
       </div>
     </>
   );
-};
+}
 
-const SelectTokenModal = ({
+function SelectTokenModal({
   onSelect,
   isDisabled,
   children,
@@ -587,7 +382,7 @@ const SelectTokenModal = ({
   onSelect: (token: string) => void;
   isDisabled?: boolean;
   children: string;
-}) => {
+}) {
   const state = useOverlayTriggerState({});
 
   return (
@@ -619,9 +414,9 @@ const SelectTokenModal = ({
       )}
     </div>
   );
-};
+}
 
-const SpinnerContainer = ({
+function SpinnerContainer({
   className,
   loading,
   children,
@@ -629,7 +424,7 @@ const SpinnerContainer = ({
   className: string;
   loading?: boolean;
   children: ReactNode;
-}): ReactNode => {
+}): JSX.Element {
   if (!loading) {
     return <div className={className}>{children}</div>;
   }
@@ -661,7 +456,7 @@ const SpinnerContainer = ({
       </div>
     </div>
   );
-};
+}
 
 export default function Example(): ReactNode {
   const router = useRouter();

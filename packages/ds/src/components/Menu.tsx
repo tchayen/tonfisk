@@ -198,7 +198,7 @@ export const MenuButtonComponent = forwardRef(MenuButton_);
  *     <MenuButton
  *       label="Actions"
  *       onAction={() => {
- *         console.log("Hi!");
+ *         console.log("Hej!");
  *       }}
  *     >
  *       <Item key="copy">Copy</Item>

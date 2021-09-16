@@ -47,12 +47,6 @@ function Prop({
       }
     });
 
-  // description.replace(/`(.*?)`/g, (match) => {
-  //   const result = match.replaceAll("`", `<${i % 2 === 1 ? "/" : ""}code>`);
-  //   i += 1;
-  //   return result;
-  // });
-  console.log(escapedDescription);
   return (
     <div
       className={atoms({

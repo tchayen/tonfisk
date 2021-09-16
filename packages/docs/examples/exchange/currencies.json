@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Aragon Network Token",
+    "acronym": "ANT",
+    "icon": "https://cryptologos.cc/logos/aragon-ant-logo.svg?v=013"
+  },
+  {
+    "name": "Balancer",
+    "acronym": "BAL",
+    "icon": "https://cryptologos.cc/logos/balancer-bal-logo.svg?v=013"
+  },
+  {
+    "name": "Band Protocol",
+    "acronym": "BAND",
+    "icon": "https://cryptologos.cc/logos/band-protocol-band-logo.svg?v=013"
+  },
+  {
+    "name": "Basic Attention Token",
+    "acronym": "BAT",
+    "icon": "https://cryptologos.cc/logos/basic-attention-token-bat-logo.svg?v=013"
+  },
+  {
+    "name": "Bancor",
+    "acronym": "BNT",
+    "icon": "https://cryptologos.cc/logos/bancor-bnt-logo.svg?v=013"
+  },
+  {
+    "name": "Compound",
+    "acronym": "COMP",
+    "icon": "https://cryptologos.cc/logos/compound-comp-logo.svg?v=013"
+  },
+  {
+    "name": "CurveDAOToken",
+    "acronym": "CRV",
+    "icon": "https://cryptologos.cc/logos/curve-dao-token-crv-logo.svg?v=013"
+  },
+  {
+    "name": "CVC",
+    "acronym": "Civic",
+    "icon": "https://cryptologos.cc/logos/civic-cvc-logo.svg?v=013"
+  },
+  {
+    "name": "DAI",
+    "acronym": "DaiStablecoin",
+    "icon": "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.svg?v=013"
+  },
+  {
+    "name": "Decentraland",
+    "acronym": "MANA",
+    "icon": "https://cryptologos.cc/logos/decentraland-mana-logo.svg?v=013"
+  },
+  {
+    "name": "UMAVotingTokenv1",
+    "acronym": "UMA",
+    "icon": "https://cryptologos.cc/logos/uma-uma-logo.svg?v=013"
+  },
+  {
+    "name": "Uniswap",
+    "acronym": "UNI",
+    "icon": "https://cryptologos.cc/logos/uniswap-uni-logo.svg?v=013"
+  },
+  {
+    "name": "USDCoin",
+    "acronym": "USDC",
+    "icon": "https://cryptologos.cc/logos/usd-coin-usdc-logo.svg?v=013"
+  },
+  {
+    "name": "Tether USD",
+    "acronym": "USDT",
+    "icon": "https://cryptologos.cc/logos/tether-usdt-logo.svg?v=013"
+  },
+  {
+    "name": "Wrapped BTC",
+    "acronym": "WBTC",
+    "icon": "https://cryptologos.cc/logos/wrapped-bitcoin-wbtc-logo.svg?v=013"
+  },
+  {
+    "name": "yearn.finance",
+    "acronym": "YFI",
+    "icon": "https://cryptologos.cc/logos/yearn-finance-yfi-logo.svg?v=013"
+  }
+]
