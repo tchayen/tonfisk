@@ -46,7 +46,7 @@ function PageButton(props: {
     <button
       ref={ref}
       className={pageButton({
-        color: props.isSelected ? "default" : "selected",
+        color: props.isSelected ? "selected" : "default",
         background: props.isSelected
           ? isPressed
             ? "selectedPressed"
@@ -239,6 +239,18 @@ type Props = {
  * visiting pages outside of the specified range. In case there is a gap between
  * pages, a three-dot button appears that after clicking show popover with input
  * that takes to provided page on enter/escape/blur.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * import { Pagination } from "TODO_LIB_NAME";
+ *
+ * function PaginationExample() {
+ *   return <Pagination pageCount={10} visiblePages={7} />;
+ * }
+ * ```
+ *
+ * ## Example
  *
  * <Pagination pageCount={10} visiblePages={7} />
  */

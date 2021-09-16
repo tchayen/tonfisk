@@ -1,17 +1,22 @@
 ---
 title: Formik example
-description: Using this library with Formik.
+description: How to use this design system with Formik.
 ---
 
+For many people Formik is the way to go when coding forms. That is why it was absolutely necessary to make sure it works correctly with the input components.
+
 ## Usage
+
+Some imports first:
 
 ```tsx
 import { Button, TextInput } from "TODO_LIB_NAME";
 import { Form, Formik, useField } from "formik";
+```
 
-/**
- * Wrapper component to hook into Formik.
- */
+Helper component for bridging between Fomrik and TODO_LIB_NAME.
+
+```tsx
 function FormTextInput(props: {
   name: string;
   label: string;
@@ -26,7 +31,11 @@ function FormTextInput(props: {
     </>
   );
 }
+```
 
+The actual form.
+
+```tsx
 function FormikExample() {
   return (
     <Formik

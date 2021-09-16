@@ -61,9 +61,10 @@ type Props = {
  * import { useOverlayTriggerState } from "@react-stately/overlays";
  * import { Button, HorizontalLine, ModalDialog } from "TODO_LIB_NAME";
  *
- * export default function Modal() {
+ * export default function ModalExample() {
  *   const state = useOverlayTriggerState({});
- *     return (
+ *
+ *   return (
  *     <div>
  *       <Button onPress={() => state.open()}>Open Dialog</Button>
  *       {state.isOpen && (

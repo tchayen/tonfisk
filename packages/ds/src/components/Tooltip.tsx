@@ -38,12 +38,17 @@ type Props = {
  * ```jsx
  * import { Tooltip } from "TODO_LIB_NAME";
  *
- * <Tooltip tooltip="You don't have to press if you don't want to.">
- *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
- * </Tooltip>
+ * function TooltipExample() {
+ *   return (
+ *     <Tooltip tooltip="You don't have to press if you don't want to.">
+ *       <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
+ *     </Tooltip>
+ *   );
+ * }
  * ```
  *
  * ## Example
+ *
  * <Tooltip tooltip="You don't have to press if you don't want to.">
  *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
  * </Tooltip>

@@ -16,10 +16,7 @@ export const pageButton = recipe({
   variants: {
     color: {
       selected: atoms({
-        color: {
-          lightMode: "gray-600",
-          darkMode: "gray-500",
-        },
+        color: "white",
       }),
       default: atoms({
         color: {

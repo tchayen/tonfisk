@@ -33,7 +33,9 @@ type Props = {
  * ```jsx
  * import { Switch } from "ds";
  *
- * <Switch>Label</Switch>
+ * function SwitchExample() {
+ *   return <Switch>Label</Switch>;
+ * }
  * ```
  *
  * ## Example

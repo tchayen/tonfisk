@@ -265,22 +265,35 @@ type Props = {
  * ## Usage
  *
  * ```jsx
+ * import {
+ *   Table,
+ *   TableHeader,
+ *   TableBody,
+ *   Row,
+ *   Column,
+ *   Cell,
+ * } from "TODO_LIB_NAME";
+ *
  * const [selectedKeys, setSelectedKeys] = useState([]);
  *
- * <Table
- *   aria-label="Example static collection table"
- *   selectionMode="multiple"
- *   onSelectionChange={(keys) => {
- *     setSelectedKeys(keys);
- *   }}
- * >
- *   <TableHeader columns={columns}>
- *     {(column) => <Column>{column.name}</Column>}
- *   </TableHeader>
- *   <TableBody items={rows}>
- *     {(item) => <Row>{(columnKey) => <Cell>{item[columnKey]}</Cell>}</Row>}
- *   </TableBody>
- * </Table>
+ * function TableExample() {
+ *   return (
+ *     <Table
+ *       aria-label="Example static collection table"
+ *       selectionMode="multiple"
+ *       onSelectionChange={(keys) => {
+ *         setSelectedKeys(keys);
+ *       }}
+ *     >
+ *       <TableHeader columns={columns}>
+ *         {(column) => <Column>{column.name}</Column>}
+ *       </TableHeader>
+ *       <TableBody items={rows}>
+ *         {(item) => <Row>{(columnKey) => <Cell>{item[columnKey]}</Cell>}</Row>}
+ *       </TableBody>
+ *     </Table>
+ *   );
+ * }
  * ```
  *
  * ## Example

@@ -3,6 +3,9 @@
 // to handle import statements. Instead, you must include components in scope
 import "./theme.css";
 
+import { useButton } from "@react-aria/button";
+import { useFocusRing } from "@react-aria/focus";
+import { mergeProps } from "@react-aria/utils";
 import {
   atoms,
   Button,
@@ -37,7 +40,7 @@ import {
 } from "ds";
 import { Form, Formik, useField } from "formik";
 import Link from "next/link";
-import { ReactNode, useState } from "react";
+import { ReactNode, useRef, useState } from "react";
 
 const SelectExample = (): JSX.Element => {
   const items = [
@@ -386,16 +389,65 @@ function LiComponent({ children }: { children: ReactNode }): JSX.Element {
 }
 
 function PreComponent({ children }: { children: ReactNode }): JSX.Element {
+  const ref = useRef<HTMLPreElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
+  const [isHovered, setIsHovered] = useState(false);
+
+  const { focusProps, isFocusVisible } = useFocusRing();
+  const { buttonProps, isPressed } = useButton(
+    {
+      onPress: () => {
+        navigator.clipboard.writeText(ref.current?.textContent);
+      },
+    },
+    buttonRef
+  );
+
+  const onMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const onMouseLeave = () => {
+    setIsHovered(false);
+  };
+
+  const className = atoms({
+    fontFamily: "body",
+    color: isPressed ? "gray-200" : isHovered ? "gray-300" : "gray-400",
+    cursor: "pointer",
+    fontSize: "12px",
+    position: "absolute",
+    background: "transparent",
+    border: "none",
+    bottom: "xl",
+    right: "xl",
+    outline: "none",
+    borderRadius: "4px",
+    boxShadow: isFocusVisible ? "outline" : "none",
+  });
+
   return (
     <pre
+      ref={ref}
       className={atoms({
         padding: "xl",
         borderRadius: "8px",
         background: "gray-800",
         color: "gray-200",
+        position: "relative",
       })}
     >
       {children}
+      <button
+        {...mergeProps(focusProps, buttonProps)}
+        onMouseEnter={onMouseEnter}
+        onMouseLeave={onMouseLeave}
+        ref={buttonRef}
+        className={className}
+      >
+        Copy
+      </button>
     </pre>
   );
 }

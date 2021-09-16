@@ -186,16 +186,21 @@ export const MenuButtonComponent = forwardRef(MenuButton_);
  *
  * ```jsx
  * import { MenuButton, Item } from "TODO_LIB_NAME";
- * <MenuButton
- *   label="Actions"
- *   onAction={() => {
- *     console.log("Hi!");
- *   }}
- * >
- *   <Item key="copy">Copy</Item>
- *   <Item key="cut">Cut</Item>
- *   <Item key="paste">Paste</Item>
- * </MenuButton>
+ *
+ * function MenuExample() {
+ *   return ()
+ *     <MenuButton
+ *       label="Actions"
+ *       onAction={() => {
+ *         console.log("Hi!");
+ *       }}
+ *     >
+ *       <Item key="copy">Copy</Item>
+ *       <Item key="cut">Cut</Item>
+ *       <Item key="paste">Paste</Item>
+ *     </MenuButton>
+ *   );
+ * }
  * ```
  *
  * ## Example

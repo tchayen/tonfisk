@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 
-import { option } from "../ListBox.css";
+import { optionBase } from "../ListBox.css";
 import { atoms } from "../theme.css";
 import { inputLike } from "./TextInput.css";
 
@@ -34,7 +34,7 @@ export const menuPopup = style([
 ]);
 
 export const menuItem = recipe({
-  base: option,
+  base: optionBase,
   variants: {
     background: {
       focused: atoms({

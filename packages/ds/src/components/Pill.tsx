@@ -32,7 +32,9 @@ type Props = {
  * ```jsx
  * import { Pill } from "TODO_LIB_NAME";
  *
- * <Pill>Pill</Pill>
+ * function PillExample() {
+ *   return <Pill>Pill</Pill>;
+ * }
  * ```
  *
  * ## Example

@@ -1,13 +1,13 @@
 ## Must have
 
-- [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
+- [ ] Rename table components without prefix Table to contain it.
 - [ ] [50%] Some generic landing page?
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
-- [ ] Add a 'copy code' button for code blocks.
 
 ### Example improvements
 
+- [ ] Make tick and selection in tables white in dark mode and text white in light mode.
 - [ ] Refactor example a lot, share code, get rid of props spaghetti, split main form into two components.
 - [ ] In example, when user presses swap, show non-dismisable modal with progress of transaction (TODO: find out what are the steps).
 
@@ -22,10 +22,9 @@
 ## Next version
 
 - [ ] `(?)` button? for form labels that show tooltip.
-- [ ] Change design and implement new look for switch to look like classic iOS switch and not material design one.
-- [ ] Change focus outline on buttons to look more like twitter.
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 - [ ] Button variants (link).
+- [ ] Ability to remove choice from select.
 
 - [ ] Accordion
 - [ ] Radio
@@ -40,12 +39,10 @@
 
 ## Nice to have
 
+- [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
 - [ ] Releases tab as in Braid https://seek-oss.github.io/braid-design-system/components/Box/releases
 - [ ] Borderless text input.
-- [ ] Ability to remove choice from select.
 - [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
-- [ ] Style `<code>` tags in MDX and override `pre code` through globals to avoid padding and background there.
-- [ ] Find out how to access theme in regular JS (not in `atoms`).
 - [ ] Missing TS typings (especially `Table`, `Menu`).
 - [ ] Expose API for switching color modes.
 - [ ] Interactive props in examples.
@@ -108,3 +105,5 @@
 - [x] Style `<code>` properly.
 - [x] Fix margins (getting started paragraphs and headers as example).
 - [x] Homepage in MDX.
+- [x] Add a 'copy code' button for code blocks.
+- [x] Style `<code>` tags in MDX and override `pre code` through globals to avoid padding and background there.

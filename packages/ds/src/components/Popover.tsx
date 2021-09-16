@@ -24,6 +24,8 @@ type Props = {
 /**
  * Popover component for situations when content outside of the popover should
  * **not** be visible to screen readers.
+ *
+ * See [Example](/example) for advanced example.
  */
 export const Popover = forwardRef((props: Props, ref) => {
   const { overlayProps } = useOverlay(

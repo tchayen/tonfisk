@@ -15,7 +15,9 @@ type Props = {
  * ```jsx
  * import { Tag } from "TODO_LIB_NAME";
  *
- * <Tag>Tag</Tag>
+ * function TagExample() {
+ *   return <Tag>Tag</Tag>;
+ * }
  * ```
  *
  * ## Example

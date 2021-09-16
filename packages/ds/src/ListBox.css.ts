@@ -2,17 +2,19 @@ import { recipe } from "@vanilla-extract/recipes";
 
 import { atoms } from "./theme.css";
 
+export const optionBase = atoms({
+  fontSize: "14px",
+  paddingLeft: "m",
+  paddingRight: "m",
+  height: "32px",
+  outline: "none",
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+});
+
 export const option = recipe({
-  base: atoms({
-    fontSize: "14px",
-    paddingLeft: "m",
-    paddingRight: "m",
-    height: "32px",
-    outline: "none",
-    cursor: "pointer",
-    display: "flex",
-    alignItems: "center",
-  }),
+  base: optionBase,
   variants: {
     background: {
       selected: atoms({

@@ -9,7 +9,9 @@ import { background, main } from "./Spinner.css";
  * ```jsx
  * import { Spinner } from "TODO_LIB_NAME";
  *
- * <Spinner />
+ * function SpinnerExample() {
+ *   return <Spinner />;
+ * }
  * ```
  *
  * ## Example

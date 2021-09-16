@@ -788,7 +788,11 @@ export default function Example(): ReactNode {
                 </div>
               )}
             </div>
-            <BorderlessInput placeholder="0.00" isDisabled={loading} />
+            <BorderlessInput
+              aria-label="Amount"
+              placeholder="0.00"
+              isDisabled={loading}
+            />
           </div>
           <HorizontalLine />
           <div
@@ -827,7 +831,11 @@ export default function Example(): ReactNode {
                 </div>
               )}
             </div>
-            <BorderlessInput placeholder="0.00" isDisabled={loading} />
+            <BorderlessInput
+              aria-label="Amount"
+              placeholder="0.00"
+              isDisabled={loading}
+            />
           </div>
         </div>
         <Button

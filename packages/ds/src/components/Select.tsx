@@ -43,12 +43,16 @@ type Props = {
  * ```jsx
  * import { Select, Item } from "ds";
  *
- * <Select
- *   label="Select"
- *   onSelectionChange={(key) => console.log(key)}
- * >
- *  <Item key={0}>Item 1</Item>
- * </Select>
+ * function SelectExample() {
+ *   return (
+ *     <Select
+ *       label="Select"
+ *       onSelectionChange={(key) => console.log(key)}
+ *     >
+ *      <Item key={0}>Item 1</Item>
+ *     </Select>
+ *   );
+ * }
  * ```
  *
  * ## Example
