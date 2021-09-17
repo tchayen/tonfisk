@@ -1,7 +1,12 @@
+import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
 import matter from "gray-matter";
+import { MDXRemoteSerializeResult } from "next-mdx-remote";
+import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import * as reactDocgen from "react-docgen";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 
 import { toKebabCase, toPascalCase } from "./string";
 
@@ -116,5 +121,35 @@ export const getNavigation = (): Directory => {
         files: components,
       },
     ],
+  };
+};
+
+export const serializeMdx = async (
+  content: string,
+  scope?: { [key: string]: any }
+): Promise<MDXRemoteSerializeResult> => {
+  return serialize(content, {
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
+    },
+    scope,
+  });
+};
+
+export const readMdxFile = async (
+  fileName: string
+): Promise<{
+  source: MDXRemoteSerializeResult;
+  frontMatter: { [key: string]: any };
+  navigation: ReturnType<typeof getNavigation>;
+}> => {
+  const { content, data } = matter(fileName);
+  const mdxSource = await serializeMdx(content, data);
+
+  return {
+    source: mdxSource,
+    frontMatter: data,
+    navigation: getNavigation(),
   };
 };

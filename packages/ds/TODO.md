@@ -1,17 +1,17 @@
 ## Must have
 
-- [ ] [50%] Some generic landing page?
+- [ ] Change props to a table (https://priceline.github.io/design-system/Button#props).
+- [ ] Make subheader links clickable.
 - [ ] Review styles to find out what is worth reusing.
-- [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
-- [ ] Update icons.
-- [ ] Share more code between `[slug].tsx` files.
+- [ ] Gradient text on the landing page.
+- [ ] Animate fade in/out of modals
+      https://formium.io/ - animate transform and opacity
+      https://www.framer.com/docs/animate-presence/
+      https://gist.github.com/igoldny/c40d36c8863d525a581391b76371c086
 
 ### Example improvements
 
 - [ ] Refactor example a lot, share code, get rid of props spaghetti, split main form into two components.
-- [ ] In example, when user presses swap, show non-dismisable modal with progress of transaction (TODO: find out what are the steps).
-
-[Ethereum Docs / Transactions](https://ethereum.org/en/developers/docs/transactions/)
 
 ## Bugs
 
@@ -37,12 +37,14 @@
 - [ ] [ComboBox](https://react-spectrum.adobe.com/react-aria/useComboBox.html)
 - [ ] [Slider](https://react-spectrum.adobe.com/react-aria/useSlider.html)
 - [ ] TabList
+- [ ] Date picker
 
 ## Nice to have
 
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
 - [ ] Releases tab as in Braid https://seek-oss.github.io/braid-design-system/components/Box/releases
 - [ ] Borderless text input.
+- [ ] Search in docs.
 - [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
 - [ ] Expose API for switching color modes.
 - [ ] Interactive props in examples.
@@ -110,3 +112,6 @@
 - [x] Make tick and selection in tables white in dark mode and text white in light mode.
 - [x] Missing TS typings (especially `Table`, `Menu`).
 - [x] Rename all pink colors to blue.
+- [x] Update icons.
+- [x] Fix border colors being too light in dark mode.
+- [x] Share more code between `[slug].tsx` files.

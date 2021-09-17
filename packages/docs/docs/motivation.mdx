@@ -1,0 +1,32 @@
+---
+title: Motivation
+description: Or why this library exists.
+---
+
+## What is a _design system_
+
+I will start by quoting a definition provided by [UXDesign](https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969):
+
+> _The single source of truth which groups all the elements that will allow the teams to design, realize and develop a product._
+
+This definition is quite broad, but unforgetful. It cannot be satisfied by a library with no matter how many, but just, React components. Component library might be a core, material surface of experiencing a design system, but it cannot be successful without underlying work on the colors, typography and overall philosophy.
+
+## Problems with existing solutions
+
+There are many extremely popular design systems with excellent React components, but vast majority of them ticks at least one of the boxes:
+
+### Incomplete accessibility support
+
+As of 2021, proper a11y support in applications is a widely accepted bare minimum of a successful project and design system is a right place to take care of it.
+
+### Branded systems
+
+There are many beautiful, well-thought and otherwise perfect design systems that suffer from one problem – they were created by a product, for a product. Using it makes any app look like it belongs to, or is affiliated to said brand. TODO_LIB_NAME fortunately is not a huge brand and has little chances of becoming one. Therefore it is safe to use in that regard.
+
+### Not custom enough
+
+Most modern design system don't feature, for example, a custom select dropdown. They simply display the OS one. Generally it is a nice practice to not embark on a massive task of implementing custom dropdown and providing proper cross-platform support for it. But, we have libraries, such as `react-aria`, that can help with that.
+
+### Not really a design system
+
+Small, modular and customizable design systems are not design systems but component libraries (as discussed in [What is a design system](#what-is-a-design-system)).

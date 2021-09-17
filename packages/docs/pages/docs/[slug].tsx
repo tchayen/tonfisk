@@ -1,17 +1,17 @@
-import rehypeSlug from "rehype-slug";
-import rehypePrism from "@mapbox/rehype-prism";
 import { atoms, commonStyles } from "ds";
 import fs from "fs";
-import matter from "gray-matter";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import React from "react";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";
-import { DOCS_PATH, docsFilePaths, getNavigation } from "../../utils/mdx";
+import {
+  DOCS_PATH,
+  docsFilePaths,
+  getNavigation,
+  readMdxFile,
+} from "../../utils/mdx";
 
 type Props = {
   navigation: ReturnType<typeof getNavigation>;
@@ -50,22 +50,8 @@ export const getStaticProps = async ({
   const postPath = path.join(DOCS_PATH, `${params.slug}.mdx`);
   const docFile = fs.readFileSync(postPath, "utf-8");
 
-  const { content, data } = matter(docFile);
-  const mdxSource = await serialize(content, {
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
-    },
-    scope: data,
-  });
-
   return {
-    props: {
-      source: mdxSource,
-      frontMatter: data,
-      navigation: getNavigation(),
-    },
+    props: await readMdxFile(docFile),
   };
 };
 

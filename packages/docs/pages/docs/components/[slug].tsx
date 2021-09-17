@@ -1,7 +1,5 @@
-import rehypePrism from "@mapbox/rehype-prism";
 import { atoms, commonStyles } from "ds";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
 import React, { Fragment } from "react";
 
 import { components } from "../../../components/components";
@@ -10,6 +8,7 @@ import {
   componentsFilePaths,
   getNavigation,
   getSourceMetadata,
+  serializeMdx,
 } from "../../../utils/mdx";
 import { toKebabCase } from "../../../utils/string";
 
@@ -140,16 +139,8 @@ export const getStaticProps = async ({
   params: { slug: string };
 }): Promise<{ props: Props }> => {
   const metadata = getSourceMetadata(params.slug);
-
   const content = `\n${metadata.description}`;
-
-  const source = await serialize(content, {
-    // Optionally pass remark/rehype plugins
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [rehypePrism],
-    },
-  });
+  const source = await serializeMdx(content);
 
   return {
     props: {
