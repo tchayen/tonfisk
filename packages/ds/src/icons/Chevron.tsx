@@ -5,7 +5,7 @@ import { atoms } from "../theme.css";
 export function Chevron({ className }: { className?: string }): JSX.Element {
   return (
     <svg
-      width="18"
+      width="16"
       height="8"
       viewBox="0 0 18 8"
       fill="none"

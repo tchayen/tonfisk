@@ -56,7 +56,7 @@ export const pill = recipe({
         background: "blue-500",
       }),
       hovered: atoms({
-        background: "pinkOutline",
+        background: "blueOutline",
       }),
       default: atoms({
         background: {

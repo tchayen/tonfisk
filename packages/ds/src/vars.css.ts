@@ -66,8 +66,8 @@ export const vars = createGlobalTheme(":root", {
     "blue-800": colors.blue[800],
     "blue-900": colors.blue[900],
 
-    pinkOutline: "rgba(59, 130, 246, 0.3)",
-    // pinkOutline: "rgba(236, 72, 153, 0.3)",
+    blueOutline: "rgba(59, 130, 246, 0.3)",
+    // blueOutline: "rgba(236, 72, 153, 0.3)",
 
     backdropLight: "rgba(107, 114, 128, 0.35)", // gray-500
     backdropDark: "rgba(0, 0, 0, 0.35)",
@@ -102,10 +102,10 @@ export const vars = createGlobalTheme(":root", {
   border: {
     none: "none",
     primary: `1px solid ${colors.blue[500]}`, // TODO
-    pinkOutline: `1px solid rgba(59, 130, 246, 0.3)`, // TODO
-    // pinkOutline: `1px solid rgba(236, 72, 153, 0.3)`, // TODO
+    blueOutline: `1px solid rgba(59, 130, 246, 0.3)`, // TODO
+    // blueOutline: `1px solid rgba(236, 72, 153, 0.3)`, // TODO
     regular: `1px solid ${colors.coolGray[200]}`, // TODO
-    regularDark: `1px solid ${colors.coolGray[600]}`, // TODO
+    regularDark: `1px solid ${colors.coolGray[700]}`, // TODO
   },
   boxShadow: {
     none: "none",
@@ -119,7 +119,7 @@ export const vars = createGlobalTheme(":root", {
     tableOutline: "0 0 0 2px #000", // TODO
     tableOutlineDark: `0 0 0 2px ${colors.coolGray[200]}`, // TODO
     regularBorder: `0 0 0 1px inset ${colors.coolGray[200]}`, // TODO
-    darkBorder: `0 0 0 1px inset ${colors.coolGray[600]}`, // TODO
+    darkBorder: `0 0 0 1px inset ${colors.coolGray[700]}`, // TODO
     borderAndShadow: `0 0 0 1px inset ${colors.coolGray[200]}, 0 2px 8px rgba(0, 0, 0, 0.1)`,
   },
   WebkitAppearance: {

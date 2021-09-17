@@ -3,6 +3,8 @@
 - [ ] [50%] Some generic landing page?
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
+- [ ] Update icons.
+- [ ] Share more code between `[slug].tsx` files.
 
 ### Example improvements
 
@@ -19,6 +21,7 @@
 
 ## Next version
 
+- [ ] Change the general idea about outlines. Especially on gray buttons they should go inside component as 2px `blue-500` instead of 3px opacity outside.
 - [ ] `(?)` button? for form labels that show tooltip.
 - [ ] Create wrapper next+babel plugins with `vanilla-extract`.
 - [ ] Button variants (link).

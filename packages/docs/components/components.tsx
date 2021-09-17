@@ -49,7 +49,7 @@ const SelectExample = (): JSX.Element => {
     { key: 3, label: "Three" },
   ];
 
-  const [selected, setSelected] = useState(null);
+  const [selected, setSelected] = useState<number | null>(null);
 
   console.log(
     selected,
@@ -71,9 +71,6 @@ const SelectExample = (): JSX.Element => {
         })}
       >
         Selected:{" "}
-        {/* TODO:
-         * Export components.tsx nodes and use <code> one here.
-         */}
         <code>
           {selected === null
             ? "None"
@@ -86,6 +83,7 @@ const SelectExample = (): JSX.Element => {
       </div>
       <Select
         label="Select"
+        name="numbers"
         onSelectionChange={(key) => setSelected(Number(key))}
       >
         {items.map((item) => (
@@ -124,9 +122,6 @@ const TableExample = (): JSX.Element => {
         })}
       >
         Selected:{" "}
-        {/* TODO:
-         * Export components.tsx nodes and use <code> one here.
-         */}
         <code>
           {JSON.stringify(
             typeof selectedKeys === "string" ? selectedKeys : [...selectedKeys],
@@ -427,7 +422,8 @@ function PreComponent({ children }: { children: ReactNode }): JSX.Element {
   const { buttonProps, isPressed } = useButton(
     {
       onPress: () => {
-        navigator.clipboard.writeText(ref.current?.textContent);
+        const content = ref.current!.textContent || "";
+        navigator.clipboard.writeText(content.substring(0, content.length - 4));
       },
     },
     buttonRef
@@ -446,8 +442,12 @@ function PreComponent({ children }: { children: ReactNode }): JSX.Element {
     color: isPressed ? "gray-200" : isHovered ? "gray-300" : "gray-400",
     cursor: "pointer",
     fontSize: "12px",
+    fontWeight: "bold",
     position: "absolute",
-    background: "transparent",
+    background: isPressed ? "gray-500" : isHovered ? "gray-600" : "gray-700",
+    padding: "s",
+    paddingLeft: "m",
+    paddingRight: "m",
     border: "none",
     bottom: "xl",
     right: "xl",

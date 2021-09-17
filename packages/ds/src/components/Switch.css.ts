@@ -43,7 +43,7 @@ export const bar = recipe({
     background: {
       isSelected: atoms({
         background: {
-          lightMode: "pinkOutline",
+          lightMode: "blueOutline",
           darkMode: "blue-900",
         },
       }),

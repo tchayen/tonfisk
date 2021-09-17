@@ -5,7 +5,7 @@ import { AriaListBoxOptions } from "@react-aria/listbox";
 import { HiddenSelect, useSelect } from "@react-aria/select";
 import { useSelectState } from "@react-stately/select";
 import { CollectionChildren } from "@react-types/shared/src/collections";
-import React, { useRef } from "react";
+import React, { Key, useRef } from "react";
 
 import { FormPopover } from "../FormPopover";
 import { Chevron } from "../icons/Chevron";
@@ -17,10 +17,6 @@ export { Item } from "@react-stately/collections";
 
 type Props = {
   /**
-   * Whether user can interact with the select.
-   */
-  isDisabled?: boolean;
-  /**
    * Label displayed above the select component.
    */
   label: string;
@@ -29,13 +25,21 @@ type Props = {
    */
   name: string;
   /**
-   * Default is `"Select an option"`.
+   * Callback called when value of the select changes.
    */
-  placeholder: string;
+  onSelectionChange: (value: Key) => void;
   /**
-   * List of Item components.
+   * List of `<Item />` components.
    */
   children: CollectionChildren<object>;
+  /**
+   * Default is `"Select an option"`.
+   */
+  placeholder?: string;
+  /**
+   * Whether user can interact with the select.
+   */
+  isDisabled?: boolean;
 };
 
 /**
@@ -50,6 +54,7 @@ type Props = {
  *   return (
  *     <Select
  *       label="Select"
+ *       name="numbers"
  *       onSelectionChange={(key) => console.log(key)}
  *     >
  *      <Item key={0}>Item 1</Item>
@@ -65,10 +70,10 @@ type Props = {
 export function Select(props: Props): JSX.Element {
   const { isFocusVisible, focusProps } = useFocusRing();
 
-  // Create state based on the incoming props
+  // Create state based on the incoming props.
   const state = useSelectState(props);
 
-  // Get props for child elements from useSelect
+  // Get props for child elements from useSelect.
   const ref = useRef<HTMLButtonElement>(null);
   const { labelProps, triggerProps, valueProps, menuProps } = useSelect(
     props,
@@ -76,7 +81,7 @@ export function Select(props: Props): JSX.Element {
     ref
   );
 
-  // Get props for the button based on the trigger props from useSelect
+  // Get props for the button based on the trigger props from useSelect.
   const { buttonProps } = useButton(
     { ...triggerProps, isDisabled: props.isDisabled },
     ref

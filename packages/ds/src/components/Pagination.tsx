@@ -185,7 +185,7 @@ function DirectionButton(props: {
   });
 
   const chevron = atoms({
-    fill: {
+    stroke: {
       lightMode: isPressed ? "gray-500" : "gray-400",
       darkMode: isPressed ? "gray-900" : isHovered ? "gray-800" : "gray-700",
     },

@@ -15,7 +15,7 @@ globalStyle("code", {
 });
 
 globalStyle("pre code", {
-  fontSize: "15px",
+  fontSize: "14px",
   padding: 0,
   borderRadius: 0,
   background: "none",

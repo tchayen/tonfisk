@@ -1,7 +1,7 @@
 import { atoms } from "../theme.css";
 
 export const background = atoms({
-  stroke: "pinkOutline",
+  stroke: "blueOutline",
 });
 
 export const main = atoms({
