@@ -3,7 +3,6 @@
 - [ ] [50%] Some generic landing page?
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Animate fade in/out of modals (https://www.framer.com/docs/animate-presence/).
-- [ ] Rename all pink colors to blue.
 
 ### Example improvements
 
@@ -107,3 +106,4 @@
 - [x] Style `<code>` tags in MDX and override `pre code` through globals to avoid padding and background there.
 - [x] Make tick and selection in tables white in dark mode and text white in light mode.
 - [x] Missing TS typings (especially `Table`, `Menu`).
+- [x] Rename all pink colors to blue.

@@ -253,6 +253,7 @@ function LinkComponent({
   href,
   children,
 }: {
+  href: string;
   children: ReactNode;
 }): JSX.Element {
   return (
@@ -285,7 +286,13 @@ function StrongComponent({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-function H1Component({ children }: { children: ReactNode }): JSX.Element {
+function H1Component({
+  children,
+  ...props
+}: {
+  children: ReactNode;
+  props: any;
+}): JSX.Element {
   return (
     <h1
       className={atoms({
@@ -296,13 +303,20 @@ function H1Component({ children }: { children: ReactNode }): JSX.Element {
         marginTop: "xl",
         marginBottom: "l",
       })}
+      {...props}
     >
       {children}
     </h1>
   );
 }
 
-function H2Component({ children }: { children: ReactNode }): JSX.Element {
+function H2Component({
+  children,
+  ...props
+}: {
+  children: ReactNode;
+  props: any;
+}): JSX.Element {
   return (
     <h2
       className={atoms({
@@ -313,13 +327,20 @@ function H2Component({ children }: { children: ReactNode }): JSX.Element {
         marginTop: "xl",
         marginBottom: "l",
       })}
+      {...props}
     >
       {children}
     </h2>
   );
 }
 
-function H3Component({ children }: { children: ReactNode }): JSX.Element {
+function H3Component({
+  children,
+  ...props
+}: {
+  children: ReactNode;
+  props: any;
+}): JSX.Element {
   return (
     <h3
       className={atoms({
@@ -330,13 +351,20 @@ function H3Component({ children }: { children: ReactNode }): JSX.Element {
         marginTop: "xl",
         marginBottom: "l",
       })}
+      {...props}
     >
       {children}
     </h3>
   );
 }
 
-function H4Component({ children }: { children: ReactNode }): JSX.Element {
+function H4Component({
+  children,
+  ...props
+}: {
+  children: ReactNode;
+  props: any;
+}): JSX.Element {
   return (
     <h4
       className={atoms({
@@ -347,6 +375,7 @@ function H4Component({ children }: { children: ReactNode }): JSX.Element {
         marginTop: "xl",
         marginBottom: "l",
       })}
+      {...props}
     >
       {children}
     </h4>

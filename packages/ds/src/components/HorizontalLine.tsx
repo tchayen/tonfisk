@@ -10,7 +10,9 @@ import { atoms } from "../theme.css";
  * ```jsx
  * import { HorizontalLine } from "TODO_LIB_NAME";
  *
- * <HorizontalLine />
+ * function HorizontalLineExample() {
+ *   return <HorizontalLine />;
+ * }
  * ```
  *
  * ## Example

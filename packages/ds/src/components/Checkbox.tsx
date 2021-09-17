@@ -31,7 +31,9 @@ type Props = {
  * ```jsx
  * import { Checkbox } from "TODO_LIB_NAME";
  *
- * <Checkbox>Label</Checkbox>
+ * function CheckboxExample() {
+ *   return <Checkbox>Label</Checkbox>;
+ * }
  * ```
  *
  * ## Example

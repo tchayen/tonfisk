@@ -1,3 +1,4 @@
+import rehypeSlug from "rehype-slug";
 import rehypePrism from "@mapbox/rehype-prism";
 import { atoms, commonStyles } from "ds";
 import fs from "fs";
@@ -6,6 +7,7 @@ import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import React from "react";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
 
 import { components } from "../../components/components";
 import { Layout } from "../../components/Layout";
@@ -53,7 +55,7 @@ export const getStaticProps = async ({
     // Optionally pass remark/rehype plugins
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [rehypePrism],
+      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
     },
     scope: data,
   });

@@ -37,9 +37,12 @@ type Props = {
  * ```jsx
  * import { Button } from "TODO_LIB_NAME";
  *
- * <Button onPress={() => console.log("I got pressed!")}>
- *   Press me
- * </Button>
+ * function Button() {
+ *   return (
+ *     <Button onPress={() => console.log("I got pressed!")}>
+ *       Press me
+ *     </Button>
+ *   );
  * ```
  *
  * ## Example

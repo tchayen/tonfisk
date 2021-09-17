@@ -22,7 +22,9 @@ type Props = {
  * ```jsx
  * import { Label } from "TODO_LIB_NAME";
  *
- * <Label>Text</Label>
+ * function LabelExample() {
+ *   return <Label>Text</Label>;
+ * }
  * ```
  *
  * ## Example
