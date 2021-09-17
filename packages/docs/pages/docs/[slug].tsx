@@ -1,12 +1,11 @@
-import { atoms, commonStyles } from "ds";
+import { atoms } from "ds";
 import fs from "fs";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import path from "path";
 import React from "react";
 
-import { components } from "../../components/components";
 import { Header1 } from "../../components/Header";
 import { Layout } from "../../components/Layout";
+import { Mdx } from "../../components/Mdx";
 import {
   DOCS_PATH,
   docsFilePaths,
@@ -16,8 +15,8 @@ import {
 
 type Props = {
   navigation: ReturnType<typeof getNavigation>;
-  source: MDXRemoteSerializeResult;
-  frontMatter: { [key: string]: any };
+  source: string;
+  frontMatter: { [key: string]: string };
 };
 
 export default function Doc({
@@ -38,7 +37,7 @@ export default function Doc({
       >
         {frontMatter.description}
       </p>
-      <MDXRemote {...source} components={components} />
+      <Mdx source={source} />
     </Layout>
   );
 }
@@ -50,7 +49,6 @@ export const getStaticProps = async ({
 }): Promise<{ props: Props }> => {
   const postPath = path.join(DOCS_PATH, `${params.slug}.mdx`);
   const docFile = fs.readFileSync(postPath, "utf-8");
-
   return {
     props: await readMdxFile(docFile),
   };

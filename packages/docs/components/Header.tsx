@@ -10,6 +10,7 @@ type Props = {
 
 export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
   const component = ({ children, ...props }: Props) => {
+    console.log(children);
     return (
       <div
         className={atoms({
@@ -17,7 +18,7 @@ export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
           marginBottom: "l",
         })}
       >
-        <a className={header} href={`#${toKebabCase(children)}`}>
+        <a className={header} href={`#${toKebabCase(children || "")}`}>
           <HeaderNth
             id={toKebabCase(children)}
             className={atoms({

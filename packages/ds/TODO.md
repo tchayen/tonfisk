@@ -1,9 +1,6 @@
 ## Must have
 
-- [x] Scroll margin top for sections.
-- [x] Underline text decoration for links.
-- [ ] Change props to a table (https://priceline.github.io/design-system/Button#props).
-- [ ] Make subheader links clickable.
+- [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).
 - [ ] Review styles to find out what is worth reusing.
 - [ ] Gradient text on the landing page.
 - [ ] Animate fade in/out of modals
@@ -117,3 +114,8 @@
 - [x] Update icons.
 - [x] Fix border colors being too light in dark mode.
 - [x] Share more code between `[slug].tsx` files.
+- [x] Scroll margin top for sections.
+- [x] Underline text decoration for links.
+- [x] Change props to a table (https://priceline.github.io/design-system/Button#props).
+- [x] Make subheader links clickable.
+- [x] Move to `mdx-bundler` and support proper `gfm`.

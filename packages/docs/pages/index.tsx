@@ -1,19 +1,22 @@
 import { atoms } from "ds";
 import fs from "fs";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import React from "react";
 
-import { components } from "../components/components";
 import { Header1 } from "../components/Header";
 import { Layout } from "../components/Layout";
+import { Mdx } from "../components/Mdx";
 import { getNavigation, readMdxFile } from "../utils/mdx";
 
+// TODO: share with docs/[slug].tsx
 type Props = {
   navigation: ReturnType<typeof getNavigation>;
-  source: MDXRemoteSerializeResult;
-  frontMatter: { [key: string]: any };
+  source: string;
+  frontMatter: { [key: string]: string };
 };
 
+// TODO: probably share with docs/[slug].tsx
+// Can we just re-export the component?
+// Same with getStaticProps maybe?
 export default function Home({
   navigation,
   source,
@@ -32,7 +35,7 @@ export default function Home({
       >
         {frontMatter.description}
       </p>
-      <MDXRemote {...source} components={components} />
+      <Mdx source={source} />
     </Layout>
   );
 }

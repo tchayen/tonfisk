@@ -40,8 +40,7 @@ type Props = {
    */
   isOpen?: boolean;
   /**
-   * Callback called when modal is closed (can happen with `ESC` key or clicking
-   * outside).
+   * Callback called when modal is closed (can happen with `ESC` key or clicking outside).
    */
   onClose?: () => void;
   /**

@@ -1,10 +1,10 @@
 import rehypePrism from "@mapbox/rehype-prism";
 import fs from "fs";
 import matter from "gray-matter";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
+import { bundleMDX } from "mdx-bundler";
 import path from "path";
 import * as reactDocgen from "react-docgen";
+import remarkGfm from "remark-gfm";
 
 import { toKebabCase, toPascalCase } from "./string";
 
@@ -122,32 +122,30 @@ export const getNavigation = (): Directory => {
   };
 };
 
-export const serializeMdx = async (
-  content: string,
-  scope?: { [key: string]: any }
-): Promise<MDXRemoteSerializeResult> => {
-  return serialize(content, {
-    mdxOptions: {
-      remarkPlugins: [],
-      rehypePlugins: [rehypePrism],
-    },
-    scope,
-  });
-};
-
 export const readMdxFile = async (
   fileName: string
 ): Promise<{
-  source: MDXRemoteSerializeResult;
+  source: string;
   frontMatter: { [key: string]: any };
   navigation: ReturnType<typeof getNavigation>;
 }> => {
   const { content, data } = matter(fileName);
-  const mdxSource = await serializeMdx(content, data);
+  const mdxSource = await prepareMdx(content);
 
   return {
     source: mdxSource,
     frontMatter: data,
     navigation: getNavigation(),
   };
+};
+
+export const prepareMdx = async (content: string): Promise<string> => {
+  const { code } = await bundleMDX(content, {
+    xdmOptions: (options) => {
+      options.remarkPlugins = [...(options.remarkPlugins ?? []), remarkGfm];
+      options.rehypePlugins = [...(options.rehypePlugins ?? []), rehypePrism];
+      return options;
+    },
+  });
+  return code;
 };

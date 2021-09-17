@@ -17,6 +17,7 @@ import { TableState, useTableState } from "@react-stately/table";
 import { useToggleState } from "@react-stately/toggle";
 import { CollectionChildren, Node } from "@react-types/shared/src/collections";
 import { Selection } from "@react-types/shared/src/selection";
+export type { Selection } from "@react-types/shared/src/selection";
 import { Fragment, ReactNode } from "react";
 import React, { useRef } from "react";
 

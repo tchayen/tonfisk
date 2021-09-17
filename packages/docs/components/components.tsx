@@ -1,49 +1,37 @@
-// Custom components/renderers to pass to MDX.
-// Since the MDX files aren't loaded by webpack, they have no knowledge of how
-// to handle import statements. Instead, you must include components in scope
 import "./theme.css";
 
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
+import * as ds from "ds";
 import {
   atoms,
   Button,
   Cell,
   Checkbox,
   Column,
-  HorizontalLine,
   Item,
-  Label,
   MenuButton,
-  Pagination,
-  Pill,
-  Popover,
-  Provider,
   Row,
   Select,
-  Spinner,
-  Switch,
+  Selection,
   Table,
   TableBody,
-  TableCell,
-  TableCheckboxCell,
-  TableColumnHeader,
   TableHeader,
-  TableHeaderRow,
-  TableRow,
-  TableRowGroup,
-  TableSelectAllCell,
-  Tag,
   TextInput,
-  Tooltip,
 } from "ds";
 import { Form, Formik, useField } from "formik";
 import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 
-import { Header } from "../components/Header";
-import { toKebabCase } from "../utils/string";
+import { Header1, Header2, Header3, Header4 } from "../components/Header";
+import {
+  MdxTable,
+  MdxTableCell,
+  MdxTableHeaderCell,
+  MdxTableHeaderRow,
+  MdxTableRow,
+} from "./MdxTable";
 import { header } from "./theme.css";
 
 const SelectExample = (): JSX.Element => {
@@ -99,7 +87,7 @@ const SelectExample = (): JSX.Element => {
 };
 
 const TableExample = (): JSX.Element => {
-  const [selectedKeys, setSelectedKeys] = useState([]);
+  const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
 
   const columns = [
     { name: "Name", key: "name" },
@@ -128,6 +116,7 @@ const TableExample = (): JSX.Element => {
         Selected:{" "}
         <code>
           {JSON.stringify(
+            // TODO: TS
             typeof selectedKeys === "string" ? selectedKeys : [...selectedKeys],
             null,
             2
@@ -146,6 +135,7 @@ const TableExample = (): JSX.Element => {
           {(column) => <Column>{column.name}</Column>}
         </TableHeader>
         <TableBody items={rows}>
+          {/* TODO: TS */}
           {(item) => <Row>{(columnKey) => <Cell>{item[columnKey]}</Cell>}</Row>}
         </TableBody>
       </Table>
@@ -248,7 +238,7 @@ function FormikExample(): JSX.Element {
   );
 }
 
-function LinkComponent({
+function MdxLink({
   href,
   children,
 }: {
@@ -269,7 +259,7 @@ function LinkComponent({
   );
 }
 
-function StrongComponent({ children }: { children: ReactNode }): JSX.Element {
+function MdxStrong({ children }: { children: ReactNode }): JSX.Element {
   return (
     <strong
       className={atoms({
@@ -285,11 +275,7 @@ function StrongComponent({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-function ParagraphComponent({
-  children,
-}: {
-  children: ReactNode;
-}): JSX.Element {
+function MdxParagraph({ children }: { children: ReactNode }): JSX.Element {
   return (
     <p
       className={atoms({
@@ -307,7 +293,7 @@ function ParagraphComponent({
   );
 }
 
-function LiComponent({ children }: { children: ReactNode }): JSX.Element {
+function MdxLi({ children }: { children: ReactNode }): JSX.Element {
   return (
     <li
       className={atoms({
@@ -320,7 +306,7 @@ function LiComponent({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-function PreComponent({ children }: { children: ReactNode }): JSX.Element {
+function MdxPre({ children }: { children: ReactNode }): JSX.Element {
   const ref = useRef<HTMLPreElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
@@ -345,7 +331,15 @@ function PreComponent({ children }: { children: ReactNode }): JSX.Element {
     setIsHovered(false);
   };
 
-  const className = atoms({
+  const preClassName = atoms({
+    padding: "xl",
+    borderRadius: "8px",
+    background: "gray-800",
+    color: "gray-200",
+    position: "relative",
+  });
+
+  const buttonClassName = atoms({
     fontFamily: "body",
     color: isPressed ? "gray-200" : isHovered ? "gray-300" : "gray-400",
     cursor: "pointer",
@@ -365,23 +359,14 @@ function PreComponent({ children }: { children: ReactNode }): JSX.Element {
   });
 
   return (
-    <pre
-      ref={ref}
-      className={atoms({
-        padding: "xl",
-        borderRadius: "8px",
-        background: "gray-800",
-        color: "gray-200",
-        position: "relative",
-      })}
-    >
+    <pre ref={ref} className={preClassName}>
       {children}
       <button
         {...mergeProps(focusProps, buttonProps)}
         onMouseEnter={onMouseEnter}
         onMouseLeave={onMouseLeave}
         ref={buttonRef}
-        className={className}
+        className={buttonClassName}
       >
         Copy
       </button>
@@ -390,106 +375,24 @@ function PreComponent({ children }: { children: ReactNode }): JSX.Element {
 }
 
 export const components = {
-  a: LinkComponent,
-  strong: StrongComponent,
-  h1: Header("h1"),
-  h2: Header("h2"),
-  h3: Header("h3"),
-  h4: Header("h4"),
-  p: ParagraphComponent,
-  li: LiComponent,
-  pre: PreComponent,
-  table: ({ children }) => (
-    <table
-      className={atoms({
-        borderCollapse: "collapse",
-      })}
-    >
-      {children}
-    </table>
-  ),
-  th: ({ children }) => (
-    <th
-      className={atoms({
-        textAlign: "left",
-        fontFamily: "body",
-        fontSize: "16px",
-        height: "40px",
-        paddingLeft: "m",
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-      })}
-    >
-      {children}
-    </th>
-  ),
-  thead: ({ children }) => (
-    <thead
-      className={atoms({
-        borderBottom: {
-          lightMode: "regular",
-          darkMode: "regularDark",
-        },
-      })}
-    >
-      {children}
-    </thead>
-  ),
-  tr: ({ children }) => (
-    <tr
-      className={atoms({
-        borderBottom: {
-          lightMode: "regular",
-          darkMode: "regularDark",
-        },
-      })}
-    >
-      {children}
-    </tr>
-  ),
-  td: ({ children }) => (
-    <td
-      className={atoms({
-        padding: "m",
-      })}
-    >
-      {children}
-    </td>
-  ),
-  Button,
-  Checkbox,
-  Item,
-  Label,
-  MenuButton,
-  Pagination,
-  Provider,
-  Select,
-  Popover,
-  Spinner,
-  Switch,
-  HorizontalLine,
-  Table,
-  TableCell,
-  TableColumnHeader,
-  TableHeaderRow,
-  TableRow,
-  TableRowGroup,
-  Tag,
-  TextInput,
-  Tooltip,
-  Cell,
-  Column,
-  Pill,
-  Row,
-  TableBody,
-  TableHeader,
-  TableSelectAllCell,
-  TableCheckboxCell,
+  a: MdxLink,
+  strong: MdxStrong,
+  h1: Header1,
+  h2: Header2,
+  h3: Header3,
+  h4: Header4,
+  p: MdxParagraph,
+  li: MdxLi,
+  pre: MdxPre,
+  table: MdxTable,
+  thead: MdxTableHeaderRow,
+  tr: MdxTableRow,
+  td: MdxTableCell,
+  th: MdxTableHeaderCell,
   TableExample,
   SelectExample,
   MenuExample,
   CheckboxExample,
   FormikExample,
+  ...ds,
 };

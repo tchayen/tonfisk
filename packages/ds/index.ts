@@ -15,6 +15,7 @@ export { Label } from "./src/components/Label";
 export { Pill } from "./src/components/Pill";
 export { Popover } from "./src/components/Popover";
 export * as commonStyles from "./src/commonStyles.css";
+export type { Selection } from "./src/components/Table";
 export {
   TableRowGroup,
   TableHeaderRow,

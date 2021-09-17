@@ -1,14 +1,13 @@
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
-import React, { Fragment } from "react";
+import React from "react";
 
-import { components } from "../../../components/components";
 import { Header1 } from "../../../components/Header";
 import { Layout } from "../../../components/Layout";
+import { Mdx } from "../../../components/Mdx";
 import {
   componentsFilePaths,
   getNavigation,
   getSourceMetadata,
-  serializeMdx,
+  prepareMdx,
 } from "../../../utils/mdx";
 import { toKebabCase } from "../../../utils/string";
 
@@ -21,81 +20,9 @@ type Metadata = {
   }[];
 };
 
-function Prop({
-  name,
-  type,
-  description,
-}: {
-  name: string;
-  type: string;
-  description: string;
-}) {
-  let i = 0;
-  const escapedDescription = description
-    .replaceAll("&", "&amp;")
-    .replaceAll("<", "&lt;")
-    .replaceAll(">", "&gt;")
-    .replaceAll('"', "&quot;")
-    .replaceAll("'", "&#039;")
-    .replaceAll("`", () => {
-      i += 1;
-      if (i % 2 === 1) {
-        return "<code>";
-      } else {
-        return "</code>";
-      }
-    });
-
-  return (
-    <div
-      className={atoms({
-        display: "flex",
-        marginBottom: "m",
-      })}
-    >
-      <div
-        className={atoms({
-          display: "flex",
-          flexDirection: "column",
-          padding: "m",
-          borderRadius: "8px",
-          background: {
-            lightMode: "gray-100",
-            darkMode: "gray-800",
-          },
-          maxWidth: "64ch",
-        })}
-      >
-        <code
-          className={atoms({
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-            marginBottom: "s",
-            padding: "none",
-          })}
-        >
-          {name}: {type}
-        </code>
-        <span
-          className={atoms({
-            color: {
-              lightMode: "gray-600",
-              darkMode: "gray-400",
-            },
-            fontSize: "14px",
-          })}
-          dangerouslySetInnerHTML={{ __html: escapedDescription }}
-        ></span>
-      </div>
-    </div>
-  );
-}
-
 type Props = {
   navigation: ReturnType<typeof getNavigation>;
-  source: MDXRemoteSerializeResult;
+  source: string;
   metadata: Metadata;
 };
 
@@ -106,29 +33,8 @@ export default function Doc({
 }: Props): JSX.Element {
   return (
     <Layout navigation={navigation}>
-      <h1 className={commonStyles.primaryTextColor}>{metadata.displayName}</h1>
-      {metadata.props.length > 0 && (
-        <Fragment>
-          <h2
-            className={atoms({
-              color: {
-                lightMode: "black",
-                darkMode: "gray-200",
-              },
-              marginTop: "l",
-              marginBottom: "l",
-            })}
-          >
-            Props
-          </h2>
-          <div>
-            {metadata.props.map((prop) => (
-              <Prop key={prop.name} {...prop} />
-            ))}
-          </div>
-        </Fragment>
-      )}
-      <MDXRemote {...source} components={components} />
+      <Header1>{metadata.displayName}</Header1>
+      <Mdx source={source} />
     </Layout>
   );
 }
@@ -139,8 +45,24 @@ export const getStaticProps = async ({
   params: { slug: string };
 }): Promise<{ props: Props }> => {
   const metadata = getSourceMetadata(params.slug);
-  const content = `\n${metadata.description}`;
-  const source = await serializeMdx(content);
+  const escaped = (value: string) => value.replaceAll("|", "\\|");
+
+  const table =
+    metadata.props.length > 0
+      ? `## Props\n\n| Name | Type | Description |
+  | --- | --- | --- |
+  ${metadata.props
+    .map(
+      (prop) =>
+        `| \`${prop.name}\` | \`${escaped(prop.type)}\` | ${escaped(
+          prop.description
+        )} |`
+    )
+    .join("\n")}\n`
+      : "";
+
+  const content = `\n${table}\n${metadata.description}`;
+  const source = await prepareMdx(content);
 
   return {
     props: {
