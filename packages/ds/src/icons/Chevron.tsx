@@ -5,23 +5,26 @@ import { atoms } from "../theme.css";
 export function Chevron({ className }: { className?: string }): JSX.Element {
   return (
     <svg
-      width="14"
+      width="18"
       height="8"
-      viewBox="0 0 14 8"
+      viewBox="0 0 18 8"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        d="M7.0001 6.40001L6.4001 7.20001L7.0001 7.65001L7.6001 7.20001L7.0001 6.40001ZM9.76324e-05 2.40001L6.4001 7.20001L7.6001 5.60001L1.2001 0.800006L9.76324e-05 2.40001ZM7.6001 7.20001L14.0001 2.40001L12.8001 0.800006L6.4001 5.60001L7.6001 7.20001Z"
+        d="M1 1L9 7L17 1"
         className={
           className ||
           atoms({
-            fill: {
+            stroke: {
               lightMode: "gray-400",
               darkMode: "gray-700",
             },
           })
         }
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   );

@@ -206,7 +206,7 @@ function Checkbox({
           {isChecked === "mixed" ? (
             <div className={styles.mixed} />
           ) : (
-            <Tick className={atoms({ fill: "white" })} />
+            <Tick className={atoms({ stroke: "white" })} />
           )}
         </div>
       ) : null}
