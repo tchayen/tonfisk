@@ -42,6 +42,10 @@ import { Form, Formik, useField } from "formik";
 import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 
+import { Header } from "../components/Header";
+import { toKebabCase } from "../utils/string";
+import { header } from "./theme.css";
+
 const SelectExample = (): JSX.Element => {
   const items = [
     { key: 1, label: "One" },
@@ -255,9 +259,9 @@ function LinkComponent({
     <Link href={href}>
       <a
         href={href}
-        className={atoms({
+        className={`${atoms({
           color: "blue-500",
-        })}
+        })} ${header}`}
       >
         {children}
       </a>
@@ -278,102 +282,6 @@ function StrongComponent({ children }: { children: ReactNode }): JSX.Element {
     >
       {children}
     </strong>
-  );
-}
-
-function H1Component({
-  children,
-  ...props
-}: {
-  children: ReactNode;
-  props: any;
-}): JSX.Element {
-  return (
-    <h1
-      className={atoms({
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-        marginTop: "xl",
-        marginBottom: "l",
-      })}
-      {...props}
-    >
-      {children}
-    </h1>
-  );
-}
-
-function H2Component({
-  children,
-  ...props
-}: {
-  children: ReactNode;
-  props: any;
-}): JSX.Element {
-  return (
-    <h2
-      className={atoms({
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-        marginTop: "xl",
-        marginBottom: "l",
-      })}
-      {...props}
-    >
-      {children}
-    </h2>
-  );
-}
-
-function H3Component({
-  children,
-  ...props
-}: {
-  children: ReactNode;
-  props: any;
-}): JSX.Element {
-  return (
-    <h3
-      className={atoms({
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-        marginTop: "xl",
-        marginBottom: "l",
-      })}
-      {...props}
-    >
-      {children}
-    </h3>
-  );
-}
-
-function H4Component({
-  children,
-  ...props
-}: {
-  children: ReactNode;
-  props: any;
-}): JSX.Element {
-  return (
-    <h4
-      className={atoms({
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-        marginTop: "xl",
-        marginBottom: "l",
-      })}
-      {...props}
-    >
-      {children}
-    </h4>
   );
 }
 
@@ -484,13 +392,72 @@ function PreComponent({ children }: { children: ReactNode }): JSX.Element {
 export const components = {
   a: LinkComponent,
   strong: StrongComponent,
-  h1: H1Component,
-  h2: H2Component,
-  h3: H3Component,
-  h4: H4Component,
+  h1: Header("h1"),
+  h2: Header("h2"),
+  h3: Header("h3"),
+  h4: Header("h4"),
   p: ParagraphComponent,
   li: LiComponent,
   pre: PreComponent,
+  table: ({ children }) => (
+    <table
+      className={atoms({
+        borderCollapse: "collapse",
+      })}
+    >
+      {children}
+    </table>
+  ),
+  th: ({ children }) => (
+    <th
+      className={atoms({
+        textAlign: "left",
+        fontFamily: "body",
+        fontSize: "16px",
+        height: "40px",
+        paddingLeft: "m",
+        color: {
+          lightMode: "black",
+          darkMode: "gray-200",
+        },
+      })}
+    >
+      {children}
+    </th>
+  ),
+  thead: ({ children }) => (
+    <thead
+      className={atoms({
+        borderBottom: {
+          lightMode: "regular",
+          darkMode: "regularDark",
+        },
+      })}
+    >
+      {children}
+    </thead>
+  ),
+  tr: ({ children }) => (
+    <tr
+      className={atoms({
+        borderBottom: {
+          lightMode: "regular",
+          darkMode: "regularDark",
+        },
+      })}
+    >
+      {children}
+    </tr>
+  ),
+  td: ({ children }) => (
+    <td
+      className={atoms({
+        padding: "m",
+      })}
+    >
+      {children}
+    </td>
+  ),
   Button,
   Checkbox,
   Item,

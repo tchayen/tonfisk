@@ -1,8 +1,8 @@
-import { atoms, commonStyles } from "ds";
 import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
 import React, { Fragment } from "react";
 
 import { components } from "../../../components/components";
+import { Header1 } from "../../../components/Header";
 import { Layout } from "../../../components/Layout";
 import {
   componentsFilePaths,

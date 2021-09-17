@@ -5,6 +5,7 @@ import path from "path";
 import React from "react";
 
 import { components } from "../../components/components";
+import { Header1 } from "../../components/Header";
 import { Layout } from "../../components/Layout";
 import {
   DOCS_PATH,
@@ -26,7 +27,7 @@ export default function Doc({
 }: Props): JSX.Element {
   return (
     <Layout navigation={navigation}>
-      <h1 className={commonStyles.primaryTextColor}>{frontMatter.title}</h1>
+      <Header1>{frontMatter.title}</Header1>
       <p
         className={atoms({
           color: {

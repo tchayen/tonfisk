@@ -166,6 +166,7 @@ export function Layout({
       <div
         className={atoms({
           padding: "xl",
+          paddingTop: "none",
           paddingRight: "none",
           marginRight: "none",
         })}

@@ -306,8 +306,7 @@ type Props = {
    */
   disallowEmptySelection?: boolean;
   /**
-   * Callback called when selected keys change. Selection type is: `"all"
-   * | Set<string | number>`.
+   * Callback called when selected keys change. Selection type is: `"all" | Set<string | number>`.
    */
   onSelectionChange?: (selectedKeys: Selection) => void;
   /**

@@ -1,5 +1,7 @@
 ## Must have
 
+- [x] Scroll margin top for sections.
+- [x] Underline text decoration for links.
 - [ ] Change props to a table (https://priceline.github.io/design-system/Button#props).
 - [ ] Make subheader links clickable.
 - [ ] Review styles to find out what is worth reusing.

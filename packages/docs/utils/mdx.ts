@@ -5,8 +5,6 @@ import { MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import path from "path";
 import * as reactDocgen from "react-docgen";
-import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeSlug from "rehype-slug";
 
 import { toKebabCase, toPascalCase } from "./string";
 
@@ -131,7 +129,7 @@ export const serializeMdx = async (
   return serialize(content, {
     mdxOptions: {
       remarkPlugins: [],
-      rehypePlugins: [rehypePrism, rehypeSlug, rehypeAutolinkHeadings],
+      rehypePlugins: [rehypePrism],
     },
     scope,
   });

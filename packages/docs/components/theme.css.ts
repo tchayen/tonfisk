@@ -1,3 +1,4 @@
+import { style } from "@vanilla-extract/css";
 import { globalStyle } from "@vanilla-extract/css";
 import colors from "ds/src/colors";
 
@@ -66,6 +67,16 @@ globalStyle(
 
 globalStyle(".language-javascript", {
   color: colors.coolGray[200],
+});
+
+globalStyle("html", {
+  scrollPaddingTop: 32,
+});
+
+export const header = style({
+  ":hover": {
+    textDecoration: "underline",
+  },
 });
 
 // pre code {
