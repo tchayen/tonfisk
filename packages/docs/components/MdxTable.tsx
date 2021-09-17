@@ -25,7 +25,7 @@ export function MdxTableHeaderCell({
         fontFamily: "body",
         fontSize: "16px",
         height: "40px",
-        paddingLeft: "m",
+        paddingLeft: "l",
         color: {
           lightMode: "black",
           darkMode: "gray-200",
@@ -83,7 +83,7 @@ export function MdxTableCell({
   return (
     <td
       className={atoms({
-        padding: "m",
+        padding: "l",
       })}
     >
       {children}

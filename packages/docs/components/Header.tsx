@@ -5,6 +5,7 @@ import { header } from "./theme.css";
 
 type Props = {
   children: string;
+  // TODO: TS
   props?: any;
 };
 
@@ -19,6 +20,7 @@ export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
         })}
       >
         <a className={header} href={`#${toKebabCase(children || "")}`}>
+          {/* TODO: TS */}
           <HeaderNth
             id={toKebabCase(children)}
             className={atoms({

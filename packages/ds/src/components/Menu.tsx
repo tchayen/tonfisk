@@ -147,6 +147,7 @@ type Props = {
 
 type MenuButton_Props = {
   isDisabled?: boolean;
+  // TODO: TS
   menuTriggerProps?: any;
   children: string;
   onPress?: () => void;

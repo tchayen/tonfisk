@@ -126,7 +126,7 @@ export const readMdxFile = async (
   fileName: string
 ): Promise<{
   source: string;
-  frontMatter: { [key: string]: any };
+  frontMatter: { [key: string]: string };
   navigation: ReturnType<typeof getNavigation>;
 }> => {
   const { content, data } = matter(fileName);

@@ -1,3 +1,8 @@
+Potential reference for customizing MDX Bundler setup:
+
+- https://github.com/Arcath/arcath.net-next/blob/8c6def31929a65c7c5eb61ea56cc1d02833f6479/lib/functions/prepare-mdx.ts#L66
+- https://www.alaycock.co.uk/2021/03/mdx-bundler
+
 ## Must have
 
 - [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).

@@ -34,18 +34,15 @@ type Props = {
    */
   onBlur?: (event: React.FocusEvent) => void;
   /**
-   * Value of the input in case user wants to control it from outside of the
-   * component.
+   * Value of the input in case user wants to control it from outside of the component.
    */
   value?: string;
   /**
-   * Callback called when key is pressed. Can be used for example to learn when
-   * enter key is pressed.
+   * Callback called when key is pressed. Can be used for example to learn when enter key is pressed.
    */
   onKeyPress?: (event: React.KeyboardEvent) => void;
   /**
-   * Value used to describe input to screen readers. Necessary if label prop is
-   * missing.
+   * Value used to describe input to screen readers. Necessary if label prop is missing.
    */
   "aria-label"?: string;
 };

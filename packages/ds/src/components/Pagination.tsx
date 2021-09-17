@@ -27,6 +27,7 @@ function PageButton(props: {
   isSelected?: boolean;
   triggerRef?: React.RefObject<HTMLElement>;
   isDisabled?: boolean;
+  // TODO: TS
   overrideButtonProps?: any;
 }) {
   const ref = props.triggerRef || useRef<HTMLButtonElement>(null);
@@ -224,9 +225,7 @@ type Props = {
    */
   pageCount: number;
   /**
-   * Number of visible pages (including dots). For example, `(1) (...) (4) (5)
-   * (6) (...) (10)` is 7 visible pages. Minimum is 7 (or component will throw
-   * an error).
+   * Number of visible pages (including dots). For example, `(1) (...) (4) (5) (6) (...) (10)` is 7 visible pages. Minimum is 7 (or component will throw an error).
    */
   visiblePages: number;
   /**
