@@ -4,63 +4,58 @@ import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 import colors from "./colors";
 import { vars } from "./vars.css";
 
+export const darkMode = "dark";
+
+globalStyle(`.${darkMode}`, {
+  background: colors.coolGray[900],
+  color: colors.coolGray[400],
+});
+
 globalStyle("html", {
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      background: colors.coolGray[900],
-      color: colors.coolGray[400],
-    },
-  },
   fontFeatureSettings: "'ss01' on,'ss02' on,'cv01' on,'cv03' on",
   background: colors.white,
   color: colors.coolGray[600],
 });
 
 globalStyle("::selection", {
-  "@media": {
-    "(prefers-color-scheme: dark)": {},
-  },
   background: colors.blue[500],
   color: colors.black,
 });
 
+globalStyle(`${darkMode} ::placeholder`, {
+  color: colors.coolGray[500],
+});
+
 globalStyle("::placeholder", {
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      color: colors.coolGray[500],
-    },
-  },
   color: colors.coolGray[400],
   opacity: 1,
 });
 
+// NOTE: -webkit-* for some reason doesn't work with just .dark, requires element.dark.
+globalStyle(`html.${darkMode} *::-webkit-scrollbar`, {
+  background: colors.coolGray[900],
+});
+
 globalStyle("*::-webkit-scrollbar", {
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      background: colors.coolGray[900],
-    },
-  },
   background: colors.white,
   width: 12,
   height: 12,
 });
 
+globalStyle(`html.${darkMode} *::-webkit-scrollbar-corner`, {
+  background: colors.coolGray[900],
+});
+
 globalStyle("*::-webkit-scrollbar-corner", {
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      background: colors.coolGray[900],
-    },
-  },
   background: colors.white,
 });
 
+globalStyle(`html.${darkMode} *::-webkit-scrollbar-thumb`, {
+  backgroundColor: colors.coolGray[700],
+  boxShadow: `0 0 0 2px inset ${colors.coolGray[900]}`,
+});
+
 globalStyle("*::-webkit-scrollbar-thumb", {
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      backgroundColor: colors.coolGray[700],
-      boxShadow: `0 0 0 2px inset ${colors.coolGray[900]}`,
-    },
-  },
   backgroundColor: colors.coolGray[300],
   boxShadow: "0 0 0 2px inset white",
   borderRadius: 6,
@@ -93,7 +88,7 @@ globalStyle("h4", {
 const responsiveStyles = defineProperties({
   conditions: {
     lightMode: {},
-    darkMode: { "@media": "(prefers-color-scheme: dark)" },
+    darkMode: { selector: `.${darkMode} &` },
   },
   defaultCondition: "lightMode",
   properties: {
@@ -167,6 +162,7 @@ const responsiveStyles = defineProperties({
     stroke: vars.color,
     WebkitAppearance: vars.WebkitAppearance,
     textDecoration: ["none", "underline"],
+    textShadow: vars.textShadow,
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],

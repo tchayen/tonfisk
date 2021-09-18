@@ -2,7 +2,7 @@ export { Button } from "./src/components/Button";
 export { Checkbox } from "./src/components/Checkbox";
 export { TextInput } from "./src/components/TextInput";
 export { ModalDialog } from "./src/components/ModalDialog";
-export { Provider } from "./src/components/Provider";
+export { Provider } from "./src/Provider";
 export { Select, Item } from "./src/components/Select";
 export { Switch } from "./src/components/Switch";
 export { HorizontalLine } from "./src/components/HorizontalLine";

@@ -136,4 +136,8 @@ export const vars = createGlobalTheme(":root", {
   lineHeight: {
     "1": "1",
   },
+  textShadow: {
+    light: "0 0 black",
+    dark: "0 0 #fff",
+  },
 });

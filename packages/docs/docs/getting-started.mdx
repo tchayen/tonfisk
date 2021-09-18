@@ -11,6 +11,8 @@ yarn add TODO_LIB_NAME
 
 ## Setup
 
+### Provider
+
 `<Provider />` is absolutely required for the library to run. There should be only one provider in the component tree.
 
 ```jsx
@@ -21,7 +23,46 @@ export default function App() {
 }
 ```
 
+### Styling
+
 Set up `vanilla-extract` according to your bundler settings: [guide](https://vanilla-extract.style/documentation/setup/).
+
+### Dark theme
+
+In order to avoid flash of white background if user is supposed to see dark mode, copy the following file: [noflash.js](/noflash.js) and save it as `noflash.js` file to `/public` directory of your repository.
+
+If you are using Next.js, it will be `/public`.
+
+Next, if you have your own custom `index.html`, add `<script src="/noflash.js"></script>` inside `<body>`.
+
+If you are using Next.js, you will need `_document.js`:
+
+```js
+import Document, { Head, Html, Main, NextScript } from "next/document";
+
+class MyDocument extends Document {
+  static async getInitialProps(ctx) {
+    const initialProps = await Document.getInitialProps(ctx);
+    return { ...initialProps };
+  }
+
+  render() {
+    return (
+      <Html>
+        <Head />
+        <body>
+          <script src="/noflash.js" />
+          {/* ^ here */}
+          <Main />
+          <NextScript />
+        </body>
+      </Html>
+    );
+  }
+}
+
+export default MyDocument;
+```
 
 ## Usage
 

@@ -1,19 +1,3 @@
-## Next.js
-
-```js
-global.$RefreshReg$ = () => {};
-global.$RefreshSig$$ = () => () => {};
-```
-
-Bigger thread:
-https://github.com/vercel/next.js/issues/12753
-
-Some discussion:
-https://github.com/pmmmwh/react-refresh-webpack-plugin/issues/24
-
-Some action to fix it for workers was taken, not sure if it made to the release:
-https://github.com/vercel/next.js/pull/15145
-
 Potential reference for customizing MDX Bundler setup:
 
 - https://github.com/Arcath/arcath.net-next/blob/8c6def31929a65c7c5eb61ea56cc1d02833f6479/lib/functions/prepare-mdx.ts#L66
@@ -28,8 +12,9 @@ Potential reference for customizing MDX Bundler setup:
 - [ ] Link underline on homepage to Twitter.
 - [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
-- [ ] Add link to GitHub source of example in example.
 - [ ] Add select and checkbox to Formik guide.
+- [ ] Add link to GitHub source of example in example.
+
 - [ ] Consider changing default sizes of elements from 32 to 40px.
 
 ### Example improvements
@@ -76,7 +61,6 @@ Potential reference for customizing MDX Bundler setup:
 - [ ] Borderless text input.
 - [ ] Search in docs.
 - [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
-- [ ] Expose API for switching color modes.
 - [ ] Interactive props in examples https://baseweb.design/components/pin-code/.
 - [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
 
@@ -152,3 +136,4 @@ Potential reference for customizing MDX Bundler setup:
 - [x] Move to `mdx-bundler` and support proper `gfm`.
 - [x] Gradient text on the landing page.
 - [x] Fix outlines on homepage.
+- [x] Expose API for switching color modes.

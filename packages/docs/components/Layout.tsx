@@ -7,6 +7,7 @@ import Link from "next/link";
 import React, { ReactNode, useState } from "react";
 
 import { getNavigation } from "../utils/mdx";
+import { SwitchColorMode } from "./SwitchColorMode";
 
 const ListItem = ({
   active,
@@ -143,6 +144,7 @@ export function Layout({
           overflowY: "scroll",
         })}
       >
+        <SwitchColorMode />
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;
         })}

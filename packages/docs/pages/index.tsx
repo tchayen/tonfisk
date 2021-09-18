@@ -8,6 +8,7 @@ import React, { ReactNode, useEffect } from "react";
 
 import { MdxPre } from "../components/components";
 import * as styles from "../styles/index.css";
+import { SwitchColorMode } from "../components/SwitchColorMode";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return (
@@ -53,6 +54,15 @@ export default function Home(): JSX.Element {
         justifyContent: "center",
       })}
     >
+      <div
+        className={atoms({
+          position: "fixed",
+          top: "xl",
+          right: "xl",
+        })}
+      >
+        <SwitchColorMode />
+      </div>
       <div>
         <h1
           className={atoms({

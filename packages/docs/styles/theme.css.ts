@@ -1,17 +1,17 @@
 import { style } from "@vanilla-extract/css";
 import { globalStyle } from "@vanilla-extract/css";
 import colors from "ds/src/colors";
+import { darkMode } from "ds/src/theme.css";
+
+globalStyle(`html.${darkMode} code`, {
+  background: colors.coolGray[800],
+});
 
 globalStyle("code", {
   fontSize: "15px",
   fontFamily: "Menlo, Consolas, Liberation Mono, monospace",
   padding: 4,
   borderRadius: 4,
-  "@media": {
-    "(prefers-color-scheme: dark)": {
-      background: colors.coolGray[800],
-    },
-  },
   background: colors.coolGray[100],
 });
 
