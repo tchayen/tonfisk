@@ -1,4 +1,4 @@
-export { Button } from "./src/components/Button";
+export { Button, ButtonLink } from "./src/components/Button";
 export { Checkbox } from "./src/components/Checkbox";
 export { TextInput } from "./src/components/TextInput";
 export { ModalDialog } from "./src/components/ModalDialog";

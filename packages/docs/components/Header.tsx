@@ -1,6 +1,6 @@
 import { atoms } from "ds";
 
-import { header } from "../styles/theme.css";
+import { hoverUnderline } from "../styles/theme.css";
 import { toKebabCase } from "../utils/string";
 
 type Props = {
@@ -18,7 +18,7 @@ export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
           marginBottom: "l",
         })}
       >
-        <a className={header} href={`#${toKebabCase(children || "")}`}>
+        <a className={hoverUnderline} href={`#${toKebabCase(children || "")}`}>
           {/* TODO: TS */}
           <HeaderNth
             id={toKebabCase(children)}

@@ -1,7 +1,7 @@
 import { getMDXComponent } from "mdx-bundler/client";
 import { useMemo } from "react";
 
-import { components } from "./components";
+import { components } from "./mdxComponents";
 
 export function Mdx({ source }: { source: string }): JSX.Element {
   const Component = useMemo(() => getMDXComponent(source), [source]);

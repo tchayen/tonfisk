@@ -1,3 +1,5 @@
+// Based on:
+// https://github.com/donavon/use-dark-mode/blob/develop/noflash.js.txt
 (function () {
   const storageKey = "colorMode";
   const classNameDark = "dark";
@@ -18,9 +20,8 @@
   let localStorageTheme = null;
   try {
     localStorageTheme = localStorage.getItem(storageKey);
+    // eslint-disable-next-line
   } catch (error) {}
-
-  console.log({ localStorageTheme });
 
   // Determine the source of truth.
   if (localStorageTheme) {

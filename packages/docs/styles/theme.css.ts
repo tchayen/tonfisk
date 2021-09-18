@@ -80,7 +80,7 @@ globalStyle("html", {
   scrollPaddingTop: 32,
 });
 
-export const header = style({
+export const hoverUnderline = style({
   ":hover": {
     textDecoration: "underline",
   },

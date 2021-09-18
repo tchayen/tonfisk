@@ -38,6 +38,38 @@ export const button = recipe({
       active: atoms({
         background: "blue-700",
       }),
+      secondary: atoms({
+        background: {
+          lightMode: "gray-200",
+          darkMode: "gray-500",
+        },
+      }),
+      secondaryHover: atoms({
+        background: {
+          lightMode: "gray-300",
+          darkMode: "gray-600",
+        },
+      }),
+      secondaryActive: atoms({
+        background: {
+          lightMode: "gray-400",
+          darkMode: "gray-700",
+        },
+      }),
+    },
+    color: {
+      primary: atoms({
+        color: {
+          lightMode: "white",
+          darkMode: "gray-900",
+        },
+      }),
+      secondary: atoms({
+        color: {
+          lightMode: "black",
+          darkMode: "gray-900",
+        },
+      }),
     },
     cursor: {
       disabled: atoms({ cursor: "default" }),
@@ -60,6 +92,11 @@ export const button = recipe({
         fontSize: "16px",
         height: "40px",
       },
+    },
+    type: {
+      link: atoms({
+        display: "inline-flex",
+      }),
     },
   },
 });

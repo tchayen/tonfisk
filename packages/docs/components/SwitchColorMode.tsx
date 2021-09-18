@@ -4,7 +4,6 @@ import { mergeProps } from "@react-aria/utils";
 import { atoms } from "ds";
 import { ColorModeContext } from "ds/src/Provider";
 import React, { useContext, useRef } from "react";
-import { useState } from "react";
 
 export function SwitchColorMode(): JSX.Element {
   const { colorMode, setColorMode } = useContext(ColorModeContext);

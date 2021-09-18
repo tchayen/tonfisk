@@ -24,8 +24,8 @@ import { Form, Formik, useField } from "formik";
 import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 
-import { Header1, Header2, Header3, Header4 } from "../components/Header";
-import { header } from "../styles/theme.css";
+import { hoverUnderline } from "../styles/theme.css";
+import { Header1, Header2, Header3, Header4 } from "./Header";
 import {
   MdxTable,
   MdxTableCell,
@@ -251,7 +251,7 @@ function MdxLink({
         href={href}
         className={`${atoms({
           color: "blue-500",
-        })} ${header}`}
+        })} ${hoverUnderline}`}
       >
         {children}
       </a>
@@ -389,6 +389,7 @@ export const components = {
   tr: MdxTableRow,
   td: MdxTableCell,
   th: MdxTableHeaderCell,
+  Link,
   TableExample,
   SelectExample,
   MenuExample,

@@ -19,6 +19,7 @@ type ColorModeContextValues = {
 
 export const ColorModeContext = createContext<ColorModeContextValues>({
   colorMode: null,
+  // eslint-disable-next-line
   setColorMode: () => {},
 });
 
@@ -51,6 +52,7 @@ export function Provider({ children }: Props): JSX.Element {
 
     try {
       localStorage.setItem(themeKey, c);
+      // eslint-disable-next-line
     } catch (error) {}
   };
 

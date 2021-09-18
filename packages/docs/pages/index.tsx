@@ -2,13 +2,14 @@
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 
-import { atoms, Button } from "ds";
-import { useRouter } from "next/dist/client/router";
+import { atoms, ButtonLink } from "ds";
+import Link from "next/link";
 import React, { ReactNode, useEffect } from "react";
 
-import { MdxPre } from "../components/components";
-import * as styles from "../styles/index.css";
+import { MdxPre } from "../components/mdxComponents";
 import { SwitchColorMode } from "../components/SwitchColorMode";
+import * as styles from "../styles/index.css";
+import { hoverUnderline } from "../styles/theme.css";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return (
@@ -40,35 +41,18 @@ function Paragraph({ children }: { children: ReactNode }): JSX.Element {
 }
 
 export default function Home(): JSX.Element {
-  const router = useRouter();
   useEffect(() => {
     Prism.highlightAll();
   }, []);
 
   return (
-    <div
-      className={atoms({
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-      })}
-    >
-      <div
-        className={atoms({
-          position: "fixed",
-          top: "xl",
-          right: "xl",
-        })}
-      >
+    <div className={styles.page}>
+      <div className={styles.content}>
         <SwitchColorMode />
       </div>
       <div>
         <h1
-          className={atoms({
-            fontSize: "64px",
-            marginTop: "2xl",
-          })}
+          className={styles.h1}
           style={{
             background: "-webkit-linear-gradient(180deg, #3b82f6, #1e3a8a)",
             WebkitBackgroundClip: "text",
@@ -86,67 +70,35 @@ export default function Home(): JSX.Element {
           display: "flex",
         })}
       >
-        <div className={atoms({ marginRight: "xl", paddingTop: "xl" })}>
-          <p
-            className={atoms({
-              fontSize: "18px",
-              lineHeight: 2,
-            })}
-          >
-            A React{" "}
-            <strong
-              className={atoms({
-                color: {
-                  lightMode: "black",
-                  darkMode: "gray-200",
-                },
-              })}
-            >
-              design system
-            </strong>{" "}
+        <div className={styles.topParagraph}>
+          <p className={styles.topParagraphElement}>
+            A React <strong className={styles.strong}>design system</strong>{" "}
             with a component library built on top of{" "}
-            <code className={atoms({ fontSize: "16px" })}>react-aria</code>, a
-            wonderful accessibility library, and{" "}
-            <code className={atoms({ fontSize: "16px" })}>vanilla-extract</code>
-            , lightweight and powerful styling solution. sidebar.
+            <code className={styles.code}>react-aria</code>, a wonderful
+            accessibility library, and{" "}
+            <code className={styles.code}>vanilla-extract</code>, lightweight
+            and powerful styling solution. sidebar.
           </p>
-          <pre
-            className={atoms({
-              fontFamily: "monospace",
-              background: "gray-800",
-              borderRadius: "8px",
-              color: "gray-400",
-              padding: "l",
-              display: "inline-flex",
-            })}
-          >
-            <span className={atoms({ color: "gray-600", marginRight: "m" })}>
-              $
-            </span>{" "}
+          <pre className={styles.pre}>
+            <span className={styles.promptChar}>$</span>{" "}
             <div>yarn add TODO_LIB_NAME</div>
           </pre>
-          <div
-            className={atoms({
-              marginTop: "l",
-              display: "flex",
-              gap: "l",
-              alignItems: "center",
-            })}
-          >
-            <Button
-              onPress={() => {
-                router.push("/docs/getting-started");
-              }}
-              size="large"
-            >
-              Get started →
-            </Button>
-            <div>GitHub ↗</div>
+          <div className={styles.linkButtons}>
+            <Link href="/docs/getting-started">
+              <ButtonLink href="/docs/getting-started" size="large">
+                Get started →
+              </ButtonLink>
+            </Link>
+            <Link href="#">
+              <ButtonLink href="#" size="large" variant="secondary">
+                GitHub ↗
+              </ButtonLink>
+            </Link>
           </div>
         </div>
         <div>
           <MdxPre>
-            <pre className={atoms({ margin: "none", outline: "none" })}>
+            <pre className={styles.mdxPre}>
               <code className="language-jsx">
                 {`import { Button } from "TODO_LIB_NAME";
 
@@ -169,16 +121,16 @@ function Homepage() {
         </div>
       </div>
       <div className={styles.features}>
-        <div className={atoms({ flex: 1 })}>
+        <div className={styles.flex1}>
           <Subheader>Full TypeScript support</Subheader>
           <Paragraph>
             Every file is error-free TypeScript code.{" "}
             <code>vanilla-extract</code> is used to provide fully type safe
-            styling system. No dead CSS, no escaping the design system's
+            styling system. No dead CSS, no escaping the design system&apos;s
             principles.
           </Paragraph>
         </div>
-        <div className={atoms({ flex: 1 })}>
+        <div className={styles.flex1}>
           <Subheader>Always accessible</Subheader>
           <Paragraph>
             Accessibility is first class requirement and no component is
@@ -195,7 +147,7 @@ function Homepage() {
             principles.
           </Paragraph>
         </div> */}
-        <div className={atoms({ flex: 1 })}>
+        <div className={styles.flex1}>
           <Subheader>Light and dark</Subheader>
           <Paragraph>
             Each component is designed with both light and dark modes in mind.
@@ -203,23 +155,11 @@ function Homepage() {
           </Paragraph>
         </div>
       </div>
-      <div
-        className={atoms({
-          marginBottom: "2xl",
-          marginTop: "2xl",
-          fontSize: "16px",
-        })}
-      >
+      <div className={styles.footerText}>
         Created by{" "}
         <a
           href="https:/twitter.com/tchayen"
-          className={atoms({
-            fontWeight: "bold",
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-          })}
+          className={`${styles.footerLink} ${hoverUnderline}`}
         >
           @tchayen
         </a>{" "}

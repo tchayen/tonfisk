@@ -7,9 +7,6 @@ Potential reference for customizing MDX Bundler setup:
 
 - [ ] Make homepage responsive.
 - [ ] Make doc pages and navigation responsive.
-- [ ] Secondary button (for GitHub on homepage).
-- [ ] Link buttons (for 'Getting started' and 'GitHub' on homepage).
-- [ ] Link underline on homepage to Twitter.
 - [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
 - [ ] Add select and checkbox to Formik guide.
@@ -137,3 +134,6 @@ Potential reference for customizing MDX Bundler setup:
 - [x] Gradient text on the landing page.
 - [x] Fix outlines on homepage.
 - [x] Expose API for switching color modes.
+- [x] Secondary button (for GitHub on homepage).
+- [x] Link buttons (for 'Getting started' and 'GitHub' on homepage).
+- [x] Link underline on homepage to Twitter.
