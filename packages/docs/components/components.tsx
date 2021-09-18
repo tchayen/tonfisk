@@ -1,4 +1,4 @@
-import "./theme.css";
+import "../styles/theme.css";
 
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
@@ -25,6 +25,7 @@ import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 
 import { Header1, Header2, Header3, Header4 } from "../components/Header";
+import { header } from "../styles/theme.css";
 import {
   MdxTable,
   MdxTableCell,
@@ -32,7 +33,6 @@ import {
   MdxTableHeaderRow,
   MdxTableRow,
 } from "./MdxTable";
-import { header } from "./theme.css";
 
 const SelectExample = (): JSX.Element => {
   const items = [
@@ -306,7 +306,7 @@ function MdxLi({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-function MdxPre({ children }: { children: ReactNode }): JSX.Element {
+export function MdxPre({ children }: { children: ReactNode }): JSX.Element {
   const ref = useRef<HTMLPreElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 

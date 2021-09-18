@@ -161,7 +161,7 @@ export function Layout({
           GitHub ↗
         </ListItem>
         <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
-        <ListItem href="#">Discord ↗</ListItem>
+        {/* <ListItem href="#">Discord ↗</ListItem> */}
       </div>
       <div
         className={atoms({

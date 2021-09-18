@@ -3,7 +3,7 @@ import { globalStyle } from "@vanilla-extract/css";
 import colors from "ds/src/colors";
 
 globalStyle("code", {
-  fontSize: "14px",
+  fontSize: "15px",
   fontFamily: "Menlo, Consolas, Liberation Mono, monospace",
   padding: 4,
   borderRadius: 4,
@@ -16,10 +16,17 @@ globalStyle("code", {
 });
 
 globalStyle("pre code", {
-  fontSize: "14px",
+  fontSize: "15px",
+  fontFamily: "Menlo, Consolas, Liberation Mono, monospace",
+  lineHeight: 1.5,
   padding: 0,
+  margin: 0,
   borderRadius: 0,
   background: "none",
+});
+
+globalStyle("pre", {
+  margin: 0,
 });
 
 // , .token.punctuation, .token.class-name, .token.method.function.property-access, .token.attr-value, .token.maybe-class-name, .token.arrow.operator

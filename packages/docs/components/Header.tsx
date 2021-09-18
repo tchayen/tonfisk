@@ -1,7 +1,7 @@
 import { atoms } from "ds";
 
+import { header } from "../styles/theme.css";
 import { toKebabCase } from "../utils/string";
-import { header } from "./theme.css";
 
 type Props = {
   children: string;
@@ -11,7 +11,6 @@ type Props = {
 
 export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
   const component = ({ children, ...props }: Props) => {
-    console.log(children);
     return (
       <div
         className={atoms({

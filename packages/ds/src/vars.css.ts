@@ -83,14 +83,17 @@ export const vars = createGlobalTheme(":root", {
   },
   fontFamily: {
     body: 'Inter var, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
+    monospace: "Menlo, Consolas, Liberation Mono, monospace",
   },
   fontSize: {
     "12px": "12px",
     "14px": "14px",
     "16px": "16px",
     "18px": "18px",
+    "20px": "20px",
     "24px": "24px",
     "32px": "32px",
+    "64px": "64px",
   },
   fontWeight: {
     body: "400",

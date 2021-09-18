@@ -1,5 +1,5 @@
 import { globalStyle } from "@vanilla-extract/css";
-import { createAtomicStyles, createAtomsFn } from "@vanilla-extract/sprinkles";
+import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
 import colors from "./colors";
 import { vars } from "./vars.css";
@@ -21,7 +21,7 @@ globalStyle("::selection", {
     "(prefers-color-scheme: dark)": {},
   },
   background: colors.blue[500],
-  color: colors.white,
+  color: colors.black,
 });
 
 globalStyle("::placeholder", {
@@ -90,7 +90,7 @@ globalStyle("h4", {
   margin: 0,
 });
 
-const responsiveStyles = createAtomicStyles({
+const responsiveStyles = defineProperties({
   conditions: {
     lightMode: {},
     darkMode: { "@media": "(prefers-color-scheme: dark)" },
@@ -158,7 +158,7 @@ const responsiveStyles = createAtomicStyles({
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
     fontFeatureSettings: vars.fontFeatureSettings,
-    lineHeight: [1, 1.5],
+    lineHeight: [1, 1.5, 1.75, 2],
     textAlign: ["center", "left", "right"],
     boxShadow: vars.boxShadow,
     borderCollapse: ["separate", "collapse"],
@@ -177,4 +177,4 @@ const responsiveStyles = createAtomicStyles({
   },
 });
 
-export const atoms = createAtomsFn(responsiveStyles);
+export const atoms = createSprinkles(responsiveStyles);

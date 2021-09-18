@@ -50,6 +50,8 @@ type Props = {
 /**
  * Input component.
  *
+ * For usage with Formik check [Formik example](/formik-example).
+ *
  * ## Usage
  *
  * ```jsx

@@ -25,12 +25,6 @@ Set up `vanilla-extract` according to your bundler settings: [guide](https://van
 
 ## Usage
 
-For available components check _Components_ section of the sidebar.
-
-If you are using Formik, you might be interested in [Formik example](/formik-example).
-
-If you are looking for inspiration, make sure to check [Example](/example) which features advanced usage of popovers and modals.
-
 Simple snippet showing how to get started:
 
 ```jsx
@@ -44,3 +38,43 @@ export default function App() {
   );
 }
 ```
+
+## Flow of writing
+
+Most of the code can be composed using ready components. But often there will be situations custom enough that it won't make sense to have ready-made components in the design system. That's why TODO_LIB_NAME leverages `vanilla-extract` and fully type safe styling.
+
+Example code can look like this:
+
+```jsx
+<div
+  className={atoms({
+    display: "flex",
+    gap: "m",
+    padding: "m",
+    boxShadow: {
+      lightMode: "regularBorder",
+      darkMode: "darkBorder",
+    },
+    borderRadius: "8px",
+  })}
+>
+  <p>Hello there.</p>
+  <Button
+    onPress={() => {
+      console.log("Hej!");
+    }}
+  >
+    Press me
+  </Button>
+</div>
+```
+
+To learn more, check out [documentation](https://vanilla-extract.style/documentation) of `vanilla-extract`.
+
+## Diving deeper
+
+For available components check _Components_ section of the sidebar.
+
+If you are using Formik, you might be interested in [Formik example](/formik-example).
+
+If you are looking for inspiration, make sure to check [Example](/example) which features advanced usage of popovers and modals.

@@ -49,14 +49,7 @@ type PropsSpaghetti = {
 
 const SettingsPopover = ({
   isDisabled,
-  slippageTolerance,
-  setSlippageTolerance,
-  transactionDeadline,
-  setTransactionDeadline,
-  expertMode,
-  setExpertMode,
-  disableMultihops,
-  setDisableMultihops,
+  ...props
 }: PropsSpaghetti & { isDisabled?: boolean }) => {
   const state = useOverlayTriggerState({});
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -86,7 +79,7 @@ const SettingsPopover = ({
   const { buttonProps } = useButton(
     {
       onPress: () => state.open(),
-      isDisabled,
+      isDisabled: isDisabled,
     },
     triggerRef
   );
@@ -129,16 +122,7 @@ const SettingsPopover = ({
             isOpen={state.isOpen}
             onClose={state.close}
           >
-            <Settings
-              slippageTolerance={slippageTolerance}
-              setSlippageTolerance={setSlippageTolerance}
-              transactionDeadline={transactionDeadline}
-              setTransactionDeadline={setTransactionDeadline}
-              expertMode={expertMode}
-              setExpertMode={setExpertMode}
-              disableMultihops={disableMultihops}
-              setDisableMultihops={setDisableMultihops}
-            />
+            <Settings {...props} />
           </Popover>
         </OverlayContainer>
       )}

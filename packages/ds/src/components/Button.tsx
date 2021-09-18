@@ -37,10 +37,10 @@ type Props = {
  * ```jsx
  * import { Button } from "TODO_LIB_NAME";
  *
- * function Button() {
+ * function ButtonExample() {
  *   return (
  *     <Button onPress={() => console.log("I got pressed!")}>
- *       Press me
+ *       Press me →
  *     </Button>
  *   );
  * ```
