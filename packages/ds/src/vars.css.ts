@@ -2,6 +2,8 @@ import { createGlobalTheme } from "@vanilla-extract/css";
 
 import colors from "./colors";
 
+export const darkMode = "dark";
+
 export const vars = createGlobalTheme(":root", {
   space: {
     0: "0",
@@ -13,6 +15,7 @@ export const vars = createGlobalTheme(":root", {
     xl: "32px",
     "2xl": "64px",
     "3xl": "128px",
+    "4xl": "256px",
   },
   size: {
     auto: "auto",
@@ -29,12 +32,14 @@ export const vars = createGlobalTheme(":root", {
     "40px": "40px",
     "64px": "64px",
     "128px": "128px",
+    "256px": "256px",
     "100%": "100%",
     "24ch": "24ch",
     "36ch": "36ch",
     "48ch": "48ch",
     "64ch": "64ch",
     "96ch": "96ch",
+    "106ch": "106ch",
     "100vh": "100vh",
     "100vw": "100vw",
   },

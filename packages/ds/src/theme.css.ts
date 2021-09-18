@@ -1,14 +1,13 @@
+import "./globals.css";
+
 import { createSprinkles, defineProperties } from "@vanilla-extract/sprinkles";
 
-import { vars } from "./vars.css";
-
-export const darkMode = "dark";
+import { darkMode, vars } from "./vars.css";
 
 const responsiveProperties = defineProperties({
   conditions: {
-    mobile: {},
-    tablet: { "@media": "screen and (min-width: 768px)" },
     desktop: { "@media": "screen and (min-width: 1000px)" },
+    mobile: {},
   },
   defaultCondition: "mobile",
   properties: {
@@ -32,6 +31,27 @@ const responsiveProperties = defineProperties({
     height: vars.size,
     minHeight: vars.size,
     maxHeight: vars.size,
+    position: ["fixed", "absolute", "relative", "sticky"],
+    alignItems: ["stretch", "flex-start", "center", "flex-end"],
+    justifyContent: [
+      "stretch",
+      "flex-start",
+      "center",
+      "flex-end",
+      "space-between",
+    ],
+    flexDirection: ["row", "column"],
+    textAlign: ["center", "left", "right"],
+    display: [
+      "none",
+      "block",
+      "flex",
+      "grid",
+      "inline-block",
+      "inline",
+      "inline-flex",
+    ],
+    visibility: ["hidden", "visible"],
   },
   shorthands: {
     padding: ["paddingTop", "paddingBottom", "paddingLeft", "paddingRight"],
@@ -65,7 +85,6 @@ const colorProperties = defineProperties({
 const fontProperties = defineProperties({
   properties: {
     textDecoration: ["none", "underline"],
-    textAlign: ["center", "left", "right"],
     fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
     fontWeight: vars.fontWeight,
@@ -79,31 +98,11 @@ const otherProperties = defineProperties({
     borderRadius: vars.borderRadius,
     cursor: ["default", "pointer"],
     opacity: [0.5, 1],
-    position: ["fixed", "absolute", "relative", "sticky"],
     overflowY: ["auto", "hidden", "scroll"],
     zIndex: [1, 10, 100, 1000, 10000, 100000],
-    visibility: ["hidden", "visible"],
-    flexDirection: ["row", "column"],
     flex: [1],
-    alignItems: ["stretch", "flex-start", "center", "flex-end"],
-    justifyContent: [
-      "stretch",
-      "flex-start",
-      "center",
-      "flex-end",
-      "space-between",
-    ],
     listStyle: ["none"],
     overflow: ["auto", "hidden"],
-    display: [
-      "none",
-      "block",
-      "flex",
-      "grid",
-      "inline-block",
-      "inline",
-      "inline-flex",
-    ],
     WebkitAppearance: vars.WebkitAppearance,
     borderCollapse: ["separate", "collapse"],
     borderSpacing: [0],

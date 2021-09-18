@@ -1,7 +1,7 @@
 import { style } from "@vanilla-extract/css";
 import { globalStyle } from "@vanilla-extract/css";
 import colors from "ds/src/colors";
-import { darkMode } from "ds/src/theme.css";
+import { darkMode } from "ds/src/vars.css";
 
 globalStyle(`html.${darkMode} code`, {
   background: colors.coolGray[800],

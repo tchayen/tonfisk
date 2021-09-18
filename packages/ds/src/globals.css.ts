@@ -1,7 +1,11 @@
 import { globalStyle } from "@vanilla-extract/css";
 
 import colors from "./colors";
-import { darkMode } from "./theme.css";
+import { darkMode } from "./vars.css";
+
+globalStyle("body, body *", {
+  boxSizing: "border-box",
+});
 
 globalStyle(`.${darkMode}`, {
   background: colors.coolGray[900],

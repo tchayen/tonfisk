@@ -64,7 +64,10 @@ export default function Home(): JSX.Element {
       </div>
       <div
         className={atoms({
-          width: "96ch",
+          width: {
+            desktop: "96ch",
+            mobile: "100vw",
+          },
           marginBottom: "2xl",
           marginTop: "2xl",
           display: "flex",

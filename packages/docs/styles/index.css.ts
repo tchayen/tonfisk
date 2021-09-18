@@ -1,4 +1,3 @@
-import { style } from "@vanilla-extract/css";
 import { atoms } from "ds/src/theme.css";
 
 export const page = atoms({
@@ -66,20 +65,15 @@ export const mdxPre = atoms({
   outline: "none",
 });
 
-export const features = style([
-  atoms({
-    display: "flex",
-    gap: "l",
-    width: "96ch",
-  }),
-  style({
-    "@media": {
-      "screen and (max-width: 96ch)": {
-        flexDirection: "column",
-      },
-    },
-  }),
-]);
+export const features = atoms({
+  display: "flex",
+  gap: "l",
+  width: "96ch",
+  flexDirection: {
+    desktop: "row",
+    mobile: "column",
+  },
+});
 
 export const flex1 = atoms({ flex: 1 });
 

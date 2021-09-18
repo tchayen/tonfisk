@@ -9,7 +9,7 @@ export function SwitchColorMode(): JSX.Element {
   const { colorMode, setColorMode } = useContext(ColorModeContext);
 
   const ref = useRef<HTMLButtonElement>(null);
-  const { buttonProps, isPressed } = useButton(
+  const { buttonProps } = useButton(
     {
       onPress: () => {
         setColorMode(colorMode === "dark" ? "light" : "dark");

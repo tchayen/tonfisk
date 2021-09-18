@@ -129,19 +129,29 @@ export function Layout({
     <div
       style={{
         margin: "0 auto",
-        width: "106ch",
+        // width: "106ch",
       }}
+      className={atoms({
+        width: {
+          desktop: "106ch",
+          mobile: "100vw",
+        },
+      })}
     >
       <div
         className={atoms({
           position: "fixed",
-          width: "24ch",
+          width: "256px",
           height: "100vh",
           top: 0,
           bottom: 0,
           paddingTop: "xl",
           paddingBottom: "xl",
           overflowY: "scroll",
+          visibility: {
+            desktop: "visible",
+            mobile: "hidden",
+          },
         })}
       >
         <SwitchColorMode />
@@ -171,10 +181,12 @@ export function Layout({
           paddingTop: "none",
           paddingRight: "none",
           marginRight: "none",
+          marginLeft: {
+            desktop: "4xl",
+            mobile: "none",
+          },
         })}
-        style={{
-          marginLeft: "24ch",
-        }}
+        style={{}}
       >
         {children}
       </div>
