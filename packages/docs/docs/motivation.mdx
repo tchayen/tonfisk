@@ -31,6 +31,36 @@ Most modern design system don't feature, for example, a custom select dropdown. 
 
 Small, modular and customizable design systems are not design systems but component libraries (as discussed in [What is a design system](#what-is-a-design-system)).
 
+### Lack of public design files
+
+Due to often dynamic nature of design system development and not always perfect communication between developers and designers, it is very hard for teams to publish their design files (Sketch, Figma) in state that they will be up-to-date and useful.
+
+## Solutions
+
+### Standing on the shoulders of giants
+
+Modern development ecosystem is so big and complex that I wouldn't possibly hope to solve all problems of creating cross-platform, responsive and accessible websites.
+
+Fortunately, solutions for accessibility problems exist, such as [`react-aria`](https://react-spectrum.adobe.com/react-aria) and [`reach-ui`](https://reach.tech/) (using the former here).
+
+Styling also proved to be a complex problem and ecosystem of CSS-in-JS has been growing non-stop for the past couple of years. I settled for using [`vanilla-extract`](https://vanilla-extract.style/), very fresh package aiming to provide zero-runtime, fully typed, stylesheets.
+
+### No brand associacion
+
+I don't mean this paragraph seriously, but Tonfisk is not a well-recognized product or brand as of late 2021 and risk of it becoming one is negligible.
+
+### No compromises
+
+If there is a part of UI styling that can be reliably overriden, I will do so. As long as underlying libraries provide a convenient tooling (see: [Standing on the shoulders of giants](standing-on-the-shoulders-of-giants)), I want to replace any platform specific select dropdown, tooltip etc. with unified elements.
+
+### Design system with all of the consequences
+
+At the moment I don't think React ecosystem needs another generic component library. What is missing, on the other hand, is in my opinion fully featured design systems that are directed towards guiding users, providing examples and teaching.
+
+### Figma files
+
+Even though Tonfisk aims to be a set of composable elements that speed up creating of websites, speed and comfort of writing React code won't beat fully featured design tools. Therefore one of the key goals is to provide up-to-date design file from Figma.
+
 ## Why the name?
 
-My friend suggested to use some Swedish word for that. We started with snail, but _snigel_ didn't feel quite right so I settled on tuna.
+My friend suggested to use some Swedish word for that (as I currently live in Sweden). We started with snail, but _snigel_ didn't feel quite right so I settled on tuna.

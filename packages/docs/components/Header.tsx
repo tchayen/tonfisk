@@ -16,6 +16,8 @@ export const Header = (
       throw new Error("Header must have a string child as of now.");
     }
 
+    const slug = toKebabCase(props.children.replace(/\s+/g, "-") || "");
+
     return (
       <div
         className={atoms({
@@ -23,12 +25,9 @@ export const Header = (
           marginBottom: "l",
         })}
       >
-        <a
-          className={hoverUnderline}
-          href={`#${toKebabCase(props.children || "")}`}
-        >
+        <a className={hoverUnderline} href={`#${slug}`}>
           <HeaderNth
-            id={toKebabCase(props.children)}
+            id={slug}
             className={atoms({
               display: "inline",
               color: {

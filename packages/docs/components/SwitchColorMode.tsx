@@ -58,7 +58,7 @@ export function SwitchColorMode(): JSX.Element {
             padding: "m",
             margin: "m",
             lineHeight: 1,
-            textShadow: colorMode ? "dark" : "light",
+            textShadow: colorMode === "dark" ? "dark" : "light",
             boxShadow: isFocusVisible ? "outline" : "none",
           })}
           {...mergeProps(buttonProps, focusProps)}
