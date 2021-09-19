@@ -7,15 +7,34 @@ Potential reference for customizing MDX Bundler setup:
 
 - [ ] Make homepage responsive.
 - [ ] Make doc pages and navigation responsive.
-- [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
-- [ ] Add select and checkbox to Formik guide.
-- [ ] Add link to GitHub source of example in example.
+- [ ] Figure out how to deploy docs (as it is monorepo and `../ds` does not exist).
+- [ ] Center text paragraph in relation to code block.
 
+## Decisions
+
+- [ ] Animate fade in/out of modals:
+      https://formium.io/ - animate transform and opacity
+      https://www.framer.com/docs/animate-presence/
+      https://gist.github.com/igoldny/c40d36c8863d525a581391b76371c086
 - [ ] Consider changing default sizes of elements from 32 to 40px.
+- [ ] Change the general idea about outlines. Especially on gray buttons they should go inside component as 2px `blue-500` instead of 3px opacity outside.
 
-### Example improvements
+## Nice to have
 
+- [ ] Add link to GitHub source of example in example.
+- [ ] Add select and checkbox to Formik guide.
+- [ ] Ability to remove choice from select.
+- [ ] API Cheat Sheet inspired by baseweb https://baseweb.design/cheat-sheet/.
+- [ ] Button variant (link).
+- [ ] Create wrapper next+babel plugins with `vanilla-extract`.
+- [ ] `(?)` button? for form labels that show tooltip.
+- [ ] Interactive props in examples https://baseweb.design/components/pin-code/.
+- [ ] Review styles to find out what is worth reusing.
+- [ ] Releases tab as in Braid https://seek-oss.github.io/braid-design-system/components/Box/releases
+- [ ] Search in docs.
+- [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
+- [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).
 - [ ] Refactor example a lot, share code, get rid of props spaghetti, split main form into two components.
 
 ## Bugs
@@ -24,15 +43,7 @@ Potential reference for customizing MDX Bundler setup:
 - [ ] Case of custom input like in example: how to provide label to the input.
 - [ ] When button is focused but becomes disabled (pagination) it remains with outline and has it until activated and visited again.
 
-## Next version
-
-- [ ] API Cheat Sheet inspired by baseweb https://baseweb.design/cheat-sheet/.
-- [ ] Review styles to find out what is worth reusing.
-- [ ] Change the general idea about outlines. Especially on gray buttons they should go inside component as 2px `blue-500` instead of 3px opacity outside.
-- [ ] `(?)` button? for form labels that show tooltip.
-- [ ] Create wrapper next+babel plugins with `vanilla-extract`.
-- [ ] Button variants (link).
-- [ ] Ability to remove choice from select.
+## New components
 
 - [ ] Accordion
 - [ ] Radio
@@ -46,20 +57,6 @@ Potential reference for customizing MDX Bundler setup:
 - [ ] TabList
 - [ ] Date picker, Time picker, Timezone picker
 - [ ] Side navigation [Baseweb/side-nav](https://baseweb.design/components/side-nav)
-
-## Nice to have
-
-- [ ] Animate fade in/out of modals:
-      https://formium.io/ - animate transform and opacity
-      https://www.framer.com/docs/animate-presence/
-      https://gist.github.com/igoldny/c40d36c8863d525a581391b76371c086
-
-- [ ] Releases tab as in Braid https://seek-oss.github.io/braid-design-system/components/Box/releases
-- [ ] Borderless text input.
-- [ ] Search in docs.
-- [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
-- [ ] Interactive props in examples https://baseweb.design/components/pin-code/.
-- [ ] Fully configurable tooltips: system for deciding where tooltip should appear in relation to wrapped content (`bottom-center`, `bottom-left` etc.) and same mechanism for deciding on the arrow placement.
 
 ## Done
 

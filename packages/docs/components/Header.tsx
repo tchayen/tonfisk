@@ -5,12 +5,12 @@ import { toKebabCase } from "../utils/string";
 
 type Props = {
   children: string;
-  // TODO: TS
-  props?: any;
-};
+} & JSX.IntrinsicAttributes;
 
-export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
-  const component = ({ children, ...props }: Props) => {
+export const Header = (
+  HeaderNth: keyof JSX.IntrinsicElements
+): ((props: Props) => JSX.Element) => {
+  const component = (props: Props) => {
     return (
       <div
         className={atoms({
@@ -18,10 +18,12 @@ export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
           marginBottom: "l",
         })}
       >
-        <a className={hoverUnderline} href={`#${toKebabCase(children || "")}`}>
-          {/* TODO: TS */}
+        <a
+          className={hoverUnderline}
+          href={`#${toKebabCase(props.children || "")}`}
+        >
           <HeaderNth
-            id={toKebabCase(children)}
+            id={toKebabCase(props.children)}
             className={atoms({
               display: "inline",
               color: {
@@ -30,9 +32,7 @@ export const Header = (HeaderNth: string): ((props: Props) => JSX.Element) => {
               },
             })}
             {...props}
-          >
-            {children}
-          </HeaderNth>
+          />
         </a>
       </div>
     );

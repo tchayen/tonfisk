@@ -8,6 +8,7 @@ import { mergeProps } from "@react-aria/utils";
 import { useMenuTriggerState } from "@react-stately/menu";
 import { useTreeState } from "@react-stately/tree";
 import { TreeState } from "@react-stately/tree";
+import { AriaButtonProps } from "@react-types/button/src/index.d";
 import { MenuTriggerProps } from "@react-types/menu";
 import { FocusStrategy } from "@react-types/shared";
 import { CollectionChildren } from "@react-types/shared/src/collections";
@@ -147,8 +148,7 @@ type Props = {
 
 type MenuButton_Props = {
   isDisabled?: boolean;
-  // TODO: TS
-  menuTriggerProps?: any;
+  menuTriggerProps?: AriaButtonProps<"button">;
   children: string;
   onPress?: () => void;
 };

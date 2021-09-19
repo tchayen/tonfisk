@@ -2,7 +2,13 @@ import { useTextField } from "@react-aria/textfield";
 import { atoms } from "ds";
 import React, { useRef } from "react";
 
-export function BorderlessInput(props): JSX.Element {
+type Props = {
+  isDisabled?: boolean;
+  autoFocus?: boolean;
+  placeholder: string;
+};
+
+export function BorderlessInput(props: Props): JSX.Element {
   const ref = useRef<HTMLInputElement>(null);
   const { inputProps } = useTextField(props, ref);
 

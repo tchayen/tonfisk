@@ -7,6 +7,7 @@ import {
 } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
+import { AriaButtonProps } from "@react-types/button/src/index.d";
 import React, { Fragment, ReactNode, useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
@@ -27,8 +28,7 @@ function PageButton(props: {
   isSelected?: boolean;
   triggerRef?: React.RefObject<HTMLElement>;
   isDisabled?: boolean;
-  // TODO: TS
-  overrideButtonProps?: any;
+  overrideButtonProps?: AriaButtonProps<"button">;
 }) {
   const ref = props.triggerRef || useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
@@ -125,7 +125,9 @@ const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
     <>
       <PageButton
         triggerRef={triggerRef}
-        overrideButtonProps={mergeProps(triggerProps, buttonProps)}
+        overrideButtonProps={
+          mergeProps(triggerProps, buttonProps) as AriaButtonProps<"button">
+        }
       >
         ...
       </PageButton>

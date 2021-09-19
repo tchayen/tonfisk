@@ -116,8 +116,9 @@ const TableExample = (): JSX.Element => {
         Selected:{" "}
         <code>
           {JSON.stringify(
-            // TODO: TS
-            typeof selectedKeys === "string" ? selectedKeys : [...selectedKeys],
+            typeof selectedKeys === "string"
+              ? selectedKeys
+              : Array.from(selectedKeys.values()),
             null,
             2
           )}
@@ -135,8 +136,13 @@ const TableExample = (): JSX.Element => {
           {(column) => <Column>{column.name}</Column>}
         </TableHeader>
         <TableBody items={rows}>
-          {/* TODO: TS */}
-          {(item) => <Row>{(columnKey) => <Cell>{item[columnKey]}</Cell>}</Row>}
+          {(item) => (
+            <Row>
+              {(columnKey) => (
+                <Cell>{item[columnKey as keyof typeof rows[number]]}</Cell>
+              )}
+            </Row>
+          )}
         </TableBody>
       </Table>
     </div>
