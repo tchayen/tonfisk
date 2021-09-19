@@ -34,7 +34,7 @@ const initialValue =
  *  ## Usage
  *
  * ```jsx
- * import { Provider } from "TODO_LIB_NAME";
+ * import { Provider } from "tonfisk";
  *
  * <Provider>
  *   // Your app here.

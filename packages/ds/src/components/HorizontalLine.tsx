@@ -8,7 +8,7 @@ import { atoms } from "../theme.css";
  *  ## Usage
  *
  * ```jsx
- * import { HorizontalLine } from "TODO_LIB_NAME";
+ * import { HorizontalLine } from "tonfisk";
  *
  * function HorizontalLineExample() {
  *   return <HorizontalLine />;

@@ -334,7 +334,7 @@ type Props = {
  *   Row,
  *   Column,
  *   Cell,
- * } from "TODO_LIB_NAME";
+ * } from "tonfisk";
  *
  *
  * function TableExample() {

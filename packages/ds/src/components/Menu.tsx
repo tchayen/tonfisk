@@ -192,7 +192,7 @@ export const MenuButtonComponent = forwardRef(MenuButton_);
  * ## Usage
  *
  * ```jsx
- * import { MenuButton, Item } from "TODO_LIB_NAME";
+ * import { MenuButton, Item } from "tonfisk";
  *
  * function MenuExample() {
  *   return ()

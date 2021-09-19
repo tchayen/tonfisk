@@ -13,7 +13,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Tag } from "TODO_LIB_NAME";
+ * import { Tag } from "tonfisk";
  *
  * function TagExample() {
  *   return <Tag>Tag</Tag>;

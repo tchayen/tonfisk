@@ -245,7 +245,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Pagination } from "TODO_LIB_NAME";
+ * import { Pagination } from "tonfisk";
  *
  * function PaginationExample() {
  *   return <Pagination pageCount={10} visiblePages={7} />;

@@ -29,7 +29,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Pill } from "TODO_LIB_NAME";
+ * import { Pill } from "tonfisk";
  *
  * function PillExample() {
  *   return <Pill>Pill</Pill>;

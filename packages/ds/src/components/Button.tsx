@@ -95,7 +95,7 @@ export const ButtonLink = React.forwardRef(ButtonLink_);
  * ## Usage
  *
  * ```jsx
- * import { Button } from "TODO_LIB_NAME";
+ * import { Button } from "tonfisk";
  *
  * function ButtonExample() {
  *   return (
@@ -123,7 +123,7 @@ export const ButtonLink = React.forwardRef(ButtonLink_);
  * ## Usage
  *
  * ```jsx
- * import { Button } from "TODO_LIB_NAME";
+ * import { Button } from "tonfisk";
  *
  * function ButtonLinkExample() {
  *   return (

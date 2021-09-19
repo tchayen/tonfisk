@@ -7,7 +7,7 @@ import { background, main } from "./Spinner.css";
  * ## Usage
  *
  * ```jsx
- * import { Spinner } from "TODO_LIB_NAME";
+ * import { Spinner } from "tonfisk";
  *
  * function SpinnerExample() {
  *   return <Spinner />;

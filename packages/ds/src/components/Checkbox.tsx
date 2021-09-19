@@ -29,7 +29,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Checkbox } from "TODO_LIB_NAME";
+ * import { Checkbox } from "tonfisk";
  *
  * function CheckboxExample() {
  *   return <Checkbox>Label</Checkbox>;

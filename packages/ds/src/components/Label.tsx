@@ -19,7 +19,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Label } from "TODO_LIB_NAME";
+ * import { Label } from "tonfisk";
  *
  * function LabelExample() {
  *   return <Label>Text</Label>;

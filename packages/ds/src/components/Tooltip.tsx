@@ -39,7 +39,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Tooltip } from "TODO_LIB_NAME";
+ * import { Tooltip } from "tonfisk";
  *
  * function TooltipExample() {
  *   return (

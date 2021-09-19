@@ -1,9 +1,9 @@
 // The following two imports must be kept in this order:
+import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 
 import { atoms, ButtonLink } from "ds";
 import Link from "next/link";
-import Prism from "prismjs";
 import React, { ReactNode, useEffect } from "react";
 
 import { Logo } from "../components/Logo";
@@ -65,7 +65,7 @@ export default function Home(): JSX.Element {
           </p>
           <pre className={styles.pre}>
             <span className={styles.promptChar}>$</span>{" "}
-            <div>yarn add TODO_LIB_NAME</div>
+            <div>yarn add tonfisk</div>
           </pre>
           <div className={styles.linkButtons}>
             <Link href="/docs/getting-started">
@@ -84,7 +84,7 @@ export default function Home(): JSX.Element {
           <MdxPre>
             <pre className={styles.mdxPre}>
               <code className="language-jsx">
-                {`import { Button } from "TODO_LIB_NAME";
+                {`import { Button } from "tonfisk";
 
 function Homepage() {
   const onPress = () => console.log("I got pressed!")

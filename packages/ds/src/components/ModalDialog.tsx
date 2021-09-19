@@ -57,7 +57,7 @@ type Props = {
  * ```jsx
  * import { OverlayContainer } from "@react-aria/overlays";
  * import { useOverlayTriggerState } from "@react-stately/overlays";
- * import { Button, HorizontalLine, ModalDialog } from "TODO_LIB_NAME";
+ * import { Button, HorizontalLine, ModalDialog } from "tonfisk";
  *
  * export default function ModalExample() {
  *   const state = useOverlayTriggerState({});
