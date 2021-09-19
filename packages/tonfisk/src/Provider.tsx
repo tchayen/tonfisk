@@ -34,14 +34,14 @@ const initialValue =
  *  ## Usage
  *
  * ```jsx
- * import { Provider } from "tonfisk";
+ * import { TonfiskProvider } from "tonfisk";
  *
- * <Provider>
+ * <TonfiskProvider>
  *   // Your app here.
- * </Provider>
+ * </TonfiskProvider>
  * ```
  */
-export function Provider({ children }: Props): JSX.Element {
+export function TonfiskProvider({ children }: Props): JSX.Element {
   const [colorMode, setColorMode] = useState<ColorMode>(initialValue);
 
   const setter = (c: ColorMode) => {

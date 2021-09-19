@@ -1,9 +1,9 @@
 import "../styles/globals.css";
 import "../styles/theme.css";
 
-import { Provider } from "tonfisk";
 import type { AppProps } from "next/app";
 import { Head } from "next/document";
+import { TonfiskProvider } from "tonfisk";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -12,9 +12,9 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <title>tonfisk 🐟</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head> */}
-      <Provider>
+      <TonfiskProvider>
         <Component {...pageProps} />
-      </Provider>
+      </TonfiskProvider>
     </>
   );
 }

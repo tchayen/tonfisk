@@ -1,5 +1,5 @@
-import { atoms } from "tonfisk";
 import { ReactNode } from "react";
+import { atoms } from "tonfisk";
 
 import { hoverUnderline } from "../styles/theme.css";
 import { toKebabCase } from "../utils/string";

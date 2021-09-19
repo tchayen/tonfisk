@@ -1,5 +1,5 @@
-import { atoms } from "tonfisk";
 import { ReactNode } from "react";
+import { atoms } from "tonfisk";
 
 export function MdxTable({ children }: { children?: ReactNode }): JSX.Element {
   return (
