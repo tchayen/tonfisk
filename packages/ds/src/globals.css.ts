@@ -18,10 +18,10 @@ globalStyle("html", {
   color: colors.coolGray[600],
 });
 
-globalStyle("::selection", {
-  background: colors.blue[500],
-  color: colors.black,
-});
+// globalStyle("::selection", {
+//   background: colors.blue[500],
+//   color: colors.black,
+// });
 
 globalStyle(`${darkMode} ::placeholder`, {
   color: colors.coolGray[500],

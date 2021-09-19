@@ -14,14 +14,13 @@ export const content = atoms({
 });
 
 export const h1 = atoms({
-  fontSize: "64px",
   marginTop: "2xl",
 });
 
 export const mainBanner = atoms({
   width: {
     desktop: "96ch",
-    mobile: "100vw",
+    mobile: "100%",
   },
   marginBottom: "2xl",
   marginTop: "2xl",

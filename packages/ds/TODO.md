@@ -5,7 +5,7 @@ Potential reference for customizing MDX Bundler setup:
 
 ## Must have
 
-- [ ] If user's OS prefers dark mode then it will start that way properly but color switch button will show sun first.
+- [ ] Probably something is wrong with menu example (label is missing).
 - [ ] Make homepage responsive.
 - [ ] Make doc pages and navigation responsive.
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
@@ -136,3 +136,5 @@ Potential reference for customizing MDX Bundler setup:
 - [x] 0 TypeScript errors.
 - [x] Figure out how to deploy docs (as it is monorepo and `../ds` does not exist).
 - [x] Center text paragraph in relation to code block.
+- [x] Deploy to vercel
+- [x] If user's OS prefers dark mode then it will start that way properly but color switch button will show sun first.

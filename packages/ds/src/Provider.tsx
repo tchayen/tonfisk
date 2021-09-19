@@ -73,17 +73,15 @@ export function Provider({ children }: Props): JSX.Element {
   }, []);
 
   return (
-    <div>
-      <SSRProvider>
-        <ColorModeContext.Provider
-          value={{
-            colorMode,
-            setColorMode: setter,
-          }}
-        >
-          <OverlayProvider>{children}</OverlayProvider>
-        </ColorModeContext.Provider>
-      </SSRProvider>
-    </div>
+    <SSRProvider>
+      <ColorModeContext.Provider
+        value={{
+          colorMode,
+          setColorMode: setter,
+        }}
+      >
+        <OverlayProvider>{children}</OverlayProvider>
+      </ColorModeContext.Provider>
+    </SSRProvider>
   );
 }

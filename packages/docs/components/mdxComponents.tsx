@@ -103,7 +103,7 @@ const TableExample = (): JSX.Element => {
   ];
 
   return (
-    <div>
+    <>
       <div
         className={atoms({
           color: {
@@ -145,7 +145,7 @@ const TableExample = (): JSX.Element => {
           )}
         </TableBody>
       </Table>
-    </div>
+    </>
   );
 };
 
@@ -167,7 +167,7 @@ const MenuExample = (): JSX.Element => {
 const CheckboxExample = (): JSX.Element => {
   const [value, setValue] = useState(false);
   return (
-    <div>
+    <>
       <div
         className={atoms({
           color: {
@@ -198,7 +198,7 @@ const CheckboxExample = (): JSX.Element => {
       >
         Label
       </Checkbox>
-    </div>
+    </>
   );
 };
 

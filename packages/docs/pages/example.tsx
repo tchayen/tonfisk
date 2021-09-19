@@ -150,7 +150,7 @@ function Settings({
   };
 
   return (
-    <div>
+    <>
       <div className={commonStyles.flexColumn}>
         <h4 className={primaryTextColor}>Transaction settings</h4>
         <div style={{ width: "50%" }}>
@@ -161,40 +161,38 @@ function Settings({
             onChange={(value) => setSlippageTolerance(Number(value))}
           />
         </div>
-        <div>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <Label>Transaction deadline</Label>
           <div
-            style={{
+            className={atoms({
               display: "flex",
-              flexDirection: "column",
-            }}
+              alignItems: "center",
+            })}
           >
-            <Label>Transaction deadline</Label>
-            <div
+            <div style={{ width: "25%" }}>
+              <TextInput
+                placeholder="30"
+                value={transactionDeadline?.toString()}
+                onChange={(value) => setTransactionDeadline(Number(value))}
+              />
+            </div>
+            <span
               className={atoms({
-                display: "flex",
-                alignItems: "center",
+                fontSize: "14px",
+                color: {
+                  lightMode: "gray-600",
+                  darkMode: "gray-400",
+                },
+                marginLeft: "m",
               })}
             >
-              <div style={{ width: "25%" }}>
-                <TextInput
-                  placeholder="30"
-                  value={transactionDeadline?.toString()}
-                  onChange={(value) => setTransactionDeadline(Number(value))}
-                />
-              </div>
-              <span
-                className={atoms({
-                  fontSize: "14px",
-                  color: {
-                    lightMode: "gray-600",
-                    darkMode: "gray-400",
-                  },
-                  marginLeft: "m",
-                })}
-              >
-                minutes
-              </span>
-            </div>
+              minutes
+            </span>
           </div>
         </div>
       </div>
@@ -278,7 +276,7 @@ function Settings({
           </ModalDialog>
         </OverlayContainer>
       )}
-    </div>
+    </>
   );
 }
 

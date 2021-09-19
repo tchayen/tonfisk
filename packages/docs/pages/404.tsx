@@ -1,5 +1,6 @@
 import { commonStyles } from "ds";
 
+import { Header1 } from "../components/Header";
 import { Layout } from "../components/Layout";
 import { getNavigation } from "../utils/mdx";
 
@@ -12,7 +13,7 @@ export default function Missing({
 }): JSX.Element {
   return (
     <Layout navigation={navigation}>
-      <h1 className={commonStyles.primaryTextColor}>404</h1>
+      <Header1>404</Header1>
       <p className={commonStyles.secondaryTextColor}>
         This page does not exist.
       </p>

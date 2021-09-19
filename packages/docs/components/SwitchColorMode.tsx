@@ -41,13 +41,13 @@ export function SwitchColorMode(): JSX.Element {
   const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
-    <div style={{ width: 52, height: 52 }}>
+    <div style={{ width: 64, height: 64 }}>
       {symbol && (
         <button
           ref={ref}
           style={{
             color: "transparent",
-            fontSize: 20,
+            fontSize: 32,
           }}
           className={atoms({
             background: "transparent",

@@ -10,6 +10,7 @@ import { MdxPre } from "../components/mdxComponents";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 import * as styles from "../styles/index.css";
 import { hoverUnderline } from "../styles/theme.css";
+import { Logo } from "../components/Logo";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return (
@@ -50,17 +51,8 @@ export default function Home(): JSX.Element {
       <div className={styles.content}>
         <SwitchColorMode />
       </div>
-      <div>
-        <h1
-          className={styles.h1}
-          style={{
-            background: "-webkit-linear-gradient(180deg, #3b82f6, #1e3a8a)",
-            WebkitBackgroundClip: "text",
-            WebkitTextFillColor: "transparent",
-          }}
-        >
-          TODO_LIB_NAME
-        </h1>
+      <div className={styles.h1}>
+        <Logo />
       </div>
       <div className={styles.mainBanner}>
         <div>

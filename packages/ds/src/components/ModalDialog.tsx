@@ -63,7 +63,7 @@ type Props = {
  *   const state = useOverlayTriggerState({});
  *
  *   return (
- *     <div>
+ *     <>
  *       <Button onPress={() => state.open()}>Open Dialog</Button>
  *       {state.isOpen && (
  *         <OverlayContainer>
@@ -78,7 +78,7 @@ type Props = {
  *           </ModalDialog>
  *         </OverlayContainer>
  *       )}
- *     </div>
+ *     </>
  *   );
  * }
  * ```

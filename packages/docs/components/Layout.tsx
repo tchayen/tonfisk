@@ -5,6 +5,7 @@ import Link from "next/link";
 import React, { ReactNode, useState } from "react";
 
 import { getNavigation } from "../utils/mdx";
+import { Logo } from "./Logo";
 import { SwitchColorMode } from "./SwitchColorMode";
 
 const ListItem = ({
@@ -127,12 +128,11 @@ export function Layout({
     <div
       style={{
         margin: "0 auto",
-        // width: "106ch",
       }}
       className={atoms({
         width: {
           desktop: "106ch",
-          mobile: "100vw",
+          mobile: "100%",
         },
       })}
     >
@@ -152,6 +152,7 @@ export function Layout({
           },
         })}
       >
+        <Logo size={32} />
         <SwitchColorMode />
         {navigation.files.map((item, index) => {
           return <NavLink key={index} item={item} />;

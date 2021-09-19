@@ -17,7 +17,10 @@ class MyDocument extends Document {
   render(): JSX.Element {
     return (
       <Html>
-        <Head />
+        <Head>
+          <title>tonfisk 🐟</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         <body>
           <script src="/noflash.js" />
           <Main />
