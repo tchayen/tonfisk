@@ -1,8 +1,6 @@
-import { useFocusRing } from "@react-aria/focus";
 import React from "react";
-import { atoms } from "tonfisk";
-import { GitHub } from "tonfisk/src/icons/GitHub";
 
+import { GitHubSource } from "../../../components/GitHubSource";
 import { Header1 } from "../../../components/Header";
 import { Layout } from "../../../components/Layout";
 import { Mdx } from "../../../components/Mdx";
@@ -20,33 +18,6 @@ type Props = {
   source: string;
   metadata: Metadata;
 };
-
-function GitHubSource({ codeFileName }: { codeFileName: string }) {
-  const { focusProps, isFocusVisible } = useFocusRing();
-
-  return (
-    <a
-      target="_blank"
-      rel="noopener noreferrer"
-      href={`https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/src/components/${codeFileName}`}
-      className={atoms({
-        marginTop: "xl",
-        color: "blue-500",
-        display: "inline-flex",
-        alignItems: "center",
-        outline: "none",
-        padding: "m",
-        borderRadius: "8px",
-        gap: "m",
-        boxShadow: isFocusVisible ? "outline" : "none",
-      })}
-      {...focusProps}
-    >
-      <GitHub className={atoms({ fill: "blue-500" })} />
-      Source code
-    </a>
-  );
-}
 
 export default function Doc({
   navigation,
@@ -85,7 +56,7 @@ export const getStaticProps = async ({
     .join("\n")}\n`
       : "";
 
-  const content = `\n${table}\n${metadata.description}`;
+  const content = `\n${table}\n## Description\n\n${metadata.description}`;
   const source = await prepareMdx(content);
 
   return {

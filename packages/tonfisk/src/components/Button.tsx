@@ -34,7 +34,7 @@ type Props = {
 };
 
 function ButtonLink_(
-  props: Omit<Props, "onPress"> & { href?: string },
+  props: Omit<Props, "onPress"> & { href?: string; newTab?: boolean },
   ref: ForwardedRef<HTMLAnchorElement>
 ): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);
@@ -73,8 +73,16 @@ function ButtonLink_(
     type: "link",
   });
 
+  const newTab = props.newTab
+    ? {
+        target: "_blank",
+        rel: "noopener noreferrer",
+      }
+    : {};
+
   return (
     <a
+      {...newTab}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       className={className}
@@ -118,7 +126,8 @@ export const ButtonLink = React.forwardRef(ButtonLink_);
  *
  * | Name | Type | Description |
  * | --- | --- | --- |
- * | href | `string` | The link target. |
+ * | `href` | `string` | The link target. |
+ * | `newTab?` | `boolean` | If present, makes link open a new tab using `target="_blank"`. |
  *
  * ## Usage
  *

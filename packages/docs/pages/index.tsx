@@ -73,11 +73,12 @@ export default function Home(): JSX.Element {
                 Get started →
               </ButtonLink>
             </Link>
-            <Link href="#">
+            <Link href="https://github.com/tchayen/tonfisk">
               <ButtonLink
                 href="https://github.com/tchayen/tonfisk"
                 size="large"
                 variant="secondary"
+                newTab
               >
                 GitHub ↗
               </ButtonLink>
@@ -170,7 +171,7 @@ function Homepage() {
       </div>
       <div className={styles.footerText}>
         Created by{" "}
-        <a href="https:/twitter.com/tchayen" className={styles.link}>
+        <a href="https://twitter.com/tchayen" className={styles.link}>
           @tchayen
         </a>{" "}
         in Stockholm.
