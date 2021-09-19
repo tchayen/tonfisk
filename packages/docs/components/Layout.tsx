@@ -1,5 +1,3 @@
-// import "./theme.css";
-
 import { useFocusRing } from "@react-aria/focus";
 import { atoms } from "ds";
 import { useRouter } from "next/dist/client/router";

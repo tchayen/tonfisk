@@ -5,6 +5,7 @@ Potential reference for customizing MDX Bundler setup:
 
 ## Must have
 
+- [ ] If user's OS prefers dark mode then it will start that way properly but color switch button will show sun first.
 - [ ] Make homepage responsive.
 - [ ] Make doc pages and navigation responsive.
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.

@@ -1,6 +1,6 @@
 import { OverlayProvider } from "@react-aria/overlays";
 import { SSRProvider } from "@react-aria/ssr";
-import React, { createContext, ReactNode, useState } from "react";
+import React, { createContext, ReactNode, useEffect, useState } from "react";
 
 type Props = {
   /**
@@ -9,16 +9,16 @@ type Props = {
   children: ReactNode;
 };
 
-type ColorMode = "light" | "dark";
+export type ColorMode = "light" | "dark";
 const themeKey = "colorMode";
 
 type ColorModeContextValues = {
-  colorMode: ColorMode | null;
+  colorMode: ColorMode;
   setColorMode: (colorMode: ColorMode) => void;
 };
 
 export const ColorModeContext = createContext<ColorModeContextValues>({
-  colorMode: null,
+  colorMode: "light",
   // eslint-disable-next-line
   setColorMode: () => {},
 });
@@ -56,8 +56,24 @@ export function Provider({ children }: Props): JSX.Element {
     } catch (error) {}
   };
 
+  useEffect(() => {
+    setter(colorMode);
+  }, []);
+
+  const handleChange = ({ matches }: MediaQueryListEvent) => {
+    setter(matches ? "dark" : "light");
+  };
+
+  useEffect(() => {
+    const darkMode = window.matchMedia("(prefers-color-scheme: dark)");
+    darkMode.addEventListener("change", handleChange);
+    return () => {
+      darkMode.removeEventListener("change", handleChange);
+    };
+  }, []);
+
   return (
-    <div className={colorMode || ""}>
+    <div>
       <SSRProvider>
         <ColorModeContext.Provider
           value={{

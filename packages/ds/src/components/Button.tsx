@@ -128,6 +128,7 @@ export const ButtonLink = React.forwardRef(ButtonLink_);
  *   return (
  *     <ButtonLink href="/docs/getting-started">Getting started ↗</ButtonLink>
  *   );
+ * }
  * ```
  *
  * ## Example

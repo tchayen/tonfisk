@@ -5,12 +5,12 @@
   const classNameDark = "dark";
   const classNameLight = "light";
 
-  function setClassOnDocument(darkMode) {
+  function setClassOnDocument(isDarkMode) {
     document.documentElement.classList.add(
-      darkMode ? classNameDark : classNameLight
+      isDarkMode ? classNameDark : classNameLight
     );
     document.documentElement.classList.remove(
-      darkMode ? classNameLight : classNameDark
+      isDarkMode ? classNameLight : classNameDark
     );
   }
 
@@ -30,7 +30,7 @@
   } else if (supportsColorSchemeQuery) {
     // Source of truth from system.
     setClassOnDocument(mql.matches);
-    localStorage.setItem(storageKey, mql.matches);
+    localStorage.setItem(storageKey, mql.matches ? "dark" : "light");
   } else {
     // Source of truth from document.body.
     const isDarkMode = document.body.classList.contains(classNameDark);
