@@ -1,16 +1,21 @@
 import { atoms } from "ds";
+import { ReactNode } from "react";
 
 import { hoverUnderline } from "../styles/theme.css";
 import { toKebabCase } from "../utils/string";
 
 type Props = {
-  children: string;
+  children?: ReactNode;
 } & JSX.IntrinsicAttributes;
 
 export const Header = (
   HeaderNth: keyof JSX.IntrinsicElements
 ): ((props: Props) => JSX.Element) => {
   const component = (props: Props) => {
+    if (typeof props.children !== "string") {
+      throw new Error("Header must have a string child as of now.");
+    }
+
     return (
       <div
         className={atoms({

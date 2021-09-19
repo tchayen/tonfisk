@@ -30,7 +30,7 @@ type Props = {
   /**
    * Title of the modal.
    */
-  title: string;
+  title?: string;
   /**
    * Components to display inside the modal.
    */

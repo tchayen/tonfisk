@@ -301,7 +301,7 @@ type Props = {
   /**
    * Rows that should be selected from the start.
    */
-  defaultSelectedKeys?: number[];
+  defaultSelectedKeys?: Array<number>;
   /**
    * Some row must be selected at all times.
    */
@@ -394,7 +394,7 @@ export function Table(props: Props): JSX.Element {
       <TableRowGroup type="thead">
         {collection.headerRows.map((headerRow) => (
           <TableHeaderRow key={headerRow.key} item={headerRow} state={state}>
-            {[...headerRow.childNodes].map((column) =>
+            {Array.from(headerRow.childNodes).map((column) =>
               column.props.isSelectionCell ? (
                 <TableSelectAllCell
                   key={column.key}
@@ -413,7 +413,7 @@ export function Table(props: Props): JSX.Element {
         ))}
       </TableRowGroup>
       <TableRowGroup type="tbody">
-        {[...collection.body.childNodes].map((row, index, array) => (
+        {Array.from(collection.body.childNodes).map((row, index, array) => (
           <TableRow
             key={row.key}
             item={row}
@@ -421,7 +421,7 @@ export function Table(props: Props): JSX.Element {
             rows={array.length}
             state={state}
           >
-            {[...row.childNodes].map((cell) =>
+            {Array.from(row.childNodes).map((cell) =>
               cell.props.isSelectionCell ? (
                 <TableCheckboxCell key={cell.key} cell={cell} state={state} />
               ) : (

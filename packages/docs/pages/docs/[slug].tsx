@@ -55,11 +55,11 @@ export const getStaticProps = async ({
 };
 
 export const getStaticPaths = async (): Promise<{
-  paths: {
+  paths: Array<{
     params: {
       slug: string;
     };
-  }[];
+  }>;
   fallback: false;
 }> => {
   const paths = docsFilePaths

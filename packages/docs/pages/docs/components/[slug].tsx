@@ -13,11 +13,11 @@ import { toKebabCase } from "../../../utils/string";
 
 type Metadata = {
   displayName: string;
-  props: {
+  props: Array<{
     name: string;
     type: string;
     description: string;
-  }[];
+  }>;
 };
 
 type Props = {
@@ -45,7 +45,7 @@ export const getStaticProps = async ({
   params: { slug: string };
 }): Promise<{ props: Props }> => {
   const metadata = getSourceMetadata(params.slug);
-  const escaped = (value: string) => value.replaceAll("|", "\\|");
+  const escaped = (value: string) => value.replace(/\|/g, "\\|");
 
   const table =
     metadata.props.length > 0
@@ -74,11 +74,11 @@ export const getStaticProps = async ({
 };
 
 export const getStaticPaths = async (): Promise<{
-  paths: {
+  paths: Array<{
     params: {
       slug: string;
     };
-  }[];
+  }>;
   fallback: false;
 }> => {
   const paths = componentsFilePaths

@@ -18,14 +18,22 @@ export const h1 = atoms({
   marginTop: "2xl",
 });
 
-export const topParagraph = atoms({
-  marginRight: "xl",
-  paddingTop: "xl",
+export const mainBanner = atoms({
+  width: {
+    desktop: "96ch",
+    mobile: "100vw",
+  },
+  marginBottom: "2xl",
+  marginTop: "2xl",
+  display: "flex",
+  alignItems: "center",
+  gap: "xl",
 });
 
 export const topParagraphElement = atoms({
   fontSize: "18px",
   lineHeight: 2,
+  marginTop: "none",
 });
 
 export const strong = atoms({

@@ -64,7 +64,7 @@ function MenuPopup(props: {
           ref={ref}
           className={menuPopup}
         >
-          {[...state.collection].map((item) => (
+          {Array.from(state.collection).map((item) => (
             <MenuItem
               key={item.key}
               item={item}
@@ -149,7 +149,7 @@ type Props = {
 type MenuButton_Props = {
   isDisabled?: boolean;
   menuTriggerProps?: AriaButtonProps<"button">;
-  children: string;
+  children?: string;
   onPress?: () => void;
 };
 

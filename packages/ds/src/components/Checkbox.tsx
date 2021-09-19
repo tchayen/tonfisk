@@ -12,7 +12,7 @@ type Props = {
   /**
    * Callback called when state of the checkbox changes.
    */
-  onChange: (checked: boolean) => void;
+  onChange?: (checked: boolean) => void;
   /**
    * Label of the checkbox.
    */

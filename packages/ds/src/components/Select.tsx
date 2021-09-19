@@ -3,6 +3,7 @@ import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { AriaListBoxOptions } from "@react-aria/listbox";
 import { HiddenSelect, useSelect } from "@react-aria/select";
+import { mergeProps } from "@react-aria/utils";
 import { useSelectState } from "@react-stately/select";
 import { CollectionChildren } from "@react-types/shared/src/collections";
 import React, { Key, useRef } from "react";
@@ -19,15 +20,15 @@ type Props = {
   /**
    * Label displayed above the select component.
    */
-  label: string;
+  label?: string;
   /**
    * Name of the select.
    */
-  name: string;
+  name?: string;
   /**
    * Callback called when value of the select changes.
    */
-  onSelectionChange: (value: Key) => void;
+  onSelectionChange?: (value: Key) => void;
   /**
    * List of `<Item />` components.
    */
@@ -40,6 +41,10 @@ type Props = {
    * Whether user can interact with the select.
    */
   isDisabled?: boolean;
+  /**
+   * Necessary in the absence of `label` prop.
+   */
+  "aria-label"?: string;
 };
 
 /**
@@ -97,8 +102,7 @@ export function Select(props: Props): JSX.Element {
         name={props.name}
       />
       <button
-        {...buttonProps}
-        {...focusProps}
+        {...mergeProps(buttonProps, focusProps)}
         ref={ref}
         className={styles.selectButton({
           boxShadow: isFocusVisible ? "focusVisible" : "default",

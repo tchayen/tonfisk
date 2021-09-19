@@ -8,8 +8,6 @@ Potential reference for customizing MDX Bundler setup:
 - [ ] Make homepage responsive.
 - [ ] Make doc pages and navigation responsive.
 - [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
-- [ ] Figure out how to deploy docs (as it is monorepo and `../ds` does not exist).
-- [ ] Center text paragraph in relation to code block.
 
 ## Decisions
 
@@ -134,3 +132,6 @@ Potential reference for customizing MDX Bundler setup:
 - [x] Secondary button (for GitHub on homepage).
 - [x] Link buttons (for 'Getting started' and 'GitHub' on homepage).
 - [x] Link underline on homepage to Twitter.
+- [x] 0 TypeScript errors.
+- [x] Figure out how to deploy docs (as it is monorepo and `../ds` does not exist).
+- [x] Center text paragraph in relation to code block.

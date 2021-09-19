@@ -62,18 +62,8 @@ export default function Home(): JSX.Element {
           TODO_LIB_NAME
         </h1>
       </div>
-      <div
-        className={atoms({
-          width: {
-            desktop: "96ch",
-            mobile: "100vw",
-          },
-          marginBottom: "2xl",
-          marginTop: "2xl",
-          display: "flex",
-        })}
-      >
-        <div className={styles.topParagraph}>
+      <div className={styles.mainBanner}>
+        <div>
           <p className={styles.topParagraphElement}>
             A React <strong className={styles.strong}>design system</strong>{" "}
             with a component library built on top of{" "}

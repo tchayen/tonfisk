@@ -10,7 +10,7 @@ type Props = {
   /**
    * Callback called when selected value changes.
    */
-  onChange: (value: boolean) => void;
+  onChange?: (value: boolean) => void;
   /**
    * Label of the switch.
    */

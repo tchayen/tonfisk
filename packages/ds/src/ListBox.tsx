@@ -20,7 +20,7 @@ export function ListBox(props: Props): JSX.Element {
 
   return (
     <ul {...listBoxProps} ref={ref} className={styles.listBox}>
-      {[...state.collection].map((item) => (
+      {Array.from(state.collection).map((item) => (
         <Option key={item.key} item={item} state={state} />
       ))}
     </ul>

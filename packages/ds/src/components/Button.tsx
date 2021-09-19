@@ -3,7 +3,6 @@ import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import React, { ForwardedRef, RefObject, useRef } from "react";
 import { useState } from "react";
-import { atoms } from "../theme.css";
 
 import * as styles from "./Button.css";
 
@@ -11,7 +10,7 @@ type Props = {
   /**
    * Text of the button.
    */
-  children: string;
+  children?: string;
   /**
    * Callback for interaction.
    */
@@ -35,7 +34,7 @@ type Props = {
 };
 
 function ButtonLink_(
-  props: Omit<Props, "onPress"> & { href: string },
+  props: Omit<Props, "onPress"> & { href?: string },
   ref: ForwardedRef<HTMLAnchorElement>
 ): JSX.Element {
   const [isHovered, setIsHovered] = useState(false);

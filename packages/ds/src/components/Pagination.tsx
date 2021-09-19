@@ -26,7 +26,7 @@ function PageButton(props: {
   children: ReactNode;
   onPress?: () => void;
   isSelected?: boolean;
-  triggerRef?: React.RefObject<HTMLElement>;
+  triggerRef?: React.RefObject<HTMLButtonElement>;
   isDisabled?: boolean;
   overrideButtonProps?: AriaButtonProps<"button">;
 }) {

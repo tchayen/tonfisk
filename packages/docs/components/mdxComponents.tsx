@@ -249,7 +249,7 @@ function MdxLink({
   children,
 }: {
   href: string;
-  children: ReactNode;
+  children?: ReactNode;
 }): JSX.Element {
   return (
     <Link href={href}>
@@ -265,7 +265,7 @@ function MdxLink({
   );
 }
 
-function MdxStrong({ children }: { children: ReactNode }): JSX.Element {
+function MdxStrong({ children }: { children?: ReactNode }): JSX.Element {
   return (
     <strong
       className={atoms({
@@ -281,7 +281,7 @@ function MdxStrong({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-function MdxParagraph({ children }: { children: ReactNode }): JSX.Element {
+function MdxParagraph({ children }: { children?: ReactNode }): JSX.Element {
   return (
     <p
       className={atoms({
@@ -299,7 +299,7 @@ function MdxParagraph({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-function MdxLi({ children }: { children: ReactNode }): JSX.Element {
+function MdxLi({ children }: { children?: ReactNode }): JSX.Element {
   return (
     <li
       className={atoms({
@@ -312,7 +312,7 @@ function MdxLi({ children }: { children: ReactNode }): JSX.Element {
   );
 }
 
-export function MdxPre({ children }: { children: ReactNode }): JSX.Element {
+export function MdxPre({ children }: { children?: ReactNode }): JSX.Element {
   const ref = useRef<HTMLPreElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 

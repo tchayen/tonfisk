@@ -20,5 +20,6 @@ module.exports = {
   rules: {
     "simple-import-sort/imports": "warn",
     "react/react-in-jsx-scope": "off",
+    "@typescript-eslint/array-type": ["error", { default: "generic" }],
   },
 };

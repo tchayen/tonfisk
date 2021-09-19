@@ -1,7 +1,7 @@
 import { atoms } from "ds";
 import { ReactNode } from "react";
 
-export function MdxTable({ children }: { children: ReactNode }): JSX.Element {
+export function MdxTable({ children }: { children?: ReactNode }): JSX.Element {
   return (
     <table
       className={atoms({
@@ -16,7 +16,7 @@ export function MdxTable({ children }: { children: ReactNode }): JSX.Element {
 export function MdxTableHeaderCell({
   children,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
 }): JSX.Element {
   return (
     <th
@@ -40,7 +40,7 @@ export function MdxTableHeaderCell({
 export function MdxTableHeaderRow({
   children,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
 }): JSX.Element {
   return (
     <thead
@@ -59,7 +59,7 @@ export function MdxTableHeaderRow({
 export function MdxTableRow({
   children,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
 }): JSX.Element {
   return (
     <tr
@@ -78,7 +78,7 @@ export function MdxTableRow({
 export function MdxTableCell({
   children,
 }: {
-  children: ReactNode;
+  children?: ReactNode;
 }): JSX.Element {
   return (
     <td

@@ -3,7 +3,6 @@ import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import React, { useRef, useState } from "react";
 
-import { atoms } from "../theme.css";
 import * as styles from "./Pill.css";
 
 type Props = {
@@ -14,11 +13,11 @@ type Props = {
   /**
    * Text in the pill.
    */
-  children: string;
+  children?: string;
   /**
    * Callback when the pill is pressed.
    */
-  onPress: () => void;
+  onPress?: () => void;
   /**
    * Whether user can interact with the pill.
    */

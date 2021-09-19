@@ -10,11 +10,11 @@ type Props = {
   /**
    * Called when closing.
    */
-  onClose: () => void;
+  onClose?: () => void;
   /**
    * Components to display inside the popover.
    */
-  children: ReactNode;
+  children?: ReactNode;
   /**
    * Whether popup is open.
    */

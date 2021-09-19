@@ -24,11 +24,11 @@ export const getSourceMetadata = (
 ): {
   displayName: string;
   description: string;
-  props: {
+  props: Array<{
     name: string;
     description: string;
     type: string;
-  }[];
+  }>;
 } => {
   const sourcePath = path.join(SOURCE_PATH, `${toPascalCase(slug)}.tsx`);
   const sourceFile = fs.readFileSync(sourcePath, "utf-8");
@@ -70,7 +70,7 @@ export const getSourceMetadata = (
 
 type Directory = {
   name: string;
-  files: (File | Directory)[];
+  files: Array<File | Directory>;
 };
 type File = {
   title: string;
@@ -78,6 +78,7 @@ type File = {
 };
 
 export const getNavigation = (): Directory => {
+  // TODO: sort those in some specified order.
   const docs = docsFilePaths.map((filePath) => {
     const source = fs.readFileSync(path.join(DOCS_PATH, filePath), "utf-8");
 
