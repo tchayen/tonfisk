@@ -23,8 +23,8 @@ globalStyle("html", {
 //   color: colors.black,
 // });
 
-globalStyle(`${darkMode} ::placeholder`, {
-  color: colors.coolGray[500],
+globalStyle(`html.${darkMode} ::placeholder`, {
+  color: colors.coolGray[600],
 });
 
 globalStyle("::placeholder", {

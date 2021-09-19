@@ -61,7 +61,7 @@ export default function Home(): JSX.Element {
             <code className={styles.code}>react-aria</code>, a wonderful
             accessibility library, and{" "}
             <code className={styles.code}>vanilla-extract</code>, lightweight
-            and powerful styling solution. sidebar.
+            and powerful styling solution.
           </p>
           <pre className={styles.pre}>
             <span className={styles.promptChar}>$</span>{" "}

@@ -1,3 +1,5 @@
+import { atoms } from "ds";
+import { GitHub } from "ds/src/icons/GitHub";
 import React from "react";
 
 import { Header1 } from "../../../components/Header";
@@ -7,18 +9,10 @@ import {
   componentsFilePaths,
   getNavigation,
   getSourceMetadata,
+  Metadata,
   prepareMdx,
 } from "../../../utils/mdx";
 import { toKebabCase } from "../../../utils/string";
-
-type Metadata = {
-  displayName: string;
-  props: Array<{
-    name: string;
-    type: string;
-    description: string;
-  }>;
-};
 
 type Props = {
   navigation: ReturnType<typeof getNavigation>;
@@ -31,10 +25,26 @@ export default function Doc({
   source,
   metadata,
 }: Props): JSX.Element {
+  console.log(metadata);
   return (
     <Layout navigation={navigation}>
       <Header1>{metadata.displayName}</Header1>
       <Mdx source={source} />
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href={`https://github.com/tchayen/design-system/blob/main/packages/ds/src/components/${metadata.codeFileName}`}
+        className={atoms({
+          marginTop: "xl",
+          color: "blue-500",
+          display: "flex",
+          alignItems: "center",
+          gap: "m",
+        })}
+      >
+        <GitHub className={atoms({ fill: "blue-500" })} />
+        Source code
+      </a>
     </Layout>
   );
 }

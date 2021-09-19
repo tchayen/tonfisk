@@ -19,20 +19,22 @@ export const componentsFilePaths = fs
   .readdirSync(SOURCE_PATH)
   .filter((path) => /^[A-Z][a-zA-Z]+\.tsx/.test(path));
 
-export const getSourceMetadata = (
-  slug: string
-): {
+export type Metadata = {
   displayName: string;
-  sourcePath: string;
+  codeFileName: string;
   description: string;
+  slug: string;
   props: Array<{
     name: string;
     description: string;
     type: string;
   }>;
-} => {
+};
+
+export const getSourceMetadata = (slug: string): Metadata => {
   const sourcePath = path.join(SOURCE_PATH, `${toPascalCase(slug)}.tsx`);
   const sourceFile = fs.readFileSync(sourcePath, "utf-8");
+  const codeFileName = sourcePath.split("/").pop() || "";
 
   try {
     const components = reactDocgen.parse(
@@ -50,7 +52,8 @@ export const getSourceMetadata = (
     return {
       description,
       displayName,
-      sourcePath,
+      codeFileName,
+      slug,
       props: Object.keys(props || {}).map((key) => {
         return {
           name: `${key}${props[key].required ? "" : "?"}`,
@@ -63,7 +66,8 @@ export const getSourceMetadata = (
     console.error(error);
 
     return {
-      sourcePath,
+      codeFileName,
+      slug,
       description: "",
       displayName: "",
       props: [],
