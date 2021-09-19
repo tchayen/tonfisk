@@ -168,9 +168,7 @@ export function Layout({
         >
           Links
         </h3>
-        <ListItem href="https://github.com/tchayen/design-system">
-          GitHub ↗
-        </ListItem>
+        <ListItem href="https://github.com/tchayen/tonfisk">GitHub ↗</ListItem>
         <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
         {/* <ListItem href="#">Discord ↗</ListItem> */}
       </div>

@@ -74,7 +74,11 @@ export default function Home(): JSX.Element {
               </ButtonLink>
             </Link>
             <Link href="#">
-              <ButtonLink href="#" size="large" variant="secondary">
+              <ButtonLink
+                href="https://github.com/tchayen/tonfisk"
+                size="large"
+                variant="secondary"
+              >
                 GitHub ↗
               </ButtonLink>
             </Link>
