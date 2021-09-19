@@ -1,7 +1,7 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import { atoms } from "ds";
+import { atoms } from "tonfisk";
 import { useRef, useState } from "react";
 
 export function CurrencyInList({

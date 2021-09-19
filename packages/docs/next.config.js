@@ -1,6 +1,6 @@
 const { createVanillaExtractPlugin } = require("@vanilla-extract/next-plugin");
 const withVanillaExtract = createVanillaExtractPlugin();
-const withTM = require("next-transpile-modules")(["ds"]);
+const withTM = require("next-transpile-modules")(["tonfisk"]);
 
 module.exports = () => {
   const plugins = [withVanillaExtract, withTM];

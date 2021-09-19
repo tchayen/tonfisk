@@ -53,7 +53,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Select, Item } from "ds";
+ * import { Select, Item } from "tonfisk";
  *
  * function SelectExample() {
  *   return (

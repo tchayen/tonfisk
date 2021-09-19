@@ -7,6 +7,15 @@ import {
 } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
+import { useRouter } from "next/dist/client/router";
+import React, {
+  Dispatch,
+  ReactNode,
+  SetStateAction,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 import {
   atoms,
   Button,
@@ -19,19 +28,10 @@ import {
   Spinner,
   Switch,
   TextInput,
-} from "ds";
-import { primaryTextColor } from "ds/src/commonStyles.css";
-import { MenuButtonComponent } from "ds/src/components/Menu";
-import { useRouter } from "next/dist/client/router";
-import React, {
-  Dispatch,
-  ReactNode,
-  SetStateAction,
-  useEffect,
-  useRef,
-  useState,
-} from "react";
+} from "tonfisk";
+import { MenuButtonComponent } from "tonfisk/src/components/Menu";
 
+import { primaryTextColor } from "../../tonfisk/src/commonStyles.css";
 import { BorderlessInput } from "../components/BorderlessInput";
 import currencies from "../examples/exchange/currencies.json";
 import { CurrencyInList } from "../examples/exchange/CurrencyInList";

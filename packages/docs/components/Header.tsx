@@ -1,4 +1,4 @@
-import { atoms } from "ds";
+import { atoms } from "tonfisk";
 import { ReactNode } from "react";
 
 import { hoverUnderline } from "../styles/theme.css";

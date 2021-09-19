@@ -1,9 +1,9 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import { atoms } from "ds";
-import { ColorModeContext } from "ds/src/Provider";
 import React, { useContext, useEffect, useRef, useState } from "react";
+import { atoms } from "tonfisk";
+import { ColorModeContext } from "tonfisk/src/Provider";
 
 /**
  * In simpler solution where symbol was set inside the render and there was no

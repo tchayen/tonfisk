@@ -31,7 +31,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { Switch } from "ds";
+ * import { Switch } from "tonfisk";
  *
  * function SwitchExample() {
  *   return <Switch>Label</Switch>;

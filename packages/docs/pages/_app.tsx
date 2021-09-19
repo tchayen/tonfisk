@@ -1,7 +1,7 @@
 import "../styles/globals.css";
 import "../styles/theme.css";
 
-import { Provider } from "ds";
+import { Provider } from "tonfisk";
 import type { AppProps } from "next/app";
 import { Head } from "next/document";
 

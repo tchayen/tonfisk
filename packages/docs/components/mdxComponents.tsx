@@ -3,7 +3,10 @@ import "../styles/theme.css";
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import * as ds from "ds";
+import { Form, Formik, useField } from "formik";
+import Link from "next/link";
+import { ReactNode, useRef, useState } from "react";
+import * as tonfisk from "tonfisk";
 import {
   atoms,
   Button,
@@ -19,10 +22,7 @@ import {
   TableBody,
   TableHeader,
   TextInput,
-} from "ds";
-import { Form, Formik, useField } from "formik";
-import Link from "next/link";
-import { ReactNode, useRef, useState } from "react";
+} from "tonfisk";
 
 import { hoverUnderline } from "../styles/theme.css";
 import { Header1, Header2, Header3, Header4 } from "./Header";
@@ -401,5 +401,5 @@ export const components = {
   MenuExample,
   CheckboxExample,
   FormikExample,
-  ...ds,
+  ...tonfisk,
 };

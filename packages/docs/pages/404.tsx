@@ -1,4 +1,4 @@
-import { commonStyles } from "ds";
+import { commonStyles } from "tonfisk";
 
 import { Header1 } from "../components/Header";
 import { Layout } from "../components/Layout";

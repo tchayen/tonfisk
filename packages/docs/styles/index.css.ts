@@ -1,5 +1,5 @@
 import { style } from "@vanilla-extract/css";
-import { atoms } from "ds/src/theme.css";
+import { atoms } from "tonfisk/src/theme.css";
 
 export const page = atoms({
   display: "flex",

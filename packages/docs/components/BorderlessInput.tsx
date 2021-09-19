@@ -1,6 +1,6 @@
 import { useTextField } from "@react-aria/textfield";
-import { atoms } from "ds";
 import React, { useRef } from "react";
+import { atoms } from "tonfisk";
 
 type Props = {
   isDisabled?: boolean;

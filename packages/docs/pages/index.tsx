@@ -2,7 +2,7 @@
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 
-import { atoms, ButtonLink } from "ds";
+import { atoms, ButtonLink } from "tonfisk";
 import Link from "next/link";
 import React, { ReactNode, useEffect } from "react";
 

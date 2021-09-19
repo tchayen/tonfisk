@@ -55,7 +55,7 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * import { TextInput } from "ds";
+ * import { TextInput } from "tonfisk";
  *
  * function TextInputExample() {
  *   return <TextInput label="First name" placeholder="John" />;

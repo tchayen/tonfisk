@@ -1,6 +1,6 @@
-import { atoms } from "ds";
-import { GitHub } from "ds/src/icons/GitHub";
 import React from "react";
+import { atoms } from "tonfisk";
+import { GitHub } from "tonfisk/src/icons/GitHub";
 
 import { Header1 } from "../../../components/Header";
 import { Layout } from "../../../components/Layout";
@@ -33,7 +33,7 @@ export default function Doc({
       <a
         target="_blank"
         rel="noopener noreferrer"
-        href={`https://github.com/tchayen/design-system/blob/main/packages/ds/src/components/${metadata.codeFileName}`}
+        href={`https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/src/components/${metadata.codeFileName}`}
         className={atoms({
           marginTop: "xl",
           color: "blue-500",

@@ -9,7 +9,10 @@ import remarkGfm from "remark-gfm";
 import { toKebabCase, toPascalCase } from "./string";
 
 export const DOCS_PATH = path.join(process.cwd(), "docs");
-export const SOURCE_PATH = path.join(process.cwd(), "../ds/src/components");
+export const SOURCE_PATH = path.join(
+  process.cwd(),
+  "../tonfisk/src/components"
+);
 
 export const docsFilePaths = fs
   .readdirSync(DOCS_PATH)
