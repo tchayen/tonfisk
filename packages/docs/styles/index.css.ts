@@ -1,3 +1,4 @@
+import { style } from "@vanilla-extract/css";
 import { atoms } from "ds/src/theme.css";
 
 export const page = atoms({
@@ -73,13 +74,9 @@ export const mdxPre = atoms({
 });
 
 export const features = atoms({
-  display: "flex",
-  gap: "l",
+  display: "grid",
+  gap: "xl",
   width: "96ch",
-  flexDirection: {
-    desktop: "row",
-    mobile: "column",
-  },
 });
 
 export const flex1 = atoms({ flex: 1 });
@@ -90,10 +87,13 @@ export const footerText = atoms({
   fontSize: "16px",
 });
 
-export const footerLink = atoms({
-  fontWeight: "bold",
-  color: {
-    lightMode: "black",
-    darkMode: "gray-200",
-  },
-});
+export const link = style([
+  atoms({
+    color: "blue-500",
+  }),
+  style({
+    ":hover": {
+      textDecoration: "underline",
+    },
+  }),
+]);

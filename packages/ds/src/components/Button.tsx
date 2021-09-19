@@ -101,6 +101,7 @@ export const ButtonLink = React.forwardRef(ButtonLink_);
  *   return (
  *     <Button onPress={() => console.log("I got pressed!")}>Press me →</Button>
  *   );
+ * }
  * ```
  *
  * ## Example

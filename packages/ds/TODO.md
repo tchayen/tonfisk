@@ -5,10 +5,10 @@ Potential reference for customizing MDX Bundler setup:
 
 ## Must have
 
+- [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
 - [ ] Probably something is wrong with menu example (label is missing).
 - [ ] Make homepage responsive.
 - [ ] Make doc pages and navigation responsive.
-- [ ] Order guides without need for `\d+\-[A-z]+` pattern in the name.
 
 ## Decisions
 
@@ -35,6 +35,7 @@ Potential reference for customizing MDX Bundler setup:
 - [ ] Any element as menu button `children` (example of 🦊 wallet in Figma).
 - [ ] Current header solution doesn't support nested tags there (i.e. `## What is a _design system_` will break as it is returned as array of `[string, ReactNode]`).
 - [ ] Refactor example a lot, share code, get rid of props spaghetti, split main form into two components.
+- [ ] Consider adding [`react-live`](https://github.com/FormidableLabs/react-live).
 
 ## Bugs
 
@@ -138,3 +139,4 @@ Potential reference for customizing MDX Bundler setup:
 - [x] Center text paragraph in relation to code block.
 - [x] Deploy to vercel
 - [x] If user's OS prefers dark mode then it will start that way properly but color switch button will show sun first.
+- [x] Clean up Figma file and add names to frames.

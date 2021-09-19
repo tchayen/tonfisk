@@ -23,6 +23,7 @@ export const getSourceMetadata = (
   slug: string
 ): {
   displayName: string;
+  sourcePath: string;
   description: string;
   props: Array<{
     name: string;
@@ -49,6 +50,7 @@ export const getSourceMetadata = (
     return {
       description,
       displayName,
+      sourcePath,
       props: Object.keys(props || {}).map((key) => {
         return {
           name: `${key}${props[key].required ? "" : "?"}`,
@@ -61,6 +63,7 @@ export const getSourceMetadata = (
     console.error(error);
 
     return {
+      sourcePath,
       description: "",
       displayName: "",
       props: [],
