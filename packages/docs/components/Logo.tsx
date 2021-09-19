@@ -9,6 +9,7 @@ export function Logo({ size }: { size?: number }): JSX.Element {
         WebkitBackgroundClip: "text",
         MozBackgroundClip: "text",
         WebkitTextFillColor: "transparent",
+        display: "inline",
       }}
     >
       tonfisk 🐟
