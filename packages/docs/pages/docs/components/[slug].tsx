@@ -1,3 +1,4 @@
+import { useFocusRing } from "@react-aria/focus";
 import React from "react";
 import { atoms } from "tonfisk";
 import { GitHub } from "tonfisk/src/icons/GitHub";
@@ -20,6 +21,33 @@ type Props = {
   metadata: Metadata;
 };
 
+function GitHubSource({ codeFileName }: { codeFileName: string }) {
+  const { focusProps, isFocusVisible } = useFocusRing();
+
+  return (
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={`https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/src/components/${codeFileName}`}
+      className={atoms({
+        marginTop: "xl",
+        color: "blue-500",
+        display: "inline-flex",
+        alignItems: "center",
+        outline: "none",
+        padding: "m",
+        borderRadius: "8px",
+        gap: "m",
+        boxShadow: isFocusVisible ? "outline" : "none",
+      })}
+      {...focusProps}
+    >
+      <GitHub className={atoms({ fill: "blue-500" })} />
+      Source code
+    </a>
+  );
+}
+
 export default function Doc({
   navigation,
   source,
@@ -30,21 +58,7 @@ export default function Doc({
     <Layout navigation={navigation}>
       <Header1>{metadata.displayName}</Header1>
       <Mdx source={source} />
-      <a
-        target="_blank"
-        rel="noopener noreferrer"
-        href={`https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/src/components/${metadata.codeFileName}`}
-        className={atoms({
-          marginTop: "xl",
-          color: "blue-500",
-          display: "flex",
-          alignItems: "center",
-          gap: "m",
-        })}
-      >
-        <GitHub className={atoms({ fill: "blue-500" })} />
-        Source code
-      </a>
+      <GitHubSource codeFileName={metadata.codeFileName} />
     </Layout>
   );
 }
