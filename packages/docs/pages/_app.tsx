@@ -7,7 +7,7 @@ import { TonfiskProvider } from "tonfisk";
 
 const title = "tonfisk 🐟";
 const description =
-  "A React design system with fully accessible component library.";
+  "A React design system with a fully accessible component library.";
 const url = "https://tonfisk.fish";
 const imageUrl = "";
 

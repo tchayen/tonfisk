@@ -20,7 +20,7 @@ export const h1 = atoms({
 
 export const mainBanner = atoms({
   width: {
-    desktop: "96ch",
+    desktop: "1100px",
     mobile: "100%",
   },
   padding: {
@@ -100,11 +100,11 @@ export const features = style([
     flexDirection: "column",
     gap: "xl",
     width: {
-      desktop: "96ch",
+      desktop: "1100px",
       mobile: "100%",
     },
     maxWidth: {
-      desktop: "96ch",
+      desktop: "1100px",
       mobile: "48ch",
     },
     padding: {

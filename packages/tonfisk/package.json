@@ -1,14 +1,21 @@
 {
   "private": true,
   "name": "tonfisk",
-  "version": "0.0.0",
+  "description": "A React design system with a fully accessible component library.",
+  "license": "MIT",
+  "version": "0.0.1",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/tchayen/tonfisk.git",
+    "directory": "packages/tonfisk"
+  },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "rollup --config rollup.config.ts --configPlugin typescript"
+    "build": "tsc --skipLibCheck && rollup --config rollup.config.ts --configPlugin typescript"
   },
   "dependencies": {
     "@react-aria/button": "^3.3.4",
