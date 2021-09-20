@@ -10,7 +10,7 @@ import { Logo } from "./Logo";
 import { MenuIcon } from "./MenuIcon";
 import { SwitchColorMode } from "./SwitchColorMode";
 
-const ListItem = ({
+function ListItem({
   active,
   children,
   href,
@@ -18,7 +18,7 @@ const ListItem = ({
   href: string;
   children: ReactNode;
   active?: boolean;
-}): JSX.Element => {
+}): JSX.Element {
   const { focusProps, isFocusVisible } = useFocusRing();
   const [isHovered, setIsHovered] = useState(false);
 
@@ -61,13 +61,13 @@ const ListItem = ({
       </Link>
     </div>
   );
-};
+}
 
-const NavLink = ({
+function NavLink({
   item,
 }: {
   item: ReturnType<typeof getNavigation>["files"][0];
-}) => {
+}) {
   const router = useRouter();
 
   if ("title" in item) {
@@ -94,7 +94,7 @@ const NavLink = ({
       </div>
     );
   }
-};
+}
 
 function Sidebar({
   navigation,

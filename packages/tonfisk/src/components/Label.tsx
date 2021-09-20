@@ -30,10 +30,10 @@ type Props = {
  *
  * <Label>Yes, this one is actually pretty tiny and not impressive on its own</Label>
  */
-export const Label = ({ children, ...props }: Props): JSX.Element => {
+export function Label({ children, ...props }: Props): JSX.Element {
   return (
     <label {...props} className={styles.label}>
       {children}
     </label>
   );
-};
+}

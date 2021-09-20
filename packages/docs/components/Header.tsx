@@ -9,9 +9,9 @@ type Props = {
   children?: ReactNode;
 } & JSX.IntrinsicAttributes;
 
-export const Header = (
+export function Header(
   HeaderNth: keyof JSX.IntrinsicElements
-): ((props: Props) => JSX.Element) => {
+): (props: Props) => JSX.Element {
   const component = (props: Props) => {
     if (typeof props.children !== "string") {
       throw new Error("Header must have a string child as of now.");
@@ -56,7 +56,7 @@ export const Header = (
 
   component.displayName = Header;
   return component;
-};
+}
 
 export const Header1 = Header("h1");
 export const Header2 = Header("h2");

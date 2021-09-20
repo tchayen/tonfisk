@@ -93,11 +93,19 @@ export const mdxPre = atoms({
 
 export const features = style([
   atoms({
-    display: "grid",
+    display: {
+      desktop: "grid",
+      mobile: "flex",
+    },
+    flexDirection: "column",
     gap: "xl",
     width: {
       desktop: "96ch",
       mobile: "100%",
+    },
+    maxWidth: {
+      desktop: "96ch",
+      mobile: "48ch",
     },
     padding: {
       desktop: "none",

@@ -34,7 +34,7 @@ import {
   MdxTableRow,
 } from "./MdxTable";
 
-const SelectExample = (): JSX.Element => {
+function SelectExample(): JSX.Element {
   const items = [
     { key: 1, label: "One" },
     { key: 2, label: "Two" },
@@ -84,9 +84,9 @@ const SelectExample = (): JSX.Element => {
       </Select>
     </div>
   );
-};
+}
 
-const TableExample = (): JSX.Element => {
+function TableExample(): JSX.Element {
   const [selectedKeys, setSelectedKeys] = useState<Selection>(new Set());
 
   const columns = [
@@ -147,9 +147,9 @@ const TableExample = (): JSX.Element => {
       </Table>
     </>
   );
-};
+}
 
-const MenuExample = (): JSX.Element => {
+function MenuExample(): JSX.Element {
   return (
     <MenuButton
       aria-label="Actions"
@@ -163,9 +163,9 @@ const MenuExample = (): JSX.Element => {
       <Item key="paste">Paste</Item>
     </MenuButton>
   );
-};
+}
 
-const CheckboxExample = (): JSX.Element => {
+function CheckboxExample(): JSX.Element {
   const [value, setValue] = useState(false);
   return (
     <>
@@ -201,7 +201,7 @@ const CheckboxExample = (): JSX.Element => {
       </Checkbox>
     </>
   );
-};
+}
 
 function FormTextInput(props: {
   name: string;

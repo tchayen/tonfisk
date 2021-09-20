@@ -43,7 +43,7 @@ type Props = {
  *   <Pill iconUrl="https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=013">Pill</Pill>
  * </div>
  */
-export const Pill = (props: Props): JSX.Element => {
+export function Pill(props: Props): JSX.Element {
   const ref = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(props, ref);
@@ -81,4 +81,4 @@ export const Pill = (props: Props): JSX.Element => {
       {props.children}
     </button>
   );
-};
+}
