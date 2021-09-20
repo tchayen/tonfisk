@@ -128,11 +128,11 @@ function Homepage() {
           </Paragraph>
         </div>
         <div className={atoms({ flex: 1 })}>
-          <Subheader>Type safe styling</Subheader>
+          <Subheader>Type-safe styling</Subheader>
           <Paragraph>
-            <code>vanilla-extract</code> is used to provide fully type safe
-            styling system. No dead CSS, no escaping the design system&apos;s
-            principles.
+            <code>vanilla-extract</code> is used to provide fully type-safe
+            styling system. No dead CSS, no escaping of the principles of the
+            design system.
           </Paragraph>
         </div>
         <div className={styles.flex1}>
