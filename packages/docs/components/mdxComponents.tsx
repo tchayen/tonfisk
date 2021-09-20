@@ -325,7 +325,7 @@ export function MdxPre({ children }: { children?: ReactNode }): JSX.Element {
     {
       onPress: () => {
         const content = ref.current!.textContent || "";
-        navigator.clipboard.writeText(content.substring(0, content.length - 4));
+        navigator.clipboard.writeText(content.substring(0, content.length));
       },
     },
     buttonRef
