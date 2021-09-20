@@ -1,8 +1,8 @@
 // The following two imports must be kept in this order:
+import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 
 import Link from "next/link";
-import Prism from "prismjs";
 import React, { ReactNode, useEffect } from "react";
 import { atoms, ButtonLink } from "tonfisk";
 
