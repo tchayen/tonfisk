@@ -3,7 +3,7 @@ import { atoms } from "tonfisk/src/theme.css";
 
 export const centered = atoms({
   width: {
-    desktop: "106ch",
+    desktop: "1100px",
     mobile: "100%",
   },
 });

@@ -39,7 +39,7 @@ export const vars = createGlobalTheme(":root", {
     "48ch": "48ch",
     "64ch": "64ch",
     "96ch": "96ch",
-    "106ch": "106ch",
+    "1100px": "1100px",
     "100vh": "100vh",
     "100vw": "100vw",
   },

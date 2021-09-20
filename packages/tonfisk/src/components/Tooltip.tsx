@@ -44,7 +44,9 @@ type Props = {
  * function TooltipExample() {
  *   return (
  *     <Tooltip tooltip="You don't have to press if you don't want to.">
- *       <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
+ *       <Button onPress={() => console.log("Thanks anyway!")}>
+ *         Press me →
+ *       </Button>
  *     </Tooltip>
  *   );
  * }
@@ -53,7 +55,9 @@ type Props = {
  * ## Example
  *
  * <Tooltip tooltip="You don't have to press if you don't want to.">
- *   <Button onPress={() => console.log("Thanks anyway!")}>Press me →</Button>
+ *   <Button onPress={() => console.log("Thanks anyway!")}>
+ *     Press me →
+ *   </Button>
  * </Tooltip>
  */
 export function Tooltip(props: Props): JSX.Element {

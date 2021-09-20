@@ -40,6 +40,15 @@ globalStyle(`pre::-webkit-scrollbar-thumb`, {
   boxShadow: `0 0 0 2px inset ${colors.coolGray[800]}`,
 });
 
+globalStyle(`html.${darkMode} pre::-webkit-scrollbar`, {
+  background: colors.coolGray[800],
+});
+
+globalStyle(`html.${darkMode} pre::-webkit-scrollbar-thumb`, {
+  backgroundColor: colors.coolGray[600],
+  boxShadow: `0 0 0 2px inset ${colors.coolGray[800]}`,
+});
+
 // , .token.punctuation, .token.class-name, .token.method.function.property-access, .token.attr-value, .token.maybe-class-name, .token.arrow.operator
 globalStyle(
   `
