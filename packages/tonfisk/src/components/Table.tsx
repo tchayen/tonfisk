@@ -315,7 +315,7 @@ type Props = {
    */
   children: CollectionChildren<object>;
   /**
-   * Value used to describe the table to screen readers.
+   * Value used to describe the table to screen readers. Required if `label` is missing.
    */
   "aria-label": string;
 };

@@ -43,6 +43,10 @@ export const vars = createGlobalTheme(":root", {
     "100vh": "100vh",
     "100vw": "100vw",
   },
+  gridTemplateColumns: {
+    three: "repeat(3, 1fr)",
+    one: "repeat(1, 1fr)",
+  },
   color: {
     none: "none",
     white: "#fff",

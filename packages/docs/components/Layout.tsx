@@ -5,7 +5,9 @@ import React, { ReactNode, useState } from "react";
 import { atoms } from "tonfisk";
 
 import { getNavigation } from "../utils/mdx";
+import * as styles from "./Layout.css";
 import { Logo } from "./Logo";
+import { MenuIcon } from "./MenuIcon";
 import { SwitchColorMode } from "./SwitchColorMode";
 
 const ListItem = ({
@@ -28,23 +30,10 @@ const ListItem = ({
     setIsHovered(false);
   };
 
-  const className = atoms({
-    fontSize: "16px",
-    fontWeight: active ? "bold" : "body",
-    color: {
-      lightMode: active ? "white" : isHovered ? "black" : "gray-600",
-      darkMode: active || isHovered ? "gray-200" : "gray-400",
-    },
-    borderRadius: "8px",
-    margin: "s",
-    background: active ? "blue-500" : isHovered ? "blueOutline" : "transparent",
-    height: "32px",
-    paddingLeft: "m",
-    paddingRight: "m",
-    display: "flex",
-    alignItems: "center",
-    outline: "none",
-    boxShadow: isFocusVisible ? "outline" : "none",
+  const className = styles.link({
+    color: active ? "active" : isHovered ? "hovered" : "default",
+    background: active ? "active" : isHovered ? "hovered" : "default",
+    boxShadow: isFocusVisible ? "focusVisible" : "default",
   });
 
   const props = {
@@ -98,17 +87,7 @@ const NavLink = ({
           marginBottom: "xl",
         })}
       >
-        <h3
-          className={atoms({
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-            padding: "m",
-          })}
-        >
-          {item.name}
-        </h3>
+        <h3 className={styles.h3}>{item.name}</h3>
         {item.files.map((file, index) => (
           <NavLink key={index} item={file} />
         ))}
@@ -116,6 +95,26 @@ const NavLink = ({
     );
   }
 };
+
+function Sidebar({
+  navigation,
+}: {
+  navigation: ReturnType<typeof getNavigation>;
+}) {
+  return (
+    <>
+      <Logo size={32} />
+      <SwitchColorMode />
+      {navigation.files.map((item, index) => {
+        return <NavLink key={index} item={item} />;
+      })}
+      <h3 className={styles.h3}>Links</h3>
+      <ListItem href="https://github.com/tchayen/tonfisk">GitHub ↗</ListItem>
+      <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
+      {/* <ListItem href="#">Discord ↗</ListItem> */}
+    </>
+  );
+}
 
 export function Layout({
   navigation,
@@ -129,65 +128,15 @@ export function Layout({
       style={{
         margin: "0 auto",
       }}
-      className={atoms({
-        width: {
-          desktop: "106ch",
-          mobile: "100%",
-        },
-      })}
+      className={styles.centered}
     >
-      <div
-        className={atoms({
-          position: "fixed",
-          width: "256px",
-          height: "100vh",
-          top: 0,
-          bottom: 0,
-          paddingTop: "xl",
-          paddingBottom: "xl",
-          overflowY: "scroll",
-          visibility: {
-            desktop: "visible",
-            mobile: "hidden",
-          },
-        })}
-      >
-        <Logo size={32} />
-        <SwitchColorMode />
-        {navigation.files.map((item, index) => {
-          return <NavLink key={index} item={item} />;
-        })}
-        <h3
-          className={atoms({
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-            padding: "m",
-          })}
-        >
-          Links
-        </h3>
-        <ListItem href="https://github.com/tchayen/tonfisk">GitHub ↗</ListItem>
-        <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
-        {/* <ListItem href="#">Discord ↗</ListItem> */}
+      <MenuIcon>
+        <Sidebar navigation={navigation} />
+      </MenuIcon>
+      <div className={styles.sidebar}>
+        <Sidebar navigation={navigation} />
       </div>
-      <div
-        className={atoms({
-          padding: "xl",
-          paddingTop: "none",
-          paddingRight: "none",
-          marginRight: "none",
-          marginLeft: {
-            desktop: "4xl",
-            mobile: "none",
-          },
-        })}
-        style={{}}
-      >
-        {children}
-      </div>
-      <div />
+      <div className={styles.content}>{children}</div>
     </div>
   );
 }

@@ -10,6 +10,7 @@ import { Logo } from "../components/Logo";
 import { MdxPre } from "../components/mdxComponents";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 import * as styles from "../styles/index.css";
+import { Tweet } from "../components/Tweet";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return (
@@ -54,7 +55,7 @@ export default function Home(): JSX.Element {
         <Logo />
       </div>
       <div className={styles.mainBanner}>
-        <div>
+        <div className={styles.topParagraphDiv}>
           <p className={styles.topParagraphElement}>
             A React <strong className={styles.strong}>design system</strong>{" "}
             with a component library built on top of{" "}
@@ -63,10 +64,12 @@ export default function Home(): JSX.Element {
             <code className={styles.code}>vanilla-extract</code>, lightweight
             and powerful styling solution.
           </p>
-          <pre className={styles.pre}>
-            <span className={styles.promptChar}>$</span>{" "}
-            <div>yarn add tonfisk</div>
-          </pre>
+          <div>
+            <pre className={styles.pre}>
+              <span className={styles.promptChar}>$</span>{" "}
+              <div>yarn add tonfisk</div>
+            </pre>
+          </div>
           <div className={styles.linkButtons}>
             <Link href="/docs/getting-started">
               <ButtonLink href="/docs/getting-started" size="large">
@@ -109,10 +112,7 @@ function Homepage() {
           </MdxPre>
         </div>
       </div>
-      <div
-        style={{ gridTemplateColumns: "repeat(3, 1fr)" }}
-        className={styles.features}
-      >
+      <div className={styles.features}>
         {/* <div className={styles.flex1}>
           <Subheader>Full TypeScript support</Subheader>
           <Paragraph>
@@ -169,13 +169,37 @@ function Homepage() {
           </Paragraph>
         </div>
       </div>
-      <div className={styles.footerText}>
-        Created by{" "}
-        <a href="https://twitter.com/tchayen" className={styles.link}>
-          @tchayen
-        </a>{" "}
-        in Stockholm.
-      </div>
+      {/* <div className={styles.tweetsWrapper}>
+        <div className={styles.tweets}>
+          <Tweet
+            handle="tchayen"
+            name="Tomasz Czajęcki"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dolor vitae sem commodo interdum sit amet at purus. Mauris aliquet neque id nibh dictum, ac porta sem volutpat."
+            avatarUrl="https://github.com/tchayen.png"
+          />
+          <Tweet
+            handle="tchayen"
+            name="Tomasz Czajęcki"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dolor vitae sem commodo interdum sit amet at purus. Mauris aliquet neque id nibh dictum, ac porta sem volutpat."
+            avatarUrl="https://github.com/tchayen.png"
+          />
+          <Tweet
+            handle="tchayen"
+            name="Tomasz Czajęcki"
+            content="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ac dolor vitae sem commodo interdum sit amet at purus. Mauris aliquet neque id nibh dictum, ac porta sem volutpat."
+            avatarUrl="https://github.com/tchayen.png"
+          />
+        </div>
+      </div> */}
+      <footer>
+        <div className={styles.footerText}>
+          Created by{" "}
+          <a href="https://twitter.com/tchayen" className={styles.link}>
+            @tchayen
+          </a>{" "}
+          in Stockholm.
+        </div>
+      </footer>
     </div>
   );
 }

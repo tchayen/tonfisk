@@ -42,7 +42,7 @@ type Props = {
    */
   onKeyPress?: (event: React.KeyboardEvent) => void;
   /**
-   * Value used to describe input to screen readers. Necessary if label prop is missing.
+   * Value used to describe the table to screen readers. Required if `label` is missing.
    */
   "aria-label"?: string;
 };

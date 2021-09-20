@@ -24,7 +24,6 @@ export default function Doc({
   source,
   metadata,
 }: Props): JSX.Element {
-  console.log(metadata);
   return (
     <Layout navigation={navigation}>
       <Header1>{metadata.displayName}</Header1>

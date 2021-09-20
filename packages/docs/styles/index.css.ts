@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { keyframes, style } from "@vanilla-extract/css";
 import { atoms } from "tonfisk/src/theme.css";
 
 export const page = atoms({
@@ -23,6 +23,14 @@ export const mainBanner = atoms({
     desktop: "96ch",
     mobile: "100%",
   },
+  padding: {
+    desktop: "none",
+    mobile: "xl",
+  },
+  flexDirection: {
+    desktop: "row",
+    mobile: "column",
+  },
   marginBottom: "2xl",
   marginTop: "2xl",
   display: "flex",
@@ -30,10 +38,20 @@ export const mainBanner = atoms({
   gap: "xl",
 });
 
+export const topParagraphDiv = atoms({
+  display: "flex",
+  flexDirection: "column",
+  alignItems: {
+    desktop: "flex-start",
+    mobile: "center",
+  },
+});
+
 export const topParagraphElement = atoms({
   fontSize: "18px",
   lineHeight: 2,
   marginTop: "none",
+  maxWidth: "64ch",
 });
 
 export const strong = atoms({
@@ -73,11 +91,27 @@ export const mdxPre = atoms({
   outline: "none",
 });
 
-export const features = atoms({
-  display: "grid",
-  gap: "xl",
-  width: "96ch",
-});
+export const features = style([
+  atoms({
+    display: "grid",
+    gap: "xl",
+    width: {
+      desktop: "96ch",
+      mobile: "100%",
+    },
+    padding: {
+      desktop: "none",
+      mobile: "xl",
+    },
+    // gridTemplateColumns: {
+    //   desktop: "three",
+    //   mobile: "one",
+    // },
+  }),
+  style({
+    gridTemplateColumns: "repeat(3, 1fr)",
+  }),
+]);
 
 export const flex1 = atoms({ flex: 1 });
 
@@ -95,5 +129,24 @@ export const link = style([
     ":hover": {
       textDecoration: "underline",
     },
+  }),
+]);
+
+export const tweetsWrapper = atoms({
+  marginTop: "xl",
+  marginBottom: "xl",
+  background: "blue-100",
+  paddingTop: "xl",
+  paddingBottom: "xl",
+  width: "100%",
+});
+
+export const tweets = style([
+  atoms({
+    display: "grid",
+    gap: "xl",
+  }),
+  style({
+    gridTemplateColumns: "repeat(2, 1fr)",
   }),
 ]);

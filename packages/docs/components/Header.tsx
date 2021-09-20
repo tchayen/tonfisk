@@ -1,3 +1,4 @@
+import { useFocusRing } from "@react-aria/focus";
 import { ReactNode } from "react";
 import { atoms } from "tonfisk";
 
@@ -15,6 +16,7 @@ export const Header = (
     if (typeof props.children !== "string") {
       throw new Error("Header must have a string child as of now.");
     }
+    const { focusProps, isFocusVisible } = useFocusRing();
 
     const slug = toKebabCase(props.children.replace(/\s+/g, "-") || "");
 
@@ -25,7 +27,17 @@ export const Header = (
           marginBottom: "l",
         })}
       >
-        <a className={hoverUnderline} href={`#${slug}`}>
+        <a
+          className={`${hoverUnderline} ${atoms({
+            outline: "none",
+            boxShadow: isFocusVisible ? "outline" : "none",
+            borderRadius: "4px",
+            display: "inline-block",
+            // padding: "m",
+          })}`}
+          {...focusProps}
+          href={`#${slug}`}
+        >
           <HeaderNth
             id={slug}
             className={atoms({

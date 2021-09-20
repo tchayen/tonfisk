@@ -2,6 +2,7 @@
 import { useButton } from "@react-aria/button";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useFocus } from "@react-aria/interactions";
+import { useLabel } from "@react-aria/label";
 import { useMenu, useMenuItem, useMenuTrigger } from "@react-aria/menu";
 import { DismissButton, useOverlay } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
@@ -16,6 +17,7 @@ import { ForwardedRef, forwardRef, Key, ReactNode, RefObject } from "react";
 import React, { useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
+import { Label } from "./Label";
 import {
   chevronPadding,
   div,
@@ -24,13 +26,15 @@ import {
   menuPopup,
 } from "./Menu.css";
 
-function MenuPopup(props: {
-  onClose: () => void;
-  domProps: React.HTMLAttributes<HTMLElement>;
-  onAction: (action: Key) => void;
-  autoFocus?: FocusStrategy;
-  children: CollectionChildren<object>;
-}): JSX.Element {
+function MenuPopup(
+  props: {
+    onClose: () => void;
+    domProps: React.HTMLAttributes<HTMLElement>;
+    onAction: (action: Key) => void;
+    autoFocus?: FocusStrategy;
+    children: CollectionChildren<object>;
+  } & React.HTMLAttributes<HTMLElement>
+): JSX.Element {
   // Create menu state based on the incoming props
   const state = useTreeState({ ...props, selectionMode: "none" });
 
@@ -129,9 +133,13 @@ function MenuItem({
 
 type Props = {
   /**
-   * Label of the button.
+   * Label of the button (over the trigger).
    */
-  label: string;
+  label?: string;
+  /**
+   * Title of the component (inside the trigger button).
+   */
+  title: string;
   /**
    * Whether user can interact with the menu.
    */
@@ -144,6 +152,10 @@ type Props = {
    * Array of `<Item />` elements.
    */
   children: CollectionChildren<object>;
+  /**
+   * Value used to describe the table to screen readers. Required if `label` is missing.
+   */
+  "aria-label"?: string;
 };
 
 type MenuButton_Props = {
@@ -215,28 +227,28 @@ export const MenuButtonComponent = forwardRef(MenuButton_);
  * <MenuExample />
  */
 export function MenuButton(props: Props): JSX.Element {
-  // Create state based on the incoming props
   const state = useMenuTriggerState(props as MenuTriggerProps);
-
-  // Get props for the menu trigger and menu elements
   const ref = useRef<HTMLButtonElement>(null);
-  const { menuTriggerProps, menuProps } = useMenuTrigger({}, state, ref);
+  const { menuTriggerProps, menuProps } = useMenuTrigger(props, state, ref);
+  const { labelProps, fieldProps } = useLabel(props);
 
   return (
     <div className={div}>
+      {props.label && <Label {...labelProps}>{props.label}</Label>}
       <MenuButtonComponent
         ref={ref}
         menuTriggerProps={menuTriggerProps}
         isDisabled={props.isDisabled}
       >
-        {props.label}
+        {props.title}
       </MenuButtonComponent>
       {state.isOpen && (
         <MenuPopup
-          {...props}
           domProps={menuProps}
           autoFocus={state.focusStrategy}
           onClose={() => state.close()}
+          {...fieldProps}
+          {...props}
         />
       )}
     </div>

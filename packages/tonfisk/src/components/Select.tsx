@@ -42,7 +42,7 @@ type Props = {
    */
   isDisabled?: boolean;
   /**
-   * Necessary in the absence of `label` prop.
+   * Value used to describe the table to screen readers. Required if `label` is missing.
    */
   "aria-label"?: string;
 };

@@ -6,7 +6,7 @@ import { darkMode, vars } from "./vars.css";
 
 const responsiveProperties = defineProperties({
   conditions: {
-    desktop: { "@media": "screen and (min-width: 1000px)" },
+    desktop: { "@media": "screen and (min-width: 1200px)" },
     mobile: {},
   },
   defaultCondition: "mobile",
@@ -31,6 +31,7 @@ const responsiveProperties = defineProperties({
     height: vars.size,
     minHeight: vars.size,
     maxHeight: vars.size,
+    gridTemplateColumns: vars.gridTemplateColumns,
     position: ["fixed", "absolute", "relative", "sticky"],
     alignItems: ["stretch", "flex-start", "center", "flex-end"],
     justifyContent: [
@@ -102,7 +103,7 @@ const otherProperties = defineProperties({
     zIndex: [1, 10, 100, 1000, 10000, 100000],
     flex: [1],
     listStyle: ["none"],
-    overflow: ["auto", "hidden"],
+    overflow: ["auto", "hidden", "scroll"],
     WebkitAppearance: vars.WebkitAppearance,
     borderCollapse: ["separate", "collapse"],
     borderSpacing: [0],

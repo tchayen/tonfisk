@@ -152,7 +152,8 @@ const TableExample = (): JSX.Element => {
 const MenuExample = (): JSX.Element => {
   return (
     <MenuButton
-      label="Actions"
+      aria-label="Actions"
+      title="Pick action"
       onAction={() => {
         console.log("Hej!");
       }}
@@ -312,6 +313,7 @@ function MdxLi({ children }: { children?: ReactNode }): JSX.Element {
   );
 }
 
+// TODO: extract component.
 export function MdxPre({ children }: { children?: ReactNode }): JSX.Element {
   const ref = useRef<HTMLPreElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
@@ -337,12 +339,18 @@ export function MdxPre({ children }: { children?: ReactNode }): JSX.Element {
     setIsHovered(false);
   };
 
-  const preClassName = atoms({
-    padding: "xl",
+  const wrapperClassName = atoms({
     borderRadius: "8px",
     background: "gray-800",
-    color: "gray-200",
     position: "relative",
+    overflow: "hidden",
+    padding: "l",
+  });
+
+  const preClassName = atoms({
+    color: "gray-200",
+    overflow: "auto",
+    padding: "l",
   });
 
   const buttonClassName = atoms({
@@ -365,8 +373,10 @@ export function MdxPre({ children }: { children?: ReactNode }): JSX.Element {
   });
 
   return (
-    <pre ref={ref} className={preClassName}>
-      {children}
+    <div className={wrapperClassName}>
+      <pre ref={ref} className={preClassName}>
+        {children}
+      </pre>
       <button
         {...mergeProps(focusProps, buttonProps)}
         onMouseEnter={onMouseEnter}
@@ -376,7 +386,7 @@ export function MdxPre({ children }: { children?: ReactNode }): JSX.Element {
       >
         Copy
       </button>
-    </pre>
+    </div>
   );
 }
 

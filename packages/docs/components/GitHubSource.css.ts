@@ -17,8 +17,12 @@ export const anchor = recipe({
   base,
   variants: {
     boxShadow: {
-      focusVisible: atoms({ boxShadow: "outline" }),
-      default: atoms({ boxShadow: "none" }),
+      focusVisible: atoms({
+        boxShadow: "outline",
+      }),
+      default: atoms({
+        boxShadow: "none",
+      }),
     },
   },
 });

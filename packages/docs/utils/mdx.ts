@@ -82,14 +82,34 @@ type Directory = {
   name: string;
   files: Array<File | Directory>;
 };
+
 type File = {
   title: string;
   filePath: string;
 };
 
 export const getNavigation = (): Directory => {
-  // TODO: sort those in some specified order.
-  const docs = docsFilePaths.map((filePath) => {
+  const order = ["getting-started", "motivation", "formik-example", "roadmap"];
+
+  const sortedPart = [];
+  const rest = [];
+
+  for (const file of order) {
+    const doc = docsFilePaths.find((doc) => doc.includes(file));
+    if (doc) {
+      sortedPart.push(doc);
+    }
+  }
+
+  for (const doc of sortedPart) {
+    if (!docsFilePaths.includes(doc)) {
+      rest.push(doc);
+    }
+  }
+
+  const merged = [...sortedPart, ...rest];
+
+  const docs = merged.map((filePath) => {
     const source = fs.readFileSync(path.join(DOCS_PATH, filePath), "utf-8");
 
     const { data } = matter(source);
