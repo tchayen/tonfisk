@@ -17,17 +17,7 @@
       font-feature-settings: 'ss01' on,'ss02' on,'cv01' on,'cv03' on;
     }
 
-    h1 {
-      font-size: 100px;
-      background-color: #f3ec78;
-      background-image: linear-gradient(90deg, #12c2e9, #c471ed, #f64f59);
-      background-size: 100%;
-      -webkit-background-clip: text;
-      -moz-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    h1, h2, h3 {
+    h2, h3 {
       margin: 0;
     }
 
@@ -50,25 +40,66 @@
 
     #container {
       display: flex;
-      justify-content: space-between;
+      justify-content: flex-end;
       flex-direction: column;
       flex: 1;
       padding: 64px;
     }
-
-    #logo {
-      display: flex;
-    }
   </style>
   <rect width="__WIDTH__" height="__HEIGHT__" fill="white"/>
+  <path d="M100.086 88.9789H87.7033V73.9343H72.9092V88.9789H64V100.426H72.9092V135.339C72.8274 147.154 81.4097 152.959 92.5257 152.632C96.7351 152.509 99.6367 151.692 101.231 151.16L98.7376 139.591C97.9203 139.795 96.2447 140.163 94.4056 140.163C90.6867 140.163 87.7033 138.855 87.7033 132.886V100.426H100.086V88.9789Z" fill="url(#paint0_linear)"/>
+  <path d="M139.166 153C157.557 153 169.245 140.04 169.245 120.621C169.245 101.162 157.557 88.1612 139.166 88.1612C120.776 88.1612 109.087 101.162 109.087 120.621C109.087 140.04 120.776 153 139.166 153ZM139.248 141.144C129.072 141.144 124.086 132.068 124.086 120.581C124.086 109.093 129.072 99.8943 139.248 99.8943C149.26 99.8943 154.246 109.093 154.246 120.581C154.246 132.068 149.26 141.144 139.248 141.144Z" fill="url(#paint1_linear)"/>
+  <path d="M196.596 114.98C196.596 105.904 202.072 100.671 209.878 100.671C217.52 100.671 222.097 105.7 222.097 114.08V151.774H236.891V111.791C236.932 96.7464 228.35 88.1612 215.395 88.1612C205.995 88.1612 199.538 92.6582 196.677 99.6491H195.942V88.9789H181.801V151.774H196.596V114.98Z" fill="url(#paint2_linear)"/>
+  <path d="M283.726 88.9789H270.689V84.0322C270.689 79.1263 272.732 76.3872 278.249 76.3872C280.579 76.3872 282.541 76.9187 283.767 77.2866L286.75 65.8397C284.829 65.1856 280.62 64.1226 275.511 64.1226C264.6 64.1226 255.895 70.3776 255.895 83.051V88.9789H246.618V100.426H255.895V151.774H270.689V100.426H283.726V88.9789Z" fill="url(#paint3_linear)"/>
+  <path d="M295.312 151.774H310.106V88.9789H295.312V151.774ZM302.75 80.0666C307.449 80.0666 311.291 76.469 311.291 72.0537C311.291 67.5976 307.449 64 302.75 64C298.009 64 294.167 67.5976 294.167 72.0537C294.167 76.469 298.009 80.0666 302.75 80.0666Z" fill="url(#paint4_linear)"/>
+  <path d="M374.932 105.577C372.889 94.9476 364.388 88.1612 349.676 88.1612C334.555 88.1612 324.256 95.6017 324.297 107.212C324.256 116.37 329.896 122.42 341.952 124.914L352.659 127.163C358.422 128.43 361.119 130.76 361.119 134.317C361.119 138.61 356.46 141.839 349.431 141.839C342.647 141.839 338.233 138.896 336.966 133.254L322.54 134.644C324.379 146.173 334.065 153 349.472 153C365.165 153 376.24 144.864 376.281 132.968C376.24 124.015 370.478 118.537 358.626 115.961L347.919 113.672C341.543 112.241 339.01 110.033 339.05 106.395C339.01 102.143 343.709 99.1994 349.88 99.1994C356.705 99.1994 360.302 102.92 361.446 107.049L374.932 105.577Z" fill="url(#paint5_linear)"/>
+  <path d="M388.48 151.774H403.274V130.678L408.669 124.914L427.877 151.774H445.572L419.826 116.084L444.142 88.9789H426.855L404.296 114.203H403.274V68.0473H388.48V151.774Z" fill="url(#paint6_linear)"/>
+  <path d="M501.316 82.4173C506.016 77.3898 507.672 74.0839 510.307 68.0269C535.481 71.6245 557.06 82.4173 560.656 104.003C569.315 100.865 573.012 98.3434 578.638 93.2102C579.633 110.063 578.429 119.519 576.84 136.381C570.998 130.711 567.259 127.825 558.858 123.79C557.13 126.023 555.946 127.204 553.463 129.186C553.437 132.541 554.421 134.53 557.06 138.18C552.988 138.223 550.418 137.754 544.472 134.583C542.803 136.024 541.666 136.817 539.078 138.18C539.529 141.931 541.298 144.458 544.472 148.973C537.148 148.426 533.158 147.249 526.49 141.778C496.131 143.438 488.32 136.215 477.94 120.192C476.141 118.393 486.691 118.559 492.325 118.393C481.907 115.684 474.343 111.198 474.343 109.399C481.536 91.4113 490.527 86.0149 501.316 82.4173Z" fill="url(#paint7_linear)"/>
+  <defs>
+  <linearGradient id="paint0_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint1_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint2_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint3_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint4_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint5_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint6_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  <linearGradient id="paint7_linear" x1="64" y1="153.94" x2="578.28" y2="153.94" gradientUnits="userSpaceOnUse">
+  <stop stop-color="#12C2E9"/>
+  <stop offset="0.494792" stop-color="#C471ED"/>
+  <stop offset="1" stop-color="#F64F59"/>
+  </linearGradient>
+  </defs>
   <foreignObject x="0" y="0" width="__WIDTH__" height="__HEIGHT__">
     <div id="wrapper" xmlns="http://www.w3.org/1999/xhtml">
       <div id="container" xmlns="http://www.w3.org/1999/xhtml">
-        <div id="logo" xmlns="http://www.w3.org/1999/xhtml">
-          <h1 xmlns="http://www.w3.org/1999/xhtml">
-            tonfisk 🐟
-          </h1>
-        </div>
         <div xmlns="http://www.w3.org/1999/xhtml">
           __TEXT__
         </div>
