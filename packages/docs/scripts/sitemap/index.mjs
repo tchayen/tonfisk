@@ -25,9 +25,9 @@ async function generate() {
       .map((page) => {
         const path = toKebabCase(
           page
-            .replaceAll(".tsx", "")
-            .replaceAll(".mdx", "")
-            .replaceAll("../tonfisk/src", "docs")
+            .replace(".tsx", "")
+            .replace(".mdx", "")
+            .replace("../tonfisk/src", "docs")
         );
 
         return `<url>
