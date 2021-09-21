@@ -4,26 +4,20 @@ import matter from "gray-matter";
 import path from "path";
 import puppeteer from "puppeteer";
 
-const packageJson = JSON.parse(
-  readFileSync(
-    new URL("../../../tonfisk/package.json", import.meta.url).pathname,
-    "utf8"
-  )
-);
-
 const dimensions = {
   width: 1200,
   height: 630,
 };
 
-const templateFile = new URL("./template.svg", import.meta.url).pathname;
-const resultDirectory = new URL("../../public/social", import.meta.url)
-  .pathname;
-const docsPath = new URL("../../docs", import.meta.url).pathname;
-const sourcesPath = new URL("../../../tonfisk/src/components", import.meta.url)
-  .pathname;
+const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
 
-console.log(templateFile, resultDirectory, docsPath, sourcesPath);
+const templateFile = getPath("./template.svg");
+const resultDirectory = getPath("../../public/social");
+const docsPath = getPath("../../docs");
+const sourcesPath = getPath("../../../tonfisk/src/components");
+const tonfiskPackagePath = getPath("../../../tonfisk/package.json");
+
+const packageJson = JSON.parse(readFileSync(tonfiskPackagePath, "utf8"));
 
 if (!fs.existsSync(resultDirectory)) {
   fs.mkdirSync(resultDirectory);
