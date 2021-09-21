@@ -1,10 +1,12 @@
 import { Buffer } from "buffer";
-import fs from "fs";
+import fs, { readFileSync } from "fs";
 import matter from "gray-matter";
 import path from "path";
 import puppeteer from "puppeteer";
 
-import packageJson from "../../../tonfisk/package.json";
+const packageJson = JSON.parse(
+  readFileSync("../../../tonfisk/package.json", "utf8")
+);
 
 const dimensions = {
   width: 1200,
