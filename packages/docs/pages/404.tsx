@@ -1,9 +1,8 @@
-import Head from "next/head";
 import { commonStyles } from "tonfisk";
 
 import { Header1 } from "../components/Header";
 import { Layout } from "../components/Layout";
-import { imageUrl } from "../const";
+import { SocialCardsHeader } from "../components/SocialCardsHeader";
 import { getNavigation } from "../utils/mdx";
 type Navigation = ReturnType<typeof getNavigation>;
 
@@ -14,10 +13,7 @@ export default function Missing({
 }): JSX.Element {
   return (
     <>
-      <Head>
-        <meta name="twitter:image" content={imageUrl} />
-        <meta property="og:image" content={imageUrl} />
-      </Head>
+      <SocialCardsHeader slug="homepage" />
       <Layout navigation={navigation}>
         <Header1>404</Header1>
         <p className={commonStyles.secondaryTextColor}>
