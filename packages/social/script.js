@@ -5,12 +5,13 @@ const path = require("path");
 const puppeteer = require("puppeteer");
 const packageJson = require("../tonfisk/package.json");
 
-const templateFile = path.join(__dirname, "./template.svg");
-const resultDir = path.join(__dirname, "../docs/public/social");
 const dimensions = {
   width: 1200,
   height: 630,
 };
+
+const templateFile = path.join(__dirname, "./template.svg");
+const resultDirectory = "public/social";
 
 const toKebabCase = (string) =>
   string.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
@@ -60,10 +61,6 @@ const runAsync = async () => {
   const page = await browser.newPage();
   await page.setViewport(Object.assign({ deviceScaleFactor: 1 }, dimensions));
 
-  if (!fs.existsSync(resultDir)) {
-    fs.mkdirSync(resultDir);
-  }
-
   for (const file of files) {
     console.log(`Creating ${file.name}.png.`);
     const fileString = templateString
@@ -79,7 +76,7 @@ const runAsync = async () => {
     const options = {
       encoding: "binary",
       type: "png",
-      path: `${resultDir}/${file.name}.png`,
+      path: `${resultDirectory}/${file.name}.png`,
     };
     await page.screenshot(options);
   }
