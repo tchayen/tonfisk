@@ -14,9 +14,6 @@ module.exports = () => {
             "process.env.CONFIG_BUILD_ID": JSON.stringify(buildId),
           })
         );
-
-        // This will make Next.js run script on deploy.
-        require("../social/script");
       }
 
       return config;
