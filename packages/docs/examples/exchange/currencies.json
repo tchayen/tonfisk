@@ -35,19 +35,24 @@
     "icon": "https://cryptologos.cc/logos/curve-dao-token-crv-logo.svg?v=013"
   },
   {
-    "name": "CVC",
-    "acronym": "Civic",
+    "name": "Civic",
+    "acronym": "CVC",
     "icon": "https://cryptologos.cc/logos/civic-cvc-logo.svg?v=013"
   },
   {
-    "name": "DAI",
-    "acronym": "DaiStablecoin",
+    "name": "DaiStablecoin",
+    "acronym": "DAI",
     "icon": "https://cryptologos.cc/logos/multi-collateral-dai-dai-logo.svg?v=013"
   },
   {
     "name": "Decentraland",
     "acronym": "MANA",
     "icon": "https://cryptologos.cc/logos/decentraland-mana-logo.svg?v=013"
+  },
+  {
+    "name": "Ethereum",
+    "acronym": "ETH",
+    "icon": "https://cryptologos.cc/logos/ethereum-eth-logo.svg?v=013"
   },
   {
     "name": "UMAVotingTokenv1",

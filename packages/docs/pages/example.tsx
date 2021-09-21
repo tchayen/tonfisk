@@ -47,6 +47,12 @@ type PropsSpaghetti = {
   setDisableMultihops: Dispatch<SetStateAction<boolean>>;
 };
 
+if (typeof Image !== "undefined") {
+  currencies.forEach((currency) => {
+    new Image().src = currency.icon;
+  });
+}
+
 const SettingsPopover = ({
   isDisabled,
   ...props
