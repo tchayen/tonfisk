@@ -11,7 +11,12 @@ const dimensions = {
 };
 
 const templateFile = path.join(__dirname, "./template.svg");
+
 const resultDirectory = path.join(__dirname, "../docs/public/social");
+
+if (!fs.existsSync(resultDirectory)) {
+  fs.mkdirSync(resultDirectory);
+}
 
 const toKebabCase = (string) =>
   string.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
