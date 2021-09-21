@@ -1,5 +1,4 @@
 import fs from "fs";
-import { globby } from "globby";
 import prettier from "prettier";
 
 const toKebabCase = (string) =>
@@ -36,7 +35,6 @@ async function generate() {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     ${pages
       .map((page) => {
-        console.log(pages);
         const path = toKebabCase(page.replace(".tsx", "").replace(".mdx", ""));
 
         return `<url>
