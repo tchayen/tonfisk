@@ -1,4 +1,5 @@
 import fs from "fs";
+import Head from "next/head";
 import path from "path";
 import React from "react";
 import { atoms } from "tonfisk";
@@ -6,6 +7,7 @@ import { atoms } from "tonfisk";
 import { Header1 } from "../../components/Header";
 import { Layout } from "../../components/Layout";
 import { Mdx } from "../../components/Mdx";
+import { url } from "../../const";
 import {
   DOCS_PATH,
   docsFilePaths,
@@ -14,31 +16,40 @@ import {
 } from "../../utils/mdx";
 
 type Props = {
+  slug: string;
   navigation: ReturnType<typeof getNavigation>;
   source: string;
   frontMatter: { [key: string]: string };
 };
 
 export default function Doc({
+  slug,
   navigation,
   source,
   frontMatter,
 }: Props): JSX.Element {
+  const imageUrl = `${url}/social/${slug}.png`;
   return (
-    <Layout navigation={navigation}>
-      <Header1>{frontMatter.title}</Header1>
-      <p
-        className={atoms({
-          color: {
-            lightMode: "gray-600",
-            darkMode: "gray-400",
-          },
-        })}
-      >
-        {frontMatter.description}
-      </p>
-      <Mdx source={source} />
-    </Layout>
+    <>
+      <Head>
+        <meta name="twitter:image" content={imageUrl} />
+        <meta property="og:image" content={imageUrl} />
+      </Head>
+      <Layout navigation={navigation}>
+        <Header1>{frontMatter.title}</Header1>
+        <p
+          className={atoms({
+            color: {
+              lightMode: "gray-600",
+              darkMode: "gray-400",
+            },
+          })}
+        >
+          {frontMatter.description}
+        </p>
+        <Mdx source={source} />
+      </Layout>
+    </>
   );
 }
 
@@ -50,7 +61,10 @@ export const getStaticProps = async ({
   const postPath = path.join(DOCS_PATH, `${params.slug}.mdx`);
   const docFile = fs.readFileSync(postPath, "utf-8");
   return {
-    props: await readMdxFile(docFile),
+    props: {
+      slug: params.slug,
+      ...(await readMdxFile(docFile)),
+    },
   };
 };
 

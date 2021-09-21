@@ -28,15 +28,20 @@ export default function Doc({
   source,
   metadata,
 }: Props): JSX.Element {
+  const imageUrl = `${url}/social/${slug}.png`;
+
   return (
-    <Layout navigation={navigation}>
+    <>
       <Head>
-        <meta property="og:image" content={`${url}/social/${slug}.png`} />
+        <meta name="twitter:image" content={imageUrl} />
+        <meta property="og:image" content={imageUrl} />
       </Head>
-      <Header1>{metadata.displayName}</Header1>
-      <Mdx source={source} />
-      <GitHubSource codeFileName={metadata.codeFileName} />
-    </Layout>
+      <Layout navigation={navigation}>
+        <Header1>{metadata.displayName}</Header1>
+        <Mdx source={source} />
+        <GitHubSource codeFileName={metadata.codeFileName} />
+      </Layout>
+    </>
   );
 }
 
