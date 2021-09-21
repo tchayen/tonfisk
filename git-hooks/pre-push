@@ -1,3 +1,6 @@
 #!/bin/sh
 
-node $GIT_DIR/../packages/social/script.js
+echo "Running pre-push to build social images."
+PWD=`pwd`
+
+node $PWD/packages/social/script.js
