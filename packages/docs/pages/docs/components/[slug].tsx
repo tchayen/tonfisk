@@ -5,6 +5,7 @@ import { GitHubSource } from "../../../components/GitHubSource";
 import { Header1 } from "../../../components/Header";
 import { Layout } from "../../../components/Layout";
 import { Mdx } from "../../../components/Mdx";
+import { url } from "../../../const";
 import {
   componentsFilePaths,
   getNavigation,
@@ -30,7 +31,7 @@ export default function Doc({
   return (
     <Layout navigation={navigation}>
       <Head>
-        <meta property="og:image" content={`/social/${slug}.png`} />
+        <meta property="og:image" content={`${url}/social/${slug}.png`} />
       </Head>
       <Header1>{metadata.displayName}</Header1>
       <Mdx source={source} />

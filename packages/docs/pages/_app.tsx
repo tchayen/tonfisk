@@ -5,14 +5,7 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import { TonfiskProvider } from "tonfisk";
 
-import packageJson from "../../tonfisk/package.json";
-
-const title = "Tonfisk";
-const author = "@tchayen";
-const description = packageJson.description;
-
-const url = "https://tonfisk.fish";
-const imageUrl = "/social/homepage.png";
+import { author, description, imageUrl, title, url } from "../const";
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
   return (
@@ -25,6 +18,7 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <meta property="og:title" content={title} />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:creator" content={author} />
+        <meta name="twitter:image" content={imageUrl} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imageUrl} />
         <link
