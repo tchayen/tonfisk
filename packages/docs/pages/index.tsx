@@ -2,7 +2,6 @@
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 
-import Head from "next/head";
 import Link from "next/link";
 import React, { ReactNode, useEffect } from "react";
 import { atoms, ButtonLink } from "tonfisk";
@@ -12,7 +11,7 @@ import { MdxPre } from "../components/mdxComponents";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 // import { Tweet } from "../components/Tweet";
 import * as styles from "../styles/index.css";
-import { imageUrl } from "../const";
+import { SocialCardsHeader } from "../components/SocialCardsHeader";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return (
@@ -50,10 +49,7 @@ export default function Home(): JSX.Element {
 
   return (
     <>
-      <Head>
-        <meta name="twitter:image" content={imageUrl} />
-        <meta property="og:image" content={imageUrl} />
-      </Head>
+      <SocialCardsHeader slug="homepage" />
       <div className={styles.page}>
         <div className={styles.content}>
           <SwitchColorMode />

@@ -7,4 +7,5 @@ export const author = "@tchayen";
 export const description = packageJson.description;
 
 export const url = "https://tonfisk.fish";
-export const imageUrl = `${url}/social/homepage.png?v=${process.env.CONFIG_BUILD_ID}`;
+export const getSocialImageUrl = (slug: string): string =>
+  `${url}/social/${slug}.png?v=${process.env.CONFIG_BUILD_ID}`;

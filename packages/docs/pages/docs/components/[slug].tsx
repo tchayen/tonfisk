@@ -1,11 +1,10 @@
-import Head from "next/head";
 import React from "react";
 
 import { GitHubSource } from "../../../components/GitHubSource";
 import { Header1 } from "../../../components/Header";
 import { Layout } from "../../../components/Layout";
 import { Mdx } from "../../../components/Mdx";
-import { url } from "../../../const";
+import { SocialCardsHeader } from "../../../components/SocialCardsHeader";
 import {
   componentsFilePaths,
   getNavigation,
@@ -28,14 +27,9 @@ export default function Doc({
   source,
   metadata,
 }: Props): JSX.Element {
-  const imageUrl = `${url}/social/${slug}.png`;
-
   return (
     <>
-      <Head>
-        <meta name="twitter:image" content={imageUrl} />
-        <meta property="og:image" content={imageUrl} />
-      </Head>
+      <SocialCardsHeader slug={slug} />
       <Layout navigation={navigation}>
         <Header1>{metadata.displayName}</Header1>
         <Mdx source={source} />
