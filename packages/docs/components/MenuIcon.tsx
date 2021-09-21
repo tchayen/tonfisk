@@ -72,6 +72,7 @@ function Menu({
 export function MenuIcon({ children }: { children: ReactNode }): JSX.Element {
   const state = useOverlayTriggerState({});
 
+  // TODO: finish styling.
   const ref = useRef<HTMLButtonElement>(null);
   const [isHovered, setIsHovered] = useState(false);
   const { buttonProps, isPressed } = useButton(

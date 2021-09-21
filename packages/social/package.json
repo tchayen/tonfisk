@@ -1,7 +1,6 @@
 {
   "private": true,
   "name": "social",
-  "type": "module",
   "version": "0.0.0",
   "scripts": {
     "start": "node ./script.js"

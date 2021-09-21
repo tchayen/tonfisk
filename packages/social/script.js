@@ -1,15 +1,22 @@
-import { Buffer } from "buffer";
-import fs from "fs";
-import matter from "gray-matter";
-import path from "path";
-import puppeteer from "puppeteer";
+const { Buffer } = require("buffer");
+const fs = require("fs");
+const matter = require("gray-matter");
+const path = require("path");
+const puppeteer = require("puppeteer");
+const packageJson = require("../tonfisk/package.json");
 
-const templateFile = "./template.svg";
-const resultDir = "../docs/public/social";
 const dimensions = {
   width: 1200,
-  height: 675,
+  height: 630,
 };
+
+const templateFile = path.join(__dirname, "./template.svg");
+
+const resultDirectory = path.join(__dirname, "../docs/public/social");
+
+if (!fs.existsSync(resultDirectory)) {
+  fs.mkdirSync(resultDirectory);
+}
 
 const toKebabCase = (string) =>
   string.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
@@ -17,31 +24,24 @@ const toKebabCase = (string) =>
 const h2 = (text) => `<h2 xmlns="http://www.w3.org/1999/xhtml">${text}</h2>`;
 const h3 = (text) => `<h3 xmlns="http://www.w3.org/1999/xhtml">${text}</h3>`;
 
-export const docsPath = path.join(process.cwd(), "../docs/docs");
-export const sourcesPath = path.join(
-  process.cwd(),
-  "../tonfisk/src/components"
-);
+const docsPath = path.join(__dirname, "../docs/docs");
+const sourcesPath = path.join(__dirname, "../tonfisk/src/components");
 
-{
-  /* <h3 xmlns="http://www.w3.org/1999/xhtml">
-  /docs/components/
-</h3>
-<h2 xmlns="http://www.w3.org/1999/xhtml">
-TextInput
-</h2> */
-}
-
-export const docsFilePaths = fs
+const docsFilePaths = fs
   .readdirSync(docsPath)
   .filter((path) => /\.mdx?$/.test(path));
 
-export const componentsFilePaths = fs
+const componentsFilePaths = fs
   .readdirSync(sourcesPath)
   .filter((path) => /^[A-Z][a-zA-Z]+\.tsx/.test(path))
   .map((file) => file.split(".")[0]);
 
-const files = [];
+const files = [
+  {
+    name: "homepage",
+    content: [h3(packageJson.description)],
+  },
+];
 
 for (const doc of docsFilePaths) {
   const source = fs.readFileSync(path.join(docsPath, doc), "utf-8");
@@ -61,32 +61,32 @@ for (const source of componentsFilePaths) {
 
 const templateString = fs.readFileSync(templateFile, "utf8");
 
-const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
-const page = await browser.newPage();
-await page.setViewport(Object.assign({ deviceScaleFactor: 1 }, dimensions));
+const runAsync = async () => {
+  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const page = await browser.newPage();
+  await page.setViewport(Object.assign({ deviceScaleFactor: 1 }, dimensions));
 
-if (!fs.existsSync(resultDir)) {
-  fs.mkdirSync(resultDir);
-}
+  for (const file of files) {
+    console.log(`Creating ${file.name}.png.`);
+    const fileString = templateString
+      .replace(/__WIDTH__/g, dimensions.width)
+      .replace(/__HEIGHT__/g, dimensions.height)
+      .replace("__TEXT__", file.content.join("\n"));
 
-for (const file of files) {
-  console.log(`Creating ${file.name}.png.`);
-  const fileString = templateString.replace(
-    "__TEXT__",
-    file.content.join("\n")
-  );
+    const fileAsBase64 = Buffer.from(fileString).toString("base64");
+    const svgUrl = `data:image/svg+xml;base64,${fileAsBase64}`;
 
-  const fileAsBase64 = Buffer.from(fileString).toString("base64");
-  const svgUrl = `data:image/svg+xml;base64,${fileAsBase64}`;
+    await page.goto(svgUrl);
 
-  await page.goto(svgUrl);
+    const options = {
+      encoding: "binary",
+      type: "png",
+      path: `${resultDirectory}/${file.name}.png`,
+    };
+    await page.screenshot(options);
+  }
 
-  const options = {
-    encoding: "binary",
-    type: "png",
-    path: `${resultDir}/${file.name}.png`,
-  };
-  await page.screenshot(options);
-}
+  await browser.close();
+};
 
-await browser.close();
+runAsync();
