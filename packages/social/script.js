@@ -21,15 +21,6 @@ const h3 = (text) => `<h3 xmlns="http://www.w3.org/1999/xhtml">${text}</h3>`;
 const docsPath = path.join(__dirname, "../docs/docs");
 const sourcesPath = path.join(__dirname, "../tonfisk/src/components");
 
-{
-  /* <h3 xmlns="http://www.w3.org/1999/xhtml">
-  /docs/components/
-</h3>
-<h2 xmlns="http://www.w3.org/1999/xhtml">
-TextInput
-</h2> */
-}
-
 const docsFilePaths = fs
   .readdirSync(docsPath)
   .filter((path) => /\.mdx?$/.test(path));

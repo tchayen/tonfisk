@@ -8,6 +8,7 @@ import { TonfiskProvider } from "tonfisk";
 import packageJson from "../../tonfisk/package.json";
 
 const title = "Tonfisk";
+const author = "@tchayen";
 const description = packageJson.description;
 
 const url = "https://tonfisk.fish";
@@ -22,7 +23,8 @@ function MyApp({ Component, pageProps }: AppProps): JSX.Element {
         <meta property="og:url" content={url} />
         <meta property="og:type" content="website" />
         <meta property="og:title" content={title} />
-        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:creator" content={author} />
         <meta property="og:description" content={description} />
         <meta property="og:image" content={imageUrl} />
         <link
