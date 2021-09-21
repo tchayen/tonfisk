@@ -1,9 +1,10 @@
-const { Buffer } = require("buffer");
-const fs = require("fs");
-const matter = require("gray-matter");
-const path = require("path");
-const puppeteer = require("puppeteer");
-const packageJson = require("../tonfisk/package.json");
+import { Buffer } from "buffer";
+import fs from "fs";
+import matter from "gray-matter";
+import path from "path";
+import puppeteer from "puppeteer";
+
+import packageJson from "../../../tonfisk/package.json";
 
 const dimensions = {
   width: 1200,
@@ -11,8 +12,9 @@ const dimensions = {
 };
 
 const templateFile = path.join(__dirname, "./template.svg");
-
-const resultDirectory = path.join(__dirname, "../docs/public/social");
+const resultDirectory = path.join(__dirname, "../public/social");
+const docsPath = path.join(__dirname, "../docs");
+const sourcesPath = path.join(__dirname, "../../../tonfisk/src/components");
 
 if (!fs.existsSync(resultDirectory)) {
   fs.mkdirSync(resultDirectory);
@@ -23,9 +25,6 @@ const toKebabCase = (string) =>
 
 const h2 = (text) => `<h2 xmlns="http://www.w3.org/1999/xhtml">${text}</h2>`;
 const h3 = (text) => `<h3 xmlns="http://www.w3.org/1999/xhtml">${text}</h3>`;
-
-const docsPath = path.join(__dirname, "../docs/docs");
-const sourcesPath = path.join(__dirname, "../tonfisk/src/components");
 
 const docsFilePaths = fs
   .readdirSync(docsPath)
@@ -61,7 +60,7 @@ for (const source of componentsFilePaths) {
 
 const templateString = fs.readFileSync(templateFile, "utf8");
 
-const runAsync = async () => {
+async function generate() {
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
   await page.setViewport(Object.assign({ deviceScaleFactor: 1 }, dimensions));
@@ -87,6 +86,6 @@ const runAsync = async () => {
   }
 
   await browser.close();
-};
+}
 
-runAsync();
+generate();

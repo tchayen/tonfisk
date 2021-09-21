@@ -6,3 +6,5 @@ dist-ssr
 .vercel
 TODO.md
 notes/*.md
+public/sitemap.xml
+public/social/
