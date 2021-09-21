@@ -39,7 +39,7 @@ const componentsFilePaths = fs
 const files = [
   {
     name: "homepage",
-    content: [h2("Tonfisk"), h3(packageJson.description)],
+    content: [h3(packageJson.description)],
   },
 ];
 
