@@ -5,7 +5,10 @@ import path from "path";
 import puppeteer from "puppeteer";
 
 const packageJson = JSON.parse(
-  readFileSync("../../../tonfisk/package.json", "utf8")
+  readFileSync(
+    new URL("../../../tonfisk/package.json", import.meta.url).pathname,
+    "utf8"
+  )
 );
 
 const dimensions = {
@@ -13,10 +16,14 @@ const dimensions = {
   height: 630,
 };
 
-const templateFile = path.join(__dirname, "./template.svg");
-const resultDirectory = path.join(__dirname, "../public/social");
-const docsPath = path.join(__dirname, "../docs");
-const sourcesPath = path.join(__dirname, "../../../tonfisk/src/components");
+const templateFile = new URL("./template.svg", import.meta.url).pathname;
+const resultDirectory = new URL("../../public/social", import.meta.url)
+  .pathname;
+const docsPath = new URL("../../docs", import.meta.url).pathname;
+const sourcesPath = new URL("../../../tonfisk/src/components", import.meta.url)
+  .pathname;
+
+console.log(templateFile, resultDirectory, docsPath, sourcesPath);
 
 if (!fs.existsSync(resultDirectory)) {
   fs.mkdirSync(resultDirectory);

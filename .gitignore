@@ -7,4 +7,4 @@ dist-ssr
 TODO.md
 notes/*.md
 public/sitemap.xml
-public/social/
+packages/docs/public/social/
