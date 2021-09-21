@@ -1,6 +1,0 @@
-#!/bin/sh
-
-echo "Running pre-push to build social images."
-PWD=`pwd`
-
-node $PWD/packages/social/script.js
