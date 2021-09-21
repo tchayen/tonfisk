@@ -3,9 +3,10 @@ const fs = require("fs");
 const matter = require("gray-matter");
 const path = require("path");
 const puppeteer = require("puppeteer");
+const packageJson = require("../tonfisk/package.json");
 
-const templateFile = "./template.svg";
-const resultDir = "../docs/public/social";
+const templateFile = path.join(__dirname, "./template.svg");
+const resultDir = path.join(__dirname, "../docs/public/social");
 const dimensions = {
   width: 1200,
   height: 675,
@@ -17,8 +18,8 @@ const toKebabCase = (string) =>
 const h2 = (text) => `<h2 xmlns="http://www.w3.org/1999/xhtml">${text}</h2>`;
 const h3 = (text) => `<h3 xmlns="http://www.w3.org/1999/xhtml">${text}</h3>`;
 
-const docsPath = path.join(process.cwd(), "../docs/docs");
-const sourcesPath = path.join(process.cwd(), "../tonfisk/src/components");
+const docsPath = path.join(__dirname, "../docs/docs");
+const sourcesPath = path.join(__dirname, "../tonfisk/src/components");
 
 {
   /* <h3 xmlns="http://www.w3.org/1999/xhtml">
@@ -38,7 +39,12 @@ const componentsFilePaths = fs
   .filter((path) => /^[A-Z][a-zA-Z]+\.tsx/.test(path))
   .map((file) => file.split(".")[0]);
 
-const files = [];
+const files = [
+  {
+    name: "homepage",
+    content: [h2("Tonfisk"), h3(packageJson.description)],
+  },
+];
 
 for (const doc of docsFilePaths) {
   const source = fs.readFileSync(path.join(docsPath, doc), "utf-8");
