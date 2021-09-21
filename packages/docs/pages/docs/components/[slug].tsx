@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 
 import { GitHubSource } from "../../../components/GitHubSource";
@@ -14,18 +15,23 @@ import {
 import { toKebabCase } from "../../../utils/string";
 
 type Props = {
+  slug: string;
   navigation: ReturnType<typeof getNavigation>;
   source: string;
   metadata: Metadata;
 };
 
 export default function Doc({
+  slug,
   navigation,
   source,
   metadata,
 }: Props): JSX.Element {
   return (
     <Layout navigation={navigation}>
+      <Head>
+        <meta property="og:image" content={`/social/${slug}.png`} />
+      </Head>
       <Header1>{metadata.displayName}</Header1>
       <Mdx source={source} />
       <GitHubSource codeFileName={metadata.codeFileName} />
@@ -60,6 +66,7 @@ export const getStaticProps = async ({
 
   return {
     props: {
+      slug: params.slug,
       source,
       metadata,
       navigation: getNavigation(),

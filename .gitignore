@@ -6,3 +6,4 @@ dist-ssr
 .vercel
 TODO.md
 notes/*.md
+packages/docs/public/social/

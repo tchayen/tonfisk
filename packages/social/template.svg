@@ -19,7 +19,6 @@
 
     h1 {
       font-size: 100px;
-      margin: 0;
       background-color: #f3ec78;
       background-image: linear-gradient(90deg, #12c2e9, #c471ed, #f64f59);
       background-size: 100%;
@@ -27,13 +26,53 @@
       -moz-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
+
+    h1, h2, h3 {
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 100px;
+      color: black;
+    }
+
+    h3 {
+      font-size: 64px;
+      color: #9ca3af;
+    }
+
+    #wrapper {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+    }
+
+    #container {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      flex: 1;
+      padding: 64px;
+    }
+
+    #logo {
+      display: flex;
+    }
   </style>
   <rect width="1200" height="675" fill="white"/>
-  <foreignObject x="64" y="64" width="460" height="200">
-    <h1 xmlns="http://www.w3.org/1999/xhtml">
-      tonfisk 🐟
-    </h1>
+  <foreignObject x="0" y="0" width="1200" height="675">
+    <div id="wrapper" xmlns="http://www.w3.org/1999/xhtml">
+      <div id="container" xmlns="http://www.w3.org/1999/xhtml">
+        <div id="logo" xmlns="http://www.w3.org/1999/xhtml">
+          <h1 xmlns="http://www.w3.org/1999/xhtml">
+            tonfisk 🐟
+          </h1>
+        </div>
+        <div xmlns="http://www.w3.org/1999/xhtml">
+          __TEXT__
+        </div>
+      </div>
+    </div>
   </foreignObject>
-  <text x="64" y="490" font-size="64" fill="#9CA3AF">__PATH__</text>
-  <text x="64" y="590" font-size="110" fill="black">__FILE_NAME__</text>
 </svg>

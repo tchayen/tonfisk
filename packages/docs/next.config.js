@@ -8,6 +8,9 @@ module.exports = () => {
     webpack: (config, { isServer }) => {
       if (!isServer) {
         config.resolve.fallback.fs = false;
+
+        // This will make Next.js run script on deploy.
+        require("../social/script");
       }
 
       //
