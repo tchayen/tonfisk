@@ -14,6 +14,8 @@ globalStyle(`.${darkMode}`, {
 
 globalStyle("html", {
   fontFeatureSettings: "'ss01' on,'ss02' on,'cv01' on,'cv03' on",
+  textRendering: "optimizeLegibility",
+  WebkitFontSmoothing: "antialiased",
   background: colors.white,
   color: colors.coolGray[600],
 });
