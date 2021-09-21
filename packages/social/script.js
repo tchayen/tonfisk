@@ -9,7 +9,7 @@ const templateFile = path.join(__dirname, "./template.svg");
 const resultDir = path.join(__dirname, "../docs/public/social");
 const dimensions = {
   width: 1200,
-  height: 675,
+  height: 630,
 };
 
 const toKebabCase = (string) =>
@@ -66,10 +66,10 @@ const runAsync = async () => {
 
   for (const file of files) {
     console.log(`Creating ${file.name}.png.`);
-    const fileString = templateString.replace(
-      "__TEXT__",
-      file.content.join("\n")
-    );
+    const fileString = templateString
+      .replace(/__WIDTH__/g, dimensions.width)
+      .replace(/__HEIGHT__/g, dimensions.height)
+      .replace("__TEXT__", file.content.join("\n"));
 
     const fileAsBase64 = Buffer.from(fileString).toString("base64");
     const svgUrl = `data:image/svg+xml;base64,${fileAsBase64}`;

@@ -1,7 +1,7 @@
 <svg
-  width="1200"
-  height="675"
-  viewBox="0 0 1200 675"
+  width="__WIDTH__"
+  height="__HEIGHT__"
+  viewBox="0 0 __WIDTH__ __HEIGHT__"
   fill="none"
   xmlns="http://www.w3.org/2000/svg"
 >
@@ -60,8 +60,8 @@
       display: flex;
     }
   </style>
-  <rect width="1200" height="675" fill="white"/>
-  <foreignObject x="0" y="0" width="1200" height="675">
+  <rect width="__WIDTH__" height="__HEIGHT__" fill="white"/>
+  <foreignObject x="0" y="0" width="__WIDTH__" height="__HEIGHT__">
     <div id="wrapper" xmlns="http://www.w3.org/1999/xhtml">
       <div id="container" xmlns="http://www.w3.org/1999/xhtml">
         <div id="logo" xmlns="http://www.w3.org/1999/xhtml">
