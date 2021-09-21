@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --skipLibCheck && rollup --config rollup.config.ts --configPlugin typescript"
+    "build": "tsc --skipLibCheck --outDir dist/ --declarationDir dist/types --declaration true && rollup -c"
   },
   "dependencies": {
     "@react-aria/button": "^3.3.4",

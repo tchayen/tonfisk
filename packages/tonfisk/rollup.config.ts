@@ -12,8 +12,8 @@ export default [
   {
     input,
     plugins: [
-      commonjs({}),
       nodeResolve(),
+      commonjs({}),
       typescript(),
       babel({
         babelHelpers: "bundled",
@@ -32,7 +32,7 @@ export default [
   // ESM and CJS.
   {
     input,
-    plugins: [commonjs({}), nodeResolve(), typescript()],
+    plugins: [nodeResolve(), commonjs({}), typescript()],
     output: [
       {
         dir: "dist/esm",
