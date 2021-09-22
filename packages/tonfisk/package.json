@@ -18,6 +18,7 @@
     "build": "tsc --skipLibCheck --outDir dist/ --declarationDir dist/types --declaration true && rollup -c"
   },
   "dependencies": {
+    "@react-aria/breadcrumbs": "^3.1.5",
     "@react-aria/button": "^3.3.4",
     "@react-aria/checkbox": "^3.2.3",
     "@react-aria/dialog": "^3.1.4",
@@ -33,6 +34,7 @@
     "@react-stately/select": "^3.1.3",
     "@react-stately/table": "^3.0.0",
     "@vanilla-extract/css": "^1.6.0",
+    "@vanilla-extract/css-utils": "^0.1.1",
     "@vanilla-extract/recipes": "^0.1.0",
     "@vanilla-extract/sprinkles": "^1.3.0"
   },

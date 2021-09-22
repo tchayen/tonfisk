@@ -15,6 +15,8 @@ import { ReactNode, useRef, useState } from "react";
 import * as tonfisk from "tonfisk";
 import {
   atoms,
+  BreadcrumbItem,
+  Breadcrumbs,
   Button,
   Cell,
   Checkbox,
@@ -90,6 +92,20 @@ function SelectExample(): JSX.Element {
         ))}
       </Select>
     </div>
+  );
+}
+
+function BreadcrumbsExample(): JSX.Element {
+  return (
+    <Breadcrumbs>
+      <BreadcrumbItem onPress={() => alert("Pressed Folder 1")}>
+        Folder 1
+      </BreadcrumbItem>
+      <BreadcrumbItem onPress={() => alert("Pressed Folder 2")}>
+        Folder 2
+      </BreadcrumbItem>
+      <BreadcrumbItem>Folder 3</BreadcrumbItem>
+    </Breadcrumbs>
   );
 }
 
@@ -504,5 +520,6 @@ export const components = {
   CheckboxExample,
   FormikExample,
   PopoverExample,
+  BreadcrumbsExample,
   ...tonfisk,
 };

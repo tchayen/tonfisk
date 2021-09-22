@@ -31,4 +31,5 @@ export {
   TableSelectAllCell,
   TableCheckboxCell,
 } from "./src/components/Table";
+export { Breadcrumbs, BreadcrumbItem } from "./src/components/Breadcrumbs";
 export { atoms } from "./src/theme.css";

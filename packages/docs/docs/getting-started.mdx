@@ -71,12 +71,14 @@ export default MyDocument;
 Simple snippet showing how to get started:
 
 ```jsx
-import { Button } from "tonfisk";
+import { TonfiskProvider, Button } from "tonfisk";
 
 export default function App() {
   return (
     <div>
-      <Button onPress={() => console.log("Hej!")}>Press me</Button>
+      <TonfiskProvider>
+        <Button onPress={() => console.log("Hej!")}>Press me</Button>
+      </TonfiskProvider>
     </div>
   );
 }

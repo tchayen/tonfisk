@@ -12,6 +12,7 @@ export const content = atoms({
   position: "fixed",
   top: "xl",
   right: "xl",
+  zIndex: 1000,
 });
 
 export const h1 = atoms({
@@ -24,15 +25,18 @@ export const mainBanner = atoms({
     mobile: "100%",
   },
   padding: {
-    desktop: "none",
     mobile: "xl",
   },
   flexDirection: {
     desktop: "row",
     mobile: "column",
   },
-  marginBottom: "2xl",
-  marginTop: "2xl",
+  marginBottom: {
+    desktop: "2xl",
+  },
+  marginTop: {
+    desktop: "2xl",
+  },
   display: "flex",
   alignItems: "center",
   gap: "xl",
@@ -45,6 +49,9 @@ export const topParagraphDiv = atoms({
     desktop: "flex-start",
     mobile: "center",
   },
+  marginBottom: {
+    mobile: "xl",
+  },
 });
 
 export const topParagraphElement = atoms({
@@ -52,6 +59,10 @@ export const topParagraphElement = atoms({
   lineHeight: 2,
   marginTop: "none",
   maxWidth: "64ch",
+  textAlign: {
+    desktop: "left",
+    mobile: "center",
+  },
 });
 
 export const strong = atoms({
@@ -91,6 +102,10 @@ export const mdxPre = atoms({
   outline: "none",
 });
 
+export const preWrapper = style({
+  maxWidth: "100%",
+});
+
 export const features = style([
   atoms({
     display: {
@@ -108,13 +123,8 @@ export const features = style([
       mobile: "48ch",
     },
     padding: {
-      desktop: "none",
       mobile: "xl",
     },
-    // gridTemplateColumns: {
-    //   desktop: "three",
-    //   mobile: "one",
-    // },
   }),
   style({
     gridTemplateColumns: "repeat(3, 1fr)",
@@ -125,7 +135,9 @@ export const flex1 = atoms({ flex: 1 });
 
 export const footerText = atoms({
   marginBottom: "2xl",
-  marginTop: "2xl",
+  marginTop: {
+    desktop: "2xl",
+  },
   fontSize: "16px",
 });
 

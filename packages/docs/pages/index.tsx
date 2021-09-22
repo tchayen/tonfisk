@@ -70,7 +70,7 @@ export default function Home(): JSX.Element {
               </Link>
             </div>
           </div>
-          <div>
+          <div className={styles.preWrapper}>
             <MdxPre>
               <pre className={styles.mdxPre}>
                 <code className="language-jsx">
