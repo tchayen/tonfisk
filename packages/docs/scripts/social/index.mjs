@@ -88,7 +88,7 @@ for (const doc of docsFilePaths) {
 for (const source of componentsFilePaths) {
   files.push({
     name: toKebabCase(source),
-    content: [h3("/docs/components/"), h2(source)],
+    content: [h3("/docs/components/"), h2(source.split("/")[1])],
   });
 }
 
