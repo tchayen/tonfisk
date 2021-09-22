@@ -48,7 +48,6 @@ export const getStaticProps = async ({
 }: {
   params: { slug: Array<string> };
 }): Promise<{ props: Props }> => {
-  console.log("hello", params.slug);
   const postPath = path.join(process.cwd(), `${params.slug.join("/")}.mdx`);
   const docFile = fs.readFileSync(postPath, "utf-8");
   return {
@@ -71,7 +70,6 @@ export const getStaticPaths = async (): Promise<{
     .map((path) => path.replace(/\.mdx?$/, ""))
     .map((slug) => ({ params: { slug: slug.split("/") } }));
 
-  console.log(paths);
   return {
     paths,
     fallback: false,

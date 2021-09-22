@@ -74,8 +74,8 @@ export default function Home(): JSX.Element {
               </pre>
             </div>
             <div className={styles.linkButtons}>
-              <Link href="/docs/overview/getting-started">
-                <ButtonLink href="/docs/overview/getting-started" size="large">
+              <Link href="/docs/getting-started">
+                <ButtonLink href="/docs/getting-started" size="large">
                   Get started →
                 </ButtonLink>
               </Link>
