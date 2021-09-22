@@ -53,6 +53,9 @@ export const modalDiv = atoms({
     lightMode: "none",
     darkMode: "regularDark",
   },
+  margin: {
+    mobile: "l",
+  },
   boxShadow: "shadow",
   outline: "none",
 });
