@@ -14,6 +14,29 @@ export const SOURCE_PATH = path.join(
   "../tonfisk/src/components"
 );
 
+export const getDocFilesForDirectory = (directory: string): Array<string> => {
+  const paths: Array<string> = [];
+  fs.readdirSync(directory).forEach((file) => {
+    const filePath = path.join(directory, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      const subpaths = getDocFilesForDirectory(filePath);
+      for (const subpath of subpaths) {
+        paths.push(subpath);
+      }
+    } else if (stat.isFile()) {
+      paths.push(filePath);
+    }
+  });
+  return paths;
+};
+
+export const getDocFiles = (): Array<string> => {
+  return getDocFilesForDirectory(DOCS_PATH).map((doc) =>
+    doc.replace(process.cwd(), "").replace("/", "").replace(".mdx", "")
+  );
+};
+
 export const docsFilePaths = fs
   .readdirSync(DOCS_PATH)
   .filter((path) => /\.mdx?$/.test(path));
@@ -89,37 +112,6 @@ type File = {
 };
 
 export const getNavigation = (): Directory => {
-  const order = ["getting-started", "motivation", "formik-example", "roadmap"];
-
-  const sortedPart = [];
-  const rest = [];
-
-  for (const file of order) {
-    const doc = docsFilePaths.find((doc) => doc.includes(file));
-    if (doc) {
-      sortedPart.push(doc);
-    }
-  }
-
-  for (const doc of sortedPart) {
-    if (!docsFilePaths.includes(doc)) {
-      rest.push(doc);
-    }
-  }
-
-  const merged = [...sortedPart, ...rest];
-
-  const docs = merged.map((filePath) => {
-    const source = fs.readFileSync(path.join(DOCS_PATH, filePath), "utf-8");
-
-    const { data } = matter(source);
-
-    return {
-      title: data.title,
-      filePath: `/docs/${filePath.replace(/\.mdx?$/, "")}`,
-    };
-  });
-
   const components = componentsFilePaths.map((filePath) => {
     const { displayName: title } = getSourceMetadata(filePath.split(".")[0]);
 
@@ -134,16 +126,24 @@ export const getNavigation = (): Directory => {
   return {
     name: "",
     files: [
+      { title: "Homepage", filePath: "/" },
       {
-        name: "Overview",
+        title: "Getting started",
+        filePath: "/docs/getting-started",
+      },
+      { title: "Example", filePath: "/docs/example" },
+      { title: "Motivation", filePath: "/docs/motivation" },
+      { title: "Roadmap", filePath: "/docs/roadmap" },
+      {
+        name: "Links",
         files: [
-          { title: "Homepage", filePath: "/" },
-          { title: "Example", filePath: "/example" },
+          { title: "GitHub ↗", filePath: "https://github.com/tchayen/tonfisk" },
+          { title: "Figma ↗", filePath: "#" },
         ],
       },
       {
         name: "Guides",
-        files: docs,
+        files: [{ title: "Formik", filePath: "/docs/guides/formik" }],
       },
       {
         name: "Components",

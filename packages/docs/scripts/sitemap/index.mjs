@@ -1,4 +1,5 @@
 import fs from "fs";
+import path from "path";
 import prettier from "prettier";
 
 const toKebabCase = (string) =>
@@ -11,9 +12,31 @@ console.log("Generating sitemap.xml.");
 const docsPath = getPath("../../docs");
 const sourcesPath = getPath("../../../tonfisk/src/components");
 
-const docsFilePaths = fs
-  .readdirSync(docsPath)
-  .filter((path) => /\.mdx?$/.test(path));
+const getDocFilesForDirectory = (directory) => {
+  const paths = [];
+  fs.readdirSync(directory).forEach((file) => {
+    const filePath = path.join(directory, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      const subpaths = getDocFilesForDirectory(filePath);
+
+      for (const subpath of subpaths) {
+        paths.push(subpath);
+      }
+    } else if (stat.isFile()) {
+      paths.push(filePath);
+    }
+  });
+  return paths;
+};
+
+const getDocFiles = () => {
+  return getDocFilesForDirectory(docsPath).map((doc) =>
+    doc.replace(docsPath, "").replace("/", "")
+  );
+};
+
+const docsFilePaths = getDocFiles();
 
 const componentsFilePaths = fs
   .readdirSync(sourcesPath)

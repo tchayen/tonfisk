@@ -76,7 +76,7 @@ export function TableColumnHeader({
     ref
   );
   const { isFocusVisible, focusProps } = useFocusRing();
-  const arrowIcon = state.sortDescriptor.direction === "ascending" ? "▲" : "▼";
+  // const arrowIcon = state.sortDescriptor.direction === "ascending" ? "▲" : "▼";
 
   return (
     <th
@@ -93,7 +93,7 @@ export function TableColumnHeader({
       ref={ref}
     >
       {column.rendered}
-      {column.props.allowsSorting && (
+      {/* {column.props.allowsSorting && (
         <span
           aria-hidden="true"
           className={atoms({
@@ -103,7 +103,7 @@ export function TableColumnHeader({
         >
           {arrowIcon}
         </span>
-      )}
+      )} */}
     </th>
   );
 }
