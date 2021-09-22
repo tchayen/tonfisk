@@ -23,20 +23,51 @@ if (!fs.existsSync(resultDirectory)) {
   fs.mkdirSync(resultDirectory);
 }
 
+if (!fs.existsSync(`${resultDirectory}/components`)) {
+  fs.mkdirSync(`${resultDirectory}/components`);
+}
+
 const toKebabCase = (string) =>
   string.replace(/([a-z])([A-Z])/g, "$1-$2").toLowerCase();
 
 const h2 = (text) => `<h2 xmlns="http://www.w3.org/1999/xhtml">${text}</h2>`;
 const h3 = (text) => `<h3 xmlns="http://www.w3.org/1999/xhtml">${text}</h3>`;
 
-const docsFilePaths = fs
-  .readdirSync(docsPath)
-  .filter((path) => /\.mdx?$/.test(path));
+const getDocFilesForDirectory = (directory) => {
+  const paths = [];
+  fs.readdirSync(directory).forEach((file) => {
+    const filePath = path.join(directory, file);
+    const stat = fs.statSync(filePath);
+    if (stat.isDirectory()) {
+      const newOne = path.join(resultDirectory, file);
+      if (!fs.existsSync(newOne)) {
+        fs.mkdirSync(newOne);
+      }
+
+      const subpaths = getDocFilesForDirectory(filePath);
+
+      for (const subpath of subpaths) {
+        paths.push(subpath);
+      }
+    } else if (stat.isFile()) {
+      paths.push(filePath);
+    }
+  });
+  return paths;
+};
+
+const getDocFiles = () => {
+  return getDocFilesForDirectory(docsPath).map((doc) =>
+    doc.replace(docsPath, "").replace("/", "")
+  );
+};
+
+const docsFilePaths = getDocFiles();
 
 const componentsFilePaths = fs
   .readdirSync(sourcesPath)
   .filter((path) => /^[A-Z][a-zA-Z]+\.tsx/.test(path))
-  .map((file) => file.split(".")[0]);
+  .map((file) => `components/${file.split(".")[0]}`);
 
 const files = [
   {
@@ -49,7 +80,7 @@ for (const doc of docsFilePaths) {
   const source = fs.readFileSync(path.join(docsPath, doc), "utf-8");
   const { data } = matter(source);
   files.push({
-    name: toKebabCase(data.title.replace(/\s/g, "-")),
+    name: doc.replace(".mdx", ""),
     content: [h2(data.title), h3(data.description)],
   });
 }
