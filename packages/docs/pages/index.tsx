@@ -151,7 +151,7 @@ function Homepage() {
             <Paragraph>
               Are you working with designers or like to design on your own?
               Up-to-date{" "}
-              <a href="#" className={styles.link}>
+              <a href="__FIGMA_URL__" className={styles.link}>
                 Figma file
               </a>{" "}
               is available for your needs.

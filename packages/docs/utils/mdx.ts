@@ -111,6 +111,7 @@ type File = {
   filePath: string;
 };
 
+// TODO: probably doesn't need to be a function.
 export const getNavigation = (): Directory => {
   const components = componentsFilePaths.map((filePath) => {
     const { displayName: title } = getSourceMetadata(filePath.split(".")[0]);
@@ -138,7 +139,7 @@ export const getNavigation = (): Directory => {
         name: "Links",
         files: [
           { title: "GitHub ↗", filePath: "https://github.com/tchayen/tonfisk" },
-          { title: "Figma ↗", filePath: "#" },
+          { title: "Figma ↗", filePath: "__FIGMA_URL__" },
         ],
       },
       {
