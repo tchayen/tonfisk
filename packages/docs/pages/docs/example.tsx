@@ -305,7 +305,11 @@ function SelectToken({ onSelect }: { onSelect: (token: string) => void }) {
             paddingTop: "none",
           })}
         >
-          <TextInput autoFocus placeholder="Search name or paste address" />
+          <TextInput
+            autoFocus
+            placeholder="Search name or paste address"
+            aria-label="Search name or paste address"
+          />
           <div>
             <Label>Common</Label>
             <div

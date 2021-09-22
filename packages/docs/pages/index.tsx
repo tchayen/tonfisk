@@ -1,4 +1,5 @@
 // The following two imports must be kept in this order:
+// eslint-disable-next-line
 import Prism from "prismjs";
 import "prismjs/components/prism-jsx";
 
@@ -7,11 +8,11 @@ import React, { ReactNode, useEffect } from "react";
 import { atoms, ButtonLink } from "tonfisk";
 
 import { Logo } from "../components/Logo";
-import { MdxPre } from "../components/mdxComponents";
+import { MdxPre } from "../components/MdxPre";
+import { SocialCardsHeader } from "../components/SocialCardsHeader";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 // import { Tweet } from "../components/Tweet";
 import * as styles from "../styles/index.css";
-import { SocialCardsHeader } from "../components/SocialCardsHeader";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return <h3 className={styles.subheader}>{children}</h3>;
