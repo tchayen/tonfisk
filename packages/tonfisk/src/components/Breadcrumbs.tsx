@@ -1,6 +1,8 @@
 import { useBreadcrumbItem, useBreadcrumbs } from "@react-aria/breadcrumbs";
 import React, { Children, cloneElement, ReactNode, useRef } from "react";
 
+import * as styles from "./Breadcrumbs.css";
+
 export function BreadcrumbItem(props: {
   onPress?: () => void;
   children: ReactNode;
@@ -11,18 +13,15 @@ export function BreadcrumbItem(props: {
     { ...props, elementType: "span" },
     ref
   );
+
+  const className = styles.li({
+    textDecoration: props.isCurrent ? "current" : "default",
+    fontWeight: props.isCurrent ? "current" : "default",
+    cursor: props.isCurrent ? "current" : "default",
+  });
   return (
     <li>
-      <span
-        {...itemProps}
-        ref={ref}
-        style={{
-          color: "var(--blue)",
-          textDecoration: props.isCurrent ? null : "underline",
-          fontWeight: props.isCurrent ? "bold" : null,
-          cursor: props.isCurrent ? "default" : "pointer",
-        }}
-      >
+      <span {...itemProps} ref={ref} className={className}>
         {props.children}
       </span>
       {!props.isCurrent && (
@@ -74,7 +73,7 @@ export function Breadcrumbs(props: Props): JSX.Element {
 
   return (
     <nav {...navProps}>
-      <ol style={{ display: "flex", listStyle: "none", margin: 0, padding: 0 }}>
+      <ol className={styles.ol}>
         {children.map((child, i) =>
           cloneElement(child, { isCurrent: i === children.length - 1 })
         )}

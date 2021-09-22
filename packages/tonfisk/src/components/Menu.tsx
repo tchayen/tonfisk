@@ -161,7 +161,7 @@ type Props = {
 type MenuButton_Props = {
   isDisabled?: boolean;
   menuTriggerProps?: AriaButtonProps<"button">;
-  children?: string;
+  children?: ReactNode;
   onPress?: () => void;
 };
 

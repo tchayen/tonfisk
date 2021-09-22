@@ -366,11 +366,13 @@ function SelectToken({ onSelect }: { onSelect: (token: string) => void }) {
 function SelectTokenModal({
   onSelect,
   isDisabled,
+  placeholder,
   children,
 }: {
   onSelect: (token: string) => void;
   isDisabled?: boolean;
-  children: string;
+  placeholder?: string;
+  children: string | null;
 }) {
   const state = useOverlayTriggerState({});
 
@@ -382,7 +384,18 @@ function SelectTokenModal({
         }}
         isDisabled={isDisabled}
       >
-        {children}
+        {children || (
+          <span
+            className={atoms({
+              color: {
+                darkMode: "gray-600",
+                lightMode: "gray-400",
+              },
+            })}
+          >
+            {placeholder}
+          </span>
+        )}
       </MenuButtonComponent>
       {state.isOpen && (
         <OverlayContainer>
@@ -551,9 +564,10 @@ export default function Example(): ReactNode {
             >
               <SelectTokenModal
                 onSelect={(from) => setFrom(from)}
+                placeholder="Select a token"
                 isDisabled={loading}
               >
-                {from || "Select token"}
+                {from}
               </SelectTokenModal>
               {from && fromBalance && (
                 <div
@@ -594,9 +608,10 @@ export default function Example(): ReactNode {
             >
               <SelectTokenModal
                 onSelect={(to) => setTo(to)}
+                placeholder="Select a token"
                 isDisabled={loading}
               >
-                {to || "Select token"}
+                {to}
               </SelectTokenModal>
               {to && toBalance && (
                 <div
