@@ -24,7 +24,7 @@ export default function Doc({
 }: Props): JSX.Element {
   return (
     <>
-      <SocialCardsHeader slug={slug.join("/")} />
+      <SocialCardsHeader slug={slug.slice(1).join("/")} />
       <Layout navigation={navigation}>
         <Header1>{frontMatter.title}</Header1>
         <p

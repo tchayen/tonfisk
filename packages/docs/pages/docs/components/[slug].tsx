@@ -29,7 +29,7 @@ export default function Doc({
 }: Props): JSX.Element {
   return (
     <>
-      <SocialCardsHeader slug={slug} />
+      <SocialCardsHeader slug={`components/${slug}`} />
       <Layout navigation={navigation}>
         <Header1>{metadata.displayName}</Header1>
         <Mdx source={source} />
