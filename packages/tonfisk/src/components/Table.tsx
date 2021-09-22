@@ -76,7 +76,7 @@ export function TableColumnHeader({
     ref
   );
   const { isFocusVisible, focusProps } = useFocusRing();
-  const arrowIcon = state.sortDescriptor?.direction === "ascending" ? "▲" : "▼";
+  const arrowIcon = state.sortDescriptor.direction === "ascending" ? "▲" : "▼";
 
   return (
     <th
@@ -98,9 +98,7 @@ export function TableColumnHeader({
           aria-hidden="true"
           className={atoms({
             visibility:
-              state.sortDescriptor?.column === column.key
-                ? "visible"
-                : "hidden",
+              state.sortDescriptor.column === column.key ? "visible" : "hidden",
           })}
         >
           {arrowIcon}
