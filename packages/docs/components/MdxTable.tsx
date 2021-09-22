@@ -3,13 +3,20 @@ import { atoms } from "tonfisk";
 
 export function MdxTable({ children }: { children?: ReactNode }): JSX.Element {
   return (
-    <table
+    <div
       className={atoms({
-        borderCollapse: "collapse",
+        maxWidth: "100%",
+        overflow: "scroll",
       })}
     >
-      {children}
-    </table>
+      <table
+        className={atoms({
+          borderCollapse: "collapse",
+        })}
+      >
+        {children}
+      </table>
+    </div>
   );
 }
 
