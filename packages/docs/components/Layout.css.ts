@@ -97,3 +97,12 @@ export const link = recipe({
     },
   },
 });
+
+export const flex = atoms({
+  display: "flex",
+});
+
+export const column = atoms({
+  display: "flex",
+  flexDirection: "column",
+});

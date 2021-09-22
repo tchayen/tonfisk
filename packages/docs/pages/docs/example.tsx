@@ -33,6 +33,7 @@ import { primaryTextColor } from "tonfisk/src/commonStyles.css";
 import { MenuButtonComponent } from "tonfisk/src/components/Menu";
 
 import { BorderlessInput } from "../../components/BorderlessInput";
+import { GitHubSource } from "../../components/GitHubSource";
 import currencies from "../../examples/exchange/currencies.json";
 import { CurrencyInList } from "../../examples/exchange/CurrencyInList";
 
@@ -631,6 +632,7 @@ export default function Example(): ReactNode {
           Swap
         </Button>
       </SpinnerContainer>
+      <GitHubSource path="packages/docs/pages/docs/example.tsx" />
     </div>
   );
 }

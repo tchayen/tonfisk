@@ -1,8 +1,10 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
-import { atoms } from "tonfisk";
 import { useRef, useState } from "react";
+import { atoms } from "tonfisk";
+
+import * as styles from "./CurrencyInList.css";
 
 export function CurrencyInList({
   onSelect,
@@ -36,33 +38,12 @@ export function CurrencyInList({
   );
   const { focusProps, isFocusVisible } = useFocusRing();
 
-  const className = atoms({
-    display: "flex",
-    justifyContent: "space-between",
-    alignItems: "center",
-    cursor: "pointer",
-    padding: "l",
-    paddingBottom: "m",
-    paddingTop: "m",
-    marginLeft: "s",
-    marginRight: "xs",
-    borderRadius: "8px",
-    border: "none",
-    textAlign: "left",
-    fontFamily: "body",
-    background: {
-      lightMode: isPressed
-        ? "gray-300"
-        : isFocusVisible || isHovered
-        ? "gray-200"
-        : "transparent",
-      darkMode: isPressed
-        ? "gray-700"
-        : isFocusVisible || isHovered
-        ? "gray-800"
-        : "transparent",
-    },
-    outline: "none",
+  const className = styles.button({
+    background: isPressed
+      ? "isPressed"
+      : isHovered || isFocusVisible
+      ? "isHoveredOrFocused"
+      : "default",
   });
 
   return (
@@ -73,57 +54,12 @@ export function CurrencyInList({
       className={className}
       {...mergeProps(focusProps, buttonProps)}
     >
-      <img
-        className={atoms({
-          width: "32px",
-          height: "32px",
-          borderRadius: "full",
-          marginRight: "m",
-        })}
-        src={icon}
-      />
-      <div
-        className={atoms({
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-        })}
-      >
-        <div
-          className={atoms({
-            fontWeight: "bold",
-            color: {
-              lightMode: "black",
-              darkMode: "gray-200",
-            },
-          })}
-        >
-          {acronym}
-        </div>
-        <div
-          className={atoms({
-            fontSize: "12px",
-            color: {
-              lightMode: "gray-600",
-              darkMode: "gray-500",
-            },
-          })}
-        >
-          {name}
-        </div>
+      <img className={styles.icon} src={icon} />
+      <div className={styles.column}>
+        <div className={styles.acronym}>{acronym}</div>
+        <div className={styles.name}>{name}</div>
       </div>
-      <div
-        className={atoms({
-          fontSize: "16px",
-          color: {
-            lightMode: "gray-500",
-            darkMode: "gray-400",
-          },
-          fontFeatureSettings: "numbers",
-        })}
-      >
-        0.0
-      </div>
+      <div className={styles.value}>0.0</div>
     </button>
   );
 }

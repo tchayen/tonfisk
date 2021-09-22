@@ -13,6 +13,7 @@ export function BorderlessInput(props: Props): JSX.Element {
   const { inputProps } = useTextField(props, ref);
 
   return (
+    // TODO: extract styles.
     <div
       className={atoms({
         opacity: props.isDisabled ? 0.5 : 1,

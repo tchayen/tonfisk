@@ -22,12 +22,14 @@ export function Header(
 
     return (
       <div
+        // TODO: extract styles.
         className={atoms({
           marginTop: "xl",
           marginBottom: "l",
         })}
       >
         <a
+          // TODO: extract styles.
           className={`${hoverUnderline} ${atoms({
             outline: "none",
             boxShadow: isFocusVisible ? "outline" : "none",
@@ -40,6 +42,7 @@ export function Header(
         >
           <HeaderNth
             id={slug}
+            // TODO: extract styles.
             className={atoms({
               display: "inline",
               color: {

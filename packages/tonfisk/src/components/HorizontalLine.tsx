@@ -22,6 +22,7 @@ import { atoms } from "../theme.css";
 export function HorizontalLine(): JSX.Element {
   return (
     <div
+      // TODO: extract styles.
       className={atoms({
         background: {
           lightMode: "gray-200",

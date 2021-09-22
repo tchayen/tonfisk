@@ -14,32 +14,11 @@ import * as styles from "../styles/index.css";
 import { SocialCardsHeader } from "../components/SocialCardsHeader";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
-  return (
-    <h3
-      className={atoms({
-        fontSize: "20px",
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-      })}
-    >
-      {children}
-    </h3>
-  );
+  return <h3 className={styles.subheader}>{children}</h3>;
 }
 
 function Paragraph({ children }: { children: ReactNode }): JSX.Element {
-  return (
-    <p
-      className={atoms({
-        fontSize: "16px",
-        lineHeight: 1.75,
-      })}
-    >
-      {children}
-    </p>
-  );
+  return <p className={styles.paragraph}>{children}</p>;
 }
 
 export default function Home(): JSX.Element {
@@ -151,7 +130,10 @@ function Homepage() {
             <Paragraph>
               Are you working with designers or like to design on your own?
               Up-to-date{" "}
-              <a href="__FIGMA_URL__" className={styles.link}>
+              <a
+                href="https://www.figma.com/community/file/1022531774593389664/tonfisk"
+                className={styles.link}
+              >
                 Figma file
               </a>{" "}
               is available for your needs.

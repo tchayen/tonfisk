@@ -1,4 +1,4 @@
-import { keyframes, style } from "@vanilla-extract/css";
+import { style } from "@vanilla-extract/css";
 import { atoms } from "tonfisk/src/theme.css";
 
 export const page = atoms({
@@ -158,3 +158,16 @@ export const tweets = style([
     gridTemplateColumns: "repeat(2, 1fr)",
   }),
 ]);
+
+export const subheader = atoms({
+  fontSize: "20px",
+  color: {
+    lightMode: "black",
+    darkMode: "gray-200",
+  },
+});
+
+export const paragraph = atoms({
+  fontSize: "16px",
+  lineHeight: 1.75,
+});

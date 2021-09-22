@@ -139,7 +139,11 @@ export const getNavigation = (): Directory => {
         name: "Links",
         files: [
           { title: "GitHub ↗", filePath: "https://github.com/tchayen/tonfisk" },
-          { title: "Figma ↗", filePath: "__FIGMA_URL__" },
+          {
+            title: "Figma ↗",
+            filePath:
+              "https://www.figma.com/community/file/1022531774593389664/tonfisk",
+          },
         ],
       },
       {

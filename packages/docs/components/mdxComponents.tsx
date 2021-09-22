@@ -2,7 +2,13 @@ import "../styles/theme.css";
 
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
+import {
+  OverlayContainer,
+  useOverlayPosition,
+  useOverlayTrigger,
+} from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
+import { useOverlayTriggerState } from "@react-stately/overlays";
 import { Form, Formik, useField } from "formik";
 import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
@@ -15,6 +21,7 @@ import {
   Column,
   Item,
   MenuButton,
+  Popover,
   Row,
   Select,
   Selection,
@@ -83,6 +90,91 @@ function SelectExample(): JSX.Element {
         ))}
       </Select>
     </div>
+  );
+}
+
+function PopoverExample(): JSX.Element {
+  const state = useOverlayTriggerState({});
+  const triggerRef = useRef<HTMLButtonElement>(null);
+  const overlayRef = useRef(null);
+
+  // Get props for the trigger and overlay. This also handles
+  // hiding the overlay when a parent element of the trigger scrolls
+  // (which invalidates the popover positioning).
+  const { triggerProps, overlayProps } = useOverlayTrigger(
+    { type: "dialog" },
+    state,
+    triggerRef
+  );
+
+  // Get popover positioning props relative to the trigger
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: triggerRef,
+    overlayRef,
+    placement: "bottom",
+    offset: 8,
+    isOpen: state.isOpen,
+  });
+
+  // useButton ensures that focus management is handled correctly,
+  // across all browsers. Focus is restored to the button once the
+  // popover closes.
+  const { buttonProps } = useButton(
+    {
+      onPress: () => state.open(),
+    },
+    triggerRef
+  );
+
+  const { focusProps, isFocusVisible } = useFocusRing();
+
+  const className = atoms({
+    fontFamily: "body",
+    fontSize: "14px",
+    fontWeight: "bold",
+    border: "none",
+    background: "transparent",
+    margin: "none",
+    display: "inline-block",
+    cursor: "pointer",
+    outline: "none",
+    borderRadius: "8px",
+    padding: "s",
+    color: {
+      lightMode: "black",
+      darkMode: "gray-200",
+    },
+    boxShadow: isFocusVisible ? "outline" : "none",
+  });
+
+  return (
+    <>
+      <button
+        {...mergeProps(buttonProps, triggerProps, focusProps)}
+        ref={triggerRef}
+        className={className}
+      >
+        Open
+      </button>
+      {state.isOpen && (
+        <OverlayContainer>
+          <Popover
+            {...mergeProps(overlayProps, positionProps)}
+            ref={overlayRef}
+            isOpen={state.isOpen}
+            onClose={state.close}
+          >
+            <div
+              className={atoms({
+                padding: "l",
+              })}
+            >
+              123
+            </div>
+          </Popover>
+        </OverlayContainer>
+      )}
+    </>
   );
 }
 
@@ -411,5 +503,6 @@ export const components = {
   MenuExample,
   CheckboxExample,
   FormikExample,
+  PopoverExample,
   ...tonfisk,
 };

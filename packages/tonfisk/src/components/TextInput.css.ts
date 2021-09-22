@@ -22,7 +22,7 @@ export const div = recipe({
 
 export const inputLike = atoms({
   height: "32px",
-  fontSize: "14px",
+  fontSize: "16px",
   borderRadius: "8px",
   fontFamily: "body",
   outline: "none",
@@ -44,6 +44,7 @@ export const input = recipe({
       paddingRight: "m",
       padding: "xs",
       border: "none",
+      WebkitAppearance: "none",
     }),
   ],
   variants: {

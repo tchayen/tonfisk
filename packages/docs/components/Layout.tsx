@@ -2,7 +2,6 @@ import { useFocusRing } from "@react-aria/focus";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactNode, useState } from "react";
-import { atoms } from "tonfisk";
 
 import { getNavigation } from "../utils/mdx";
 import * as styles from "./Layout.css";
@@ -46,7 +45,7 @@ function ListItem({
 
   if (href.startsWith("https")) {
     return (
-      <div className={atoms({ display: "flex" })}>
+      <div className={styles.flex}>
         <a {...props} target="_blank" rel="noopener noreferrer">
           {children}
         </a>
@@ -55,7 +54,7 @@ function ListItem({
   }
 
   return (
-    <div className={atoms({ display: "flex" })}>
+    <div className={styles.flex}>
       <Link href={href}>
         <a {...props}>{children}</a>
       </Link>
@@ -80,12 +79,7 @@ function NavLink({
     );
   } else {
     return (
-      <div
-        className={atoms({
-          display: "flex",
-          flexDirection: "column",
-        })}
-      >
+      <div className={styles.column}>
         <h3 className={styles.h3}>{item.name}</h3>
         {item.files.map((file, index) => (
           <NavLink key={index} item={file} />
