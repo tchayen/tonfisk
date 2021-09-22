@@ -84,7 +84,6 @@ function NavLink({
         className={atoms({
           display: "flex",
           flexDirection: "column",
-          marginBottom: "xl",
         })}
       >
         <h3 className={styles.h3}>{item.name}</h3>
@@ -108,10 +107,6 @@ function Sidebar({
       {navigation.files.map((item, index) => {
         return <NavLink key={index} item={item} />;
       })}
-      <h3 className={styles.h3}>Links</h3>
-      <ListItem href="https://github.com/tchayen/tonfisk">GitHub ↗</ListItem>
-      <ListItem href="https://twitter.com/tchayen">Twitter ↗</ListItem>
-      {/* <ListItem href="#">Discord ↗</ListItem> */}
     </>
   );
 }

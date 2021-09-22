@@ -14,6 +14,7 @@ export const h3 = atoms({
     darkMode: "gray-200",
   },
   padding: "m",
+  marginTop: "xl",
 });
 
 export const sidebar = atoms({

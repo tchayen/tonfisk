@@ -29,12 +29,12 @@ import {
   Switch,
   TextInput,
 } from "tonfisk";
+import { primaryTextColor } from "tonfisk/src/commonStyles.css";
 import { MenuButtonComponent } from "tonfisk/src/components/Menu";
 
-import { primaryTextColor } from "../../tonfisk/src/commonStyles.css";
-import { BorderlessInput } from "../components/BorderlessInput";
-import currencies from "../examples/exchange/currencies.json";
-import { CurrencyInList } from "../examples/exchange/CurrencyInList";
+import { BorderlessInput } from "../../components/BorderlessInput";
+import currencies from "../../examples/exchange/currencies.json";
+import { CurrencyInList } from "../../examples/exchange/CurrencyInList";
 
 type PropsSpaghetti = {
   slippageTolerance: number | undefined;
