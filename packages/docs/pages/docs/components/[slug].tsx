@@ -45,7 +45,12 @@ export const getStaticProps = async ({
   params: { slug: string };
 }): Promise<{ props: Props }> => {
   const metadata = getSourceMetadata(params.slug);
-  const escaped = (value: string) => value.replace(/\|/g, "\\|");
+  const escaped = (value: string) => {
+    const cleanStartingSlash = value.startsWith("| ")
+      ? value.substring(2, value.length)
+      : value;
+    return cleanStartingSlash.replace(/\|/g, "\\|").replace(/\n/g, " ");
+  };
 
   const table =
     metadata.props.length > 0
