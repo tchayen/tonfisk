@@ -1,5 +1,13 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { useBreadcrumbItem, useBreadcrumbs } from "@react-aria/breadcrumbs";
-import React, { Children, cloneElement, ReactNode, useRef } from "react";
+import { ItemProps } from "@react-types/shared/src/collections.d";
+import React, {
+  Children,
+  cloneElement,
+  ReactElement,
+  ReactNode,
+  useRef,
+} from "react";
 
 import * as styles from "./Breadcrumbs.css";
 
@@ -37,7 +45,9 @@ type Props = {
   /**
    * Items in the breadcrumbs.
    */
-  children: ReactNode;
+  children:
+    | ReactElement<ItemProps<object>>
+    | Array<ReactElement<ItemProps<object>>>;
 };
 
 /**
@@ -75,7 +85,9 @@ export function Breadcrumbs(props: Props): JSX.Element {
     <nav {...navProps}>
       <ol className={styles.ol}>
         {children.map((child, i) =>
-          cloneElement(child, { isCurrent: i === children.length - 1 })
+          cloneElement(child as ReactElement<any, string>, {
+            isCurrent: i === children.length - 1,
+          })
         )}
       </ol>
     </nav>
