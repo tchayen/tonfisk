@@ -1,4 +1,4 @@
-import { globalStyle } from "@vanilla-extract/css";
+import { globalFontFace, globalStyle } from "@vanilla-extract/css";
 
 import colors from "./colors";
 import { darkMode } from "./vars.css";
@@ -7,12 +7,27 @@ globalStyle("body, body *", {
   boxSizing: "border-box",
 });
 
+globalFontFace("Inter var", {
+  fontStyle: "normal",
+  fontWeight: "100 900",
+  fontDisplay: "swap",
+  src: "url('https://rsms.me/inter/font-files/Inter-roman.var.woff2?v=3.19') format('woff2')",
+});
+
+globalFontFace("Inter var", {
+  fontStyle: "italic",
+  fontWeight: "100 900",
+  fontDisplay: "swap",
+  src: "url('https://rsms.me/inter/font-files/Inter-italic.var.woff2?v=3.19') format('woff2')",
+});
+
 globalStyle(`.${darkMode}`, {
   background: colors.coolGray[900],
   color: colors.coolGray[400],
 });
 
 globalStyle("html", {
+  fontFamily: "Inter var",
   fontFeatureSettings: "'ss01' on,'ss02' on,'cv01' on,'cv03' on",
   textRendering: "optimizeLegibility",
   WebkitFontSmoothing: "antialiased",
@@ -86,4 +101,9 @@ globalStyle("h4", {
   fontSize: "16px",
   fontWeight: 600,
   margin: 0,
+});
+
+globalStyle("a", {
+  color: colors.blue[500],
+  textDecoration: "none",
 });
