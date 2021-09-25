@@ -12,7 +12,7 @@ import { MdxPre } from "../components/MdxPre";
 import { SocialCardsHeader } from "../components/SocialCardsHeader";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 // import { Tweet } from "../components/Tweet";
-import * as styles from "./index.css";
+import * as styles from "../styles/index.css";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return <h3 className={styles.subheader}>{children}</h3>;
