@@ -38,8 +38,7 @@ type Props = {
  *   // ...
  * }
  * ```
-
- `
+ *
  * ## Example
  *
  * <PopoverExample />

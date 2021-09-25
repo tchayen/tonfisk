@@ -293,39 +293,8 @@ function ModalDialogExample(): JSX.Element {
                 },
               })}
             >
-              You can close this modal by clicking outside, using escape or
-              pressing this custom button below.
+              You can close this modal by clicking outside or using escape.
             </p>
-            {/* <div
-              className={atoms({
-                display: "flex",
-                flexDirection: "column",
-                gap: "l",
-                padding: "l",
-              })}
-            >
-              <p
-                className={atoms({
-                  padding: "none",
-                  margin: "none",
-                  color: {
-                    lightMode: "gray-600",
-                    darkMode: "gray-400",
-                  },
-                })}
-              >
-                You can close this modal by clicking outside, using escape or
-                pressing this custom button below.
-              </p>
-              <Button
-                size="large"
-                onPress={() => {
-                  state.close();
-                }}
-              >
-                Close this modal
-              </Button>
-            </div> */}
           </ModalDialog>
         </OverlayContainer>
       )}
