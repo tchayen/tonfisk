@@ -8,35 +8,34 @@ import pkg from "./package.json";
 const input = ["index.ts"];
 
 function manualChunks(id) {
-  console.log({ id });
   if (id.match(/css.ts$/)) {
     return id.split("/").slice(-1);
   }
 }
 
-export default [
-  // UMD.
-  {
-    input,
-    plugins: [
-      nodeResolve(),
-      commonjs({}),
-      typescript(),
-      babel({
-        babelHelpers: "bundled",
-      }),
-      terser(),
-    ],
-    output: {
-      file: `dist/${pkg.name}.min.js`,
-      format: "umd",
-      name: "tonfisk",
-      esModule: false,
-      exports: "named",
-      sourcemap: true,
-    },
+const umd = {
+  input,
+  plugins: [
+    nodeResolve(),
+    commonjs({}),
+    typescript(),
+    babel({
+      babelHelpers: "bundled",
+    }),
+    terser(),
+  ],
+  output: {
+    file: `dist/${pkg.name}.min.js`,
+    format: "umd",
+    name: "tonfisk",
+    esModule: false,
+    exports: "named",
+    sourcemap: true,
   },
-  // ESM and CJS.
+};
+
+export default [
+  umd,
   {
     input,
     plugins: [nodeResolve(), commonjs({}), typescript()],
