@@ -59,22 +59,33 @@ type Props = {
  * import { useOverlayTriggerState } from "@react-stately/overlays";
  * import { Button, HorizontalLine, ModalDialog } from "tonfisk";
  *
- * export default function ModalExample() {
+ * function ModalDialogExample(): JSX.Element {
  *   const state = useOverlayTriggerState({});
  *
  *   return (
  *     <>
- *       <Button onPress={() => state.open()}>Open Dialog</Button>
+ *       <Button onPress={() => state.open()}>Open</Button>
  *       {state.isOpen && (
  *         <OverlayContainer>
  *           <ModalDialog
- *             title="Enter your name"
- *             isOpen
+ *             title="A modal example"
  *             onClose={state.close}
  *             isDismissable
+ *             isOpen
  *           >
  *             <HorizontalLine />
- *             <div>Test</div>
+ *             <p
+ *               className={atoms({
+ *                 padding: "l",
+ *                 margin: "none",
+ *                 color: {
+ *                   lightMode: "gray-600",
+ *                   darkMode: "gray-400",
+ *                 },
+ *               })}
+ *             >
+ *               You can close this modal by clicking outside or using escape.
+ *             </p>
  *           </ModalDialog>
  *         </OverlayContainer>
  *       )}
@@ -85,7 +96,7 @@ type Props = {
  *
  * ## Example
  *
- * See [Example](/example).
+ * <ModalDialogExample />
  */
 export function ModalDialog(props: Props): JSX.Element {
   const { title, children } = props;

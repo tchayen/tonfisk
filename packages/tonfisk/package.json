@@ -15,7 +15,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc --skipLibCheck --outDir dist/ --declarationDir dist/types --declaration true && rollup -c"
+    "build": "tsc --skipLibCheck --outDir dist/ --declarationDir dist/types --declaration true --emitDeclarationOnly && rollup -c"
   },
   "dependencies": {
     "@react-aria/breadcrumbs": "^3.1.5",

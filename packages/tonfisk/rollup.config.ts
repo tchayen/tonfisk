@@ -7,6 +7,13 @@ import { terser } from "rollup-plugin-terser";
 import pkg from "./package.json";
 const input = ["index.ts"];
 
+function manualChunks(id) {
+  console.log({ id });
+  if (id.match(/css.ts$/)) {
+    return id.split("/").slice(-1);
+  }
+}
+
 export default [
   // UMD.
   {
@@ -35,12 +42,14 @@ export default [
     plugins: [nodeResolve(), commonjs({}), typescript()],
     output: [
       {
+        manualChunks,
         dir: "dist/esm",
         format: "esm",
         exports: "named",
         sourcemap: true,
       },
       {
+        manualChunks,
         dir: "dist/cjs",
         format: "cjs",
         exports: "named",

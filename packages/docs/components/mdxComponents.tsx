@@ -21,8 +21,10 @@ import {
   Cell,
   Checkbox,
   Column,
+  HorizontalLine,
   Item,
   MenuButton,
+  ModalDialog,
   Popover,
   Row,
   Select,
@@ -52,14 +54,6 @@ function SelectExample(): JSX.Element {
   ];
 
   const [selected, setSelected] = useState<number | null>(null);
-
-  console.log(
-    selected,
-    items.find((item) => {
-      console.log(item.key, selected);
-      return item.key === selected;
-    })
-  );
 
   return (
     <div style={{ display: "flex", flexDirection: "column" }}>
@@ -274,6 +268,71 @@ function MenuExample(): JSX.Element {
   );
 }
 
+function ModalDialogExample(): JSX.Element {
+  const state = useOverlayTriggerState({});
+
+  return (
+    <>
+      <Button onPress={() => state.open()}>Open</Button>
+      {state.isOpen && (
+        <OverlayContainer>
+          <ModalDialog
+            title="A modal example"
+            onClose={state.close}
+            isDismissable
+            isOpen
+          >
+            <HorizontalLine />
+            <p
+              className={atoms({
+                padding: "l",
+                margin: "none",
+                color: {
+                  lightMode: "gray-600",
+                  darkMode: "gray-400",
+                },
+              })}
+            >
+              You can close this modal by clicking outside, using escape or
+              pressing this custom button below.
+            </p>
+            {/* <div
+              className={atoms({
+                display: "flex",
+                flexDirection: "column",
+                gap: "l",
+                padding: "l",
+              })}
+            >
+              <p
+                className={atoms({
+                  padding: "none",
+                  margin: "none",
+                  color: {
+                    lightMode: "gray-600",
+                    darkMode: "gray-400",
+                  },
+                })}
+              >
+                You can close this modal by clicking outside, using escape or
+                pressing this custom button below.
+              </p>
+              <Button
+                size="large"
+                onPress={() => {
+                  state.close();
+                }}
+              >
+                Close this modal
+              </Button>
+            </div> */}
+          </ModalDialog>
+        </OverlayContainer>
+      )}
+    </>
+  );
+}
+
 function CheckboxExample(): JSX.Element {
   const [value, setValue] = useState(false);
   return (
@@ -444,6 +503,7 @@ export const components = {
   CheckboxExample,
   FormikExample,
   PopoverExample,
+  ModalDialogExample,
   BreadcrumbsExample,
   ...tonfisk,
 };

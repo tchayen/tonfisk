@@ -75,7 +75,7 @@ export default function Home(): JSX.Element {
             <MdxPre>
               <pre className={styles.mdxPre}>
                 <code className="language-jsx">
-                  {`import { Button } from "tonfisk";
+                  {`import { atoms, Button } from "tonfisk";
 
 function Homepage() {
   const onPress = () => console.log("I got pressed!")
