@@ -104,6 +104,6 @@ globalStyle("h4", {
 });
 
 globalStyle("a", {
-  color: colors.blue[500],
+  color: "inherit",
   textDecoration: "none",
 });
