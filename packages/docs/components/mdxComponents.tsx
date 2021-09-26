@@ -37,6 +37,7 @@ import {
 
 import { hoverUnderline } from "../styles/theme.css";
 import { Header1, Header2, Header3, Header4 } from "./Header";
+import * as styles from "./mdxComponents.css";
 import { MdxPre } from "./MdxPre";
 import {
   MdxTable,
@@ -165,7 +166,7 @@ function PopoverExample(): JSX.Element {
         ref={triggerRef}
         className={className}
       >
-        Open
+        Open popover
       </button>
       {state.isOpen && (
         <OverlayContainer>
@@ -180,7 +181,7 @@ function PopoverExample(): JSX.Element {
                 padding: "l",
               })}
             >
-              123
+              This is popover.
             </div>
           </Popover>
         </OverlayContainer>
@@ -273,7 +274,7 @@ function ModalDialogExample(): JSX.Element {
 
   return (
     <>
-      <Button onPress={() => state.open()}>Open</Button>
+      <Button onPress={() => state.open()}>Open modal dialog</Button>
       {state.isOpen && (
         <OverlayContainer>
           <ModalDialog
@@ -389,12 +390,18 @@ function MdxLink({
   href: string;
   children?: ReactNode;
 }): JSX.Element {
+  const { focusProps, isFocusVisible } = useFocusRing();
+
   return (
     <Link href={href}>
       <a
+        {...focusProps}
         href={href}
         className={`${atoms({
           color: "blue-500",
+          outline: "none",
+          borderRadius: "4px",
+          boxShadow: isFocusVisible ? "outline" : "none",
         })} ${hoverUnderline}`}
       >
         {children}
@@ -404,50 +411,28 @@ function MdxLink({
 }
 
 function MdxStrong({ children }: { children?: ReactNode }): JSX.Element {
-  return (
-    <strong
-      className={atoms({
-        fontWeight: "bold",
-        color: {
-          lightMode: "black",
-          darkMode: "gray-200",
-        },
-      })}
-    >
-      {children}
-    </strong>
-  );
+  return <strong className={styles.strong}>{children}</strong>;
 }
 
 function MdxParagraph({ children }: { children?: ReactNode }): JSX.Element {
-  return (
-    <p
-      className={atoms({
-        color: {
-          lightMode: "gray-600",
-          darkMode: "gray-400",
-        },
-        lineHeight: 1.5,
-        marginTop: "l",
-        marginBottom: "l",
-      })}
-    >
-      {children}
-    </p>
-  );
+  return <p className={styles.p}>{children}</p>;
 }
 
 function MdxLi({ children }: { children?: ReactNode }): JSX.Element {
+  return <li className={styles.li}>{children}</li>;
+}
+
+function MdxBlockQuote({ children }: { children?: ReactNode }): JSX.Element {
   return (
-    <li
-      className={atoms({
-        marginBottom: "l",
-        marginTop: "l",
-      })}
-    >
+    <blockquote className={styles.blockquote}>
+      <div className={styles.blockPipe} />
       {children}
-    </li>
+    </blockquote>
   );
+}
+
+function FlexRow({ children }: { children?: ReactNode }): JSX.Element {
+  return <div className={styles.flexRow}>{children}</div>;
 }
 
 export const components = {
@@ -459,6 +444,7 @@ export const components = {
   h4: Header4,
   p: MdxParagraph,
   li: MdxLi,
+  blockquote: MdxBlockQuote,
   pre: MdxPre,
   table: MdxTable,
   thead: MdxTableHeaderRow,
@@ -474,5 +460,6 @@ export const components = {
   PopoverExample,
   ModalDialogExample,
   BreadcrumbsExample,
+  FlexRow,
   ...tonfisk,
 };

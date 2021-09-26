@@ -148,7 +148,11 @@ export const getNavigation = (): Directory => {
       },
       {
         name: "Guides",
-        files: [{ title: "Formik", filePath: "/docs/guides/formik" }],
+        files: [
+          { title: "Designing", filePath: "/docs/guides/designing" },
+          { title: "Bundling", filePath: "/docs/guides/bundling" },
+          { title: "Formik", filePath: "/docs/guides/formik" },
+        ],
       },
       {
         name: "Components",

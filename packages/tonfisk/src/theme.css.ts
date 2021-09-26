@@ -88,6 +88,7 @@ const fontProperties = defineProperties({
     textDecoration: ["none", "underline"],
     fontFamily: vars.fontFamily,
     fontSize: vars.fontSize,
+    fontStyle: ["normal", "italic"],
     fontWeight: vars.fontWeight,
     fontFeatureSettings: vars.fontFeatureSettings,
     lineHeight: [1, 1.5, 1.75, 2],

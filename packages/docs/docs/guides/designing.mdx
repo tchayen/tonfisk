@@ -1,0 +1,40 @@
+---
+title: Designing
+description: How to compose Tonfisk components into whole products.
+---
+
+## Spacing
+
+Most commonly used margin is of size `"l"`, which equals `16px`. This is usually value of the padding from borders and space between separate entities.
+
+Elements that go strictly together, such as label and text input, are separated by `"s"` (`4px`) margin.
+
+## Focus
+
+Each interactive element should respect keyboard focus, that is, it should react and reflect visually when it gains focus from keyboard actions.
+
+Elements should not show their focus state when interacting with mouse. For implementation reference check source code of the [Button](/docs/components/button) component.
+
+## Interactive elements
+
+Every interactive element should have the following states reflected in UI:
+
+- Default state
+- Hover
+- Keyboard focus
+- Active
+
+Try putting your mouse cursor over the button, press and hold it, use tab to move focus around and see how it reacts.
+
+<Button>Press me</Button>
+
+## When to use popover and when modal dialog
+
+Role of popover is to support a part of the application while being part of it. Dropdown box in select is an example of popover.
+
+Modal dialog is responsible for grabbing user's attention. It dims background and doesn't allow any interaction with outside elements until dismissing it.
+
+<FlexRow>
+  <PopoverExample />
+  <ModalDialogExample />
+</FlexRow>
