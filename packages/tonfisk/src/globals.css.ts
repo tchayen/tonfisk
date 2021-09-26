@@ -27,7 +27,8 @@ globalStyle(`.${darkMode}`, {
 });
 
 globalStyle("html", {
-  fontFamily: "Inter var",
+  fontFamily:
+    'Inter var, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"',
   fontFeatureSettings: "'ss01' on,'ss02' on,'cv01' on,'cv03' on",
   textRendering: "optimizeLegibility",
   WebkitFontSmoothing: "antialiased",
