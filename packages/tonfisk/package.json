@@ -1,10 +1,10 @@
 {
-  "private": true,
   "name": "tonfisk",
   "description": "A React design system with a fully accessible component library.",
   "license": "MIT",
   "version": "0.0.1",
   "main": "dist/main.js",
+  "homepage": "https://tonfisk.fish",
   "repository": {
     "type": "git",
     "url": "https://github.com/tchayen/tonfisk.git",
