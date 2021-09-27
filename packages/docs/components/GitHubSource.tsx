@@ -22,12 +22,10 @@ export function GitHubSource(
   const { buttonProps, isPressed } = useButton({}, ref);
 
   const onMouseEnter = () => {
-    console.log("hello");
     setIsHovered(true);
   };
 
   const onMouseLeave = () => {
-    console.log("not hello");
     setIsHovered(false);
   };
 
