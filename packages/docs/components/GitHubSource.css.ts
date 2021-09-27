@@ -4,7 +4,6 @@ import { atoms } from "tonfisk/src/theme.css";
 export const div = atoms({ marginTop: "xl" });
 
 export const base = atoms({
-  color: "blue-500",
   display: "inline-flex",
   alignItems: "center",
   outline: "none",
@@ -16,6 +15,17 @@ export const base = atoms({
 export const anchor = recipe({
   base,
   variants: {
+    color: {
+      default: atoms({
+        color: "blue-500",
+      }),
+      hover: atoms({
+        color: "blue-600",
+      }),
+      active: atoms({
+        color: "blue-700",
+      }),
+    },
     boxShadow: {
       focusVisible: atoms({
         boxShadow: "outline",
