@@ -1,9 +1,9 @@
-import { TonfiskProvider } from "tonfisk";
+import { Button, TonfiskProvider } from "tonfisk";
 
 export default function App() {
   return (
     <TonfiskProvider>
-      <div>123</div>
+      <Button>123</Button>
     </TonfiskProvider>
   );
 }

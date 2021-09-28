@@ -13,6 +13,12 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js/,
+        resolve: {
+          fullySpecified: false,
+        },
+      },
+      {
         test: /\.(js|ts|tsx)$/,
         exclude: [/node_modules/],
         use: [
@@ -40,7 +46,7 @@ module.exports = {
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({ template: "index.html" }),
     new MiniCssExtractPlugin(),
     new VanillaExtractPlugin(),
   ],
