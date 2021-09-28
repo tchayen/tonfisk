@@ -13,13 +13,16 @@ fs.copyFileSync(getPath("../../../README.md"), getPath("../README.md"));
 const command = spawn("yarn", ["run", "prepack"]);
 
 command.stdout.on("data", function (data) {
-  console.log("stdout: " + data.toString());
+  console.log(`stdout: ${data.toString()}`);
 });
 
 command.stderr.on("data", function (data) {
-  console.log("stderr: " + data.toString());
+  console.log(`stderr: ${data.toString()}`);
 });
 
 command.on("exit", function (code) {
-  console.log("child process exited with code " + code.toString());
+  console.log(`child process exited with code ${code.toString()}`);
 });
+
+// TODO: find out why it gets there.
+fs.rmdirSync("../dist/src", { recursive: true });
