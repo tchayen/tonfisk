@@ -16,6 +16,12 @@ Visit official [documentation](https://tonfisk.fish).
 
 TBD.
 
+## Bundling
+
+Run `node scripts/publish.mjs` to bundle the library.
+
+`node scripts/clean.mjs` reverts local repository to the previous state.
+
 ## License
 
 MIT.

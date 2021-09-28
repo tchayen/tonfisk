@@ -1,15 +1,7 @@
 {
   "name": "tonfisk",
-  "description": "A React design system with a fully accessible component library.",
+  "version": "0.0.0",
   "private": true,
-  "license": "MIT",
-  "version": "0.0.1",
-  "homepage": "https://tonfisk.fish",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tchayen/tonfisk.git",
-    "directory": "packages/tonfisk"
-  },
   "dependencies": {
     "@react-aria/breadcrumbs": "^3.1.5",
     "@react-aria/button": "^3.3.4",

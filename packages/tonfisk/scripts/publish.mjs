@@ -1,4 +1,5 @@
-import { execSync } from "child_process";
+// This script prepares files for publishing to NPM.
+import { spawn } from "child_process";
 import fs from "fs";
 
 const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
@@ -7,11 +8,18 @@ const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
 fs.renameSync(getPath("../package.json"), getPath("../package.local.json"));
 fs.renameSync(getPath("../package.dist.json"), getPath("../package.json"));
 
-execSync("yarn run prepack");
+fs.copyFileSync(getPath("../../../README.md"), getPath("../README.md"));
 
-// // Clean up.
+const command = spawn("yarn", ["run", "prepack"]);
 
-// fs.renameSync("../package.json", "../package.dist.json");
-// fs.renameSync("../package.local.json", "../package.json");
+command.stdout.on("data", function (data) {
+  console.log("stdout: " + data.toString());
+});
 
-// fs.rmdirSync("../dist", { recursive: true });
+command.stderr.on("data", function (data) {
+  console.log("stderr: " + data.toString());
+});
+
+command.on("exit", function (code) {
+  console.log("child process exited with code " + code.toString());
+});
