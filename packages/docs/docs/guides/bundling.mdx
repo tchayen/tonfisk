@@ -3,6 +3,14 @@ title: Bundling
 description: How to pack Tonfisk with your app.
 ---
 
-Current [config](https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/webpack.config.js) for preparing Tonfisk for publishing uses Webpack to produce a UMD bundle with `main.js` and `main.css` files. React and ReactDOM are omitted as external dependencies.
+Tonfisk uses `vanilla-extract` for styling. This means that type-safe styles live in `*.css.ts` files. They are exported during build process and are meant to be consumed by the end user's bundler.
 
-> As the library uses [`vanilla-extract`](https://vanilla-extract.style/) for styling, it is a good idea to export styling in `*.css.ts` files and let the end user bundle them to enable much better dead code removal. Unfortunately it is not supported yet, but much mork work on this topic is planned.
+Check example [`webpack.config.js`](https://github.com/tchayen/tonfisk/blob/main/examples/webpack/webpack.config.js) and [`next.config.js`](https://github.com/tchayen/tonfisk/blob/main/examples/next/next.config.js) as well as [`vanilla-extract`](https://vanilla-extract.style/documentation/setup/) setup documentation to learn more about it.
+
+## No-setup alternative
+
+There are plans provide alternative bundle with all CSS packed together.
+
+It would allow people to use `tonfisk` without setting up `vanilla-extract` (for example in CRA).
+
+Unfortunately, it wouldn't allow for tree-shaking the CSS as it would be a final bundled `main.css` file.
