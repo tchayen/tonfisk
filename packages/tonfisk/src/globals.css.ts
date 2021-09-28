@@ -36,6 +36,10 @@ globalStyle("html", {
   color: colors.coolGray[600],
 });
 
+globalStyle("body", {
+  margin: 0,
+});
+
 // globalStyle("::selection", {
 //   background: colors.blue[500],
 //   color: colors.black,
