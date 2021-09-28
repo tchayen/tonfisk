@@ -27,6 +27,12 @@ export default function App() {
 
 ### Styling
 
+> I am planning to provide alternative bundle with all CSS packed together.
+>
+> Pros: would allow people to use `tonfisk` without setting up `vanilla-extract (CRA).
+>
+> Cons: wouldn't allow for tree-shaking the CSS.
+
 Set up `vanilla-extract` according to your bundler settings: [guide](https://vanilla-extract.style/documentation/setup/).
 
 ### Dark theme
@@ -72,9 +78,6 @@ Simple snippet showing how to get started:
 
 ```jsx
 import { TonfiskProvider, Button } from "tonfisk";
-
-// Import it once in the app.
-import "tonfisk/dist/main.css";
 
 export default function App() {
   return (

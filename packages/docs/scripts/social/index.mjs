@@ -1,5 +1,5 @@
 import { Buffer } from "buffer";
-import fs, { readFileSync } from "fs";
+import fs from "fs";
 import matter from "gray-matter";
 import path from "path";
 import puppeteer from "puppeteer";
@@ -17,7 +17,7 @@ const docsPath = getPath("../../docs");
 const sourcesPath = getPath("../../../tonfisk/src/components");
 const tonfiskPackagePath = getPath("../../../tonfisk/package.json");
 
-const packageJson = JSON.parse(readFileSync(tonfiskPackagePath, "utf8"));
+const packageJson = JSON.parse(fs.readFileSync(tonfiskPackagePath, "utf8"));
 
 if (!fs.existsSync(resultDirectory)) {
   fs.mkdirSync(resultDirectory);
