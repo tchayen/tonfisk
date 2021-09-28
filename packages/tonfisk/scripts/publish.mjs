@@ -22,7 +22,9 @@ command.stderr.on("data", function (data) {
 
 command.on("exit", function (code) {
   console.log(`child process exited with code ${code.toString()}`);
-});
 
-// TODO: find out why it gets there.
-fs.rmdirSync("../dist/src", { recursive: true });
+  if (code === 0) {
+    // TODO: find out why it gets there.
+    fs.rmSync(getPath("../dist/src"), { recursive: true });
+  }
+});

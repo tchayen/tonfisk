@@ -9,4 +9,4 @@ fs.renameSync(getPath("../package.local.json"), getPath("../package.json"));
 
 fs.rmSync(getPath("../README.md"));
 
-fs.rmdirSync(getPath("../dist"), { recursive: true });
+fs.rmSync(getPath("../dist"), { recursive: true });
