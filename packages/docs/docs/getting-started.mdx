@@ -11,7 +11,7 @@ yarn add tonfisk
 
 ## Setup
 
-In order to get up and running with the package, please follow the steps below.
+To get up and running with the package, please follow the steps below.
 
 ### Provider
 
@@ -31,13 +31,13 @@ Set up `vanilla-extract` according to your bundler settings: [guide](https://van
 
 ### Dark theme
 
-In order to avoid a flash of white background when the user is supposed to see dark mode, copy content of [noflash.js](/noflash.js) file and save it as `noflash.js` file to `/public` directory of your repository.
+To avoid a flash of white background when the user is supposed to see dark mode, you will need a blocking script that will run before the page fully loads and will determine whether it should run in dark or light mode.
 
-If you are using Next.js, it will be `/public`.
+First, copy content of [noflash.js](/noflash.js).
 
-Next, if you have your own custom `index.html`, add `<script src="/noflash.js"></script>` inside `<body>`.
+#### Next.js
 
-If you are using Next.js, you will need `_document.js`:
+Save `noflash.js` to `public/` directory and add `<script>` tag inside your `_document.js`:
 
 ```js
 import Document, { Head, Html, Main, NextScript } from "next/document";
@@ -54,7 +54,6 @@ class MyDocument extends Document {
         <Head />
         <body>
           <script src="/noflash.js" />
-          {/* ^ here */}
           <Main />
           <NextScript />
         </body>
@@ -65,6 +64,14 @@ class MyDocument extends Document {
 
 export default MyDocument;
 ```
+
+#### Webpack
+
+Add `<script src="/noflash.js"></script>` to your `index.html` inside `<head>`.
+
+If you are using `HtmlWebpackPlugin` you will need to create `index.html` file and specify it as the `template` option.
+
+You will also need to serve your `noflash.js` file as a static file. You can check the [Webpack example](https://github.com/tchayen/tonfisk/tree/main/examples/webpack) for (incomplete) setup.
 
 ## Usage
 

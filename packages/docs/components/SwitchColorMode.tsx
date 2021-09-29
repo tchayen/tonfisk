@@ -13,9 +13,9 @@ import { ColorModeContext } from "tonfisk/src/Provider";
  * So in case user visits page for the first time with (prefers-color-scheme: dark)
  * then there will be mismatch between server and client rendered parts.
  *
- * In order to avoid that I am setting symbol only in useEffect, so on server it
- * won't render and it will show up only in the client. div.style is to ensure
- * there won't be content shift in the client.
+ * To avoid that I am setting symbol only in useEffect, so on server it won't
+ * render and it will show up only in the client. div.style is to ensure there
+ * won't be content shift in the client.
  */
 export function SwitchColorMode(): JSX.Element {
   const { colorMode, setColorMode } = useContext(ColorModeContext);
