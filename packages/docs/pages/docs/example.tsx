@@ -18,7 +18,7 @@ import {
   commonStyles,
   HorizontalLine,
   Label,
-  ModalDialog,
+  Modal,
   Pill,
   Popover,
   Spinner,
@@ -219,7 +219,7 @@ function Settings({
           Disable multihops
         </Switch>
       </div>
-      <ModalDialog
+      <Modal
         title="Are you sure?"
         isOpen={warningState.isOpen}
         onClose={warningState.close}
@@ -269,7 +269,7 @@ function Settings({
             TURN ON EXPERT MODE
           </Button>
         </div>
-      </ModalDialog>
+      </Modal>
     </>
   );
 }
@@ -388,7 +388,7 @@ function SelectTokenModal({
           </span>
         )}
       </MenuButtonComponent>
-      <ModalDialog
+      <Modal
         title="Select a token"
         onClose={state.close}
         isDismissable
@@ -400,7 +400,7 @@ function SelectTokenModal({
             state.close();
           }}
         />
-      </ModalDialog>
+      </Modal>
     </div>
   );
 }
