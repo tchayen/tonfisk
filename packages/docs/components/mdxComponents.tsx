@@ -401,6 +401,7 @@ function MdxLink({
           color: "blue-500",
           outline: "none",
           borderRadius: "4px",
+          display: "inline-flex",
           boxShadow: isFocusVisible ? "outline" : "none",
         })} ${hoverUnderline}`}
       >

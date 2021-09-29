@@ -134,7 +134,7 @@ export const features = style([
 export const flex1 = atoms({ flex: 1 });
 
 export const footerText = atoms({
-  marginBottom: "2xl",
+  marginBottom: "xl",
   marginTop: {
     desktop: "2xl",
   },
@@ -151,6 +151,31 @@ export const link = style([
     },
   }),
 ]);
+
+export const footerLink = style([
+  atoms({
+    color: {
+      lightMode: "gray-400",
+      darkMode: "gray-600",
+    },
+  }),
+  style({
+    ":hover": {
+      textDecoration: "underline",
+    },
+  }),
+]);
+
+export const footerLinkRow = atoms({
+  display: "flex",
+  flexDirection: "row",
+  gap: "l",
+  marginBottom: "2xl",
+  color: {
+    darkMode: "gray-700",
+    lightMode: "gray-200",
+  },
+});
 
 export const tweetsWrapper = atoms({
   marginTop: "xl",

@@ -132,6 +132,8 @@ function Homepage() {
               Are you working with designers or like to design on your own?
               Up-to-date{" "}
               <a
+                target="_blank"
+                rel="noopener noreferrer"
                 href="https://www.figma.com/community/file/1022531774593389664/tonfisk"
                 className={styles.link}
               >
@@ -182,12 +184,54 @@ function Homepage() {
         <footer>
           <div className={styles.footerText}>
             Created by{" "}
-            <a href="https://twitter.com/tchayen" className={styles.link}>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href="https://twitter.com/tchayen"
+              className={styles.link}
+            >
               @tchayen
             </a>{" "}
             in Stockholm.
           </div>
         </footer>
+        <div className={styles.footerLinkRow}>
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://github.com/tchayen/tonfisk"
+            className={styles.footerLink}
+          >
+            GitHub repository
+          </a>
+          /
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.npmjs.com/package/tonfisk"
+            className={styles.footerLink}
+          >
+            NPM package
+          </a>
+          /
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://www.figma.com/community/file/1022531774593389664/tonfisk"
+            className={styles.footerLink}
+          >
+            Figma file
+          </a>
+          /
+          <a
+            target="_blank"
+            rel="noopener noreferrer"
+            href="https://codesandbox.io/s/tonfisk-webpack-pbehz"
+            className={styles.footerLink}
+          >
+            CodeSandbox example
+          </a>
+        </div>
       </div>
     </>
   );
