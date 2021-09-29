@@ -46,6 +46,7 @@ import {
   MdxTableHeaderRow,
   MdxTableRow,
 } from "./MdxTable";
+import { SwitchColorMode } from "./SwitchColorMode";
 
 function SelectExample(): JSX.Element {
   const items = [
@@ -452,6 +453,7 @@ export const components = {
   tr: MdxTableRow,
   td: MdxTableCell,
   th: MdxTableHeaderCell,
+  SwitchColorMode,
   Link,
   TableExample,
   SelectExample,

@@ -151,6 +151,10 @@ export const getNavigation = (): Directory => {
         files: [
           { title: "Designing", filePath: "/docs/guides/designing" },
           { title: "Bundling", filePath: "/docs/guides/bundling" },
+          {
+            title: "Color mode switch",
+            filePath: "/docs/guides/color-mode-switch",
+          },
           { title: "Formik", filePath: "/docs/guides/formik" },
         ],
       },

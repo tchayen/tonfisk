@@ -1,0 +1,78 @@
+---
+title: Color mode switch
+description: How to let your users switch manually between light and dark mode.
+---
+
+## Imports
+
+It first starts with a bunch of import and declarations.
+
+```jsx
+import { useButton } from "@react-aria/button";
+import { useFocusRing } from "@react-aria/focus";
+import { mergeProps } from "@react-aria/utils";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { atoms } from "tonfisk";
+import { ColorModeContext } from "tonfisk/src/Provider";
+
+export function SwitchColorMode() {
+  const { colorMode, setColorMode } = useContext(ColorModeContext);
+  const [symbol, setSymbol] = useState<string | null>(null);
+  const ref = useRef<HTMLButtonElement>(null);
+  const { focusProps, isFocusVisible } = useFocusRing();
+```
+
+## Handling SSR
+
+Since color mode preference is kept locally on the user's machine, SSR is not able to predict what to put there. To avoid incorrect initial symbol I am setting it in `useEffect` (which will run only after the page loads).
+
+```tsx
+useEffect(() => {
+  setSymbol(colorMode === "dark" ? "🌙" : "☀️");
+}, []);
+
+useEffect(() => {
+  setSymbol(colorMode === "dark" ? "🌙" : "☀️");
+}, [colorMode]);
+
+const { buttonProps } = useButton(
+  {
+    onPress: () => {
+      setColorMode(colorMode === "dark" ? "light" : "dark");
+    },
+  },
+  ref
+);
+```
+
+## Rendering
+
+Finally, rendering. Note that `<div>` has manually set size – this is to avoid content shift when the symbol is decided. This box will reserve screen space for it since the beginning. You will need some adjustments for your preferred `fontSize`, but overall the idea stays the same.
+
+```tsx
+return (
+  <div style={{ width: 64, height: 64 }}>
+    {symbol && (
+      <button
+        ref={ref}
+        style={{
+          color: "transparent",
+          fontSize: 32,
+        }}
+        className={atoms({
+          textShadow: colorMode === "dark" ? "dark" : "light",
+        })}
+        {...mergeProps(buttonProps, focusProps)}
+      >
+        {symbol}
+      </button>
+    )}
+  </div>
+);
+```
+
+## Result
+
+With a couple more styling lines (and nothing else), we can achieve exactly the same switch as here in the docs:
+
+<SwitchColorMode />
