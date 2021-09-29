@@ -1,10 +1,6 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
-import {
-  OverlayContainer,
-  useOverlayPosition,
-  useOverlayTrigger,
-} from "@react-aria/overlays";
+import { useOverlayPosition, useOverlayTrigger } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
 import { useRouter } from "next/dist/client/router";
@@ -121,18 +117,14 @@ const SettingsPopover = ({
       >
         Settings
       </button>
-      {state.isOpen && (
-        <OverlayContainer>
-          <Popover
-            {...mergeProps(overlayProps, positionProps)}
-            ref={overlayRef}
-            isOpen={state.isOpen}
-            onClose={state.close}
-          >
-            <Settings {...props} />
-          </Popover>
-        </OverlayContainer>
-      )}
+      <Popover
+        {...mergeProps(overlayProps, positionProps)}
+        ref={overlayRef}
+        isOpen={state.isOpen}
+        onClose={state.close}
+      >
+        <Settings {...props} />
+      </Popover>
     </>
   );
 };
@@ -227,62 +219,57 @@ function Settings({
           Disable multihops
         </Switch>
       </div>
-      {warningState.isOpen && (
-        <OverlayContainer>
-          <ModalDialog
-            title="Are you sure?"
-            isOpen
-            onClose={warningState.close}
-            isDismissable
+      <ModalDialog
+        title="Are you sure?"
+        isOpen={warningState.isOpen}
+        onClose={warningState.close}
+        isDismissable
+      >
+        <HorizontalLine />
+        <div
+          className={atoms({
+            display: "grid",
+            gap: "l",
+            padding: "l",
+          })}
+        >
+          <p
+            className={atoms({
+              padding: "none",
+              margin: "none",
+              color: {
+                lightMode: "gray-600",
+                darkMode: "gray-400",
+              },
+            })}
           >
-            <HorizontalLine />
-            <div
-              className={atoms({
-                display: "grid",
-                gap: "l",
-                padding: "l",
-              })}
-            >
-              <p
-                className={atoms({
-                  padding: "none",
-                  margin: "none",
-                  color: {
-                    lightMode: "gray-600",
-                    darkMode: "gray-400",
-                  },
-                })}
-              >
-                Expert mode turns off the confirm transaction prompt and allows
-                high slippage trades that often result in bad rates and lost
-                funds.
-              </p>
-              <p
-                className={atoms({
-                  padding: "none",
-                  margin: "none",
-                  fontWeight: "bold",
-                  color: {
-                    lightMode: "black",
-                    darkMode: "gray-200",
-                  },
-                })}
-              >
-                ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
-              </p>
-              <Button
-                size="large"
-                onPress={() => {
-                  setExpertMode(!expertMode);
-                  warningState.close();
-                }}
-              >
-                TURN ON EXPERT MODE
-              </Button>
-            </div>
-          </ModalDialog>
-        </OverlayContainer>
-      )}
+            Expert mode turns off the confirm transaction prompt and allows high
+            slippage trades that often result in bad rates and lost funds.
+          </p>
+          <p
+            className={atoms({
+              padding: "none",
+              margin: "none",
+              fontWeight: "bold",
+              color: {
+                lightMode: "black",
+                darkMode: "gray-200",
+              },
+            })}
+          >
+            ONLY USE THIS MODE IF YOU KNOW WHAT YOU ARE DOING.
+          </p>
+          <Button
+            size="large"
+            onPress={() => {
+              setExpertMode(!expertMode);
+              warningState.close();
+            }}
+          >
+            TURN ON EXPERT MODE
+          </Button>
+        </div>
+      </ModalDialog>
     </>
   );
 }
@@ -401,23 +388,19 @@ function SelectTokenModal({
           </span>
         )}
       </MenuButtonComponent>
-      {state.isOpen && (
-        <OverlayContainer>
-          <ModalDialog
-            title="Select a token"
-            onClose={state.close}
-            isDismissable
-            isOpen
-          >
-            <SelectToken
-              onSelect={(token) => {
-                onSelect(token);
-                state.close();
-              }}
-            />
-          </ModalDialog>
-        </OverlayContainer>
-      )}
+      <ModalDialog
+        title="Select a token"
+        onClose={state.close}
+        isDismissable
+        isOpen={state.isOpen}
+      >
+        <SelectToken
+          onSelect={(token) => {
+            onSelect(token);
+            state.close();
+          }}
+        />
+      </ModalDialog>
     </div>
   );
 }

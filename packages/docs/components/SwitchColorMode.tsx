@@ -20,6 +20,8 @@ import { ColorModeContext } from "tonfisk/src/Provider";
 export function SwitchColorMode(): JSX.Element {
   const { colorMode, setColorMode } = useContext(ColorModeContext);
   const [symbol, setSymbol] = useState<string | null>(null);
+  const ref = useRef<HTMLButtonElement>(null);
+  const { focusProps, isFocusVisible } = useFocusRing();
 
   useEffect(() => {
     setSymbol(colorMode === "dark" ? "🌙" : "☀️");
@@ -29,7 +31,6 @@ export function SwitchColorMode(): JSX.Element {
     setSymbol(colorMode === "dark" ? "🌙" : "☀️");
   }, [colorMode]);
 
-  const ref = useRef<HTMLButtonElement>(null);
   const { buttonProps } = useButton(
     {
       onPress: () => {
@@ -38,7 +39,6 @@ export function SwitchColorMode(): JSX.Element {
     },
     ref
   );
-  const { focusProps, isFocusVisible } = useFocusRing();
 
   return (
     <div style={{ width: 64, height: 64 }}>

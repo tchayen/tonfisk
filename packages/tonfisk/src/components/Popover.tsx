@@ -1,7 +1,9 @@
 import { useDialog } from "@react-aria/dialog";
 import { FocusScope } from "@react-aria/focus";
 import { DismissButton, useModal, useOverlay } from "@react-aria/overlays";
+import { OverlayContainer } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { ForwardedRef, forwardRef, ReactNode, RefObject } from "react";
 
 import { atoms } from "../theme.css";
@@ -71,17 +73,30 @@ export const Popover = forwardRef(
     });
 
     return (
-      <FocusScope contain restoreFocus>
-        <div
-          ref={ref as RefObject<HTMLDivElement>}
-          className={className}
-          style={props.style}
-          {...mergeProps(overlayProps, dialogProps, modalProps)}
-        >
-          {props.children}
-          <DismissButton onDismiss={props.onClose} />
-        </div>
-      </FocusScope>
+      <AnimatePresence>
+        {props.isOpen && (
+          <OverlayContainer>
+            <motion.div
+              key="popover"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <FocusScope contain restoreFocus>
+                <div
+                  ref={ref as RefObject<HTMLDivElement>}
+                  className={className}
+                  style={props.style}
+                  {...mergeProps(overlayProps, dialogProps, modalProps)}
+                >
+                  {props.children}
+                  <DismissButton onDismiss={props.onClose} />
+                </div>
+              </FocusScope>
+            </motion.div>
+          </OverlayContainer>
+        )}
+      </AnimatePresence>
     );
   }
 );
