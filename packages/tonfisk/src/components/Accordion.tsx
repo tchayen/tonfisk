@@ -3,6 +3,7 @@ import { useFocusRing } from "@react-aria/focus";
 import { mergeProps } from "@react-aria/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactNode, RefObject, useRef, useState } from "react";
+
 import { atoms } from "..";
 
 type Props = {
@@ -32,22 +33,16 @@ type Props = {
  * ## Usage
  *
  * ```jsx
- * function AccordionExample(): JSX.Element {
+ * function AccordionExample() {
  *   return (
- *     <>
- *       <Accordion
- *         className={atoms({ marginTop: "l" })}
- *         header={<h2>Header 1</h2>}
- *       >
+ *     <div>
+ *       <Accordion header={<h2>Header 1</h2>}>
  *         Test
  *       </Accordion>
- *       <Accordion
- *         className={atoms({ marginTop: "l" })}
- *         header={<h2>Header 2</h2>}
- *       >
+ *       <Accordion header={<h2>Header 2</h2>}>
  *         Other test
  *       </Accordion>
- *     </>
+ *     </div>
  *   );
  * }
  * ```
@@ -65,7 +60,7 @@ export function Accordion({
   const ref = useRef<HTMLButtonElement>(null);
   const [expanded, setExpanded] = useState(mountOpen || false);
   const { focusProps, isFocusVisible } = useFocusRing();
-  const { buttonProps, isPressed } = useButton(
+  const { buttonProps } = useButton(
     {
       onPress: () => {
         setExpanded(!expanded);
@@ -83,6 +78,10 @@ export function Accordion({
           outline: "none",
           background: "transparent",
           border: "none",
+          textAlign: "left",
+          margin: "none",
+          padding: "none",
+          display: "flex",
           boxShadow: isFocusVisible ? "outline" : "none",
         })} ${className}`}
         {...mergeProps(focusProps, buttonProps)}

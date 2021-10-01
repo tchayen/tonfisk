@@ -1,3 +1,4 @@
+import Head from "next/head";
 import React from "react";
 
 import { GitHubSource } from "../../../components/GitHubSource";
@@ -29,6 +30,9 @@ export default function Doc({
 }: Props): JSX.Element {
   return (
     <>
+      <Head>
+        <title>{metadata.displayName} – Tonfisk</title>
+      </Head>
       <SocialCardsHeader slug={`components/${slug}`} />
       <Layout navigation={navigation}>
         <Header1>{metadata.displayName}</Header1>

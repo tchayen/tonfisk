@@ -333,20 +333,42 @@ function CheckboxExample(): JSX.Element {
 
 function AccordionExample(): JSX.Element {
   return (
-    <>
+    <div className={atoms({ display: "flex", flexDirection: "column" })}>
       <Accordion
         className={atoms({ marginTop: "l" })}
-        header={<h2>Header 1</h2>}
+        header={
+          <h2
+            className={atoms({
+              color: {
+                lightMode: "black",
+                darkMode: "gray-200",
+              },
+            })}
+          >
+            Header 1
+          </h2>
+        }
       >
         Test
       </Accordion>
       <Accordion
         className={atoms({ marginTop: "l" })}
-        header={<h2>Header 2</h2>}
+        header={
+          <h2
+            className={atoms({
+              color: {
+                lightMode: "black",
+                darkMode: "gray-200",
+              },
+            })}
+          >
+            Header 2
+          </h2>
+        }
       >
         Other test
       </Accordion>
-    </>
+    </div>
   );
 }
 
