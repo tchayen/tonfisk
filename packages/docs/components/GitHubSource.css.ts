@@ -10,6 +10,7 @@ export const base = atoms({
   padding: "m",
   borderRadius: "8px",
   gap: "m",
+  transition: "color",
 });
 
 export const anchor = recipe({

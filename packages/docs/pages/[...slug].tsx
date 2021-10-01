@@ -1,4 +1,5 @@
 import fs from "fs";
+import Head from "next/head";
 import path from "path";
 import React from "react";
 import { atoms } from "tonfisk";
@@ -22,8 +23,12 @@ export default function Doc({
   source,
   frontMatter,
 }: Props): JSX.Element {
+  console.log({ frontMatter });
   return (
     <>
+      <Head>
+        <title>{frontMatter.title} – Tonfisk</title>
+      </Head>
       <SocialCardsHeader slug={slug.slice(1).join("/")} />
       <Layout navigation={navigation}>
         <Header1>{frontMatter.title}</Header1>

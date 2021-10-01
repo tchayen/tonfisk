@@ -10,6 +10,7 @@ export const checkboxLike = atoms({
   margin: "none",
   outline: "none",
   WebkitAppearance: "none",
+  transition: "all",
 });
 
 export const label = atoms({

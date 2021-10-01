@@ -1,7 +1,7 @@
 export { Button, ButtonLink } from "./components/Button";
 export { Checkbox } from "./components/Checkbox";
 export { TextInput } from "./components/TextInput";
-export { ModalDialog } from "./components/ModalDialog";
+export { Modal } from "./components/Modal";
 export { TonfiskProvider } from "./Provider";
 export { Select, Item } from "./components/Select";
 export { Switch } from "./components/Switch";

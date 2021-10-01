@@ -2,6 +2,7 @@ import { useTooltip, useTooltipTrigger } from "@react-aria/tooltip";
 import { mergeProps } from "@react-aria/utils";
 import { useTooltipTriggerState } from "@react-stately/tooltip";
 import { TooltipTriggerState } from "@react-stately/tooltip";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactNode, useRef } from "react";
 
 import { tooltipBox, tooltipButton, tooltipSpan } from "./Tooltip.css";
@@ -16,9 +17,19 @@ function TooltipBox({
   const { tooltipProps } = useTooltip({}, state);
 
   return (
-    <span className={tooltipBox} {...mergeProps(props, tooltipProps)}>
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    <motion.div
+      key="popover"
+      initial={{ opacity: 0, x: 0, y: -8 }}
+      animate={{ opacity: 1, x: 0, y: 0 }}
+      exit={{ opacity: 0, x: 0, y: -8 }}
+      transition={{ ease: "easeOut", duration: 0.15 }}
+      className={tooltipBox}
+      {...mergeProps(props, tooltipProps)}
+    >
       {props.children}
-    </span>
+    </motion.div>
   );
 }
 
@@ -34,6 +45,8 @@ type Props = {
 };
 
 /**
+ * > **Warning:** this component is not fully implemented and generates not semantic markup.
+ *
  * Tooltip can be attached to a button.
  *
  * ## Usage
@@ -71,11 +84,13 @@ export function Tooltip(props: Props): JSX.Element {
       <button ref={ref} {...triggerProps} className={tooltipButton}>
         {children}
       </button>
-      {state.isOpen && (
-        <TooltipBox state={state} {...tooltipProps}>
-          {tooltip}
-        </TooltipBox>
-      )}
+      <AnimatePresence>
+        {state.isOpen && (
+          <TooltipBox state={state} {...tooltipProps}>
+            {tooltip}
+          </TooltipBox>
+        )}
+      </AnimatePresence>
     </span>
   );
 }

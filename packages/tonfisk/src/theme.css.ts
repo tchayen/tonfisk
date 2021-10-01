@@ -219,6 +219,7 @@ const otherProperties = defineProperties({
     borderCollapse: ["separate", "collapse"],
     borderSpacing: [0],
     appearance: ["none"],
+    transition: vars.transition,
   },
 });
 

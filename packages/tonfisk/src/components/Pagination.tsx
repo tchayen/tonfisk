@@ -1,10 +1,6 @@
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
-import {
-  OverlayContainer,
-  useOverlayPosition,
-  useOverlayTrigger,
-} from "@react-aria/overlays";
+import { useOverlayPosition, useOverlayTrigger } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
 import { AriaButtonProps } from "@react-types/button/src/index.d";
@@ -102,7 +98,7 @@ const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
     targetRef: triggerRef,
     overlayRef,
     placement: "bottom",
-    offset: 8,
+    offset: -8,
     isOpen: state.isOpen,
   });
 
@@ -131,33 +127,29 @@ const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
       >
         ...
       </PageButton>
-      {state.isOpen && (
-        <OverlayContainer>
-          <Popover
-            {...mergeProps(overlayProps, positionProps)}
-            ref={overlayRef}
-            isOpen={state.isOpen}
-            onClose={submit}
-          >
-            <div style={{ width: "48px" }}>
-              <TextInput
-                aria-label="Page number"
-                placeholder="0"
-                autoFocus
-                value={pageNumber ? pageNumber.toString() : undefined}
-                onKeyPress={(event) => {
-                  if (event.key === "Enter") {
-                    submit();
-                  }
-                }}
-                onChange={(value) => {
-                  setPageNumber(Number(value));
-                }}
-              />
-            </div>
-          </Popover>
-        </OverlayContainer>
-      )}
+      <Popover
+        {...mergeProps(overlayProps, positionProps)}
+        ref={overlayRef}
+        isOpen={state.isOpen}
+        onClose={submit}
+      >
+        <div style={{ width: "48px" }}>
+          <TextInput
+            aria-label="Page number"
+            placeholder="0"
+            autoFocus
+            value={pageNumber ? pageNumber.toString() : undefined}
+            onKeyPress={(event) => {
+              if (event.key === "Enter") {
+                submit();
+              }
+            }}
+            onChange={(value) => {
+              setPageNumber(Number(value));
+            }}
+          />
+        </div>
+      </Popover>
     </>
   );
 };

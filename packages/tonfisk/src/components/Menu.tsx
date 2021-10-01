@@ -13,6 +13,7 @@ import { AriaButtonProps } from "@react-types/button/src/index.d";
 import { MenuTriggerProps } from "@react-types/menu";
 import { FocusStrategy } from "@react-types/shared";
 import { CollectionChildren } from "@react-types/shared/src/collections";
+import { AnimatePresence, motion } from "framer-motion";
 import { ForwardedRef, forwardRef, Key, ReactNode, RefObject } from "react";
 import React, { useRef, useState } from "react";
 
@@ -242,15 +243,26 @@ export function MenuButton(props: Props): JSX.Element {
       >
         {props.title}
       </MenuButtonComponent>
-      {state.isOpen && (
-        <MenuPopup
-          domProps={menuProps}
-          autoFocus={state.focusStrategy}
-          onClose={() => state.close()}
-          {...fieldProps}
-          {...props}
-        />
-      )}
+      <AnimatePresence>
+        {state.isOpen && (
+          <motion.div
+            key="popover"
+            initial={{ opacity: 0, x: 0, y: -16 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{ opacity: 0, x: 0, y: -16 }}
+            transition={{ ease: "easeOut", duration: 0.15 }}
+            style={{ position: "relative" }}
+          >
+            <MenuPopup
+              domProps={menuProps}
+              autoFocus={state.focusStrategy}
+              onClose={() => state.close()}
+              {...fieldProps}
+              {...props}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

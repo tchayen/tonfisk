@@ -1,3 +1,4 @@
+import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 import { atoms } from "tonfisk/src/theme.css";
 
@@ -8,13 +9,22 @@ export const centered = atoms({
   },
 });
 
+export const accordion = atoms({
+  cursor: "pointer",
+  marginTop: "xl",
+  margin: "s",
+  padding: "m",
+  borderRadius: "8px",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
+
 export const h3 = atoms({
   color: {
     lightMode: "black",
     darkMode: "gray-200",
   },
-  padding: "m",
-  marginTop: "xl",
 });
 
 export const sidebar = atoms({
@@ -47,17 +57,22 @@ export const content = atoms({
 });
 
 export const link = recipe({
-  base: atoms({
-    fontSize: "16px",
-    borderRadius: "8px",
-    margin: "s",
-    height: "32px",
-    paddingLeft: "m",
-    paddingRight: "m",
-    display: "flex",
-    alignItems: "center",
-    outline: "none",
-  }),
+  base: [
+    atoms({
+      fontSize: "16px",
+      borderRadius: "8px",
+      margin: "s",
+      height: "32px",
+      paddingLeft: "m",
+      paddingRight: "m",
+      display: "flex",
+      alignItems: "center",
+      outline: "none",
+    }),
+    style({
+      transition: "background 0.1s ease-out",
+    }),
+  ],
   variants: {
     color: {
       active: atoms({

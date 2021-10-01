@@ -50,7 +50,7 @@ type Props = {
 /**
  * Input component.
  *
- * For usage with Formik check [Formik example](/formik-example).
+ * For usage with Formik check [Formik](/docs/guides/formik) guide.
  *
  * ## Usage
  *

@@ -6,6 +6,7 @@ import { HiddenSelect, useSelect } from "@react-aria/select";
 import { mergeProps } from "@react-aria/utils";
 import { useSelectState } from "@react-stately/select";
 import { CollectionChildren } from "@react-types/shared/src/collections";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { Key, useRef } from "react";
 
 import { FormPopover } from "../FormPopover";
@@ -119,14 +120,25 @@ export function Select(props: Props): JSX.Element {
           <Chevron />
         </span>
       </button>
-      {state.isOpen && (
-        <FormPopover isOpen={state.isOpen} onClose={state.close}>
-          <ListBox
-            {...(menuProps as AriaListBoxOptions<object>)}
-            state={state}
-          />
-        </FormPopover>
-      )}
+      <AnimatePresence>
+        {state.isOpen && (
+          <motion.div
+            key="popover"
+            initial={{ opacity: 0, x: 0, y: -16 }}
+            animate={{ opacity: 1, x: 0, y: 0 }}
+            exit={{ opacity: 0, x: 0, y: -16 }}
+            transition={{ ease: "easeOut", duration: 0.15 }}
+            style={{ position: "relative" }}
+          >
+            <FormPopover isOpen={state.isOpen} onClose={state.close}>
+              <ListBox
+                {...(menuProps as AriaListBoxOptions<object>)}
+                state={state}
+              />
+            </FormPopover>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

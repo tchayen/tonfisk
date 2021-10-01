@@ -3,10 +3,11 @@ import { useDialog } from "@react-aria/dialog";
 import { FocusScope, useFocusRing } from "@react-aria/focus";
 import { useModal, useOverlay, usePreventScroll } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { ReactNode, useRef } from "react";
 
 import { Close } from "../icons/Close";
-import * as styles from "./ModalDialog.css";
+import * as styles from "./Modal.css";
 
 const CloseButton = (props: { onPress?: () => void }) => {
   const { focusProps, isFocusVisible } = useFocusRing();
@@ -49,56 +50,7 @@ type Props = {
   isDismissable?: boolean;
 };
 
-/**
- * ModalDialog component.
- *
- *  ## Usage
- *
- * ```jsx
- * import { OverlayContainer } from "@react-aria/overlays";
- * import { useOverlayTriggerState } from "@react-stately/overlays";
- * import { Button, HorizontalLine, ModalDialog } from "tonfisk";
- *
- * function ModalDialogExample(): JSX.Element {
- *   const state = useOverlayTriggerState({});
- *
- *   return (
- *     <>
- *       <Button onPress={() => state.open()}>Open</Button>
- *       {state.isOpen && (
- *         <OverlayContainer>
- *           <ModalDialog
- *             title="A modal example"
- *             onClose={state.close}
- *             isDismissable
- *             isOpen
- *           >
- *             <HorizontalLine />
- *             <p
- *               className={atoms({
- *                 padding: "l",
- *                 margin: "none",
- *                 color: {
- *                   lightMode: "gray-600",
- *                   darkMode: "gray-400",
- *                 },
- *               })}
- *             >
- *               You can close this modal by clicking outside or using escape.
- *             </p>
- *           </ModalDialog>
- *         </OverlayContainer>
- *       )}
- *     </>
- *   );
- * }
- * ```
- *
- * ## Example
- *
- * <ModalDialogExample />
- */
-export function ModalDialog(props: Props): JSX.Element {
+function ModalDialog(props: Props): JSX.Element {
   const { title, children } = props;
 
   // Handle interacting outside the dialog and pressing
@@ -117,9 +69,17 @@ export function ModalDialog(props: Props): JSX.Element {
   return (
     <div className={styles.fullPageDiv} {...underlayProps}>
       <FocusScope contain restoreFocus autoFocus>
-        <div
-          {...mergeProps(overlayProps, dialogProps, modalProps)}
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
+        <motion.div
+          key="modal"
+          initial={{ opacity: 0, x: 0, y: -48 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          exit={{ opacity: 0, x: 0, y: -48 }}
+          transition={{ ease: "easeOut", duration: 0.15 }}
+          style={{ position: "relative" }}
           ref={ref}
+          {...mergeProps(overlayProps, dialogProps, modalProps)}
           className={styles.modalDiv}
         >
           <div className={styles.titleRow}>
@@ -129,8 +89,69 @@ export function ModalDialog(props: Props): JSX.Element {
             <CloseButton onPress={props.onClose} />
           </div>
           {children}
-        </div>
+        </motion.div>
       </FocusScope>
     </div>
+  );
+}
+
+/**
+ * Modal component.
+ *
+ *  ## Usage
+ *
+ * ```jsx
+ * import { useOverlayTriggerState } from "@react-stately/overlays";
+ * import { Button, HorizontalLine, Modal } from "tonfisk";
+ *
+ * function ModalExample() {
+ *   const state = useOverlayTriggerState({});
+ *
+ *   return (
+ *     <>
+ *       <Button onPress={() => state.open()}>Open modal</Button>
+ *       <Modal
+ *         title="A modal example"
+ *         onClose={state.close}
+ *         isOpen={state.isOpen}
+ *         isDismissable
+ *       >
+ *         <HorizontalLine />
+ *         <p
+ *           className={atoms({
+ *             padding: "l",
+ *             margin: "none",
+ *             color: {
+ *               lightMode: "gray-600",
+ *               darkMode: "gray-400",
+ *             },
+ *           })}
+ *         >
+ *           You can close this modal by clicking outside or using escape.
+ *         </p>
+ *       </Modal>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * ## Example
+ *
+ * <ModalExample />
+ */
+export function Modal(props: Props): JSX.Element {
+  return (
+    <AnimatePresence>
+      {props.isOpen && (
+        <motion.div
+          key="modal"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+        >
+          <ModalDialog {...props} />
+        </motion.div>
+      )}
+    </AnimatePresence>
   );
 }

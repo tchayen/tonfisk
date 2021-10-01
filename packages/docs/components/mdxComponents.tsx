@@ -2,11 +2,7 @@ import "../styles/theme.css";
 
 import { useButton } from "@react-aria/button";
 import { useFocusRing } from "@react-aria/focus";
-import {
-  OverlayContainer,
-  useOverlayPosition,
-  useOverlayTrigger,
-} from "@react-aria/overlays";
+import { useOverlayPosition, useOverlayTrigger } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
 import { Form, Formik, useField } from "formik";
@@ -14,6 +10,7 @@ import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 import * as tonfisk from "tonfisk";
 import {
+  Accordion,
   atoms,
   BreadcrumbItem,
   Breadcrumbs,
@@ -24,7 +21,7 @@ import {
   HorizontalLine,
   Item,
   MenuButton,
-  ModalDialog,
+  Modal,
   Popover,
   Row,
   Select,
@@ -125,7 +122,7 @@ function PopoverExample(): JSX.Element {
     targetRef: triggerRef,
     overlayRef,
     placement: "bottom",
-    offset: 8,
+    offset: -8,
     isOpen: state.isOpen,
   });
 
@@ -169,24 +166,20 @@ function PopoverExample(): JSX.Element {
       >
         Open popover
       </button>
-      {state.isOpen && (
-        <OverlayContainer>
-          <Popover
-            {...mergeProps(overlayProps, positionProps)}
-            ref={overlayRef}
-            isOpen={state.isOpen}
-            onClose={state.close}
-          >
-            <div
-              className={atoms({
-                padding: "l",
-              })}
-            >
-              This is popover.
-            </div>
-          </Popover>
-        </OverlayContainer>
-      )}
+      <Popover
+        {...mergeProps(overlayProps, positionProps)}
+        ref={overlayRef}
+        isOpen={state.isOpen}
+        onClose={state.close}
+      >
+        <div
+          className={atoms({
+            padding: "l",
+          })}
+        >
+          This is popover.
+        </div>
+      </Popover>
     </>
   );
 }
@@ -270,36 +263,32 @@ function MenuExample(): JSX.Element {
   );
 }
 
-function ModalDialogExample(): JSX.Element {
+function ModalExample(): JSX.Element {
   const state = useOverlayTriggerState({});
 
   return (
     <>
-      <Button onPress={() => state.open()}>Open modal dialog</Button>
-      {state.isOpen && (
-        <OverlayContainer>
-          <ModalDialog
-            title="A modal example"
-            onClose={state.close}
-            isDismissable
-            isOpen
-          >
-            <HorizontalLine />
-            <p
-              className={atoms({
-                padding: "l",
-                margin: "none",
-                color: {
-                  lightMode: "gray-600",
-                  darkMode: "gray-400",
-                },
-              })}
-            >
-              You can close this modal by clicking outside or using escape.
-            </p>
-          </ModalDialog>
-        </OverlayContainer>
-      )}
+      <Button onPress={() => state.open()}>Open modal</Button>
+      <Modal
+        title="A modal example"
+        onClose={state.close}
+        isDismissable
+        isOpen={state.isOpen}
+      >
+        <HorizontalLine />
+        <p
+          className={atoms({
+            padding: "l",
+            margin: "none",
+            color: {
+              lightMode: "gray-600",
+              darkMode: "gray-400",
+            },
+          })}
+        >
+          You can close this modal by clicking outside or using escape.
+        </p>
+      </Modal>
     </>
   );
 }
@@ -339,6 +328,47 @@ function CheckboxExample(): JSX.Element {
         Label
       </Checkbox>
     </>
+  );
+}
+
+function AccordionExample(): JSX.Element {
+  return (
+    <div className={atoms({ display: "flex", flexDirection: "column" })}>
+      <Accordion
+        className={atoms({ marginTop: "l" })}
+        header={
+          <h2
+            className={atoms({
+              color: {
+                lightMode: "black",
+                darkMode: "gray-200",
+              },
+            })}
+          >
+            Header 1
+          </h2>
+        }
+      >
+        Test
+      </Accordion>
+      <Accordion
+        className={atoms({ marginTop: "l" })}
+        header={
+          <h2
+            className={atoms({
+              color: {
+                lightMode: "black",
+                darkMode: "gray-200",
+              },
+            })}
+          >
+            Header 2
+          </h2>
+        }
+      >
+        Other test
+      </Accordion>
+    </div>
   );
 }
 
@@ -402,11 +432,14 @@ function MdxLink({
 
   if (href.startsWith("https")) {
     return (
-      <div className={className}>
-        <a href={href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      </div>
+      <a
+        href={href}
+        className={className}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
     );
   }
 
@@ -432,12 +465,7 @@ function MdxLi({ children }: { children?: ReactNode }): JSX.Element {
 }
 
 function MdxBlockQuote({ children }: { children?: ReactNode }): JSX.Element {
-  return (
-    <blockquote className={styles.blockquote}>
-      <div className={styles.blockPipe} />
-      {children}
-    </blockquote>
-  );
+  return <blockquote className={styles.blockquote}>{children}</blockquote>;
 }
 
 function FlexRow({ children }: { children?: ReactNode }): JSX.Element {
@@ -468,8 +496,9 @@ export const components = {
   CheckboxExample,
   FormikExample,
   PopoverExample,
-  ModalDialogExample,
+  ModalExample,
   BreadcrumbsExample,
+  AccordionExample,
   FlexRow,
   ...tonfisk,
 };

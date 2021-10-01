@@ -2,6 +2,8 @@ import { useFocusRing } from "@react-aria/focus";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactNode, useState } from "react";
+import { Accordion } from "tonfisk";
+import { Chevron } from "tonfisk/src/icons/Chevron";
 
 import { getNavigation } from "../utils/mdx";
 import * as styles from "./Layout.css";
@@ -62,6 +64,15 @@ function ListItem({
   );
 }
 
+function SectionHeader({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <>
+      <h3 className={styles.h3}>{children}</h3>
+      <Chevron />
+    </>
+  );
+}
+
 function NavLink({
   item,
 }: {
@@ -80,10 +91,15 @@ function NavLink({
   } else {
     return (
       <div className={styles.column}>
-        <h3 className={styles.h3}>{item.name}</h3>
-        {item.files.map((file, index) => (
-          <NavLink key={index} item={file} />
-        ))}
+        <Accordion
+          mountOpen
+          className={styles.accordion}
+          header={<SectionHeader>{item.name}</SectionHeader>}
+        >
+          {item.files.map((file, index) => (
+            <NavLink key={index} item={file} />
+          ))}
+        </Accordion>
       </div>
     );
   }
