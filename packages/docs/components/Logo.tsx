@@ -1,10 +1,25 @@
+import { useFocusRing } from "@react-aria/focus";
 import Link from "next/link";
 import React from "react";
+import { atoms } from "tonfisk";
 
 export function Logo({ size }: { size?: number }): JSX.Element {
+  const { focusProps, isFocusVisible } = useFocusRing();
+
   return (
     <Link href="/">
-      <a href="/">
+      <a
+        href="/"
+        className={atoms({
+          outline: "none",
+          boxShadow: isFocusVisible ? "outline" : "none",
+          display: "inline-flex",
+          margin: "s",
+          padding: "m",
+          borderRadius: "8px",
+        })}
+        {...focusProps}
+      >
         <h1
           style={{
             fontSize: size || 64,
@@ -14,7 +29,6 @@ export function Logo({ size }: { size?: number }): JSX.Element {
             WebkitBackgroundClip: "text",
             MozBackgroundClip: "text",
             WebkitTextFillColor: "transparent",
-            display: "inline",
           }}
         >
           tonfisk 🐟

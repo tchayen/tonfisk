@@ -12,7 +12,9 @@ export const centered = atoms({
 export const accordion = atoms({
   cursor: "pointer",
   marginTop: "xl",
+  margin: "s",
   padding: "m",
+  borderRadius: "8px",
   display: "flex",
   justifyContent: "space-between",
   alignItems: "center",

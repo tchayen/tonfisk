@@ -64,6 +64,15 @@ function ListItem({
   );
 }
 
+function SectionHeader({ children }: { children: ReactNode }): JSX.Element {
+  return (
+    <>
+      <h3 className={styles.h3}>{children}</h3>
+      <Chevron />
+    </>
+  );
+}
+
 function NavLink({
   item,
 }: {
@@ -85,12 +94,7 @@ function NavLink({
         <Accordion
           mountOpen
           className={styles.accordion}
-          header={
-            <>
-              <h3 className={styles.h3}>{item.name}</h3>
-              <Chevron />
-            </>
-          }
+          header={<SectionHeader>{item.name}</SectionHeader>}
         >
           {item.files.map((file, index) => (
             <NavLink key={index} item={file} />

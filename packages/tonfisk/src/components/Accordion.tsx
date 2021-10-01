@@ -1,5 +1,9 @@
+import { useButton } from "@react-aria/button";
+import { useFocusRing } from "@react-aria/focus";
+import { mergeProps } from "@react-aria/utils";
 import { AnimatePresence, motion } from "framer-motion";
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, RefObject, useRef, useState } from "react";
+import { atoms } from "..";
 
 type Props = {
   /**
@@ -58,20 +62,33 @@ export function Accordion({
   mountOpen,
   children,
 }: Props): JSX.Element {
+  const ref = useRef<HTMLButtonElement>(null);
   const [expanded, setExpanded] = useState(mountOpen || false);
+  const { focusProps, isFocusVisible } = useFocusRing();
+  const { buttonProps, isPressed } = useButton(
+    {
+      onPress: () => {
+        setExpanded(!expanded);
+        console.log("Clicked expanded");
+      },
+    },
+    ref as RefObject<HTMLButtonElement>
+  );
 
   return (
     <>
-      <motion.header
-        initial={false}
-        className={className}
-        onClick={() => {
-          setExpanded(!expanded);
-          console.log("Clicked expanded");
-        }}
+      <button
+        ref={ref}
+        className={`${atoms({
+          outline: "none",
+          background: "transparent",
+          border: "none",
+          boxShadow: isFocusVisible ? "outline" : "none",
+        })} ${className}`}
+        {...mergeProps(focusProps, buttonProps)}
       >
         {header}
-      </motion.header>
+      </button>
       <AnimatePresence initial={false}>
         {expanded && (
           <motion.section
@@ -80,10 +97,19 @@ export function Accordion({
             animate="open"
             exit="collapsed"
             variants={{
-              open: { opacity: 1, height: "auto" },
-              collapsed: { opacity: 0, height: 0 },
+              open: {
+                opacity: 1,
+                height: "auto",
+              },
+              collapsed: {
+                opacity: 0,
+                height: 0,
+              },
             }}
-            transition={{ duration: 0.25, ease: "easeOut" }}
+            transition={{
+              duration: 0.25,
+              ease: "easeOut",
+            }}
           >
             {children}
           </motion.section>
