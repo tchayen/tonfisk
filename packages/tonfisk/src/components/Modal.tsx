@@ -69,6 +69,8 @@ function ModalDialog(props: Props): JSX.Element {
   return (
     <div className={styles.fullPageDiv} {...underlayProps}>
       <FocusScope contain restoreFocus autoFocus>
+        {/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */}
+        {/* @ts-ignore */}
         <motion.div
           key="modal"
           initial={{ opacity: 0, x: 0, y: -48 }}
