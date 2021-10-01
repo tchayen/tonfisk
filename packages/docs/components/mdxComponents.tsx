@@ -10,6 +10,7 @@ import Link from "next/link";
 import { ReactNode, useRef, useState } from "react";
 import * as tonfisk from "tonfisk";
 import {
+  Accordion,
   atoms,
   BreadcrumbItem,
   Breadcrumbs,
@@ -330,6 +331,14 @@ function CheckboxExample(): JSX.Element {
   );
 }
 
+function AccordionExample(): JSX.Element {
+  return (
+    <>
+      <Accordion header="Hello">blabla</Accordion>
+    </>
+  );
+}
+
 function FormTextInput(props: {
   name: string;
   label: string;
@@ -461,6 +470,7 @@ export const components = {
   PopoverExample,
   ModalExample,
   BreadcrumbsExample,
+  AccordionExample,
   FlexRow,
   ...tonfisk,
 };

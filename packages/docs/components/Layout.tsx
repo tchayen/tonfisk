@@ -2,6 +2,8 @@ import { useFocusRing } from "@react-aria/focus";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import React, { ReactNode, useState } from "react";
+import { Accordion } from "tonfisk";
+import { Chevron } from "tonfisk/src/icons/Chevron";
 
 import { getNavigation } from "../utils/mdx";
 import * as styles from "./Layout.css";
@@ -80,10 +82,19 @@ function NavLink({
   } else {
     return (
       <div className={styles.column}>
-        <h3 className={styles.h3}>{item.name}</h3>
-        {item.files.map((file, index) => (
-          <NavLink key={index} item={file} />
-        ))}
+        <Accordion
+          mountOpen
+          header={
+            <div className={styles.accordion}>
+              <h3 className={styles.h3}>{item.name}</h3>
+              <Chevron />
+            </div>
+          }
+        >
+          {item.files.map((file, index) => (
+            <NavLink key={index} item={file} />
+          ))}
+        </Accordion>
       </div>
     );
   }

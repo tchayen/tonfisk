@@ -8,13 +8,20 @@ export const centered = atoms({
   },
 });
 
+export const accordion = atoms({
+  cursor: "pointer",
+  marginTop: "xl",
+  padding: "m",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+});
+
 export const h3 = atoms({
   color: {
     lightMode: "black",
     darkMode: "gray-200",
   },
-  padding: "m",
-  marginTop: "xl",
 });
 
 export const sidebar = atoms({

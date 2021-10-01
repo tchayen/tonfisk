@@ -1,19 +1,20 @@
+export { Accordion } from "./src/components/Accordion";
 export { Button, ButtonLink } from "./src/components/Button";
+export { Breadcrumbs, BreadcrumbItem } from "./src/components/Breadcrumbs";
 export { Checkbox } from "./src/components/Checkbox";
-export { TextInput } from "./src/components/TextInput";
-export { Modal } from "./src/components/Modal";
-export { TonfiskProvider } from "./src/Provider";
-export { Select, Item } from "./src/components/Select";
-export { Switch } from "./src/components/Switch";
 export { HorizontalLine } from "./src/components/HorizontalLine";
-export { Tag } from "./src/components/Tag";
-export { Tooltip } from "./src/components/Tooltip";
-export { MenuButton } from "./src/components/Menu";
-export { Pagination } from "./src/components/Pagination";
-export { Spinner } from "./src/components/Spinner";
 export { Label } from "./src/components/Label";
+export { MenuButton } from "./src/components/Menu";
+export { Modal } from "./src/components/Modal";
+export { Pagination } from "./src/components/Pagination";
 export { Pill } from "./src/components/Pill";
 export { Popover } from "./src/components/Popover";
+export { Select, Item } from "./src/components/Select";
+export { Spinner } from "./src/components/Spinner";
+export { Switch } from "./src/components/Switch";
+export { Tag } from "./src/components/Tag";
+export { TextInput } from "./src/components/TextInput";
+export { Tooltip } from "./src/components/Tooltip";
 export * as commonStyles from "./src/commonStyles.css";
 export type { Selection } from "./src/components/Table";
 export {
@@ -31,5 +32,5 @@ export {
   TableSelectAllCell,
   TableCheckboxCell,
 } from "./src/components/Table";
-export { Breadcrumbs, BreadcrumbItem } from "./src/components/Breadcrumbs";
+export { TonfiskProvider } from "./src/Provider";
 export { atoms } from "./src/theme.css";
