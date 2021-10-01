@@ -392,20 +392,27 @@ function MdxLink({
   children?: ReactNode;
 }): JSX.Element {
   const { focusProps, isFocusVisible } = useFocusRing();
+  const className = `${atoms({
+    color: "blue-500",
+    outline: "none",
+    borderRadius: "4px",
+    display: "inline-flex",
+    boxShadow: isFocusVisible ? "outline" : "none",
+  })} ${hoverUnderline}`;
+
+  if (href.startsWith("https")) {
+    return (
+      <div className={className}>
+        <a href={href} target="_blank" rel="noopener noreferrer">
+          {children}
+        </a>
+      </div>
+    );
+  }
 
   return (
     <Link href={href}>
-      <a
-        {...focusProps}
-        href={href}
-        className={`${atoms({
-          color: "blue-500",
-          outline: "none",
-          borderRadius: "4px",
-          display: "inline-flex",
-          boxShadow: isFocusVisible ? "outline" : "none",
-        })} ${hoverUnderline}`}
-      >
+      <a {...focusProps} href={href} className={className}>
         {children}
       </a>
     </Link>
