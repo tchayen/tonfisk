@@ -17,6 +17,8 @@ function TooltipBox({
   const { tooltipProps } = useTooltip({}, state);
 
   return (
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
     <motion.div
       key="popover"
       initial={{ opacity: 0, x: 0, y: -8 }}
