@@ -69,9 +69,15 @@ function ModalDialog(props: Props): JSX.Element {
   return (
     <div className={styles.fullPageDiv} {...underlayProps}>
       <FocusScope contain restoreFocus autoFocus>
-        <div
-          {...mergeProps(overlayProps, dialogProps, modalProps)}
+        <motion.div
+          key="modal"
+          initial={{ opacity: 0, x: 0, y: -48 }}
+          animate={{ opacity: 1, x: 0, y: 0 }}
+          exit={{ opacity: 0, x: 0, y: -48 }}
+          transition={{ ease: "easeOut", duration: 0.15 }}
+          style={{ position: "relative" }}
           ref={ref}
+          {...mergeProps(overlayProps, dialogProps, modalProps)}
           className={styles.modalDiv}
         >
           <div className={styles.titleRow}>
@@ -81,7 +87,7 @@ function ModalDialog(props: Props): JSX.Element {
             <CloseButton onPress={props.onClose} />
           </div>
           {children}
-        </div>
+        </motion.div>
       </FocusScope>
     </div>
   );

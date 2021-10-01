@@ -121,7 +121,7 @@ function PopoverExample(): JSX.Element {
     targetRef: triggerRef,
     overlayRef,
     placement: "bottom",
-    offset: 8,
+    offset: -8,
     isOpen: state.isOpen,
   });
 
@@ -390,11 +390,14 @@ function MdxLink({
 
   if (href.startsWith("https")) {
     return (
-      <div className={className}>
-        <a href={href} target="_blank" rel="noopener noreferrer">
-          {children}
-        </a>
-      </div>
+      <a
+        href={href}
+        className={className}
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        {children}
+      </a>
     );
   }
 

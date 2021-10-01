@@ -72,7 +72,7 @@ const SettingsPopover = ({
     targetRef: triggerRef,
     overlayRef,
     placement: "bottom",
-    offset: 8,
+    offset: -8,
     isOpen: state.isOpen,
   });
 
@@ -556,19 +556,23 @@ export default function Example(): ReactNode {
               >
                 {from}
               </SelectTokenModal>
-              {from && fromBalance && (
-                <div
-                  className={atoms({
-                    fontSize: "14px",
-                    color: {
-                      lightMode: "gray-600",
-                      darkMode: "gray-400",
-                    },
-                  })}
-                >
-                  Balance: {fromBalance} {from}
-                </div>
-              )}
+
+              <div
+                className={atoms({
+                  fontSize: "14px",
+                  color: {
+                    lightMode: "gray-600",
+                    darkMode: "gray-400",
+                  },
+                })}
+              >
+                Balance:{" "}
+                {from && fromBalance && (
+                  <>
+                    {fromBalance} {from}
+                  </>
+                )}
+              </div>
             </div>
             <BorderlessInput
               aria-label="Amount"
@@ -600,19 +604,22 @@ export default function Example(): ReactNode {
               >
                 {to}
               </SelectTokenModal>
-              {to && toBalance && (
-                <div
-                  className={atoms({
-                    fontSize: "14px",
-                    color: {
-                      lightMode: "gray-600",
-                      darkMode: "gray-400",
-                    },
-                  })}
-                >
-                  Balance: {toBalance} {to}
-                </div>
-              )}
+              <div
+                className={atoms({
+                  fontSize: "14px",
+                  color: {
+                    lightMode: "gray-600",
+                    darkMode: "gray-400",
+                  },
+                })}
+              >
+                Balance:{" "}
+                {to && toBalance && (
+                  <>
+                    {toBalance} {to}
+                  </>
+                )}
+              </div>
             </div>
             <BorderlessInput
               aria-label="Amount"

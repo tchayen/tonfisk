@@ -78,9 +78,11 @@ export const Popover = forwardRef(
           <OverlayContainer>
             <motion.div
               key="popover"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
+              initial={{ opacity: 0, x: 0, y: -16 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              exit={{ opacity: 0, x: 0, y: -16 }}
+              transition={{ ease: "easeOut", duration: 0.15 }}
+              style={{ position: "relative" }}
             >
               <FocusScope contain restoreFocus>
                 <div
