@@ -5,6 +5,7 @@ type Props = {
   mountOpen?: boolean;
   header: ReactNode;
   children: ReactNode;
+  className?: string;
 };
 
 /**
@@ -12,13 +13,19 @@ type Props = {
  *
  * <AccordionExample />
  */
-export function Accordion({ header, mountOpen, children }: Props): JSX.Element {
+export function Accordion({
+  header,
+  className,
+  mountOpen,
+  children,
+}: Props): JSX.Element {
   const [expanded, setExpanded] = useState(mountOpen || false);
 
   return (
     <>
       <motion.header
         initial={false}
+        className={className}
         onClick={() => {
           setExpanded(!expanded);
           console.log("Clicked expanded");

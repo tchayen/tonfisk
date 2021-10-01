@@ -84,11 +84,12 @@ function NavLink({
       <div className={styles.column}>
         <Accordion
           mountOpen
+          className={styles.accordion}
           header={
-            <div className={styles.accordion}>
+            <>
               <h3 className={styles.h3}>{item.name}</h3>
               <Chevron />
-            </div>
+            </>
           }
         >
           {item.files.map((file, index) => (
