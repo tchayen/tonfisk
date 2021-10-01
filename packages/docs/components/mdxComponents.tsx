@@ -334,7 +334,18 @@ function CheckboxExample(): JSX.Element {
 function AccordionExample(): JSX.Element {
   return (
     <>
-      <Accordion header="Hello">blabla</Accordion>
+      <Accordion
+        className={atoms({ marginTop: "l" })}
+        header={<h2>Header 1</h2>}
+      >
+        Test
+      </Accordion>
+      <Accordion
+        className={atoms({ marginTop: "l" })}
+        header={<h2>Header 2</h2>}
+      >
+        Other test
+      </Accordion>
     </>
   );
 }

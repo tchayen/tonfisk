@@ -149,4 +149,8 @@ export const vars = createGlobalTheme(":root", {
     light: "0 0 black",
     dark: "0 0 #fff",
   },
+  transition: {
+    color: "color 0.1s ease-out",
+    background: "background 0.15s ease-out",
+  },
 });

@@ -13,6 +13,7 @@ export const buttonLike = atoms({
   fontWeight: "bold",
   lineHeight: 1,
   height: "32px",
+  transition: "background",
 });
 
 const basicButton = atoms({

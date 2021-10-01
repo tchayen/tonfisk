@@ -11,6 +11,33 @@ type Props = {
 /**
  * Accordion component can be minimized and expanded.
  *
+ * Use `header` to provide the title of the accordion.
+ *
+ * ## Usage
+ *
+ * ```jsx
+ * function AccordionExample(): JSX.Element {
+ *   return (
+ *     <>
+ *       <Accordion
+ *         className={atoms({ marginTop: "l" })}
+ *         header={<h2>Header 1</h2>}
+ *       >
+ *         Test
+ *       </Accordion>
+ *       <Accordion
+ *         className={atoms({ marginTop: "l" })}
+ *         header={<h2>Header 2</h2>}
+ *       >
+ *         Other test
+ *       </Accordion>
+ *     </>
+ *   );
+ * }
+ * ```
+ *
+ * ## Example
+ *
  * <AccordionExample />
  */
 export function Accordion({

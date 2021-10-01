@@ -1,3 +1,4 @@
+import { style } from "@vanilla-extract/css";
 import { recipe } from "@vanilla-extract/recipes";
 import { atoms } from "tonfisk/src/theme.css";
 
@@ -54,17 +55,22 @@ export const content = atoms({
 });
 
 export const link = recipe({
-  base: atoms({
-    fontSize: "16px",
-    borderRadius: "8px",
-    margin: "s",
-    height: "32px",
-    paddingLeft: "m",
-    paddingRight: "m",
-    display: "flex",
-    alignItems: "center",
-    outline: "none",
-  }),
+  base: [
+    atoms({
+      fontSize: "16px",
+      borderRadius: "8px",
+      margin: "s",
+      height: "32px",
+      paddingLeft: "m",
+      paddingRight: "m",
+      display: "flex",
+      alignItems: "center",
+      outline: "none",
+    }),
+    style({
+      transition: "background 0.1s ease-out",
+    }),
+  ],
   variants: {
     color: {
       active: atoms({

@@ -1,4 +1,3 @@
-import { style } from "@vanilla-extract/css";
 import { globalStyle } from "@vanilla-extract/css";
 import { atoms } from "tonfisk/src/theme.css";
 
