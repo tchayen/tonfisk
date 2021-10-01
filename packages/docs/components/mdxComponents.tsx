@@ -5,9 +5,10 @@ import { useFocusRing } from "@react-aria/focus";
 import { useOverlayPosition, useOverlayTrigger } from "@react-aria/overlays";
 import { mergeProps } from "@react-aria/utils";
 import { useOverlayTriggerState } from "@react-stately/overlays";
+import crypto from "crypto";
 import { Form, Formik, useField } from "formik";
 import Link from "next/link";
-import { ReactNode, useRef, useState } from "react";
+import { ReactNode, useContext, useEffect, useRef, useState } from "react";
 import * as tonfisk from "tonfisk";
 import {
   Accordion,
@@ -31,6 +32,7 @@ import {
   TableHeader,
   TextInput,
 } from "tonfisk";
+import { ColorModeContext } from "tonfisk/src/Provider";
 
 import { hoverUnderline } from "../styles/theme.css";
 import { Header1, Header2, Header3, Header4 } from "./Header";
@@ -421,7 +423,9 @@ function MdxLink({
   href: string;
   children?: ReactNode;
 }): JSX.Element {
-  const { focusProps, isFocusVisible } = useFocusRing();
+  const { colorMode } = useContext(ColorModeContext);
+  const { focusProps, isFocusVisible, isFocused } = useFocusRing({});
+
   const className = `${atoms({
     color: "blue-500",
     outline: "none",
@@ -430,25 +434,94 @@ function MdxLink({
     boxShadow: isFocusVisible ? "outline" : "none",
   })} ${hoverUnderline}`;
 
-  if (href.startsWith("https")) {
-    return (
-      <a
-        href={href}
-        className={className}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    );
-  }
+  const state = useOverlayTriggerState({});
+  const triggerRef = useRef<HTMLAnchorElement>(null);
+  const overlayRef = useRef(null);
+
+  useEffect(() => {
+    if (isFocused && !state.isOpen) {
+      state.open();
+    } else if (!isFocused && state.isOpen) {
+      state.close();
+    }
+  }, [isFocused]);
+
+  const { triggerProps, overlayProps } = useOverlayTrigger(
+    { type: "dialog" },
+    state,
+    triggerRef
+  );
+
+  const { overlayProps: positionProps } = useOverlayPosition({
+    targetRef: triggerRef,
+    overlayRef,
+    placement: "top",
+    offset: 24,
+    isOpen: state.isOpen,
+  });
+
+  const onMouseEnter = () => {
+    state.open();
+  };
+
+  const onMouseLeave = () => {
+    state.close();
+  };
+
+  const isExternalLink = href.startsWith("https");
+  const imagePath = `/miniatures/${crypto
+    .createHash("md5")
+    .update(
+      `${colorMode}-${isExternalLink ? href : `http://localhost:3000${href}`}`
+    )
+    .digest("hex")}.png`;
 
   return (
-    <Link href={href}>
-      <a {...focusProps} href={href} className={className}>
-        {children}
-      </a>
-    </Link>
+    <div
+      className={atoms({
+        position: "relative",
+        display: "inline-flex",
+      })}
+    >
+      {isExternalLink ? (
+        <a
+          {...mergeProps(triggerProps, focusProps)}
+          ref={triggerRef}
+          href={href}
+          className={className}
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {children}
+        </a>
+      ) : (
+        <Link href={href}>
+          <a
+            {...mergeProps(triggerProps, focusProps)}
+            ref={triggerRef}
+            href={href}
+            className={className}
+            onMouseEnter={onMouseEnter}
+            onMouseLeave={onMouseLeave}
+          >
+            {children}
+          </a>
+        </Link>
+      )}
+      <Popover
+        {...mergeProps(overlayProps, positionProps)}
+        ref={overlayRef}
+        isOpen={state.isOpen}
+        onClose={state.close}
+        contain={false}
+      >
+        <div className={styles.preview}>
+          <img src={imagePath} alt={href} className={styles.image} />
+        </div>
+      </Popover>
+    </div>
   );
 }
 

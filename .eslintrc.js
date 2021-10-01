@@ -21,5 +21,6 @@ module.exports = {
     "simple-import-sort/imports": "warn",
     "react/react-in-jsx-scope": "off",
     "@typescript-eslint/array-type": ["error", { default: "generic" }],
+    "@typescript-eslint/no-unused-vars": "error",
   },
 };

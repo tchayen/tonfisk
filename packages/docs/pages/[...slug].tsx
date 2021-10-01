@@ -23,7 +23,6 @@ export default function Doc({
   source,
   frontMatter,
 }: Props): JSX.Element {
-  console.log({ frontMatter });
   return (
     <>
       <Head>

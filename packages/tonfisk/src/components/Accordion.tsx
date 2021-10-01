@@ -64,7 +64,6 @@ export function Accordion({
     {
       onPress: () => {
         setExpanded(!expanded);
-        console.log("Clicked expanded");
       },
     },
     ref as RefObject<HTMLButtonElement>
