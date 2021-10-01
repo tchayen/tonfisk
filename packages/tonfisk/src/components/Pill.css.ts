@@ -18,6 +18,8 @@ export const pill = recipe({
       cursor: "pointer",
       outline: "none",
       border: "none",
+      // TODO: maybe only transition box-shadow and background and swap color instantly?
+      transition: "all",
     }),
   ],
   variants: {

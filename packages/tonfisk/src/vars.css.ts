@@ -152,5 +152,6 @@ export const vars = createGlobalTheme(":root", {
   transition: {
     color: "color 0.1s ease-out",
     background: "background 0.15s ease-out",
+    all: "all 0.15s ease-out",
   },
 });

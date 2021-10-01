@@ -8,28 +8,18 @@ export const li = atoms({
 
 export const blockquote = atoms({
   margin: "none",
-  fontStyle: "italic",
   position: "relative",
-  paddingLeft: "xl",
-  paddingTop: "l",
-  paddingBottom: "l",
+  padding: "l",
+  background: {
+    lightMode: "gray-100",
+    darkMode: "gray-800",
+  },
+  borderRadius: "8px",
+  overflow: "hidden",
 });
 
 globalStyle(`${blockquote} > p`, {
   margin: 0,
-});
-
-export const blockPipe = atoms({
-  borderRadius: "4px",
-  position: "absolute",
-  width: "4px",
-  left: 0,
-  top: 0,
-  height: "100%",
-  background: {
-    darkMode: "gray-700",
-    lightMode: "gray-200",
-  },
 });
 
 export const flexRow = atoms({

@@ -443,12 +443,7 @@ function MdxLi({ children }: { children?: ReactNode }): JSX.Element {
 }
 
 function MdxBlockQuote({ children }: { children?: ReactNode }): JSX.Element {
-  return (
-    <blockquote className={styles.blockquote}>
-      <div className={styles.blockPipe} />
-      {children}
-    </blockquote>
-  );
+  return <blockquote className={styles.blockquote}>{children}</blockquote>;
 }
 
 function FlexRow({ children }: { children?: ReactNode }): JSX.Element {

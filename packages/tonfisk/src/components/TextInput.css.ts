@@ -33,6 +33,7 @@ export const inputLike = atoms({
     lightMode: "black",
     darkMode: "gray-200",
   },
+  transition: "all",
 });
 
 export const input = recipe({

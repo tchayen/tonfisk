@@ -98,7 +98,7 @@ const Dots = ({ onChange }: { onChange: (number: number) => void }) => {
     targetRef: triggerRef,
     overlayRef,
     placement: "bottom",
-    offset: 8,
+    offset: -8,
     isOpen: state.isOpen,
   });
 
