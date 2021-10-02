@@ -89,7 +89,7 @@ async function generate() {
         { name: "prefers-color-scheme", value: colorMode },
       ]);
 
-      await delay(DELAY); // Wait in case some color is animated.
+      await page.reload({ waitUntil: "networkidle2" });
 
       const screenshot = await page.screenshot(options);
       await sharp(screenshot)
