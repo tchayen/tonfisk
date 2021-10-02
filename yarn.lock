@@ -1438,6 +1438,18 @@
     "@react-types/overlays" "^3.5.1"
     dom-helpers "^3.3.1"
 
+"@react-aria/progress@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@react-aria/progress/-/progress-3.1.3.tgz#5b60adfbf52ee2b012a11cfa2c2acf12a56343a0"
+  integrity sha512-8He91F3MYPT63s/3XUYvaRHHGsPgG3/b4TzdhO5GqmpfCnvDyrXrBI5cj+uyIB9gczU59zENJcnP8Q0oOITiMA==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/i18n" "^3.3.2"
+    "@react-aria/label" "^3.1.3"
+    "@react-aria/utils" "^3.8.2"
+    "@react-types/progress" "^3.1.2"
+    "@react-types/shared" "^3.8.0"
+
 "@react-aria/select@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@react-aria/select/-/select-3.5.0.tgz#833c3416bd4c7b1d494167118431da2fbae3401e"
@@ -1470,6 +1482,15 @@
     "@react-stately/collections" "^3.3.3"
     "@react-stately/selection" "^3.7.0"
     "@react-types/shared" "^3.9.0"
+
+"@react-aria/separator@^3.1.3":
+  version "3.1.3"
+  resolved "https://registry.yarnpkg.com/@react-aria/separator/-/separator-3.1.3.tgz#58937d639caabd461e8325085eafe57256cece6d"
+  integrity sha512-Vl5UjLvt7NojRZOmKunXzttDqrjZp9i3oIKmwk5ydppchfzvriKsPeFinbWzcRMzIaHOljQ8Gj8yqgGjJtuvuQ==
+  dependencies:
+    "@babel/runtime" "^7.6.2"
+    "@react-aria/utils" "^3.8.2"
+    "@react-types/shared" "^3.8.0"
 
 "@react-aria/ssr@^3.0.3", "@react-aria/ssr@^3.1.0":
   version "3.1.0"
@@ -1780,6 +1801,13 @@
   version "3.5.1"
   resolved "https://registry.yarnpkg.com/@react-types/overlays/-/overlays-3.5.1.tgz#35350dfca639d04a8fbd973de59b141450df1b46"
   integrity sha512-T3o6wQ5NNm1rSniIa01bIa6fALC8jbwpYxFMaQRrdEpIvwktt0Fi5Xo6/97+oe4HvzzU0JMhtwWDTdRySvgeZw==
+  dependencies:
+    "@react-types/shared" "^3.8.0"
+
+"@react-types/progress@^3.1.2":
+  version "3.1.2"
+  resolved "https://registry.yarnpkg.com/@react-types/progress/-/progress-3.1.2.tgz#7878ce5b03bfa92f5f8ca999a4cafc545f3d07a4"
+  integrity sha512-RLddv7VLuN/vWi13zbCmp8L5spbO/ArzimplJ5v59XrDNi/obbFkMOxne8/NrIS06aRiYiP8scXgC+koyyqpJg==
   dependencies:
     "@react-types/shared" "^3.8.0"
 
