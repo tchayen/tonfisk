@@ -17,21 +17,23 @@ const hashLength = 12;
 export function MdxLink({
   href,
   children,
+  className,
 }: {
   href: string;
   children?: ReactNode;
+  className?: string;
 }): JSX.Element {
   const router = useRouter();
   const { colorMode } = useContext(ColorModeContext);
   const { focusProps, isFocusVisible, isFocused } = useFocusRing({});
 
-  const className = `${atoms({
+  const style = `${atoms({
     color: "blue-500",
     outline: "none",
     borderRadius: "4px",
     display: "inline-flex",
     boxShadow: isFocusVisible ? "outline" : "none",
-  })} ${hoverUnderline}`;
+  })} ${hoverUnderline} ${className}`;
 
   const state = useOverlayTriggerState({});
   const triggerRef = useRef<HTMLAnchorElement>(null);
@@ -93,7 +95,7 @@ export function MdxLink({
           {...mergeProps(triggerProps, focusProps)}
           ref={triggerRef}
           href={href}
-          className={className}
+          className={style}
           onMouseEnter={onMouseEnter}
           onMouseLeave={onMouseLeave}
           target="_blank"
@@ -107,7 +109,7 @@ export function MdxLink({
             {...mergeProps(triggerProps, focusProps)}
             ref={triggerRef}
             href={href}
-            className={className}
+            className={style}
             onMouseEnter={onMouseEnter}
             onMouseLeave={onMouseLeave}
           >

@@ -1,5 +1,6 @@
 // This script will visit predefined list of paths and generate screenshots.
 // Each file will be replaced only if its content is less than 90% compatible.
+// If a file didn't exist before, script will handle error gracefully.
 import crypto from "crypto";
 import fs from "fs";
 import pixelmatch from "pixelmatch";
@@ -7,15 +8,16 @@ import { PNG } from "pngjs";
 import puppeteer from "puppeteer";
 import sharp from "sharp";
 
-const WIDTH = 256;
-const HEIGHT = 144;
-const DELAY = 250;
-const HASH_LENGTH = 12;
-const THRESHOLD = 90;
+const WIDTH = 256; // Width of the preview.
+const HEIGHT = 144; // Height of the preview.
+const DELAY = 250; // Delay before switching color mode.
+const HASH_LENGTH = 12; // Length of the filename.
+const THRESHOLD = 90; // How many percent should match at least to skip saving new image.
+const FACTOR = 6; // How many times bigger should be browser window than preview.
 
 const dimensions = {
-  width: WIDTH * 5,
-  height: HEIGHT * 5,
+  width: WIDTH * FACTOR,
+  height: HEIGHT * FACTOR,
 };
 
 const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
@@ -25,6 +27,9 @@ const resultDirectory = getPath("../../public/miniatures");
 const paths = [
   ...new Set(
     [
+      "https://twitter.com/tchayen",
+      "https://github.com/tchayen/tonfisk",
+      "https://www.npmjs.com/package/tonfisk",
       "https://vanilla-extract.style/documentation/setup/",
       "http://localhost:3000/docs/guides/bundling",
       "http://localhost:3000/noflash.js",
@@ -55,7 +60,10 @@ const paths = [
 const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function generate() {
-  const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
+  const browser = await puppeteer.launch({
+    headless: false,
+    args: ["--no-sandbox"],
+  });
   const page = await browser.newPage();
   await page.setViewport(Object.assign({ deviceScaleFactor: 1 }, dimensions));
 
