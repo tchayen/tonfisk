@@ -1,3 +1,4 @@
+import { useProgressBar } from "@react-aria/progress";
 import React from "react";
 
 import { background, main } from "./Spinner.css";
@@ -20,15 +21,20 @@ import { background, main } from "./Spinner.css";
  */
 export function Spinner(): JSX.Element {
   const size = 32;
-
   const center = 16;
   const strokeWidth = 4;
   const r = 16 - strokeWidth;
   const c = 2 * r * Math.PI;
   const offset = c - (1 / 4) * c;
 
+  const { progressBarProps } = useProgressBar({
+    isIndeterminate: true,
+    "aria-label": "Loading...",
+  });
+
   return (
     <svg
+      {...(progressBarProps as any)}
       width={size}
       height={size}
       viewBox="0 0 32 32"

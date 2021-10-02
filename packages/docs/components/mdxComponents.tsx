@@ -32,7 +32,6 @@ import {
   TextInput,
 } from "tonfisk";
 
-import { hoverUnderline } from "../styles/theme.css";
 import { Header1, Header2, Header3, Header4 } from "./Header";
 import * as styles from "./mdxComponents.css";
 import { MdxPre } from "./MdxPre";
@@ -43,6 +42,7 @@ import {
   MdxTableHeaderRow,
   MdxTableRow,
 } from "./MdxTable";
+import { PreviewLink } from "./PreviewLink";
 import { SwitchColorMode } from "./SwitchColorMode";
 
 function SelectExample(): JSX.Element {
@@ -414,44 +414,6 @@ function FormikExample(): JSX.Element {
   );
 }
 
-function MdxLink({
-  href,
-  children,
-}: {
-  href: string;
-  children?: ReactNode;
-}): JSX.Element {
-  const { focusProps, isFocusVisible } = useFocusRing();
-  const className = `${atoms({
-    color: "blue-500",
-    outline: "none",
-    borderRadius: "4px",
-    display: "inline-flex",
-    boxShadow: isFocusVisible ? "outline" : "none",
-  })} ${hoverUnderline}`;
-
-  if (href.startsWith("https")) {
-    return (
-      <a
-        href={href}
-        className={className}
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        {children}
-      </a>
-    );
-  }
-
-  return (
-    <Link href={href}>
-      <a {...focusProps} href={href} className={className}>
-        {children}
-      </a>
-    </Link>
-  );
-}
-
 function MdxStrong({ children }: { children?: ReactNode }): JSX.Element {
   return <strong className={styles.strong}>{children}</strong>;
 }
@@ -473,7 +435,7 @@ function FlexRow({ children }: { children?: ReactNode }): JSX.Element {
 }
 
 export const components = {
-  a: MdxLink,
+  a: PreviewLink,
   strong: MdxStrong,
   h1: Header1,
   h2: Header2,

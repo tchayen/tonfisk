@@ -36,7 +36,7 @@ export function Header(
             borderRadius: "4px",
             display: "inline-block",
             // padding: "m",
-          })}`}
+          })}`.trim()}
           {...focusProps}
           href={`#${slug}`}
         >

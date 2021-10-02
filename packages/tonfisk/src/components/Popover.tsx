@@ -25,6 +25,10 @@ type Props = {
    * Used in some cases to style position and size of the popover.
    */
   style?: React.CSSProperties;
+  /**
+   * Whether to contain focus inside the scope, so users cannot move focus outside. Defaults to `true`.
+   */
+  contain?: boolean;
 };
 
 /**
@@ -84,7 +88,10 @@ export const Popover = forwardRef(
               transition={{ ease: "easeOut", duration: 0.15 }}
               style={{ position: "relative" }}
             >
-              <FocusScope contain restoreFocus>
+              <FocusScope
+                contain={props.contain !== undefined ? props.contain : true}
+                restoreFocus
+              >
                 <div
                   ref={ref as RefObject<HTMLDivElement>}
                   className={className}

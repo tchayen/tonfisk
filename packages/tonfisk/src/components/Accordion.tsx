@@ -64,7 +64,6 @@ export function Accordion({
     {
       onPress: () => {
         setExpanded(!expanded);
-        console.log("Clicked expanded");
       },
     },
     ref as RefObject<HTMLButtonElement>
@@ -83,7 +82,7 @@ export function Accordion({
           padding: "none",
           display: "flex",
           boxShadow: isFocusVisible ? "outline" : "none",
-        })} ${className}`}
+        })} ${className}`.trim()}
         {...mergeProps(focusProps, buttonProps)}
       >
         {header}

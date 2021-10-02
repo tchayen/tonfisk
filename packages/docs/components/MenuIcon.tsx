@@ -74,8 +74,8 @@ export function MenuIcon({ children }: { children: ReactNode }): JSX.Element {
 
   // TODO: finish styling.
   const ref = useRef<HTMLButtonElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const { buttonProps, isPressed } = useButton(
+  const [, setIsHovered] = useState(false);
+  const { buttonProps } = useButton(
     {
       onPress: () => {
         state.open();

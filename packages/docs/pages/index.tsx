@@ -13,6 +13,7 @@ import { SocialCardsHeader } from "../components/SocialCardsHeader";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 // import { Tweet } from "../components/Tweet";
 import * as styles from "../styles/index.css";
+import { PreviewLink } from "../components/PreviewLink";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return <h3 className={styles.subheader}>{children}</h3>;
@@ -131,14 +132,9 @@ function Homepage() {
             <Paragraph>
               Are you working with designers or like to design on your own?
               Up-to-date{" "}
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href="https://www.figma.com/community/file/1022531774593389664/tonfisk"
-                className={styles.link}
-              >
+              <PreviewLink href="https://www.figma.com/community/file/1022531774593389664/tonfisk">
                 Figma file
-              </a>{" "}
+              </PreviewLink>{" "}
               is available for your needs.
             </Paragraph>
           </div>
@@ -184,53 +180,40 @@ function Homepage() {
         <footer>
           <div className={styles.footerText}>
             Created by{" "}
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href="https://twitter.com/tchayen"
-              className={styles.link}
-            >
+            <PreviewLink href="https://twitter.com/tchayen">
               @tchayen
-            </a>{" "}
+            </PreviewLink>{" "}
             in Stockholm.
           </div>
         </footer>
         <div className={styles.footerLinkRow}>
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
+          <PreviewLink
             href="https://github.com/tchayen/tonfisk"
             className={styles.footerLink}
           >
             GitHub repository
-          </a>
+          </PreviewLink>
           /
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
+          <PreviewLink
             href="https://www.npmjs.com/package/tonfisk"
             className={styles.footerLink}
           >
             NPM package
-          </a>
+          </PreviewLink>
           /
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
+          <PreviewLink
             href="https://www.figma.com/community/file/1022531774593389664/tonfisk"
             className={styles.footerLink}
           >
             Figma file
-          </a>
+          </PreviewLink>
           /
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
+          <PreviewLink
             href="https://codesandbox.io/s/tonfisk-webpack-pbehz"
             className={styles.footerLink}
           >
             CodeSandbox example
-          </a>
+          </PreviewLink>
         </div>
       </div>
     </>

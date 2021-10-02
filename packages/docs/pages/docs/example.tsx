@@ -439,7 +439,7 @@ function SpinnerContainer({
       <div
         className={`${className} ${atoms({
           opacity: loading ? 0.5 : 1,
-        })}`}
+        })}`.trim()}
       >
         {children}
       </div>

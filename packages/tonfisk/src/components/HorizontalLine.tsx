@@ -1,6 +1,7 @@
+import { useSeparator } from "@react-aria/separator";
 import React from "react";
 
-import { atoms } from "../theme.css";
+import * as styles from "./HorizontalLine.css";
 
 /**
  * A horizontal line spanning the full width of the container.
@@ -20,17 +21,6 @@ import { atoms } from "../theme.css";
  * <HorizontalLine />
  */
 export function HorizontalLine(): JSX.Element {
-  return (
-    <div
-      // TODO: extract styles.
-      className={atoms({
-        background: {
-          lightMode: "gray-200",
-          darkMode: "gray-700",
-        },
-        width: "100%",
-        height: "1px",
-      })}
-    />
-  );
+  const { separatorProps } = useSeparator({});
+  return <div {...separatorProps} className={styles.horizontalLine} />;
 }
