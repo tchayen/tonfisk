@@ -82,7 +82,7 @@ export function Accordion({
           padding: "none",
           display: "flex",
           boxShadow: isFocusVisible ? "outline" : "none",
-        })} ${className}`}
+        })} ${className}`.trim()}
         {...mergeProps(focusProps, buttonProps)}
       >
         {header}

@@ -9,7 +9,6 @@ import { ReactNode, useContext, useEffect, useRef } from "react";
 import { atoms, Popover } from "tonfisk";
 import { ColorModeContext } from "tonfisk/src/Provider";
 
-import { hoverUnderline } from "../styles/theme.css";
 import * as styles from "./MdxLink.css";
 
 const hashLength = 12;
@@ -27,13 +26,9 @@ export function MdxLink({
   const { colorMode } = useContext(ColorModeContext);
   const { focusProps, isFocusVisible, isFocused } = useFocusRing({});
 
-  const style = `${atoms({
-    color: "blue-500",
-    outline: "none",
-    borderRadius: "4px",
-    display: "inline-flex",
-    boxShadow: isFocusVisible ? "outline" : "none",
-  })} ${hoverUnderline} ${className}`;
+  const style = `${styles.link({
+    boxShadow: isFocusVisible ? "focusVisible" : "default",
+  })} ${className}`.trim();
 
   const state = useOverlayTriggerState({});
   const triggerRef = useRef<HTMLAnchorElement>(null);

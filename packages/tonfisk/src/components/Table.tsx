@@ -134,7 +134,9 @@ export function TableRow({
 
   return (
     <tr
-      className={`${index === rows - 1 ? styles.lastRow : ""} ${className}`}
+      className={`${
+        index === rows - 1 ? styles.lastRow : ""
+      } ${className}`.trim()}
       {...mergeProps(rowProps, focusProps)}
       ref={ref}
     >
