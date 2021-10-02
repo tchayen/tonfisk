@@ -1,4 +1,3 @@
-import { style } from "@vanilla-extract/css";
 import { globalStyle } from "@vanilla-extract/css";
 import { atoms } from "tonfisk/src/theme.css";
 
@@ -44,26 +43,4 @@ export const strong = atoms({
     lightMode: "black",
     darkMode: "gray-200",
   },
-});
-
-export const preview = style([
-  atoms({
-    padding: "s",
-    background: {
-      lightMode: "gray-200",
-      darkMode: "gray-700",
-    },
-    borderRadius: "8px",
-    overflow: "hidden",
-  }),
-  style({
-    width: 256 + 8,
-    height: 144 + 8,
-  }),
-]);
-
-export const image = style({
-  width: 256,
-  height: 144,
-  borderRadius: 6,
 });

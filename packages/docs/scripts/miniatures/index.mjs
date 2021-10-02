@@ -1,10 +1,18 @@
+// This script will visit predefined list of paths and generate screenshots.
+// Each file will be replaced only if its content is less than 90% compatible.
 import crypto from "crypto";
+import fs from "fs";
+import pixelmatch from "pixelmatch";
+import { PNG } from "pngjs";
 import puppeteer from "puppeteer";
 import sharp from "sharp";
 
+const width = 256;
+const height = 144;
+
 const dimensions = {
-  width: 1280,
-  height: 720,
+  width: width * 5,
+  height: height * 5,
 };
 
 const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
@@ -12,29 +20,33 @@ const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
 const resultDirectory = getPath("../../public/miniatures");
 
 const paths = [
-  "https://vanilla-extract.style/documentation/setup/",
-  "http://localhost:3000/docs/guides/bundling",
-  "http://localhost:3000/noflash.js",
-  "https://github.com/tchayen/tonfisk/tree/main/examples/webpack",
-  "https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/src/theme.css.ts",
-  "https://vanilla-extract.style/documentation",
-  "http://localhost:3000/docs/guides/formik",
-  "http://localhost:3000/docs/example",
-  "https://github.com/tchayen/tonfisk/tree/main/examples",
-  "https://codesandbox.io/s/tonfisk-webpack-pbehz",
-  "https://www.figma.com/community/file/1022531774593389664/tonfisk",
-  "https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969",
-  "http://localhost:3000/docs/motivation#what-is-a-design-system",
-  "https://react-spectrum.adobe.com/react-aria",
-  "https://reach.tech/",
-  "https://vanilla-extract.style/",
-  "http://localhost:3000/docs/standing-on-the-shoulders-of-giants",
-  "http://localhost:3000/docs/components/button",
-  "https://github.com/tchayen/tonfisk/blob/main/examples/webpack/webpack.config.js",
-  "https://github.com/tchayen/tonfisk/blob/main/examples/next/next.config.js",
-  "https://vanilla-extract.style/documentation/setup/",
-  "http://localhost:3000/docs/components/pagination",
-  "http://localhost:3000/docs/guides/formik",
+  ...new Set(
+    [
+      "https://vanilla-extract.style/documentation/setup/",
+      "http://localhost:3000/docs/guides/bundling",
+      "http://localhost:3000/noflash.js",
+      "https://github.com/tchayen/tonfisk/tree/main/examples/webpack",
+      "https://github.com/tchayen/tonfisk/blob/main/packages/tonfisk/src/theme.css.ts",
+      "https://vanilla-extract.style/documentation",
+      "http://localhost:3000/docs/guides/formik",
+      "http://localhost:3000/docs/example",
+      "https://github.com/tchayen/tonfisk/tree/main/examples",
+      "https://codesandbox.io/s/tonfisk-webpack-pbehz",
+      "https://www.figma.com/community/file/1022531774593389664/tonfisk",
+      "https://uxdesign.cc/everything-you-need-to-know-about-design-systems-54b109851969",
+      "http://localhost:3000/docs/motivation#what-is-a-design-system",
+      "https://react-spectrum.adobe.com/react-aria",
+      "https://reach.tech/",
+      "https://vanilla-extract.style/",
+      "http://localhost:3000/docs/motivation#standing-on-the-shoulders-of-giants",
+      "http://localhost:3000/docs/components/button",
+      "https://github.com/tchayen/tonfisk/blob/main/examples/webpack/webpack.config.js",
+      "https://github.com/tchayen/tonfisk/blob/main/examples/next/next.config.js",
+      "https://vanilla-extract.style/documentation/setup/",
+      "http://localhost:3000/docs/components/pagination",
+      "http://localhost:3000/docs/guides/formik",
+    ].map((path) => path.split("#")[0])
+  ),
 ];
 
 async function generate() {
@@ -48,34 +60,66 @@ async function generate() {
   };
 
   for (const path of paths) {
-    const fileName = (colorMode) =>
-      `${resultDirectory}/${crypto
+    await page.goto(path.split("#")[0]);
+
+    const getImageForColorMode = async (colorMode) => {
+      const hash = crypto
         .createHash("md5")
         .update(`${colorMode}-${path}`)
-        .digest("hex")}.png`;
+        .digest("hex")
+        .substring(0, 12);
+      const fileName = `${resultDirectory}/${hash}.png`;
 
-    await page.emulateMediaFeatures([
-      { name: "prefers-color-scheme", value: "light" },
-    ]);
+      const logName = `${path} (${colorMode} mode) ${hash}`;
 
-    console.log(`Creating ${fileName("light")} for ${path}.`);
+      await page.emulateMediaFeatures([
+        { name: "prefers-color-scheme", value: colorMode },
+      ]);
 
-    await page.goto(path);
+      const screenshot = await page.screenshot(options);
+      await sharp(screenshot)
+        .resize(width, height)
+        .toFile(`${resultDirectory}/tmp.png`);
 
-    const lightBuffer = await page.screenshot(options);
-    await sharp(lightBuffer).resize(256, 144).toFile(fileName("light"));
+      try {
+        const oldImage = PNG.sync.read(fs.readFileSync(fileName));
+        const newImage = PNG.sync.read(
+          fs.readFileSync(`${resultDirectory}/tmp.png`)
+        );
 
-    await page.emulateMediaFeatures([
-      { name: "prefers-color-scheme", value: "dark" },
-    ]);
+        const differentPixels = pixelmatch(
+          oldImage.data,
+          newImage.data,
+          null,
+          width,
+          height
+        );
 
-    console.log(`Creating ${fileName("dark")} for ${path}.`);
+        const compatibility = 100 - (differentPixels * 100) / (width * height);
+        const percentage = compatibility.toFixed(2);
+        if (compatibility < 90) {
+          console.log(
+            `${logName} is ${percentage}% compatible. Saving new version.`
+          );
+          fs.renameSync(`${resultDirectory}/tmp.png`, fileName);
+        } else {
+          console.log(`${logName} is ${percentage}% compatible. Skipping.`);
+        }
+      } catch (error) {
+        console.log(`Comparison failed: ${error}. Saving anyway.`);
+        fs.renameSync(`${resultDirectory}/tmp.png`, fileName);
+      }
+    };
 
-    const darkBuffer = await page.screenshot(options);
-    await sharp(darkBuffer).resize(256, 144).toFile(fileName("dark"));
+    await getImageForColorMode("light");
+    await getImageForColorMode("dark");
   }
 
   await browser.close();
+
+  try {
+    fs.rmSync(`${resultDirectory}/tmp.png`);
+  } catch {}
 }
 
 generate();
