@@ -12,6 +12,8 @@ import { ColorModeContext } from "tonfisk/src/Provider";
 import { hoverUnderline } from "../styles/theme.css";
 import * as styles from "./MdxLink.css";
 
+const hashLength = 12;
+
 export function MdxLink({
   href,
   children,
@@ -66,19 +68,19 @@ export function MdxLink({
   };
 
   const isExternalLink = href.startsWith("https");
+  const url = (
+    isExternalLink
+      ? href
+      : href.startsWith("#")
+      ? `http://localhost:3000${router.asPath}${href}`
+      : `http://localhost:3000${href}`
+  ).split("#")[0]; // We don't want any #part-of-url.
+
   const imagePath = `/miniatures/${crypto
     .createHash("md5")
-    .update(
-      `${colorMode}-${
-        isExternalLink
-          ? href
-          : href.startsWith("#")
-          ? `http://localhost:3000${router.pathname}${href}`
-          : `http://localhost:3000${href}`
-      }`
-    )
-    .digest("hex")}.png?v=${process.env.CONFIG_BUILD_ID}`;
-  console.log({ imagePath });
+    .update(`${colorMode}-${url}`)
+    .digest("hex")
+    .substring(0, hashLength)}.png?v=${process.env.CONFIG_BUILD_ID}`;
 
   useEffect(() => {
     new Image().src = imagePath;

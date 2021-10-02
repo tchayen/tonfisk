@@ -7,12 +7,15 @@ import { PNG } from "pngjs";
 import puppeteer from "puppeteer";
 import sharp from "sharp";
 
-const width = 256;
-const height = 144;
+const WIDTH = 256;
+const HEIGHT = 144;
+const DELAY = 250;
+const HASH_LENGTH = 12;
+const THRESHOLD = 90;
 
 const dimensions = {
-  width: width * 5,
-  height: height * 5,
+  width: WIDTH * 5,
+  height: HEIGHT * 5,
 };
 
 const getPath = (filePath) => new URL(filePath, import.meta.url).pathname;
@@ -49,6 +52,8 @@ const paths = [
   ),
 ];
 
+const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 async function generate() {
   const browser = await puppeteer.launch({ args: ["--no-sandbox"] });
   const page = await browser.newPage();
@@ -67,7 +72,7 @@ async function generate() {
         .createHash("md5")
         .update(`${colorMode}-${path}`)
         .digest("hex")
-        .substring(0, 12);
+        .substring(0, HASH_LENGTH);
       const fileName = `${resultDirectory}/${hash}.png`;
 
       const logName = `${path} (${colorMode} mode) ${hash}`;
@@ -76,9 +81,11 @@ async function generate() {
         { name: "prefers-color-scheme", value: colorMode },
       ]);
 
+      await delay(DELAY); // Wait in case some color is animated.
+
       const screenshot = await page.screenshot(options);
       await sharp(screenshot)
-        .resize(width, height)
+        .resize(WIDTH, HEIGHT)
         .toFile(`${resultDirectory}/tmp.png`);
 
       try {
@@ -91,13 +98,13 @@ async function generate() {
           oldImage.data,
           newImage.data,
           null,
-          width,
-          height
+          WIDTH,
+          HEIGHT
         );
 
-        const compatibility = 100 - (differentPixels * 100) / (width * height);
+        const compatibility = 100 - (differentPixels * 100) / (WIDTH * HEIGHT);
         const percentage = compatibility.toFixed(2);
-        if (compatibility < 90) {
+        if (compatibility < THRESHOLD) {
           console.log(
             `${logName} is ${percentage}% compatible. Saving new version.`
           );
@@ -119,6 +126,7 @@ async function generate() {
 
   try {
     fs.rmSync(`${resultDirectory}/tmp.png`);
+    // eslint-disable-next-line no-empty
   } catch {}
 }
 
