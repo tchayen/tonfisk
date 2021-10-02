@@ -6,7 +6,7 @@ import crypto from "crypto";
 import { useRouter } from "next/dist/client/router";
 import Link from "next/link";
 import { ReactNode, useContext, useEffect, useRef } from "react";
-import { atoms, Popover } from "tonfisk";
+import { Popover } from "tonfisk";
 import { ColorModeContext } from "tonfisk/src/Provider";
 
 import * as styles from "./MdxLink.css";
