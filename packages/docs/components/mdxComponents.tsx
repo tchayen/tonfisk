@@ -34,7 +34,6 @@ import {
 
 import { Header1, Header2, Header3, Header4 } from "./Header";
 import * as styles from "./mdxComponents.css";
-import { MdxLink } from "./MdxLink";
 import { MdxPre } from "./MdxPre";
 import {
   MdxTable,
@@ -43,6 +42,7 @@ import {
   MdxTableHeaderRow,
   MdxTableRow,
 } from "./MdxTable";
+import { PreviewLink } from "./PreviewLink";
 import { SwitchColorMode } from "./SwitchColorMode";
 
 function SelectExample(): JSX.Element {
@@ -435,7 +435,7 @@ function FlexRow({ children }: { children?: ReactNode }): JSX.Element {
 }
 
 export const components = {
-  a: MdxLink,
+  a: PreviewLink,
   strong: MdxStrong,
   h1: Header1,
   h2: Header2,

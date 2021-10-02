@@ -13,7 +13,7 @@ import { SocialCardsHeader } from "../components/SocialCardsHeader";
 import { SwitchColorMode } from "../components/SwitchColorMode";
 // import { Tweet } from "../components/Tweet";
 import * as styles from "../styles/index.css";
-import { MdxLink } from "../components/MdxLink";
+import { PreviewLink } from "../components/PreviewLink";
 
 function Subheader({ children }: { children: ReactNode }): JSX.Element {
   return <h3 className={styles.subheader}>{children}</h3>;
@@ -132,9 +132,9 @@ function Homepage() {
             <Paragraph>
               Are you working with designers or like to design on your own?
               Up-to-date{" "}
-              <MdxLink href="https://www.figma.com/community/file/1022531774593389664/tonfisk">
+              <PreviewLink href="https://www.figma.com/community/file/1022531774593389664/tonfisk">
                 Figma file
-              </MdxLink>{" "}
+              </PreviewLink>{" "}
               is available for your needs.
             </Paragraph>
           </div>
@@ -180,38 +180,40 @@ function Homepage() {
         <footer>
           <div className={styles.footerText}>
             Created by{" "}
-            <MdxLink href="https://twitter.com/tchayen">@tchayen</MdxLink> in
-            Stockholm.
+            <PreviewLink href="https://twitter.com/tchayen">
+              @tchayen
+            </PreviewLink>{" "}
+            in Stockholm.
           </div>
         </footer>
         <div className={styles.footerLinkRow}>
-          <MdxLink
+          <PreviewLink
             href="https://github.com/tchayen/tonfisk"
             className={styles.footerLink}
           >
             GitHub repository
-          </MdxLink>
+          </PreviewLink>
           /
-          <MdxLink
+          <PreviewLink
             href="https://www.npmjs.com/package/tonfisk"
             className={styles.footerLink}
           >
             NPM package
-          </MdxLink>
+          </PreviewLink>
           /
-          <MdxLink
+          <PreviewLink
             href="https://www.figma.com/community/file/1022531774593389664/tonfisk"
             className={styles.footerLink}
           >
             Figma file
-          </MdxLink>
+          </PreviewLink>
           /
-          <MdxLink
+          <PreviewLink
             href="https://codesandbox.io/s/tonfisk-webpack-pbehz"
             className={styles.footerLink}
           >
             CodeSandbox example
-          </MdxLink>
+          </PreviewLink>
         </div>
       </div>
     </>

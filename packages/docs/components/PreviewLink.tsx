@@ -13,7 +13,7 @@ import * as styles from "./MdxLink.css";
 
 const hashLength = 12;
 
-export function MdxLink({
+export function PreviewLink({
   href,
   children,
   className,
@@ -79,37 +79,24 @@ export function MdxLink({
     .digest("hex")
     .substring(0, hashLength)}.png?v=${process.env.CONFIG_BUILD_ID}`;
 
-  useEffect(() => {
-    new Image().src = imagePath;
-  }, []);
+  const common = {
+    ...mergeProps(triggerProps, focusProps),
+    ref: triggerRef,
+    className: style,
+    onMouseEnter,
+    onMouseLeave,
+    href,
+  };
 
   return (
     <>
       {isExternalLink ? (
-        <a
-          {...mergeProps(triggerProps, focusProps)}
-          ref={triggerRef}
-          href={href}
-          className={style}
-          onMouseEnter={onMouseEnter}
-          onMouseLeave={onMouseLeave}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a target="_blank" rel="noopener noreferrer" {...common}>
           {children}
         </a>
       ) : (
         <Link href={href}>
-          <a
-            {...mergeProps(triggerProps, focusProps)}
-            ref={triggerRef}
-            href={href}
-            className={style}
-            onMouseEnter={onMouseEnter}
-            onMouseLeave={onMouseLeave}
-          >
-            {children}
-          </a>
+          <a {...common}>{children}</a>
         </Link>
       )}
       <Popover
