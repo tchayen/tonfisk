@@ -8,5 +8,4 @@ export const label = atoms({
   },
   display: "block",
   fontWeight: "bold",
-  marginBottom: "s",
 });

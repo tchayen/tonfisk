@@ -19,13 +19,7 @@ import React, { useRef, useState } from "react";
 
 import { Chevron } from "../icons/Chevron";
 import { Label } from "./Label";
-import {
-  chevronPadding,
-  div,
-  menuButton,
-  menuItem,
-  menuPopup,
-} from "./Menu.css";
+import * as styles from "./Menu.css";
 
 function MenuPopup(
   props: {
@@ -67,7 +61,7 @@ function MenuPopup(
         <ul
           {...mergeProps(menuProps, props.domProps)}
           ref={ref}
-          className={menuPopup}
+          className={styles.menuPopup}
         >
           {Array.from(state.collection).map((item) => (
             <MenuItem
@@ -122,7 +116,7 @@ function MenuItem({
     <li
       {...mergeProps(menuItemProps, focusProps)}
       ref={ref}
-      className={menuItem({
+      className={styles.menuItem({
         background: isFocused ? "focused" : "default",
         color: isFocused ? "focused" : "default",
       })}
@@ -185,14 +179,14 @@ const MenuButton_ = (
     <button
       {...mergeProps(buttonProps, focusProps)}
       ref={ref}
-      className={menuButton({
+      className={styles.menuButton({
         boxShadow: isFocusVisible ? "focusVisible" : "default",
         cursor: props.isDisabled ? "disabled" : "default",
         opacity: props.isDisabled ? "disabled" : "default",
       })}
     >
       {props.children}
-      <span aria-hidden="true" className={chevronPadding}>
+      <span aria-hidden="true" className={styles.chevronPadding}>
         <Chevron />
       </span>
     </button>
@@ -234,7 +228,7 @@ export function MenuButton(props: Props): JSX.Element {
   const { labelProps, fieldProps } = useLabel(props);
 
   return (
-    <div className={div}>
+    <div className={styles.div}>
       {props.label && <Label {...labelProps}>{props.label}</Label>}
       <MenuButtonComponent
         ref={ref}

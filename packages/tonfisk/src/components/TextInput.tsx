@@ -1,6 +1,8 @@
 import { useTextField } from "@react-aria/textfield";
 import React, { FocusEvent, useRef, useState } from "react";
 
+import { atoms } from "..";
+import colors from "../colors";
 import { Label } from "./Label";
 import * as styles from "./TextInput.css";
 
@@ -42,6 +44,14 @@ type Props = {
    */
   onKeyPress?: (event: React.KeyboardEvent) => void;
   /**
+   * TODO
+   */
+  description?: string;
+  /**
+   * TODO
+   */
+  errorMessage?: string;
+  /**
    * Value used to describe the table to screen readers. Required if `label` is missing.
    */
   "aria-label"?: string;
@@ -64,12 +74,18 @@ type Props = {
  *
  * ## Example
  *
- * <TextInput label="First name" placeholder="John" />
+ * <TextInput
+ *   label="First name"
+ *   placeholder="John"
+ *   description="Your first name as in the official documents."
+ *   errorMessage="This seems to be incorrect."
+ * />
  */
 export function TextInput(props: Props): JSX.Element {
-  const { label } = props;
+  const { label, description, errorMessage } = props;
   const ref = useRef<HTMLInputElement>(null);
-  const { labelProps, inputProps } = useTextField(props, ref);
+  const { labelProps, inputProps, descriptionProps, errorMessageProps } =
+    useTextField(props, ref);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = (event: FocusEvent) => {
@@ -104,6 +120,29 @@ export function TextInput(props: Props): JSX.Element {
           boxShadow: isFocused ? "focused" : "default",
         })}
       />
+      {description && (
+        <div
+          {...descriptionProps}
+          className={atoms({
+            fontSize: "14px",
+            color: {
+              lightMode: "gray-600",
+              darkMode: "gray-400",
+            },
+          })}
+        >
+          {description}
+        </div>
+      )}
+      {errorMessage && (
+        <div
+          {...errorMessageProps}
+          className={atoms({ fontSize: "14px" })}
+          style={{ color: colors.red[500] }}
+        >
+          {errorMessage}
+        </div>
+      )}
     </div>
   );
 }

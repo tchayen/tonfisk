@@ -6,6 +6,7 @@ export const div = recipe({
   base: atoms({
     display: "flex",
     flexDirection: "column",
+    gap: "s",
   }),
   variants: {
     opacity: {

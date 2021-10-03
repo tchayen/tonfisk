@@ -6,7 +6,9 @@ import { inputLike } from "./TextInput.css";
 
 export const select = atoms({
   position: "relative",
-  display: "inline-block",
+  display: "inline-flex",
+  flexDirection: "column",
+  gap: "s",
 });
 
 export const span = style([

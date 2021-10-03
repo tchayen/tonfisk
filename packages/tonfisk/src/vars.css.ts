@@ -114,6 +114,7 @@ export const vars = createGlobalTheme(":root", {
   border: {
     none: "none",
     primary: `1px solid ${colors.blue[500]}`, // TODO
+    primary2: `2px solid ${colors.blue[500]}`, // TODO
     blueOutline: `1px solid rgba(59, 130, 246, 0.3)`, // TODO
     // blueOutline: `1px solid rgba(236, 72, 153, 0.3)`, // TODO
     regular: `1px solid ${colors.coolGray[200]}`, // TODO

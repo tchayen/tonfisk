@@ -43,7 +43,7 @@ type Props = {
 export function Checkbox(props: Props): JSX.Element {
   const { children } = props;
   const state = useToggleState(props);
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
   const { inputProps } = useCheckbox(props, state, ref);
   const { focusProps, isFocusVisible } = useFocusRing();
 

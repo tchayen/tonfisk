@@ -169,6 +169,7 @@ function Settings({
           <Label>Transaction deadline</Label>
           <div
             className={atoms({
+              marginTop: "s",
               display: "flex",
               alignItems: "center",
             })}

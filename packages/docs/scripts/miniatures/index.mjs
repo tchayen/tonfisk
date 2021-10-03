@@ -10,7 +10,6 @@ import sharp from "sharp";
 
 const WIDTH = 256; // Width of the preview.
 const HEIGHT = 144; // Height of the preview.
-const DELAY = 250; // Delay before switching color mode.
 const HASH_LENGTH = 12; // Length of the filename.
 const THRESHOLD = 90; // How many percent should match at least to skip saving new image.
 const FACTOR = 6; // How many times bigger should be browser window than preview.
@@ -53,11 +52,11 @@ const paths = [
       "https://vanilla-extract.style/documentation/setup/",
       "http://localhost:3000/docs/components/pagination",
       "http://localhost:3000/docs/guides/formik",
+      "https://dev.to/livechat/tree-shaking-for-javascript-library-authors-4lb0",
+      "https://react-native-aria.geekyants.com/",
     ].map((path) => path.split("#")[0])
   ),
 ];
-
-const delay = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
 async function generate() {
   const browser = await puppeteer.launch({

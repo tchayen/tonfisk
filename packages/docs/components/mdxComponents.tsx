@@ -17,12 +17,14 @@ import {
   Button,
   Cell,
   Checkbox,
+  CheckboxGroup,
   Column,
   HorizontalLine,
   Item,
   MenuButton,
   Modal,
   Popover,
+  RadioGroup,
   Row,
   Select,
   Selection,
@@ -250,7 +252,7 @@ function TableExample(): JSX.Element {
 function MenuExample(): JSX.Element {
   return (
     <MenuButton
-      aria-label="Actions"
+      label="Actions"
       title="Pick action"
       onAction={() => {
         console.log("Hej!");
@@ -331,6 +333,24 @@ function CheckboxExample(): JSX.Element {
   );
 }
 
+function CheckboxGroupExample(): JSX.Element {
+  return (
+    <CheckboxGroup label="Favorite sports">
+      <CheckboxGroup.Checkbox value="Apple">Apple</CheckboxGroup.Checkbox>
+      <CheckboxGroup.Checkbox value="Banana">Banana</CheckboxGroup.Checkbox>
+    </CheckboxGroup>
+  );
+}
+
+function RadioGroupExample(): JSX.Element {
+  return (
+    <RadioGroup label="Favorite fruit">
+      <RadioGroup.Radio value="Apple">Apple</RadioGroup.Radio>
+      <RadioGroup.Radio value="Banana">Banana</RadioGroup.Radio>
+    </RadioGroup>
+  );
+}
+
 function AccordionExample(): JSX.Element {
   return (
     <div className={atoms({ display: "flex", flexDirection: "column" })}>
@@ -379,10 +399,46 @@ function FormTextInput(props: {
 }) {
   const [field, meta, { setValue }] = useField(props);
 
+  console.log({ field, meta });
+
   return (
     <>
-      <TextInput {...field} onChange={(value) => setValue(value)} {...props} />
-      {meta.touched && meta.error ? <div>{meta.error}</div> : null}
+      <TextInput
+        {...field}
+        onChange={(value) => setValue(value)}
+        {...props}
+        errorMessage={meta.touched && meta.error ? meta.error : undefined}
+      />
+    </>
+  );
+}
+
+function FormikCheckboxGroup(props) {
+  const [field, meta, { setValue }] = useField(props);
+
+  return (
+    <>
+      <CheckboxGroup
+        // {...field}
+        // onChange={(value) => setValue(value)}
+        errorMessage={meta.touched && meta.error ? meta.error : undefined}
+        {...props}
+      />
+    </>
+  );
+}
+
+function FormikRadioGroup(props) {
+  const [field, meta, { setValue }] = useField(props);
+
+  return (
+    <>
+      <RadioGroup
+        // {...field}
+        // onChange={(value) => setValue(value)}
+        errorMessage={meta.touched && meta.error ? meta.error : undefined}
+        {...props}
+      />
     </>
   );
 }
@@ -393,6 +449,23 @@ function FormikExample(): JSX.Element {
       initialValues={{
         name: "",
         email: "",
+        fruits: [],
+        beverages: "",
+      }}
+      validate={(values) => {
+        const errors: { [key: string]: string } = {};
+        if (!values.name) {
+          errors.name = "Name is required.";
+        }
+        if (!values.email) {
+          errors.email = "Email is required.";
+        } else if (
+          // Co-pilot wrote this.
+          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+        ) {
+          errors.email = "Invalid email address.";
+        }
+        return errors;
       }}
       onSubmit={async (values) => {
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -408,6 +481,14 @@ function FormikExample(): JSX.Element {
       >
         <FormTextInput name="name" label="Name" placeholder="Jane Doe" />
         <FormTextInput name="email" label="Email" placeholder="jane@acme.com" />
+        <FormikCheckboxGroup name="fruits" label="Favorite fruits">
+          <CheckboxGroup.Checkbox value="Apple">Apple</CheckboxGroup.Checkbox>
+          <CheckboxGroup.Checkbox value="Banana">Banana</CheckboxGroup.Checkbox>
+        </FormikCheckboxGroup>
+        <FormikRadioGroup name="beverages" label="Beverages">
+          <RadioGroup.Radio value="Milk">Milk</RadioGroup.Radio>
+          <RadioGroup.Radio value="Juice">Juice</RadioGroup.Radio>
+        </FormikRadioGroup>
         <Button type="submit">Submit</Button>
       </Form>
     </Formik>
@@ -435,6 +516,7 @@ function FlexRow({ children }: { children?: ReactNode }): JSX.Element {
 }
 
 export const components = {
+  // HTML elements.
   a: PreviewLink,
   strong: MdxStrong,
   h1: Header1,
@@ -450,17 +532,22 @@ export const components = {
   tr: MdxTableRow,
   td: MdxTableCell,
   th: MdxTableHeaderCell,
-  SwitchColorMode,
-  Link,
-  TableExample,
-  SelectExample,
-  MenuExample,
-  CheckboxExample,
-  FormikExample,
-  PopoverExample,
-  ModalExample,
-  BreadcrumbsExample,
-  AccordionExample,
+  // Utility components.
   FlexRow,
+  Link,
+  SwitchColorMode,
+  // Examples.
+  AccordionExample,
+  BreadcrumbsExample,
+  CheckboxExample,
+  CheckboxGroupExample,
+  FormikExample,
+  MenuExample,
+  ModalExample,
+  PopoverExample,
+  RadioGroupExample,
+  SelectExample,
+  TableExample,
+  // Re-export everything.
   ...tonfisk,
 };

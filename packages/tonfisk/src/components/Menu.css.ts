@@ -5,7 +5,12 @@ import { optionBase } from "../ListBox.css";
 import { atoms } from "../theme.css";
 import { inputLike } from "./TextInput.css";
 
-export const div = atoms({ position: "relative", display: "inline-block" });
+export const div = atoms({
+  position: "relative",
+  display: "inline-flex",
+  flexDirection: "column",
+  gap: "s",
+});
 
 export const menuPopup = style([
   atoms({
